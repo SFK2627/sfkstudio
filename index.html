@@ -1,0 +1,1091 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b1220"><title>ON AIR Studio</title><style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#e9f1ff;background:#0b1220;font-size:14px}*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.app{max-width:1440px;margin:auto;padding:14px 16px 92px}.top,.row,.spread{display:flex;align-items:center;gap:9px}.spread{justify-content:space-between}.top{justify-content:space-between;flex-wrap:wrap}.brand{font-size:23px;font-weight:900;letter-spacing:-.8px}.brand b{color:#fbbf24}.muted,.hint{color:#a1b1c9}.hint{font-size:12px;line-height:1.5}.tiny{font-size:11px}.btn,.tab{border:1px solid #344764;background:#1b2b43;color:#edf4ff;border-radius:9px;padding:9px 12px;font-weight:650;min-height:38px}.btn.primary,.tab.active{background:#2563eb;border-color:#4c88ff}.btn.danger{background:#9b2530;border-color:#c53a47}.btn.green{background:#146c54;border-color:#2da77d}.btn.small{font-size:12px;padding:6px 9px;min-height:32px}.btn:focus-visible,.trigger:focus-visible{outline:3px solid #fbbf24;outline-offset:2px}.tabs{display:flex;gap:6px;margin:13px 0;overflow:auto}.tab{white-space:nowrap;flex:1}.panel{background:#131f32;border:1px solid #293c57;border-radius:13px;padding:13px;min-width:0}.dashboard{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:11px}.title{font-size:15px;font-weight:800;margin:0 0 9px}.pill{border:1px solid #344763;border-radius:30px;padding:5px 9px;font-size:11px;color:#bbcae0}.toolbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:9px;margin-top:11px}.sound{background:#1a2a41;border:1px solid #38506c;border-radius:12px;padding:10px;min-width:0;touch-action:pan-y;display:flex;flex-direction:column;min-height:196px;height:196px;overflow:hidden}.soundhead{min-height:40px}.sound .trigger{flex-shrink:0}.sound .volume{margin-top:auto}.sound .cat{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sound.live{border-color:#37c998;background:#193c3c}.sound.preview{box-shadow:inset 0 0 0 1px #fbbf24}.sound.dragging{opacity:.48}.sound.drop-target{outline:2px dashed #fbbf24}.soundhead{display:flex;align-items:flex-start;gap:7px}.soundname{font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.25;flex:1;min-width:0}.cat{font-size:10px;color:#c0d1e7;margin-top:4px}.handle{background:transparent;color:#b3c5dd;border:0;padding:4px;font-size:17px;cursor:grab;touch-action:none}.trigger{display:block;width:100%;min-height:49px;border:1px solid #4777b3;background:#264c7d;color:white;border-radius:9px;font-weight:850;margin:9px 0 7px}.sound.live .trigger{background:#13765d}.progress{height:5px;border-radius:9px;background:#3b4d66;overflow:hidden}.progress>div{height:100%;width:0;background:#64b6ff}.times{display:flex;justify-content:space-between;color:#b7c8dc;font-size:10px;margin-top:4px}.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:8px}.actions button{padding:6px 1px;font-size:11px;min-height:30px}.volume{display:flex;align-items:center;gap:5px;margin-top:8px}.volume input{min-width:0;width:100%}.volume span{font-size:10px;min-width:30px;text-align:right}.script{width:100%;min-height:135px;resize:vertical;background:#0b1627;color:#e9f1ff;border:1px solid #354966;border-radius:9px;padding:10px;line-height:1.65}.script:focus{outline:2px solid #4486f3}.floating-script{position:fixed;z-index:15;left:16px;top:95px;width:min(440px,calc(100vw - 24px));height:min(520px,70dvh);background:#15243a;border:1px solid #5a7ca6;border-radius:14px;box-shadow:0 20px 70px #000a;display:flex;flex-direction:column;overflow:hidden;resize:both;min-width:230px;min-height:180px;max-width:100vw;max-height:95dvh}.float-head{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#253d5c;padding:7px 9px;cursor:grab;touch-action:none;user-select:none}.float-head:active{cursor:grabbing}.float-body{flex:1;overflow:auto;min-height:0;padding:10px;touch-action:pan-x pan-y}.float-body .script{height:100%;min-height:0;resize:none;font-size:16px;line-height:1.5}.float-tools{display:flex;align-items:center;gap:5px}.float-tools .btn{min-height:28px;padding:3px 7px}.float-zoom{width:80px!important}.float-placeholder{font-size:12px;color:#b5c9e4;padding:12px;border:1px dashed #425b7a;border-radius:9px}.script-inline-hidden{display:none!important}.field{margin:10px 0}label{display:block;color:#c2cfe1;font-size:12px;margin-bottom:5px}input[type=text],input[type=number],select{background:#0c1728;color:#f1f6ff;border:1px solid #3a506d;border-radius:8px;padding:9px;max-width:100%;width:100%}input[type=range]{accent-color:#55a4ff}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.hidden{display:none!important}.empty{border:1px dashed #3d5472;border-radius:12px;padding:25px;text-align:center;color:#b1c2db;margin-top:12px}.listrow{display:flex;align-items:center;gap:8px;padding:9px;background:#1a2b42;border-radius:9px;margin:7px 0;flex-wrap:wrap}.listrow .grow{flex:1;min-width:110px;overflow-wrap:anywhere}.footer{position:fixed;bottom:0;left:0;right:0;background:#0b1425f5;border-top:1px solid #2b3e57;padding:8px 16px;z-index:5}.footinner{max-width:1408px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:8px}.modalbg{position:fixed;inset:0;background:#02060dd9;display:flex;align-items:center;justify-content:center;z-index:20;padding:12px}.modal{width:min(540px,100%);max-height:90dvh;overflow:auto;background:#17253b;border:1px solid #466080;border-radius:15px;padding:17px}.notice{padding:9px 12px;background:#30291b;border:1px solid #66542d;border-radius:9px;color:#ffe0a2;margin:9px 0;font-size:12px}.recording{width:100%;max-width:300px}.status{font-size:11px;color:#8de4bd}.live-dot{color:#f87171}.rec-timer{font-size:23px;font-weight:850;font-variant-numeric:tabular-nums}.divider{border:0;border-top:1px solid #30425d;margin:13px 0}.gripnote{font-size:11px;color:#9fb4d0}.toggle{display:flex;align-items:center;gap:7px}.toggle input{accent-color:#4b98f8}.toggle label{margin:0}.nowrap{white-space:nowrap}@media(max-width:800px){.dashboard{grid-template-columns:1fr}.app{padding:10px 10px 90px}.brand{font-size:20px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.sound{padding:8px;height:190px;min-height:190px}.soundname{font-size:12px}.panel{padding:10px}.tab{padding:8px 9px;font-size:12px}.footer{padding:8px 10px}.hint{font-size:11px}.rec-timer{font-size:20px}}@media(max-width:360px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.brand{font-size:18px}}
+.drag-ghost{position:fixed!important;z-index:9999!important;margin:0!important;opacity:.96!important;box-shadow:0 20px 55px #000b,0 0 0 2px #60a5fa!important;will-change:transform;overflow:hidden;transition:none!important}.handle{user-select:none;-webkit-user-select:none;touch-action:none!important}.sound{contain:layout style}.soundname{max-width:100%}
+/* Mobile mini-teleprompter: never cover the persistent broadcast controls. */
+.floating-script{transition:width .18s ease,height .18s ease,box-shadow .18s ease;overscroll-behavior:contain}
+.floating-script.mini{width:112px!important;height:38px!important;min-width:0;min-height:0;resize:none;border-radius:12px}
+.floating-script.mini .float-body{display:none}
+.floating-script.mini .float-head{height:100%;padding:4px 6px}
+.floating-script.mini .float-head strong{font-size:0;white-space:nowrap}
+.floating-script.mini .float-head strong:after{content:'📄 Script';font-size:12px}
+.floating-script.mini .float-tools>*:not(#miniScript){display:none}
+.floating-script.mini #miniScript{font-size:12px}
+@media(max-width:800px){
+ .floating-script:not(.mini){width:min(270px,66vw)!important;height:min(180px,28dvh)!important;min-width:170px;min-height:110px;max-height:32dvh;resize:none}
+ .floating-script:not(.mini) .float-head{padding:4px 6px;gap:3px;flex-wrap:wrap}
+ .floating-script:not(.mini) .float-head strong{font-size:11px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .floating-script:not(.mini) .float-tools{gap:2px}
+ .floating-script:not(.mini) .float-tools .btn{padding:2px 5px;min-height:25px;font-size:11px}
+ .floating-script:not(.mini) .float-zoom{width:45px!important}
+ .floating-script:not(.mini) #zoomValue{display:none}
+ .floating-script:not(.mini) .float-body{padding:5px}
+ .floating-script:not(.mini) .float-body .script{padding:5px;line-height:1.3}
+}
+
+/* v6: Compact, consistent cards with permanently visible volume control */
+.grid{grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:8px;align-items:stretch}
+.sound{height:166px;min-height:166px;padding:8px 9px;gap:0;border-radius:11px;overflow:hidden;justify-content:flex-start;box-shadow:0 2px 9px #0002}
+.soundhead{height:29px;min-height:29px;align-items:center;gap:4px}
+.soundname{font-size:12px;line-height:15px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sound .cat{font-size:9px;margin-top:1px;line-height:12px}
+.sound .handle{padding:2px 3px;font-size:16px;min-width:23px;min-height:27px;display:grid;place-items:center}
+.soundhead .btn{padding:2px 5px;min-height:25px;min-width:27px;font-size:12px}
+.sound .trigger{min-height:35px;height:35px;margin:5px 0 5px;border-radius:7px;font-size:11px;letter-spacing:.15px}
+.sound .progress{height:4px;flex-shrink:0}
+.sound .times{font-size:9px;line-height:12px;margin-top:2px}
+.sound .actions{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin-top:5px}
+.sound .actions button{font-size:10px;min-height:26px;height:26px;padding:2px 0;white-space:nowrap;border-radius:6px}
+.sound .volume{margin-top:auto;min-height:24px;height:24px;display:flex;align-items:center;gap:5px;flex-shrink:0}
+.sound .volume input{width:100%;min-width:0;height:22px;margin:0;accent-color:#60b5ff;touch-action:pan-x}
+.sound .volume input::-webkit-slider-thumb{width:16px;height:16px}
+.sound .volume span:first-child{font-size:13px;min-width:13px}
+.sound .volume span:last-child{font-size:10px;min-width:31px;text-align:right;font-variant-numeric:tabular-nums}
+.sound.live{border-color:#34d399;box-shadow:inset 0 0 0 1px #34d39955}
+.sound .trigger:active{transform:scale(.985)}
+@media(max-width:800px){
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ .sound{height:151px;min-height:151px;padding:6px 7px;border-radius:9px}
+ .soundhead{height:26px;min-height:26px}
+ .soundname{font-size:11px;line-height:13px}
+ .sound .cat{font-size:9px;line-height:11px}
+ .sound .trigger{height:31px;min-height:31px;margin:4px 0;font-size:10px}
+ .sound .actions{gap:3px;margin-top:4px}
+ .sound .actions button{min-height:24px;height:24px;font-size:9px;padding:1px 0}
+ .sound .volume{min-height:23px;height:23px}
+ .sound .volume span:last-child{min-width:28px;font-size:9px}
+}
+@media(max-width:340px){.sound{padding:5px}.sound .actions button{font-size:8px}.sound .handle{min-width:18px}.soundhead .btn{min-width:24px}}
+</style><style id="editor-v9-css">.editor-v9{display:grid;gap:10px}.editor-v9 .field{margin:5px 0}.editor-v9 .edit-section{border:1px solid #354964;border-radius:12px;padding:11px;background:#101e31}.editor-v9 .edit-heading{font-weight:800;margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}.editor-v9 .edit-times{display:grid;grid-template-columns:1fr 1fr;gap:9px}.editor-v9 .edit-range{margin:9px 0}.editor-v9 .range-line{display:flex;align-items:center;gap:8px;margin:8px 0}.editor-v9 .range-line span{font-size:10px;color:#b8cbe6;width:40px}.editor-v9 .range-line input{flex:1;min-width:0;height:24px}.editor-v9 .fade-row{display:grid;grid-template-columns:65px minmax(0,1fr) 64px;gap:6px;align-items:center;margin:8px 0}.editor-v9 .fade-row label{margin:0;font-weight:700}.editor-v9 .fade-row input{padding:7px;text-align:center}.editor-v9 .fade-pills{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}.editor-v9 .fade-pills button{background:#223650;border:1px solid #405774;color:#dce8fb;border-radius:7px;padding:8px 1px;cursor:pointer}.editor-v9 .fade-pills button.selected{background:#2563eb;border-color:#8cb7ff;color:white}.editor-v9 .edit-advanced{border:1px solid #354964;border-radius:10px;padding:10px}.editor-v9 .edit-advanced summary{cursor:pointer;font-weight:750}.editor-v9 .edit-bottom{position:sticky;bottom:-17px;background:#17253b;padding:9px 0 2px;z-index:1;border-top:1px solid #354964}.editor-v9 .edit-preview,.editor-v9 .edit-save{display:grid;grid-template-columns:1fr auto;gap:7px;margin:6px 0}.editor-v9 .edit-save{grid-template-columns:1fr auto}.editor-v9 .edit-bottom .hint{margin:5px 0 0}@media(max-width:430px){.modal{padding:11px;max-height:94dvh}.editor-v9 .edit-section{padding:9px}.editor-v9 .fade-row{grid-template-columns:52px minmax(0,1fr) 52px;gap:4px}.editor-v9 .fade-pills button{font-size:11px;padding:8px 0}.editor-v9 .fade-row input{padding:7px 2px}}</style><style id="studio-v11-time-css">.editor-v9 .edit-times input{text-align:center;font-variant-numeric:tabular-nums;font-weight:800;font-size:18px;letter-spacing:1px;min-width:0}.editor-v9 .edit-times label{font-size:12px}.editor-v9 .edit-times{gap:8px}</style><style id="studio-v10-mobile-css">
+.studio-compact{display:grid;gap:8px;margin-bottom:9px}.studio-mainline,.studio-recbar,.studio-helper,.soundlist-head{display:flex;align-items:center;gap:9px}.studio-mainline{justify-content:space-between}.studio-heading{display:flex;align-items:baseline;gap:10px;min-width:0}.studio-heading strong{font-size:15px;white-space:nowrap}.project-subtitle{max-width:32vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.studio-recbar{background:#142238;border:1px solid #2b3e58;border-radius:10px;padding:8px 10px}.rec-label{font-size:12px;font-weight:800;color:#f1b4b4;white-space:nowrap}.studio-recbar .rec-timer{font-size:17px;margin-right:auto}.studio-recbar .rec-state{padding:3px 7px}.rec-actions{display:flex;gap:5px}.mic-compact{display:flex;align-items:center;gap:4px;margin:0;white-space:nowrap;font-size:11px}.mic-compact input{margin:0}.studio-helper{font-size:11px;min-height:20px}.studio-helper .pill{padding:3px 7px}.soundlist-head{justify-content:space-between}.soundlist-head .title{margin:0}.workspace{margin-top:0!important}.sound-workspace{min-width:0}.sound-workspace .grid{margin-top:7px}
+@media(max-width:800px){.app{padding-top:7px}.top{flex-wrap:nowrap;gap:6px}.brand{font-size:17px;white-space:nowrap}.top .hint{display:none}.top .toolbar{gap:5px;flex-wrap:nowrap}.top #saveStatus{max-width:85px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:4px 6px;font-size:10px}.top #projectBtn{padding:5px 7px;min-height:30px;font-size:11px}.tabs{margin:6px 0 8px;gap:4px}.tab{min-height:32px;padding:5px 4px;font-size:11px}.studio-compact{gap:5px;margin-bottom:6px}.studio-mainline{min-height:30px}.studio-heading strong{font-size:13px}.project-subtitle{display:none}.studio-mainline #addBtn{min-height:29px;padding:4px 8px;font-size:11px}.studio-recbar{padding:5px 7px;gap:6px;min-height:41px}.studio-recbar .rec-timer{font-size:15px}.studio-recbar .rec-state{display:none}.rec-label-text{display:none}.rec-actions .btn{min-height:29px;padding:4px 7px;font-size:11px}.mic-compact{font-size:10px}.studio-helper{display:none}.soundlist-head{min-height:29px}.soundlist-head .title{font-size:13px}.soundlist-head #stopTop{display:none}.sound-workspace .grid{margin-top:4px}.workspace aside{margin-top:8px!important}.grid{gap:6px}.sound{height:166px;min-height:166px;padding:7px}.soundhead{min-height:30px}.trigger{min-height:37px;margin:5px 0 4px}.actions{margin-top:5px;gap:3px}.actions button{min-height:26px}.volume{margin-top:auto}.sound .volume{min-height:21px}}
+@media(max-width:380px){.brand{font-size:15px}.top #saveStatus{max-width:62px}.studio-recbar{gap:4px}.studio-recbar .rec-timer{font-size:13px}.mic-compact span{display:none}.rec-actions .btn{padding:4px 5px}.sound{height:169px;min-height:169px}}
+</style><style id="studio-v12-theme">
+/* Light theme preserves strong contrast for live playback and recording. */
+html[data-theme="light"]{color-scheme:light;background:#f3f6fb;color:#17243a}
+html[data-theme="light"] body{background:#f3f6fb;color:#17243a}
+html[data-theme="light"] .muted,html[data-theme="light"] .hint,html[data-theme="light"] .gripnote{color:#52637a}
+html[data-theme="light"] .panel,html[data-theme="light"] .modal{background:#fff;border-color:#d7e0ed;color:#17243a}
+html[data-theme="light"] .sound{background:#f8faff;border-color:#ccd8e8;color:#17243a}
+html[data-theme="light"] .sound.live{background:#e4f7ee;border-color:#21a779}
+html[data-theme="light"] .cat,html[data-theme="light"] .times,html[data-theme="light"] .handle{color:#506580}
+html[data-theme="light"] .btn,html[data-theme="light"] .tab{background:#fff;border-color:#c7d3e2;color:#243954}
+html[data-theme="light"] .btn.primary,html[data-theme="light"] .tab.active{background:#2563eb;border-color:#2563eb;color:#fff}
+html[data-theme="light"] .btn.danger{background:#b92d3a;border-color:#b92d3a;color:#fff}
+html[data-theme="light"] .btn.green{background:#087b5a;border-color:#087b5a;color:#fff}
+html[data-theme="light"] .pill{border-color:#c7d3e2;color:#52637a}
+html[data-theme="light"] .studio-recbar,html[data-theme="light"] .listrow{background:#fff;border:1px solid #d7e0ed;color:#17243a}
+html[data-theme="light"] .rec-label{color:#a12735}
+html[data-theme="light"] .script,html[data-theme="light"] input[type=text],html[data-theme="light"] input[type=number],html[data-theme="light"] select,html[data-theme="light"] textarea{background:#fff;color:#17243a;border-color:#bfcde0}
+html[data-theme="light"] label{color:#43556d}
+html[data-theme="light"] .floating-script{background:#fff;border-color:#b5c8df;color:#17243a;box-shadow:0 16px 48px #283c5b30}
+html[data-theme="light"] .float-head{background:#e9f0f9}
+html[data-theme="light"] .float-placeholder,html[data-theme="light"] .empty{color:#52637a;border-color:#bdcbe0}
+html[data-theme="light"] .footer{background:#fffffff5;border-color:#d5dfec}
+html[data-theme="light"] .divider{border-color:#d7e0ed}
+html[data-theme="light"] .editor-v9 .edit-section,html[data-theme="light"] .editor-v9 .edit-advanced{background:#f8faff;border-color:#d5dfec}
+html[data-theme="light"] .editor-v9 .edit-bottom{background:#fff;border-color:#d5dfec}
+html[data-theme="light"] .editor-v9 .fade-pills button{background:#eaf0f9;color:#233b58;border-color:#cad7e8}
+html[data-theme="light"] .editor-v9 .fade-pills button.selected{background:#2563eb;color:#fff;border-color:#2563eb}
+html[data-theme="light"] .editor-v9 .range-line span{color:#536783}
+html[data-theme="light"] .notice{background:#fff7e6;color:#805200;border-color:#e8c47c}
+html[data-theme="light"] .progress{background:#d8e2ef}
+html[data-theme="light"] .trigger{background:#225a9b;color:#fff;border-color:#225a9b}
+html[data-theme="light"] .sound.live .trigger{background:#087b5a;border-color:#087b5a}
+.theme-switch{display:inline-flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap}
+@media(max-width:430px){.theme-switch{padding:5px 7px!important;min-height:30px!important;font-size:12px!important}.top .toolbar{gap:4px}}
+</style><style id="studio-v13-mic-fix">
+/* Clearly labeled recording voice choice; never hide it on small screens. */
+.studio-recbar{flex-wrap:wrap}
+.mic-compact{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex-shrink:0;min-height:34px;padding:5px 10px;border:1px solid #657d9e;border-radius:9px;background:#20334d;color:#f4f8ff;font-size:12px;font-weight:750;cursor:pointer;white-space:nowrap}
+.mic-compact input{width:17px;height:17px;min-width:17px;accent-color:#2cbf91;cursor:pointer}
+.mic-compact .mic-word{display:inline!important;color:inherit!important}
+.mic-compact:has(input:checked){background:#145d49;border-color:#4dd3a4;color:#fff}
+.mic-compact:focus-within{outline:2px solid #79b9ff;outline-offset:2px}
+html[data-theme="light"] .mic-compact{background:#e9f0fa;border-color:#9badc6;color:#20344d}
+html[data-theme="light"] .mic-compact:has(input:checked){background:#d8f5e9;border-color:#16845d;color:#09533b}
+@media(max-width:800px){.studio-recbar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px;align-items:center}.studio-recbar .rec-label{display:none}.studio-recbar .rec-timer{margin:0;white-space:nowrap}.studio-recbar .rec-state{display:none}.studio-recbar .rec-actions{grid-column:3;grid-row:1}.studio-recbar .mic-compact{grid-column:1 / -1;grid-row:2;justify-self:stretch;min-height:33px;font-size:12px;padding:5px 9px}.studio-recbar .mic-compact .mic-word{display:inline!important}}
+@media(min-width:500px) and (max-width:800px){.studio-recbar{display:flex;flex-wrap:nowrap}.studio-recbar .mic-compact{justify-self:auto;min-width:0}}
+</style><style id="v14-style">
+</style><style id="studio-v20-get-audio">
+.get-audio-panel{display:grid;gap:10px}.get-audio-hero{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #364b69;border-radius:13px;background:#101d30}.get-audio-hero strong{font-size:15px}.get-audio-hero p{margin:3px 0 0;color:#b6c7de;font-size:12px}.get-audio-symbol{display:grid;place-items:center;flex:none;width:39px;height:39px;border-radius:11px;background:#d63c45;color:white;font-size:19px}.get-audio-label{margin:4px 0 -4px;font-weight:750;font-size:12px}.get-audio-input-wrap{display:flex;align-items:flex-start;gap:8px;padding:11px;border:1.5px solid #52749d;border-radius:12px;background:#0d1a2d;transition:border-color .15s,box-shadow .15s}.get-audio-input-wrap:focus-within{border-color:#70adff;box-shadow:0 0 0 3px #2563eb33}.get-audio-input-wrap>span{padding-top:4px}.get-audio-input-wrap textarea{border:0!important;background:transparent!important;color:#f0f6ff!important;resize:none;width:100%;min-height:48px;max-height:110px;outline:none!important;overflow-wrap:anywhere;line-height:1.5;padding:0!important;font-size:14px}.get-audio-input-wrap textarea::placeholder{color:#92a8c3}.get-audio-clear{flex:none;border:0;background:#2a3b53;color:#dce8f7;border-radius:8px;min-width:28px;height:28px}.get-audio-status{font-size:12px;min-height:17px;margin:0;color:#8de4bd}.get-audio-status.error{color:#ffb1a7}.get-audio-action{width:100%;min-height:47px;font-size:14px;border-radius:11px}.get-audio-note{font-size:11px;line-height:1.5;color:#a9bbd2;margin:0}.get-audio-panel .get-audio-action:disabled{opacity:.5}html[data-theme="light"] .get-audio-hero{background:#f4f7fc;border-color:#d6e0ed}html[data-theme="light"] .get-audio-hero p,html[data-theme="light"] .get-audio-note{color:#53647a}html[data-theme="light"] .get-audio-input-wrap{background:#fff;border-color:#a7bbd5}html[data-theme="light"] .get-audio-input-wrap textarea{color:#17243a!important}html[data-theme="light"] .get-audio-input-wrap textarea::placeholder{color:#7789a1}html[data-theme="light"] .get-audio-clear{background:#edf1f8;color:#34445b}html[data-theme="light"] .get-audio-status{color:#087b5a}html[data-theme="light"] .get-audio-status.error{color:#b4232e}@media(max-width:430px){.get-audio-hero{padding:10px}.get-audio-input-wrap{padding:10px}}
+</style><style id="project-manager-v22">
+.pm{display:grid;gap:17px}.pm-current{padding:15px;border:1px solid #3c526d;border-radius:15px;background:linear-gradient(145deg,#1c314c,#132339)}.pm-eyebrow{font-size:10px;letter-spacing:1.2px;font-weight:800;color:#91b5e6;margin-bottom:12px}.pm-label{display:block;font-size:12px;font-weight:750;margin-bottom:7px}.pm-namebox{display:flex;align-items:center;gap:9px;background:#0c192b;border:1px solid #506581;border-radius:11px;padding:0 12px;min-height:48px}.pm-namebox:focus-within{border-color:#64a5ff;box-shadow:0 0 0 3px #3b82f633}.pm-namebox>span{color:#a2b8d6;font-size:18px}.pm-namebox input{background:transparent!important;border:0!important;outline:0!important;box-shadow:none!important;color:#f5f8ff!important;width:100%;min-width:0;font-size:16px;font-weight:700;padding:12px 0}.pm-actions{display:grid;grid-template-columns:1.2fr 1fr;gap:8px;margin-top:12px}.pm-actions .btn{min-height:42px;font-size:13px;border-radius:10px}.pm-feedback{font-size:11px;color:#a8bfdc;margin-top:10px;line-height:1.4}.pm-feedback.pm-error{color:#ffb5b5}.pm-sectionhead{display:flex;align-items:center;justify-content:space-between;gap:10px}.pm-sectionhead strong{font-size:15px}.pm-sub{font-size:11px;color:#9db1cc;margin-top:4px;line-height:1.45}.pm-count{font-size:11px;white-space:nowrap;background:#273c58;color:#c9dcf5;border-radius:30px;padding:5px 9px}.pm-list{display:grid;gap:7px;max-height:35vh;overflow:auto;overscroll-behavior:contain}.pm-item{display:flex;align-items:center;gap:10px;border:1px solid #354c68;background:#14253a;border-radius:11px;padding:10px;min-width:0}.pm-item.pm-active{border-color:#3d8a72;background:#153b37}.pm-item-icon{width:35px;height:35px;border-radius:10px;display:grid;place-items:center;background:#283e5a;color:#bed7ff;flex-shrink:0}.pm-active .pm-item-icon{background:#236a57;color:#b9ffe0}.pm-item-info{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}.pm-item-info strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}.pm-item-info span{font-size:11px;color:#aabed6}.pm-item .btn{min-height:34px;white-space:nowrap}.pm-currentbadge{font-size:11px;font-weight:800;color:#a2f0cf}.pm-empty{padding:18px 10px;text-align:center;border:1px dashed #425975;border-radius:11px;color:#adc0d8;font-size:12px}.pm-more{border-top:1px solid #334961;padding-top:12px}.pm-more summary{cursor:pointer;font-size:12px;font-weight:750;padding:6px 0}.pm-extra{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.pm-extra .btn{min-height:38px;font-size:12px}html[data-theme="light"] .pm-current{background:linear-gradient(145deg,#f2f7ff,#e9f1ff);border-color:#cbd9ea}html[data-theme="light"] .pm-eyebrow{color:#3263a0}html[data-theme="light"] .pm-namebox{background:white;border-color:#b8c9de}html[data-theme="light"] .pm-namebox input{color:#1d304b!important}html[data-theme="light"] .pm-feedback,html[data-theme="light"] .pm-sub{color:#586d86}html[data-theme="light"] .pm-count{background:#e8eff8;color:#435a78}html[data-theme="light"] .pm-item{background:#f7faff;border-color:#d3dfed}html[data-theme="light"] .pm-active{background:#e9f8f1;border-color:#6fc6a0}html[data-theme="light"] .pm-item-icon{background:#e2ecfa;color:#3566a4}html[data-theme="light"] .pm-active .pm-item-icon{background:#c4ecda;color:#16714e}html[data-theme="light"] .pm-item-info span{color:#526b85}html[data-theme="light"] .pm-currentbadge{color:#11704d}html[data-theme="light"] .pm-empty{color:#60738c;border-color:#cbd9e9}html[data-theme="light"] .pm-more{border-color:#d6e0ed}@media(max-width:430px){.pm{gap:12px}.pm-current{padding:12px}.pm-actions{gap:6px}.pm-actions .btn{font-size:12px;padding:8px 5px}.pm-list{max-height:38vh}.pm-item{padding:8px}.pm-namebox{min-height:46px}}
+</style><style id="dj-v23-style">.workspace-switch{display:flex;gap:4px;padding:4px;border:1px solid var(--border,#34465f);border-radius:13px;max-width:370px;margin:9px 0;background:var(--panel,#16263a)}.ws-choice{flex:1;padding:10px 9px;border:0;border-radius:9px;color:inherit;background:transparent;font-weight:750;cursor:pointer}.ws-choice.selected{background:#2563eb;color:white}.dj-workspace{margin:10px 0 16px;display:grid;gap:12px}.dj-workspace.hidden{display:none!important}.dj-heading,.dj-deck-top,.dj-cross-head,.dj-control-label{display:flex;align-items:center;justify-content:space-between;gap:8px}.dj-heading small{display:block;opacity:.7;margin-top:3px}.dj-decks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.dj-deck,.dj-mix-panel{border:1px solid #344c68;background:#111e31;border-radius:16px;padding:14px;min-width:0;color:#f0f5fc}.dj-deck-label{font-size:12px;font-weight:900;color:#54d9ef;letter-spacing:.08em}.dj-deck[data-deck="B"] .dj-deck-label{color:#f39ace}.dj-deck-state{font-size:11px;color:#b1bfd2}.dj-deck select{width:100%;padding:11px;border:1px solid #526987;border-radius:10px;background:#20314b;color:#fff;margin:12px 0;font-size:13px}.dj-platter{height:118px;width:118px;max-width:80%;aspect-ratio:1;border-radius:50%;border:6px solid #28435b;background:repeating-radial-gradient(circle,#17243a 0 5px,#24344c 6px 8px);display:grid;place-items:center;margin:0 auto 10px;box-shadow:0 0 0 2px #1ba6bb55}.dj-platter-b{box-shadow:0 0 0 2px #ef75bb66}.dj-platter.spinning{animation:dj-spin 2.4s linear infinite}@keyframes dj-spin{to{transform:rotate(360deg)}}.dj-disc-core{background:#142638;color:#64e7ff;border-radius:50%;height:43px;width:43px;display:grid;place-items:center;font-weight:900}.dj-platter-b .dj-disc-core{color:#ffa7d7}.dj-time{text-align:center;color:#b8c7d9;font-size:12px;margin:6px 0}.dj-deck input[type=range],.dj-mix-panel input[type=range]{width:100%;accent-color:#3bb7e7;min-height:25px}.dj-deck-actions{display:flex;gap:5px;margin:7px 0 12px}.dj-deck-actions .btn{flex:1;padding:9px 3px;font-size:12px;min-width:0}.dj-control-label{font-size:12px;color:#c7d5e7}.dj-effects{margin-top:10px;border-top:1px solid #34475d;padding-top:10px}.dj-effects summary{cursor:pointer;font-size:12px;font-weight:750}.dj-effects label{display:flex;justify-content:space-between;font-size:12px;margin-top:10px}.dj-cross-head{font-size:12px;color:#9dc3e5}.dj-cross-head strong{font-size:14px;color:white}.dj-mix-actions{display:flex;gap:8px;margin-top:9px}.dj-mix-actions button{flex:1}.dj-mix-note{font-size:12px;color:#b4c8db;margin-top:10px}html[data-theme="light"] .workspace-switch{background:#edf2f9;border-color:#d4dfeb}html[data-theme="light"] .dj-deck,html[data-theme="light"] .dj-mix-panel{background:#fff;color:#1b2b42;border-color:#d4dfeb}html[data-theme="light"] .dj-deck select{background:#f4f7fc;color:#1b2b42;border-color:#c3d2e5}html[data-theme="light"] .dj-deck-state,html[data-theme="light"] .dj-time,html[data-theme="light"] .dj-control-label,html[data-theme="light"] .dj-mix-note{color:#51647e}html[data-theme="light"] .dj-cross-head strong{color:#1b2b42}@media(max-width:520px){.dj-decks{gap:7px}.dj-deck{padding:9px;border-radius:12px}.dj-deck select{font-size:12px;padding:8px 5px}.dj-platter{width:78px;height:78px;border-width:4px}.dj-disc-core{height:31px;width:31px}.dj-deck-actions{flex-wrap:wrap}.dj-deck-actions .btn{font-size:11px;padding:8px 2px}.dj-deck-actions .btn:first-child{flex-basis:100%}.dj-mix-panel{padding:12px}.dj-mix-actions button{font-size:12px}.workspace-switch{max-width:none}}
+</style><style id="dj-sound-picker-v25">
+.dj-native-select{display:none!important}.dj-sound-picker{margin:10px 0 12px;min-width:0}.dj-picker-caption{display:block;font-size:9px;letter-spacing:.13em;font-weight:800;color:#9baec6;margin-bottom:6px}.dj-picker-btn{display:flex;align-items:center;text-align:left;gap:9px;width:100%;padding:10px;border:1px solid #45617e;background:#1c304a;border-radius:12px;color:#f8fbff;cursor:pointer;min-width:0;transition:border-color .15s,background .15s}.dj-picker-btn:hover,.dj-picker-btn:focus-visible{border-color:#57cbea;background:#25405c;outline:none}.dj-picker-icon{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#194c61;color:#67e4ff;font-size:19px}.dj-deck[data-deck="B"] .dj-picker-icon{background:#55304e;color:#ffa4da}.dj-picker-info{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}.dj-picker-info strong{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dj-picker-info small{font-size:10px;color:#a6b9ce;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dj-picker-chevron{font-size:19px;color:#b8c9dc}.dj-sound-modal{position:fixed;inset:0;z-index:99999;background:#020817bd;display:flex;align-items:center;justify-content:center;padding:14px;backdrop-filter:blur(5px)}.dj-sound-modal.hidden{display:none!important}.dj-sound-sheet{width:min(100%,460px);max-height:min(80vh,620px);display:flex;flex-direction:column;background:#142238;border:1px solid #405b7a;border-radius:20px;padding:17px;color:#f4f8ff;box-shadow:0 22px 65px #0009}.dj-sound-sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.dj-sound-sheet-head small{font-size:10px;font-weight:800;letter-spacing:.15em;color:#69d6ee}.dj-sound-sheet-head h3{margin:4px 0 0;font-size:19px}.dj-sound-close{width:35px;height:35px;border-radius:10px;border:1px solid #536981;background:#25374e;color:white;cursor:pointer}.dj-sound-search-wrap{display:flex;align-items:center;gap:8px;border:1px solid #536d89;background:#0e1a2c;border-radius:12px;padding:0 12px;margin-bottom:12px}.dj-sound-search-wrap span{font-size:23px;color:#85a9c4}.dj-sound-search-wrap input{width:100%;min-width:0;background:transparent;border:0;outline:0;color:white;font-size:14px;padding:13px 0}.dj-sound-results{overflow:auto;display:grid;gap:7px;min-height:55px}.dj-sound-option{display:flex;align-items:center;gap:11px;text-align:left;width:100%;padding:11px;border:1px solid #3b536e;background:#1d3048;color:white;border-radius:12px;cursor:pointer}.dj-sound-option:hover,.dj-sound-option.active{border-color:#47c5e6;background:#24405a}.dj-option-note{width:36px;height:36px;display:grid;place-items:center;background:#2d526b;border-radius:10px;font-size:20px;color:#80e3ff;flex:none}.dj-option-text{display:flex;flex-direction:column;min-width:0;gap:3px;flex:1}.dj-option-text strong{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dj-option-text small{font-size:11px;color:#a7b9d0}.dj-option-mark{color:#75e4ff;font-weight:900}.dj-picker-empty{padding:24px 10px;text-align:center;color:#b9c8d9;font-size:13px}.dj-sound-footnote{font-size:11px;color:#a8bbd2;margin:12px 0 0}html[data-theme="light"] .dj-picker-btn{background:#f2f7fd;border-color:#c4d6e8;color:#20354c}html[data-theme="light"] .dj-picker-info small,html[data-theme="light"] .dj-picker-caption{color:#61778e}@media(max-width:520px){.dj-picker-btn{padding:7px;gap:6px}.dj-picker-icon{width:27px;height:29px;font-size:16px}.dj-picker-info strong{font-size:11px}.dj-picker-info small{font-size:9px}.dj-sound-sheet{padding:14px;border-radius:17px}.dj-sound-modal{align-items:flex-end;padding:8px}.dj-sound-sheet{max-height:83vh}}
+</style><style>.dj-platter{cursor:grab;user-select:none;touch-action:none}.dj-platter.scratching{cursor:grabbing;animation:none!important;transform:rotate(var(--scratch-angle,0deg))!important;box-shadow:0 0 0 3px #57d7f4,0 0 22px #34c9ff66!important}.dj-platter.scratching .dj-disc-core{pointer-events:none}</style><style id="dj-v27-design">.dj-decks{gap:15px}.dj-deck{padding:17px;border-radius:21px;background:linear-gradient(155deg,#1c2c46,#101a2b 65%);box-shadow:0 12px 30px #0002,inset 0 1px #ffffff13}.dj-deck[data-deck="A"]{border-top:3px solid #42d8f1}.dj-deck[data-deck="B"]{border-top:3px solid #f58bc4}.dj-platter{width:clamp(155px,20vw,250px);height:auto;max-width:96%;aspect-ratio:1;border:9px solid #34455c;box-shadow:0 0 0 3px #22d3ee55,0 12px 30px #0007,inset 0 0 12px #000a;background:repeating-radial-gradient(circle,#0d1626 0 2px,#26384c 3px 5px,#111d2e 6px 8px);position:relative;margin:14px auto 13px}.dj-platter:before{content:"";position:absolute;inset:7%;border-radius:50%;border:1px solid #b6d0e43b;pointer-events:none}.dj-platter-b{box-shadow:0 0 0 3px #f58bc455,0 12px 30px #0007,inset 0 0 12px #000a}.dj-disc-core{height:31%;width:31%;min-height:44px;min-width:44px;font-size:clamp(15px,2vw,23px);border:3px solid #8fddeb55;box-shadow:0 0 0 7px #0a122366;background:radial-gradient(circle at 35% 25%,#385d76,#11283e)}.dj-platter-b .dj-disc-core{border-color:#f58bc455;background:radial-gradient(circle at 35% 25%,#794f75,#34203e)}.dj-time{font-variant-numeric:tabular-nums;font-weight:750;font-size:14px;letter-spacing:.03em}.dj-deck-actions{gap:7px}.dj-deck-actions .btn{border-radius:10px}.dj-deck .dj-control-label{margin-top:8px}.dj-deck input[type=range]{cursor:pointer}html[data-theme="light"] .dj-deck{background:linear-gradient(155deg,#fff,#edf3fa);box-shadow:0 9px 25px #172d4a18}@media(max-width:600px){.dj-decks{gap:8px}.dj-deck{padding:10px;border-radius:15px}.dj-platter{width:min(100%,180px);height:auto;border-width:6px;margin:12px auto}.dj-disc-core{min-width:34px;min-height:34px}.dj-time{font-size:11px}.dj-deck-actions .btn{font-size:10px}.dj-deck-actions .btn:first-child{flex-basis:100%}}@media(min-width:700px){.dj-platter{width:min(88%,255px)}}</style><style id="dj-v28-compact">.dj-workspace{gap:8px;margin:7px 0 12px}.dj-heading{gap:8px}.dj-heading small{font-size:11px}.dj-decks{gap:9px}.dj-deck{padding:11px 12px;border-radius:15px;box-shadow:0 5px 16px #0002}.dj-deck-top{margin-bottom:2px}.dj-sound-picker{margin:6px 0 7px}.dj-picker-caption{font-size:8px;margin-bottom:4px}.dj-picker-btn{padding:7px 9px;min-height:43px}.dj-platter{width:min(78%,205px);margin:8px auto 8px;border-width:6px}.dj-time{margin:3px 0;font-size:12px}.dj-deck input[type=range]{min-height:20px}.dj-deck-actions{gap:5px;margin:4px 0 7px}.dj-deck-actions .btn{padding:7px 3px;font-size:11px}.dj-control-label{margin-top:4px!important;font-size:11px}.dj-effects{margin-top:5px;padding-top:6px}.dj-mix-panel{padding:11px 12px;border-radius:14px}.dj-mix-note{margin-top:5px}@media(max-width:600px){.dj-decks{gap:6px}.dj-deck{padding:8px 7px;border-radius:12px}.dj-platter{width:min(94%,145px);margin:8px auto 7px;border-width:5px}.dj-deck-actions{display:grid;grid-template-columns:1fr 1fr;gap:4px}.dj-deck-actions .btn{font-size:10px;padding:7px 2px}.dj-deck-actions .btn:first-child{grid-column:1/-1}.dj-picker-btn{min-height:39px;padding:6px}.dj-picker-caption{font-size:8px}.dj-deck-label{font-size:10px}.dj-deck-state{font-size:9px}.dj-time{font-size:10px}.dj-heading strong{font-size:14px}.dj-heading small{font-size:10px}}@media(max-width:380px){.dj-platter{width:min(94%,128px)}.dj-picker-icon{display:none}.dj-deck{padding:7px 6px}}</style><style>.dj-scratch-time{color:#62e5ff!important;font-size:clamp(17px,2.5vw,23px)!important;font-variant-numeric:tabular-nums;font-weight:900!important;letter-spacing:.02em;text-shadow:0 0 14px #27c8ff80}.dj-platter.scratching{outline:3px solid #56dcff;outline-offset:3px}</style><style id="sound-category-styles-v37">
+.category-filters{display:flex;gap:7px;overflow-x:auto;scrollbar-width:thin;padding:4px 1px 12px;margin-top:3px;scroll-snap-type:x proximity}
+.category-filter{flex:0 0 auto;scroll-snap-align:start;cursor:pointer;white-space:nowrap;border:1px solid var(--category-accent);border-radius:999px;background:transparent;color:inherit;font:inherit;font-size:12px;font-weight:700;padding:8px 11px;transition:background .16s,border-color .16s}
+.category-filter span{display:inline-flex;align-items:center;justify-content:center;min-width:19px;padding:2px 5px;margin-left:4px;border-radius:999px;background:color-mix(in srgb,var(--category-accent) 18%,transparent);font-size:10px}
+.category-filter.selected{background:color-mix(in srgb,var(--category-accent) 19%,transparent);box-shadow:inset 0 0 0 1px var(--category-accent)}
+.sound.categorized{border:2px solid var(--category-accent)!important;background-image:linear-gradient(145deg,color-mix(in srgb,var(--category-accent) 11%,transparent),transparent 60%)!important;transition:border-color .2s,background .2s,transform .2s}
+.sound.categorized .cat{color:var(--category-accent);font-weight:800}
+.sound.categorized .soundhead{border-bottom-color:color-mix(in srgb,var(--category-accent) 25%,transparent)}
+@media(max-width:600px){.category-filter{font-size:11px;padding:7px 10px}.category-filters{padding-bottom:9px}}
+</style><style id="studio-v38-quick-settings">
+.editor-v9 .edit-quick-settings{display:grid;grid-template-columns:minmax(115px,1.5fr) minmax(72px,.75fr) minmax(82px,.85fr) minmax(64px,.65fr);gap:7px;align-items:end;padding:9px 10px;margin:-2px 0 2px;border:1px solid #3c5777;border-radius:11px;background:#162b43}
+.editor-v9 .edit-quick-settings .field{margin:0;min-width:0}
+.editor-v9 .edit-quick-settings label{font-size:10px;font-weight:750;margin:0 0 4px;white-space:nowrap}
+.editor-v9 .edit-quick-settings select,.editor-v9 .edit-quick-settings input[type=number]{width:100%;min-width:0;min-height:34px;height:34px;padding:5px 6px;font-size:12px}
+.editor-v9 .edit-quick-settings .edit-repeat .toggle{min-height:34px;display:flex;justify-content:center;align-items:center;background:#0c1728;border:1px solid #3a506d;border-radius:8px}
+.editor-v9 .edit-quick-settings .edit-repeat .toggle label{font-size:11px;margin:0;cursor:pointer}
+.editor-v9 .edit-quick-settings input[type=checkbox]{width:17px;height:17px;margin:0;cursor:pointer}
+@media(max-width:430px){.editor-v9 .edit-quick-settings{grid-template-columns:minmax(94px,1.4fr) minmax(60px,.75fr) minmax(68px,.85fr) minmax(56px,.7fr);gap:5px;padding:7px}.editor-v9 .edit-quick-settings select,.editor-v9 .edit-quick-settings input[type=number]{padding:4px 3px;font-size:11px}.editor-v9 .edit-quick-settings label{font-size:9px}}
+@media(max-width:330px){.editor-v9 .edit-quick-settings{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}}
+</style><style id="compact-sound-cards-v39">
+/* Compact sound card: header, single-row transport and timeline, volume footer */
+#cards.grid{grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:7px}
+#cards .sound{height:112px!important;min-height:112px!important;padding:7px 9px!important;gap:4px!important;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+#cards .soundhead{height:29px!important;min-height:29px!important;display:flex;align-items:center;gap:5px}
+#cards .soundidentity{flex:1;min-width:0}
+#cards .soundname{font-size:12px;line-height:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#cards .cat{font-size:9px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#cards .sound-edit{height:25px;min-height:25px;min-width:25px;padding:2px 5px}
+#cards .sound-controls{display:flex;align-items:center;gap:5px;min-width:0;height:32px;flex-shrink:0}
+#cards .sound-controls>button{height:30px!important;min-height:30px!important;width:31px!important;min-width:31px!important;padding:0!important;margin:0!important;border-radius:7px;font-size:14px!important;display:grid;place-items:center;flex-shrink:0}
+#cards .sound-controls .trigger{background:#265c95;color:white;border:1px solid #4e91d0;font-weight:800}
+#cards .sound-controls .btn{background:#1d304a}
+#cards .sound-timing{flex:1;min-width:0;padding-left:4px}
+#cards .sound-timing .progress{height:4px!important;margin:0}
+#cards .sound-timing .times{margin-top:5px;font-size:9px;line-height:12px;display:flex;justify-content:space-between;gap:3px;font-variant-numeric:tabular-nums}
+#cards .volume{height:25px!important;min-height:25px!important;margin:0!important;gap:6px}
+#cards .volume input{flex:1;width:100%;min-width:0}
+#cards .volume span:first-child{min-width:14px;text-align:left}
+#cards .volume span:last-child{min-width:31px;text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:600px){#cards.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}#cards .sound{height:110px!important;min-height:110px!important;padding:6px!important;gap:3px!important}#cards .sound-controls{gap:3px}#cards .sound-controls>button{width:25px!important;min-width:25px!important;height:27px!important;min-height:27px!important;font-size:12px!important}#cards .sound-timing{padding-left:1px}#cards .sound-timing .times{font-size:8px}#cards .soundname{font-size:11px}}
+@media(max-width:370px){#cards .sound-controls>button{width:23px!important;min-width:23px!important}#cards .soundhead .handle{padding:2px}#cards .sound-edit{min-width:23px}}
+</style><style id="sound-controls-contrast-v41">
+/* Explicit, accessible transport button contrast in both themes. */
+.sound .sound-controls [data-action="play"],
+.sound .sound-controls [data-action="pause"],
+.sound .sound-controls [data-action="stop"]{color:#fff!important;font-size:16px!important;font-weight:900!important;line-height:1!important;text-shadow:none!important;border:1.5px solid transparent!important;box-shadow:inset 0 1px 0 #ffffff22;opacity:1;min-width:29px;min-height:31px;display:inline-flex;align-items:center;justify-content:center}
+.sound .sound-controls [data-action="play"]{background:#155bb8!important;border-color:#6ca8ff!important}
+.sound .sound-controls [data-action="pause"]{background:#705018!important;border-color:#f0bb58!important;color:#fff7d6!important}
+.sound .sound-controls [data-action="stop"]{background:#9f2636!important;border-color:#fa8190!important;color:#fff!important}
+.sound .sound-controls [data-action="pause"]:disabled{background:#3a4658!important;border-color:#7b8ba0!important;color:#d4dce7!important;opacity:.75!important;cursor:not-allowed}
+.sound .sound-controls [data-action="play"]:hover:not(:disabled),.sound .sound-controls [data-action="pause"]:hover:not(:disabled),.sound .sound-controls [data-action="stop"]:hover:not(:disabled){filter:brightness(1.18)}
+.sound .sound-controls button:focus-visible{outline:3px solid #facc15!important;outline-offset:2px}
+html[data-theme="light"] .sound .sound-controls [data-action="play"]{background:#1457ac!important;border-color:#0b3c7b!important;color:#fff!important}
+html[data-theme="light"] .sound .sound-controls [data-action="pause"]{background:#84520b!important;border-color:#5c3807!important;color:#fff!important}
+html[data-theme="light"] .sound .sound-controls [data-action="stop"]{background:#b42335!important;border-color:#7e1725!important;color:#fff!important}
+html[data-theme="light"] .sound .sound-controls [data-action="pause"]:disabled{background:#dce3ed!important;border-color:#94a3b8!important;color:#526176!important;opacity:1!important}
+@media(max-width:430px){.sound .sound-controls [data-action="play"],.sound .sound-controls [data-action="pause"],.sound .sound-controls [data-action="stop"]{font-size:15px!important;min-width:26px;min-height:30px}}
+</style><style id="studio-v42-mobile-repeat">
+/* Mobile: the Repeat field already has a heading, so display only its checkbox. */
+@media(max-width:600px){
+.editor-v9 .edit-quick-settings .edit-repeat .toggle label{display:none!important}
+.editor-v9 .edit-quick-settings .edit-repeat .toggle{padding:0!important;min-width:0;min-height:34px;gap:0}
+.editor-v9 .edit-quick-settings .edit-repeat input[type=checkbox]{display:block;flex:0 0 auto;width:19px;height:19px;margin:0;accent-color:#3b82f6}
+.editor-v9 .edit-quick-settings .edit-repeat{min-width:0}
+}
+</style><style id="v43-mobile-record-row">
+/* Keep recording controls and microphone checkbox together on one mobile row. */
+@media(max-width:800px){
+.studio-recbar{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:space-between!important;gap:5px!important;min-width:0;padding:5px 6px!important}
+.studio-recbar .rec-timer{flex:0 1 auto;min-width:0;font-size:clamp(11px,3.4vw,15px)!important;letter-spacing:-.035em;white-space:nowrap}
+.studio-recbar .rec-actions{display:flex;flex:0 0 auto;gap:3px!important;min-width:0}
+.studio-recbar .rec-actions .btn{min-height:30px!important;padding:4px 6px!important;font-size:11px!important;white-space:nowrap}
+.studio-recbar .mic-compact{display:inline-flex!important;flex:0 0 auto;grid-column:auto!important;grid-row:auto!important;justify-self:auto!important;min-height:30px!important;min-width:0!important;padding:4px 5px!important;gap:4px!important;font-size:11px!important;white-space:nowrap}
+.studio-recbar .mic-compact input{width:15px!important;height:15px!important;min-width:15px!important;margin:0!important}
+.studio-recbar .mic-compact .mic-word{display:inline!important;font-size:0!important}
+.studio-recbar .mic-compact .mic-word::after{content:'Mic';font-size:11px!important}
+}
+@media(max-width:360px){
+.studio-recbar{gap:3px!important;padding:4px!important}
+.studio-recbar .rec-actions .btn{padding:3px 4px!important;font-size:10px!important}
+.studio-recbar .mic-compact{gap:2px!important;padding:3px!important}
+.studio-recbar .mic-compact .mic-word::after{font-size:10px!important}
+}
+</style><style id="v45-sound-filter-redesign">
+/* A single-line Sound label + swipeable filter rail, without a duplicated Stop All. */
+.soundlist-inline{display:flex;align-items:center;gap:11px;min-width:0;width:100%;padding:7px 0 8px;margin:0 0 2px;border-bottom:1px solid #33475f;flex-wrap:nowrap}
+.soundlist-inline>.title{flex:0 0 auto;margin:0;white-space:nowrap;font-size:14px;font-weight:850;letter-spacing:-.15px}
+.sound-filter-rail{position:relative;display:flex;align-items:center;flex:1 1 auto;min-width:0;isolation:isolate}
+.sound-filter-rail>.category-filters{display:flex;align-items:center;gap:6px;flex:1 1 auto;min-width:0;min-height:36px;margin:0;padding:2px 2px 3px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scroll-behavior:smooth;touch-action:pan-x;white-space:nowrap}
+.sound-filter-rail>.category-filters::-webkit-scrollbar{display:none}
+.sound-filter-rail.has-overflow>.category-filters{padding-right:29px}
+.sound-filter-rail .category-filter{display:inline-flex;align-items:center;justify-content:center;gap:5px;flex:0 0 auto;max-width:180px;min-height:31px;padding:5px 9px;scroll-snap-align:start;border-radius:999px;border:1px solid #475c76;background:#1b293e;color:#d4e0f0;box-shadow:none;font-size:11px;font-weight:750;line-height:1;transition:background .15s,border-color .15s,box-shadow .15s}
+.sound-filter-rail .category-filter::before{content:'';display:block;flex:none;width:6px;height:6px;border-radius:50%;background:var(--category-accent)}
+.sound-filter-rail .category-filter .filter-name{min-width:0;max-width:115px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sound-filter-rail .category-filter .filter-count{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;margin:0;border-radius:20px;background:#344359;color:#f0f6ff;font-size:10px;font-weight:800;font-variant-numeric:tabular-nums}
+.sound-filter-rail .category-filter:hover{background:#2a3d58;border-color:var(--category-accent)}
+.sound-filter-rail .category-filter.selected{background:color-mix(in srgb,var(--category-accent) 15%,#203047);border-color:var(--category-accent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--category-accent) 50%,transparent);color:#fff}
+.sound-filter-rail .category-filter.selected .filter-count{background:color-mix(in srgb,var(--category-accent) 30%,#1e2c42);color:#fff}
+.sound-filter-rail .category-filter:focus-visible,.sound-filter-scroll:focus-visible{outline:2px solid #fbbf24;outline-offset:2px}
+.sound-filter-rail.has-overflow:not(.at-end)::after{content:'';position:absolute;z-index:1;right:0;top:0;bottom:0;width:38px;background:linear-gradient(90deg,transparent,#0b1220 80%);pointer-events:none;border-radius:8px}
+.sound-filter-scroll{position:absolute;z-index:2;right:0;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:29px;height:29px;min-width:29px;border-radius:50%;border:1px solid #5d7898;background:#223650;color:#fff;font-size:23px;line-height:1;padding:0 0 3px;box-shadow:0 2px 8px #0005;cursor:pointer}
+.sound-filter-scroll[hidden]{display:none!important}
+.sound-filter-scroll:active{background:#345777}
+/* Light theme: make selected and unselected category text readable without relying on color alone. */
+html[data-theme="light"] .soundlist-inline{border-bottom-color:#d3deeb}
+html[data-theme="light"] .sound-filter-rail .category-filter{border-color:#bdcbe0;background:#f5f8fd;color:#263c54}
+html[data-theme="light"] .sound-filter-rail .category-filter .filter-count{background:#e0e8f4;color:#314c67}
+html[data-theme="light"] .sound-filter-rail .category-filter:hover{background:#ebf2fa;border-color:var(--category-accent)}
+html[data-theme="light"] .sound-filter-rail .category-filter.selected{background:color-mix(in srgb,var(--category-accent) 12%,white);border-color:var(--category-accent);color:#17283c;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--category-accent) 45%,transparent)}
+html[data-theme="light"] .sound-filter-rail .category-filter.selected .filter-count{background:#d7e5f7;color:#17283c}
+html[data-theme="light"] .sound-filter-rail.has-overflow:not(.at-end)::after{background:linear-gradient(90deg,transparent,#f3f6fb 80%)}
+html[data-theme="light"] .sound-filter-scroll{background:#fff;border-color:#a4bbd5;color:#28425d;box-shadow:0 2px 9px #25436622}
+@media(max-width:800px){.soundlist-inline{gap:9px;padding:5px 0 7px}.soundlist-inline>.title{font-size:13px}.sound-filter-rail>.category-filters{min-height:35px;gap:5px}.sound-filter-rail .category-filter{min-height:30px;padding:5px 8px;font-size:10.5px}.sound-filter-rail .category-filter .filter-count{height:17px;min-width:17px;font-size:9px}.sound-filter-rail .category-filter .filter-name{max-width:95px}}
+@media(max-width:370px){.soundlist-inline{gap:7px}.soundlist-inline>.title{font-size:12px}.sound-filter-rail .category-filter{gap:4px;padding:5px 7px}.sound-filter-rail .category-filter .filter-name{max-width:83px}.sound-filter-scroll{width:27px;height:27px;min-width:27px}}
+</style><style id="broadcast-script-side-v46">
+/* Desktop: preserve FOUR compact cards across the main board; use a narrow, tall script column. */
+@media (min-width:1001px){
+ .dashboard.workspace{grid-template-columns:minmax(0,1fr) clamp(225px,19vw,280px);align-items:start;column-gap:12px}
+ .sound-workspace{min-width:0}
+ #cards.grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px}
+ .dashboard.workspace>.broadcast-script-aside{
+  display:flex;flex-direction:column;position:sticky;top:12px;
+  width:100%;height:clamp(475px,calc(100dvh - 135px),760px);
+  margin-top:55px!important;min-height:0;padding:11px;
+  border-radius:13px
+ }
+ .broadcast-script-aside .spread{min-width:0;gap:5px}
+ .broadcast-script-aside .title{font-size:13px;letter-spacing:-.15px;margin:0;white-space:nowrap}
+ .broadcast-script-aside #scriptFull{flex:none;min-height:29px;padding:5px 7px;font-size:11px}
+ .broadcast-script-aside>.hint{font-size:10.5px;line-height:1.4}
+ .broadcast-script-aside #scriptSlot{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;min-width:0}
+ .broadcast-script-aside #scriptSlot .script{
+  flex:1 1 auto;height:100%;min-height:0!important;resize:none;
+  font-size:13px;line-height:1.65;padding:10px;overflow-y:auto
+ }
+}
+/* At intermediate widths, don't make individual cards unusably narrow. */
+@media (min-width:1001px) and (max-width:1150px){
+ #cards .sound{padding:6px!important}
+ #cards .sound-controls{gap:3px}
+ #cards .sound-controls>button{width:26px!important;min-width:26px!important;min-height:28px!important}
+ #cards .soundname{font-size:11px}
+}
+/* Tablet and phone keep the existing responsive sound-card layout. */
+@media (min-width:801px) and (max-width:1000px){
+ .dashboard.workspace{grid-template-columns:minmax(0,1fr)}
+ #cards.grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ .broadcast-script-aside{margin-top:10px!important}
+ .broadcast-script-aside #scriptSlot .script{min-height:220px}
+}
+@media (max-width:800px){
+ .broadcast-script-aside{position:static;margin-top:8px!important}
+ .broadcast-script-aside #scriptSlot .script{min-height:220px}
+}
+html[data-theme="light"] .broadcast-script-aside #scriptSlot .script{background:#fcfdff;color:#17243a}
+/* Avoid a horizontal page overhang on extra-small phones. */
+@media (max-width:350px){
+ .top{gap:4px}.top .toolbar{gap:3px}.top .brand{font-size:14px}
+ .top #saveStatus{max-width:52px;padding:4px}.top #projectBtn{font-size:10px;padding:5px}
+}
+</style><style id="workspace-recorder-single-row-v47">
+/* Desktop studio header has two bands: main heading and a single shared Workspace / Recorder row. */
+@media(min-width:1001px){
+ .studio-compact{gap:8px;margin-bottom:9px}
+ .studio-mainline{display:flex;align-items:center;gap:12px;min-width:0}
+ .studio-mainline .studio-heading{flex:0 1 auto;min-width:0}
+ .studio-mainline .studio-helper{display:flex;align-items:center;gap:8px;flex:1 1 auto;justify-content:flex-end;min-width:0;margin:0;min-height:0}
+ .studio-mainline .studio-helper .gripnote{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;font-size:10px}
+ .studio-mainline .toolbar{flex:0 0 auto}
+ .studio-control-row{display:grid;grid-template-columns:minmax(230px,290px) minmax(0,1fr);align-items:stretch;gap:9px;min-width:0}
+ .studio-control-row .workspace-switch{width:100%;max-width:none;margin:0;min-width:0;min-height:46px;display:flex;align-items:stretch}
+ .studio-control-row .ws-choice{flex:1 1 50%;min-width:0;white-space:nowrap;padding:8px 6px;font-size:13px}
+ .studio-control-row .studio-recbar{display:flex;flex-wrap:nowrap!important;align-items:center;justify-content:space-between;gap:9px;min-height:46px;min-width:0;margin:0;padding:7px 10px}
+ .studio-control-row .studio-recbar .rec-timer{font-size:18px;flex:0 0 auto}
+ .studio-control-row .studio-recbar .rec-state{padding:4px 8px;white-space:nowrap;font-size:10px}
+ .studio-control-row .studio-recbar .rec-actions{flex:0 0 auto;display:flex;gap:5px}
+ .studio-control-row .studio-recbar .rec-actions .btn{white-space:nowrap;min-height:31px;padding:6px 9px}
+ .studio-control-row .mic-compact{flex:0 0 auto;white-space:nowrap;min-height:31px;padding:5px 8px;gap:6px}
+ .studio-control-row .mic-compact .mic-word{white-space:nowrap}
+}
+@media(min-width:1001px) and (max-width:1200px){
+ .studio-control-row{grid-template-columns:minmax(225px,260px) minmax(0,1fr);gap:7px}
+ .studio-control-row .studio-recbar{gap:6px;padding:6px 8px}
+ .studio-control-row .studio-recbar .rec-state{display:none}
+ .studio-control-row .studio-recbar .rec-actions .btn{padding:5px 7px}
+ .studio-mainline .studio-helper .gripnote{display:none}
+}
+/* Tablet/phone: keep the established compact mobile recorder and the workspace chooser. */
+@media(max-width:1000px){
+ .studio-control-row{display:flex;flex-direction:column;gap:6px;min-width:0}
+ .studio-control-row .studio-recbar{order:0;min-width:0}
+ .studio-control-row .workspace-switch{order:1;width:min(100%,370px);max-width:370px;margin:0;align-self:flex-start}
+ .studio-mainline .studio-helper{display:none}
+}
+@media(max-width:800px){
+ .studio-control-row{gap:5px}
+ .studio-control-row .workspace-switch{min-height:0}
+}
+</style>
+<style id="studio-v48-polish">
+/* Consistent surfaces for Light Mode. Color-coded transport buttons retain purposeful contrast. */
+html[data-theme="light"] .editor-v9 .edit-quick-settings{background:#eef4fc;border-color:#c7d7eb;color:#243956;box-shadow:none}
+html[data-theme="light"] .editor-v9 .edit-quick-settings label{color:#415978}
+html[data-theme="light"] .editor-v9 .edit-quick-settings select,
+html[data-theme="light"] .editor-v9 .edit-quick-settings input[type=number]{background:#fff;color:#192f4e;border:1px solid #b6c7df;box-shadow:0 1px 2px #203b5711}
+html[data-theme="light"] .editor-v9 .edit-quick-settings .edit-repeat .toggle{background:#fff;border-color:#b6c7df;color:#263d5a}
+html[data-theme="light"] .editor-v9 .edit-quick-settings .edit-repeat .toggle label{color:#263d5a}
+html[data-theme="light"] .editor-v9 .edit-quick-settings input[type=checkbox]{accent-color:#1765bb}
+/* Compact trim controls: times and two labeled range sliders fit in two rows. */
+.editor-v9{gap:8px}
+.editor-v9 .edit-trim{padding:9px 10px}
+.editor-v9 .edit-trim .edit-heading{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0 0 5px;font-size:12px}
+.editor-v9 .edit-trim .edit-heading>span:first-child{flex:1 1 auto;min-width:125px}
+.editor-v9 .edit-trim .edit-heading .hint{font-size:10px;font-weight:750;white-space:nowrap}
+.editor-v9 .edit-trim #rangeReset{min-height:27px;padding:3px 8px;font-size:10px;white-space:nowrap}
+.editor-v9 .edit-trim .edit-times{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.editor-v9 .edit-trim .edit-times .field{margin:1px 0}
+.editor-v9 .edit-trim .edit-times label{font-size:10px;margin:0 0 3px}
+.editor-v9 .edit-trim .edit-times input{font-size:15px;height:33px;padding:5px 7px;letter-spacing:.15px}
+.editor-v9 .edit-trim .edit-range{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:4px 0 0}
+.editor-v9 .edit-trim .range-line{display:flex;flex-direction:column;align-items:stretch;gap:1px;margin:0;min-width:0}
+.editor-v9 .edit-trim .range-line span{font-size:9px;font-weight:800;letter-spacing:.04em;line-height:12px;width:auto}
+.editor-v9 .edit-trim .range-line input{display:block;width:100%;height:22px;margin:0;touch-action:pan-x;cursor:pointer}
+@media(max-width:430px){.editor-v9 .edit-trim{padding:8px}.editor-v9 .edit-trim .edit-heading{gap:4px}.editor-v9 .edit-trim .edit-heading>span:first-child{min-width:105px}.editor-v9 .edit-trim #rangeReset{padding:3px 5px}.editor-v9 .edit-trim .edit-times input{font-size:14px;height:32px}}
+/* Custom recording cards: controls, timeline and state use one consistent design across browsers. */
+.recordings-intro{margin:0 0 13px}
+.recordings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,350px),1fr));align-items:start;gap:11px}
+.rec-card{min-width:0;border:1px solid #384d69;border-radius:15px;padding:12px;background:linear-gradient(145deg,#1d304b,#132238);box-shadow:0 4px 15px #040a1622}
+.rec-card-top{display:flex;align-items:center;gap:9px;min-width:0}
+.rec-art{flex:0 0 auto;display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:#1d5065;color:#89e5fc;font-size:19px}
+.rec-meta{flex:1;min-width:0}
+.rec-name{font-weight:800;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.rec-details{display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:10px;color:#adbed5;margin-top:4px}
+.rec-play-state{font-weight:850;font-size:9px;letter-spacing:.09em;color:#7cd6ce}
+.rec-card.rec-playing .rec-play-state{color:#66eab0}
+.rec-download{flex:0 0 auto;min-height:30px!important;padding:5px 8px!important;font-size:11px!important;white-space:nowrap}
+.rec-transport{display:flex;align-items:center;gap:10px;margin-top:12px;min-width:0}
+.rec-play,.rec-stop{display:grid;place-items:center;flex:0 0 auto;width:35px;height:35px;border-radius:10px;cursor:pointer;font-size:16px;font-weight:900}
+.rec-play{color:#fff;background:#1768b7;border:1px solid #4896eb}
+.rec-card.rec-playing .rec-play{background:#13765a;border-color:#48c6a0}
+.rec-stop{color:#f4f7fc;background:#293e56;border:1px solid #526a83}
+.rec-play:focus-visible,.rec-stop:focus-visible,.rec-timeline input:focus-visible{outline:3px solid #e8b956;outline-offset:2px}
+.rec-timeline{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:3px}
+.rec-timeline input[type=range]{appearance:none;-webkit-appearance:none;display:block;margin:0;width:100%;height:6px;border-radius:20px;cursor:pointer;background:linear-gradient(to right,#4cc7ee 0%,#4cc7ee var(--rec-progress,0%),#405471 var(--rec-progress,0%),#405471 100%);outline-offset:6px}
+.rec-timeline input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:14px;height:14px;border-radius:50%;border:3px solid #b7ecff;background:#186bbd;box-shadow:0 0 0 1px #1d3d60}
+.rec-timeline input[type=range]::-moz-range-thumb{width:11px;height:11px;border-radius:50%;border:2px solid #b7ecff;background:#186bbd}
+.rec-timeline input[type=range]:disabled{opacity:.6;cursor:not-allowed}
+.rec-times{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:10px;color:#b7c9dc;font-variant-numeric:tabular-nums}
+.rec-audio{display:none!important}
+.rec-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:5px;border:1px dashed #3f5674;border-radius:14px;padding:35px 18px;color:#d2e5f9;background:#14243a}
+.rec-empty>span{font-size:29px;color:#75cdef;margin-bottom:5px}.rec-empty strong{font-size:14px}.rec-empty p{font-size:12px;color:#afc2d8;margin:0}
+html[data-theme="light"] .rec-card{background:linear-gradient(145deg,#fff,#f5f8fe);border-color:#cbd9ea;color:#243650;box-shadow:0 4px 15px #304c6f12}
+html[data-theme="light"] .rec-art{background:#dceffc;color:#166d9a}
+html[data-theme="light"] .rec-details{color:#586d83}
+html[data-theme="light"] .rec-play-state{color:#18718b}
+html[data-theme="light"] .rec-card.rec-playing .rec-play-state{color:#087b5a}
+html[data-theme="light"] .rec-stop{background:#eef2f9;border-color:#bdcbe0;color:#31445e}
+html[data-theme="light"] .rec-timeline input[type=range]{background:linear-gradient(to right,#2276cc 0%,#2276cc var(--rec-progress,0%),#d3dfec var(--rec-progress,0%),#d3dfec 100%)}
+html[data-theme="light"] .rec-times{color:#586e88}
+html[data-theme="light"] .rec-empty{background:#f8faff;color:#23415f;border-color:#c6d6e9}
+html[data-theme="light"] .rec-empty>span{color:#167fb4}
+html[data-theme="light"] .rec-empty p{color:#60758b}
+/* The DJ sound picker and other overlays should respect the selected theme as well. */
+html[data-theme="light"] .dj-sound-sheet{background:#fff;border-color:#cedaea;color:#20344d;box-shadow:0 20px 60px #223b5b30}
+html[data-theme="light"] .dj-sound-close{background:#eff4fc;border-color:#c4d3e6;color:#233950}
+html[data-theme="light"] .dj-sound-search-wrap{background:#f5f8fd;border-color:#c5d5e7}
+html[data-theme="light"] .dj-sound-search-wrap input{color:#1e3452}
+html[data-theme="light"] .dj-sound-search-wrap input::placeholder{color:#78899e}
+html[data-theme="light"] .dj-sound-option{background:#f5f8fd;border-color:#d0dceb;color:#203651}
+html[data-theme="light"] .dj-sound-option:hover,html[data-theme="light"] .dj-sound-option.active{background:#e4f3fc;border-color:#2d9ac5}
+html[data-theme="light"] .dj-option-note{background:#dbeef8;color:#147696}
+html[data-theme="light"] .dj-option-text small,html[data-theme="light"] .dj-picker-empty,html[data-theme="light"] .dj-sound-footnote{color:#59718b}
+html[data-theme="light"] .dj-picker-chevron{color:#4b6580}
+html[data-theme="light"] .dj-cross-head{color:#466987}
+@media(max-width:450px){.rec-card{padding:10px}.rec-download span{display:none}.rec-download{min-width:34px}.rec-transport{gap:8px}}
+</style>
+<style id="studio-v49-section-navigation">
+/* Four minimal secondary tabs: separate from the blue Soundboard / DJ Mixer segmented switch. */
+.tabs{
+  --section-nav-accent:#2bd8b9;
+  display:flex;align-items:stretch;justify-content:flex-start;
+  gap:6px;margin:12px 0 14px;padding:0;
+  border-bottom:1px solid #334760;
+  overflow:visible;
+}
+.tabs .tab,html[data-theme="light"] .tabs .tab{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;
+  gap:8px;flex:0 0 auto;min-width:128px;min-height:43px;
+  padding:9px 15px 12px;
+  border:0!important;border-radius:0!important;
+  background:transparent!important;box-shadow:none!important;
+  font-size:13px;font-weight:600;letter-spacing:.01em;
+  color:#9fafc6;
+  transition:color .18s ease;
+}
+.tabs .tab::after{
+  content:"";position:absolute;bottom:-1px;left:16px;right:16px;
+  height:3px;border-radius:4px 4px 0 0;background:var(--section-nav-accent);
+  transform:scaleX(0);transform-origin:center;opacity:0;
+  transition:transform .2s ease,opacity .2s ease;
+}
+.tabs .tab.active,
+html[data-theme="light"] .tabs .tab.active{
+  background:transparent!important;
+  border:0!important;
+  color:var(--section-nav-accent)!important;
+  font-weight:800;
+}
+.tabs .tab.active::after{transform:scaleX(1);opacity:1}
+.tabs .tab:hover{color:#f0f8ff}
+.tabs .tab:focus-visible{outline:2px solid var(--section-nav-accent);outline-offset:-4px;border-radius:5px!important}
+.tabs .section-nav-icon{width:17px;height:17px;flex:none;display:block}
+html[data-theme="light"] .tabs{--section-nav-accent:#087f75;border-bottom-color:#d6e0eb}
+html[data-theme="light"] .tabs .tab{color:#5b6e84}
+html[data-theme="light"] .tabs .tab:hover{color:#172e49}
+@media(max-width:800px){
+  .tabs{gap:1px;margin:8px 0 10px}
+  .tabs .tab,html[data-theme="light"] .tabs .tab{
+    flex:1 1 0;min-width:0;min-height:40px;
+    padding:8px 2px 10px;gap:5px;
+    font-size:11.5px;letter-spacing:0;
+  }
+  .tabs .section-nav-icon{width:15px;height:15px}
+  .tabs .tab::after{left:8px;right:8px}
+}
+@media(max-width:350px){
+  .tabs .tab,html[data-theme="light"] .tabs .tab{font-size:10px;gap:3px;padding-left:0;padding-right:0}
+  .tabs .section-nav-icon{width:13px;height:13px}
+  .tabs .tab::after{left:6px;right:6px}
+}
+@media(prefers-reduced-motion:reduce){.tabs .tab,.tabs .tab::after{transition:none}}
+</style>
+<style id="v50-outputs-footer">
+/* Routing center: informative controls rather than decorative dropdowns */
+.output-center{padding:clamp(12px,2vw,22px)!important}
+.output-head{display:flex;align-items:flex-start;justify-content:space-between;gap:13px;margin:2px 0 18px}
+.output-head .title{font-size:clamp(19px,2.5vw,24px);letter-spacing:-.55px;margin:5px 0 3px}
+.output-head .hint{margin:0;line-height:1.4}
+.output-overline,.output-kicker{font-size:10px;font-weight:850;letter-spacing:.095em;color:#8cb5e6}
+.out-badge{border:1px solid #54718e;background:#223650;color:#c5d8f3;border-radius:25px;padding:7px 10px;font-size:10px;font-weight:850;white-space:nowrap}
+.out-badge[data-state="ready"]{border-color:#228972;background:#0e403a;color:#76ecd4}
+.out-badge[data-state="warning"]{border-color:#966e35;background:#392d1e;color:#f4ce91}
+.output-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.output-device-card{min-width:0;background:#192a40;border:1px solid #38526d;border-radius:15px;padding:clamp(12px,1.5vw,17px);display:flex;flex-direction:column;gap:9px}
+.output-card-top{display:flex;gap:11px;align-items:flex-start;min-height:80px}
+.output-icon{width:43px;height:43px;border-radius:12px;background:#174c72;color:#8cd9ff;display:grid;place-items:center;flex:0 0 auto;font-size:25px;font-weight:900}
+.headphone-icon{background:#41335e;color:#d0b7ff}
+.output-card-top h3,.output-mixing h3{font-size:16px;letter-spacing:-.25px;margin:3px 0 4px}
+.output-card-top p,.output-mixing-top p{font-size:12px;line-height:1.45;color:#9eb3cc;margin:0}
+.output-device-card label{margin:0;color:#c2d3e9;font-weight:700}
+.output-device-card select{width:100%;min-height:42px;background:#0d1b2d;border:1px solid #4d6480;color:#eff6ff;font-size:13px;cursor:pointer}
+.output-device-card select:focus-visible,.output-device-card button:focus-visible{outline:2px solid #6cbeff;outline-offset:2px}
+.output-device-card select:disabled{opacity:.6;cursor:not-allowed}
+.output-card-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+.output-card-actions .btn{min-height:34px;padding:7px 11px;font-size:12px}
+.output-test{background:#1b517d;color:#e9f5ff;border-color:#377ba6}
+.out-status{border-radius:8px;background:#102037;border:1px solid #2b435f;color:#b7c7dc;padding:8px 10px;font-size:11px;font-weight:650;display:flex;align-items:center;gap:7px;margin-top:auto;min-height:34px}
+.status-dot{width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:#98a7ba;display:inline-block}
+.status-dot.ok{background:#38cda1;box-shadow:0 0 0 3px #38cda122}
+.output-connect-row{display:flex;gap:10px;align-items:center;margin:14px 0 8px;flex-wrap:wrap}
+.output-routing-info{font-size:11px;color:#a9c0db;flex:1;min-width:160px;line-height:1.45}
+.output-routing-info[data-state="success"]{color:#75ddb7}
+.output-routing-info[data-state="warning"]{color:#ffbd83}
+.output-disclaimer{border-left:3px solid #587b9e;margin:10px 0 18px;padding:3px 0 3px 11px;max-width:900px;font-size:11px;line-height:1.6;color:#aebed0}
+.output-mixing{border-top:1px solid #2c415c;padding-top:16px}
+.output-mixing-top{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.output-mixing-top h3{margin:3px 0}
+.output-mixing-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 21px;margin-top:10px}
+.output-mixing-fields .field{margin:6px 0}
+.output-mixing-fields label{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-bottom:9px}
+.output-mixing-fields label strong{font-variant-numeric:tabular-nums;color:#eaf4ff}
+.output-mixing-fields input[type=range]{width:100%;min-height:21px}
+.output-switch{display:inline-flex;gap:8px;align-items:center;background:#132c34;border:1px solid #2b725f;border-radius:24px;padding:7px 10px;font-size:12px;font-weight:800;color:#9ef4d3;white-space:nowrap;margin:0}
+.output-switch input{accent-color:#10b981}
+html[data-theme="light"] .output-overline,html[data-theme="light"] .output-kicker{color:#336998}
+html[data-theme="light"] .out-badge{background:#edf3fa;color:#335675;border-color:#b9cbe0}
+html[data-theme="light"] .out-badge[data-state="ready"]{background:#e1f8ef;color:#126a51;border-color:#a2dcc4}
+html[data-theme="light"] .out-badge[data-state="warning"]{background:#fff6df;color:#805300;border-color:#e4c782}
+html[data-theme="light"] .output-device-card{background:#f8faff;border-color:#d2dfef}
+html[data-theme="light"] .output-card-top p,html[data-theme="light"] .output-mixing-top p{color:#62718a}
+html[data-theme="light"] .output-device-card label{color:#334d69}
+html[data-theme="light"] .output-device-card select{color:#1b3550;background:#fff;border-color:#b8cde2}
+html[data-theme="light"] .output-icon{background:#e0f1ff;color:#155e9e}
+html[data-theme="light"] .headphone-icon{background:#eee6ff;color:#704aab}
+html[data-theme="light"] .out-status{background:#edf3fa;border-color:#d4dfec;color:#45647a}
+html[data-theme="light"] .output-routing-info{color:#526c83}
+html[data-theme="light"] .output-routing-info[data-state="success"]{color:#13775a}
+html[data-theme="light"] .output-routing-info[data-state="warning"]{color:#a05f19}
+html[data-theme="light"] .output-disclaimer{color:#566e88}
+html[data-theme="light"] .output-mixing{border-color:#d8e3ef}
+html[data-theme="light"] .output-mixing-fields label strong{color:#243953}
+html[data-theme="light"] .output-switch{background:#edfbf5;border-color:#a6d5c4;color:#17644e}
+html[data-theme="light"] .output-test{background:#e9f3ff;border-color:#aecde9;color:#164d80}
+/* Live control dock: responsive, always readable, and does not cover content */
+.footer{padding:8px max(12px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));background:#0d1929f7;box-shadow:0 -6px 25px #0002;border-top:1px solid #354b64;backdrop-filter:blur(16px)}
+.footinner{max-width:1408px;display:flex;align-items:center;gap:clamp(12px,2.5vw,28px);justify-content:space-between}
+.footer-playing{display:flex;align-items:center;gap:9px;min-width:137px;flex:0 0 auto}
+.footer-playing-icon{width:38px;height:38px;flex:0 0 38px;border-radius:11px;background:#163c50;color:#64e1d5;display:grid;place-items:center}
+.footer-playing-details{display:flex;flex-direction:column;gap:3px;white-space:nowrap}
+.footer-kicker{font-size:9px;color:#8daec6;letter-spacing:.085em;font-weight:900}
+#footCount{font-size:14px;line-height:1.2;font-variant-numeric:tabular-nums;color:#f1f7ff}
+.footer-master{flex:1 1 320px;max-width:440px;min-width:0}
+.footer-master-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;gap:10px}
+.footer-master-head label{margin:0;font-size:11px;font-weight:750;color:#c4d1e3}
+.footer-master-head output{font-size:11px;font-weight:850;color:#eaf4ff;font-variant-numeric:tabular-nums}
+.footer-volume-input{display:flex;align-items:center;gap:10px;color:#9caec5}
+.footer-volume-input input{width:100%;min-width:0;flex:1;cursor:pointer;-webkit-appearance:none;appearance:none;height:6px;border-radius:9px;background:linear-gradient(to right,#23bfc0 0%,#23bfc0 var(--master-fill),#415268 var(--master-fill),#415268 100%)}
+.footer-volume-input input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid #1dabb4;box-shadow:0 1px 5px #0005}
+.footer-volume-input input::-moz-range-thumb{width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid #1dabb4}
+.footer-stop.btn{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:9px 16px;border-radius:11px;background:#a82b3d;border-color:#d45e69;color:#fff;font-size:12px;font-weight:850;box-shadow:0 4px 12px #7f182a33}
+.footer-stop.btn:hover{background:#b83146}
+html[data-theme="light"] .footer{background:#fffffffa;border-top-color:#d4dfeb;box-shadow:0 -5px 22px #29405c15}
+html[data-theme="light"] .footer-playing-icon{background:#dff5f2;color:#137b78}
+html[data-theme="light"] .footer-kicker{color:#6b8198}
+html[data-theme="light"] #footCount{color:#19324e}
+html[data-theme="light"] .footer-master-head label{color:#425b78}
+html[data-theme="light"] .footer-master-head output{color:#163b5b}
+html[data-theme="light"] .footer-volume-input{color:#64819b}
+html[data-theme="light"] .footer-volume-input input{background:linear-gradient(to right,#0e9eaa 0%,#0e9eaa var(--master-fill),#ccd7e3 var(--master-fill),#ccd7e3 100%)}
+html[data-theme="light"] .footer-stop.btn{background:#ad2939;border-color:#b52b3b;color:#fff}
+/* Cue tools make the separate headphone route genuinely useful. */
+.cue-preview{margin:3px 0 1px;padding:10px 0 0;border-top:1px solid #35506d}
+.cue-preview label{display:block;font-size:11px;font-weight:800;color:#b8c9db;margin-bottom:6px}
+.cue-preview-row{display:flex;align-items:stretch;gap:6px;min-width:0}
+.cue-preview-row select{flex:1;min-width:0;min-height:34px;font-size:11px;padding:7px 5px}
+.cue-preview-row .btn{flex:0 0 auto;min-height:34px;padding:6px 9px}
+.cue-preview-row .cue-play{background:#36517d;color:#f8fbff;border-color:#5a79af}
+.cue-preview-row .cue-stop{background:#3f3047;color:#fff;border-color:#746277}
+html[data-theme="light"] .cue-preview{border-color:#d3dfeb}
+html[data-theme="light"] .cue-preview label{color:#385b78}
+html[data-theme="light"] .cue-preview-row .cue-play{background:#e1ebff;color:#23487c;border-color:#b9ceef}
+html[data-theme="light"] .cue-preview-row .cue-stop{background:#e7ebf4;color:#243954;border-color:#c2cbdd}
+@media(max-width:620px){
+ .output-head{flex-wrap:wrap;gap:7px}.out-badge{font-size:9px;padding:5px 9px}.output-grid,.output-mixing-fields{grid-template-columns:minmax(0,1fr)}.output-card-top{min-height:unset}.output-device-card{padding:12px}.output-connect-row{gap:7px}
+ .footer{padding:7px max(9px,env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) max(9px,env(safe-area-inset-left))}
+ .footinner{gap:8px}.footer-playing{min-width:0;gap:6px}.footer-playing-icon{width:28px;height:28px;flex-basis:28px;border-radius:8px}.footer-playing-icon svg{width:16px;height:16px}.footer-kicker{font-size:7px}#footCount{font-size:11px}
+ .footer-master{flex:1;min-width:0}.footer-master-head{margin-bottom:3px}.footer-master-head label{font-size:9px}.footer-master-head output{font-size:10px}.footer-volume-input{gap:5px}.footer-volume-input svg{width:14px;height:14px;flex:0 0 14px}
+ .footer-stop.btn{min-height:36px;padding:8px 10px;border-radius:8px;gap:5px;font-size:10px}
+}
+@media(max-width:350px){.footer-playing-icon{display:none}.footer-playing{min-width:48px}.footer-kicker{font-size:7px}.footer-stop.btn{padding:8px}.footer-stop svg{width:12px}.footer-master-head label{font-size:8px}}
+</style><style id="v51-device-discovery">
+.output-connect-row{align-items:center;gap:8px}
+.output-connect-row .output-permission{background:#126a87;border:1px solid #2c9fbb;color:#fff;font-weight:800}
+.output-connect-row .output-permission:hover:not(:disabled){background:#167e9d}
+.output-device-count{font-size:11px;font-weight:800;color:#8be8ce;margin-left:auto;white-space:nowrap}
+.output-routing-message{display:block;min-width:0;width:100%;padding:8px 11px;border:1px solid #34516c;border-radius:9px;background:#18283b;line-height:1.45;margin:0}
+html[data-theme="light"] .output-connect-row .output-permission{background:#0c6f88;border-color:#0c6f88;color:#fff}
+html[data-theme="light"] .output-device-count{color:#176b59}
+html[data-theme="light"] .output-routing-message{background:#f0f5fb;border-color:#cedded}
+@media(max-width:600px){.output-connect-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.output-connect-row .btn{min-width:0;font-size:11px;padding:9px 5px}.output-device-count{grid-column:1/-1;margin:0}.output-routing-message{font-size:11px}}
+</style></head><body><main class="app"><header class="top"><div><div class="brand">◉ ON AIR <b>STUDIO</b></div></div><div class="toolbar"><span class="pill" id="saveStatus">Loading project…</span><button class="btn small" id="projectBtn">▤ Projects</button></div></header><nav class="tabs" aria-label="Studio sections"><button type="button" class="tab active" data-tab="studio" aria-controls="studio" aria-current="page"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.2" y="8" width="17.6" height="12.8" rx="2.5"/><path d="M6 8 18 4.2M8 12.8a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8ZM14 13h4m-4 3.5h4"/></svg><span>Studio</span></button><button type="button" class="tab" data-tab="library" aria-controls="library" aria-current="false"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5.2a2 2 0 0 1 2-2h13v17H6a2 2 0 0 1 0-4h13M8 7.5h7M8 11h7"/></svg><span>Library</span></button><button type="button" class="tab" data-tab="recordings" aria-controls="recordings" aria-current="false"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0M12 17v4.5M8.5 21.5h7"/></svg><span>Recordings</span></button><button type="button" class="tab" data-tab="outputs" aria-controls="outputs" aria-current="false"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="16" cy="17" r="3"/></svg><span>Outputs</span></button></nav><div id="notice"></div>
+<section id="studio"><div class="studio-compact"><div class="studio-mainline"><div class="studio-heading"><strong>Live Soundboard <span class="hint" id="soundCount"></span></strong><span class="hint project-subtitle" id="projectTitle">Untitled Broadcast</span></div><div class="studio-helper"><span class="pill" id="activeCount">0 live</span><span class="gripnote">⠿ Hold & drag · Play changes to Restart after starting</span></div><div class="toolbar"><button class="btn small" id="getAudioBtn">▶ Get Audio</button><button class="btn primary small" id="addBtn">＋ Add Audio</button></div></div><div class="studio-control-row"><div class="workspace-switch" role="group" aria-label="Workspace"><button id="wsBoard" class="ws-choice selected" type="button">▦ Soundboard</button><button id="wsDJ" class="ws-choice" type="button">🎛 DJ Mixer</button></div><div class="studio-recbar"><span class="rec-label">● <span class="rec-label-text">Broadcast</span></span><span class="rec-timer" id="recTime">00:00:00</span><span class="pill rec-state" id="recState">READY</span><div class="rec-actions"><button class="btn danger small" id="recordBtn">● REC</button><button class="btn small" id="stopRecord" disabled>■ Stop</button></div><label class="mic-compact" title="Include your voice in the recording"><input type="checkbox" id="micToggle"><span class="mic-word">🎙 Include Voice</span></label></div></div></div><section id="djWorkspace" class="dj-workspace hidden" aria-label="DJ Mixer"><div class="dj-heading"><div><strong>DJ Mixer</strong><small>Mix two sounds and make your own</small></div><button class="btn small" id="djStopAll">■ Stop Decks</button></div><div class="dj-decks"><div class="dj-deck" data-deck="A"><div class="dj-deck-top"><span class="dj-deck-label">DECK A</span><span class="dj-deck-state" id="djStateA">Ready</span></div><div class="dj-sound-picker"><span class="dj-picker-caption">LOADED SOUND</span><button type="button" class="dj-picker-btn" id="djPickA" aria-label="Choose sound for deck A"><span class="dj-picker-icon">♫</span><span class="dj-picker-info"><strong id="djPickNameA">Choose a sound</strong><small id="djPickMetaA">Tap to load audio</small></span><span class="dj-picker-chevron">⌄</span></button><select id="djSelectA" class="dj-native-select" aria-label="Choose sound for deck A"><option value="">Choose a sound</option></select></div><div class="dj-platter" id="djDiscA"><div class="dj-disc-core">A</div></div><div class="dj-time" id="djTimeA">0:00 / 0:00</div><input type="range" id="djSeekA" min="0" max="1000" value="0" aria-label="Deck A position"><div class="dj-deck-actions"><button class="btn primary" id="djPlayA">▶ Play</button><button class="btn" id="djPauseA">Ⅱ Pause</button><button class="btn" id="djResetA">↺ From Start</button></div><label class="dj-control-label">Volume <output id="djVolTextA">80%</output></label><input type="range" id="djLevelA" min="0" max="100" value="80" aria-label="Deck A volume"><details class="dj-effects"><summary>Sound Effects</summary><label>Bass <output id="djBassTextA">0</output></label><input type="range" id="djBassA" min="-18" max="18" value="0"><label>Treble <output id="djTrebleTextA">0</output></label><input type="range" id="djTrebleA" min="-18" max="18" value="0"><label>Filter <output id="djFilterTextA">Off</output></label><input type="range" id="djFilterA" min="0" max="100" value="100"><label>Echo <output id="djEchoTextA">Off</output></label><input type="range" id="djEchoA" min="0" max="60" value="0"></details></div><div class="dj-deck" data-deck="B"><div class="dj-deck-top"><span class="dj-deck-label">DECK B</span><span class="dj-deck-state" id="djStateB">Ready</span></div><div class="dj-sound-picker"><span class="dj-picker-caption">LOADED SOUND</span><button type="button" class="dj-picker-btn" id="djPickB" aria-label="Choose sound for deck B"><span class="dj-picker-icon">♫</span><span class="dj-picker-info"><strong id="djPickNameB">Choose a sound</strong><small id="djPickMetaB">Tap to load audio</small></span><span class="dj-picker-chevron">⌄</span></button><select id="djSelectB" class="dj-native-select" aria-label="Choose sound for deck B"><option value="">Choose a sound</option></select></div><div class="dj-platter dj-platter-b" id="djDiscB"><div class="dj-disc-core">B</div></div><div class="dj-time" id="djTimeB">0:00 / 0:00</div><input type="range" id="djSeekB" min="0" max="1000" value="0" aria-label="Deck B position"><div class="dj-deck-actions"><button class="btn primary" id="djPlayB">▶ Play</button><button class="btn" id="djPauseB">Ⅱ Pause</button><button class="btn" id="djResetB">↺ From Start</button></div><label class="dj-control-label">Volume <output id="djVolTextB">80%</output></label><input type="range" id="djLevelB" min="0" max="100" value="80" aria-label="Deck B volume"><details class="dj-effects"><summary>Sound Effects</summary><label>Bass <output id="djBassTextB">0</output></label><input type="range" id="djBassB" min="-18" max="18" value="0"><label>Treble <output id="djTrebleTextB">0</output></label><input type="range" id="djTrebleB" min="-18" max="18" value="0"><label>Filter <output id="djFilterTextB">Off</output></label><input type="range" id="djFilterB" min="0" max="100" value="100"><label>Echo <output id="djEchoTextB">Off</output></label><input type="range" id="djEchoB" min="0" max="60" value="0"></details></div></div><div class="dj-mix-panel"><div class="dj-cross-head"><span>A</span><strong>Crossfade</strong><span>B</span></div><input type="range" id="djCross" min="0" max="100" value="50" aria-label="Crossfade between decks"><div class="dj-mix-actions"><button class="btn danger" id="djRecordMix">● Record Mix</button><button class="btn" id="djFinishMix" disabled>■ Finish & Save</button></div><div class="dj-mix-note" id="djMixStatus">Your mix can be saved as a new sound card.</div></div></section><div class="dashboard workspace"><div class="sound-workspace"><div class="soundlist-head soundlist-inline"><h2 class="title">Sounds</h2><div class="sound-filter-rail" id="soundFilterRail"><div id="categoryFilters" class="category-filters" role="group" aria-label="Filter sounds by category"></div><button class="sound-filter-scroll" id="categoryScroll" type="button" aria-label="More sound categories" title="Scroll sound categories" hidden>›</button></div></div><div id="cards" class="grid"></div><div id="empty" class="empty">Add your first audio files to start broadcasting.<div style="margin-top:12px"><button class="btn primary" id="emptyAdd">＋ Add Sounds</button></div></div></div><aside class="panel broadcast-script-aside" style="align-self:start;margin-top:10px"><div class="spread"><h2 class="title">📄 Broadcast Script</h2><button class="btn small" id="scriptFull">↗ Float</button></div><div class="hint" style="margin-bottom:8px">Paste your sequence, cues, lines, and timing. Autosaved with the project.</div><div id="scriptSlot"><textarea id="scriptText" class="script" placeholder="00:00 — PLAY News Intro&#10;ANCHOR: Good morning, everyone…&#10;00:15 — FADE Background Music&#10;TECH: PLAY Breaking News…"></textarea></div><div class="hint" style="margin-top:7px">Tip: Add [PLAY: Sound Name] cues beside your script.</div></aside></div></section>
+<section id="library" class="hidden"><div class="panel"><div class="spread"><h2 class="title">Audio Library</h2><button class="btn primary small" id="libraryAdd">＋ Import</button></div><p class="hint">Rename, set category, speed, loop, and volume. Use ⠿ in Studio to reorder.</p><div id="libraryList"></div></div></section>
+<section id="recordings" class="hidden"><div class="panel"><h2 class="title">Recordings</h2><p class="hint recordings-intro">Replay and review your broadcast. Download your recordings to keep them after closing the page.</p><div id="recordingList" class="recordings-grid"></div></div></section>
+<section id="outputs" class="hidden"><div class="panel output-center">
+ <div class="output-head"><div><span class="output-overline">STUDIO AUDIO ROUTING</span><h2 class="title">Audio Outputs</h2><p class="hint">Choose where your live sound and private cue are heard.</p></div><span id="outSupportBadge" class="out-badge">Checking support…</span></div>
+ <div class="output-grid">
+  <article class="output-device-card" data-output-role="aud"><div class="output-card-top"><span class="output-icon speaker-icon" aria-hidden="true">♬</span><div><span class="output-kicker">LIVE · AUDIENCE</span><h3>Master / Speakers</h3><p>Soundboard and the live DJ mix.</p></div></div>
+    <label for="audDevice">Playback device</label><select id="audDevice"><option value="">System default speaker</option></select>
+    <div class="output-card-actions"><button class="btn small output-test" id="testAud" type="button">▶ Test Speaker</button><button class="btn small output-authorize hidden" id="chooseAud" type="button">Choose Device</button></div>
+    <div class="out-status" id="audStatus" aria-live="polite"><span class="status-dot"></span> System default</div>
+  </article>
+  <article class="output-device-card" data-output-role="dj"><div class="output-card-top"><span class="output-icon headphone-icon" aria-hidden="true">♫</span><div><span class="output-kicker">PRIVATE · CUE</span><h3>DJ Headphones</h3><p>Preview sounds without sending them to the audience.</p></div></div>
+    <label for="djDevice">Separate headphone device</label><select id="djDevice"><option value="">Choose separate headphones</option></select>
+    <div class="output-card-actions"><button class="btn small output-test" id="testDJ" type="button" disabled>▶ Test Headphones</button><button class="btn small output-authorize hidden" id="chooseDJ" type="button">Choose Device</button></div>
+    <div class="cue-preview"><label for="cueTrack">Private sound preview</label><div class="cue-preview-row"><select id="cueTrack" aria-label="Choose a sound to preview"><option value="">Choose a sound</option></select><button class="btn small cue-play" id="cuePlay" type="button" disabled>▶ Cue</button><button class="btn small cue-stop" id="cueStop" type="button" disabled title="Stop cue" aria-label="Stop private preview">■</button></div></div>
+    <div class="out-status" id="djStatus" aria-live="polite"><span class="status-dot"></span> Cue disabled until routed</div>
+  </article>
+ </div>
+ <div class="output-connect-row"><button class="btn small output-permission" id="enableDeviceAccess" type="button">◉ Show All Audio Devices</button><button class="btn small" id="findDevices" type="button">⟳ Refresh Devices</button><span id="deviceCount" class="output-device-count" aria-live="polite">Checking device list…</span></div><div id="routingInfo" class="output-routing-info output-routing-message" role="status" aria-live="polite">Choose independent audio devices for live and cue.</div>
+ <p class="output-disclaimer" id="outputHelp">Click <strong>Show All Audio Devices</strong> if your Windows speakers or headphones are missing. Chrome/Edge may ask for microphone permission to reveal the full device list; the app immediately stops this temporary microphone stream and does not record it. For safe private cue, choose two distinct physical outputs, not the same device or a system default alias. HTTPS or localhost and a compatible browser may be required.</p>
+ <div class="output-mixing"><div class="output-mixing-top"><div><span class="output-overline">PLAYBACK CONTROL</span><h3>Smart Mixing</h3><p>Lower background audio automatically during priority announcements.</p></div><label class="output-switch"><input type="checkbox" id="duckToggle" checked><span>Enabled</span></label></div><div class="output-mixing-fields"><div class="field"><label for="audVol">Audience Volume <strong id="audLabel">85%</strong></label><input type="range" id="audVol" min="0" max="100" value="85"></div><div class="field"><label for="djVol">DJ Cue Volume <strong id="djLabel">60%</strong></label><input type="range" id="djVol" min="0" max="100" value="60"></div><div class="field"><label for="duckVol">Background Duck Level <strong id="duckLabel">25%</strong></label><input type="range" id="duckVol" min="0" max="100" value="25"></div><div class="field"><label for="fadeSec">Transition Fade (seconds)</label><input type="number" id="fadeSec" min="0" max="5" step="0.1" value="0.35"></div></div></div>
+ </div></section>
+</main><div id="floatScript" class="floating-script hidden"><div id="floatHead" class="float-head"><strong>📄 Broadcast Script · Drag to move</strong><div class="float-tools"><button class="btn small" id="zoomOut" title="Zoom out">−</button><input id="zoomRange" class="float-zoom" type="range" min="0" max="1000" value="100" aria-label="Script zoom 0 to 1000 percent"><button class="btn small" id="zoomIn" title="Zoom in">+</button><span id="zoomValue" class="tiny">100%</span><button class="btn small" id="miniScript" title="Minimize floating script" aria-label="Minimize script">▁</button><button class="btn small" id="dockScript" title="Dock script">↙</button></div></div><div id="floatBody" class="float-body"></div></div><footer class="footer" aria-label="Live playback controls"><div class="footinner">
+ <div class="footer-playing"><span class="footer-playing-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 14v-4m5 9V5m5 12V7m5 7v-4"/></svg></span><span class="footer-playing-details"><span class="footer-kicker">NOW PLAYING</span><strong id="footCount" aria-live="polite">0 playing</strong></span></div>
+ <div class="footer-master"><div class="footer-master-head"><label for="master">Master Volume</label><output for="master" id="masterValue">100%</output></div><div class="footer-volume-input"><svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15 9a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12"/></svg><input id="master" aria-label="Master volume" type="range" min="0" max="100" value="100" style="--master-fill:100%"></div></div>
+ <button class="btn danger footer-stop" id="stopAll" type="button" title="Stop all sounds"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg><span>Stop All</span></button>
+ </div></footer><input id="files" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac" multiple hidden><input id="importProject" type="file" accept=".json,application/json" hidden><div id="modalBg" class="modalbg hidden"><div class="modal"><div class="spread"><h2 class="title" id="modalTitle"></h2><button class="btn small" id="closeModal">✕</button></div><div id="modalBody"></div></div></div>
+<div id="djSoundModal" class="dj-sound-modal hidden" role="dialog" aria-modal="true" aria-labelledby="djSoundModalTitle"><div class="dj-sound-sheet"><div class="dj-sound-sheet-head"><div><small>SOUND LIBRARY</small><h3 id="djSoundModalTitle">Choose Sound</h3></div><button type="button" id="djSoundClose" class="dj-sound-close" aria-label="Close">✕</button></div><div class="dj-sound-search-wrap"><span>⌕</span><input id="djSoundSearch" type="search" placeholder="Search your sounds…" autocomplete="off"></div><div id="djSoundResults" class="dj-sound-results"></div><p class="dj-sound-footnote">Select a sound to load it into this deck.</p></div></div><script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),id=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+Math.random().toString(36).slice(2),clamp=(n,a,b)=>Math.min(b,Math.max(a,n)),fmt=n=>Number.isFinite(n)?`${Math.floor(n/60)}:${String(Math.floor(n%60)).padStart(2,'0')}`:'--:--';
+let db=null,project={id:id(),name:'Untitled Broadcast',sounds:[],script:'',settings:{aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35}},blobs=new Map(),urls=new Map(),live=new Map(),preview=new Map(),recordings=[],ctx=null,audBus=null,djBus=null,master=null,recordDest=null,audSink=null,djSink=null,mediaRecorder=null,recStart=0,recTimer=null,micStream=null,micSource=null,recChunks=[],saveTimer=null,routeOk=false,dragId=null,pressTimer=null,audioCache=new Map(),scriptFloating=false,scriptZoom=100;
+const get=id=>project.sounds.find(s=>s.id===id),notify=msg=>{$('notice').innerHTML=`<div class="notice">${esc(msg)}</div>`;clearTimeout(notify.t);notify.t=setTimeout(()=>$('notice').innerHTML='',6500)};
+function openDB(){return new Promise((res,rej)=>{if(!('indexedDB'in window))return rej(Error('IndexedDB unavailable'));const r=indexedDB.open('on-air-studio-v2',1);r.onupgradeneeded=()=>{const d=r.result;d.createObjectStore('projects');d.createObjectStore('assets')};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+function dbOp(store,mode,fn){return new Promise((res,rej)=>{if(!db)return rej(Error('Local storage unavailable'));const t=db.transaction(store,mode),r=fn(t.objectStore(store));let value;t.oncomplete=()=>res(value);t.onerror=()=>rej(t.error);if(r&&r.onsuccess!==undefined)r.onsuccess=()=>value=r.result})}const put=(s,k,v)=>dbOp(s,'readwrite',o=>o.put(v,k)),read=(s,k)=>dbOp(s,'readonly',o=>o.get(k)),del=(s,k)=>dbOp(s,'readwrite',o=>o.delete(k));
+let saveChain=Promise.resolve(),saveVersion=0,savedVersion=0,bootComplete=false;
+function persistSnapshot(snapshot){return new Promise((resolve,reject)=>{if(!db)return reject(Error('Local storage unavailable'));const tx=db.transaction('projects','readwrite');const store=tx.objectStore('projects');store.put(snapshot,snapshot.id);store.put(snapshot.id,'__last');tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error)})}
+function save(){if(!db){$('saveStatus').textContent='Export backup to keep project';return Promise.resolve(false)}clearTimeout(saveTimer);const snapshot=structuredClone(project),version=++saveVersion;$('saveStatus').textContent='Saving…';const task=saveChain.catch(()=>{}).then(async()=>{await persistSnapshot(snapshot);savedVersion=version;if(version===saveVersion)$('saveStatus').textContent='✓ Saved locally';return true}).catch(e=>{$('saveStatus').textContent='Save failed — export backup';notify('Could not save project: '+e.message);return false});saveChain=task;return task}
+function scheduleSave(){if(!bootComplete)return;$('saveStatus').textContent='Saving…';clearTimeout(saveTimer);saveTimer=setTimeout(()=>{void save()},250)}
+window.addEventListener('pagehide',()=>{if(bootComplete&&db){clearTimeout(saveTimer);void save()}});
+async function asset(s){if(blobs.has(s.id))return blobs.get(s.id);const b=await read('assets',s.id);if(!b)throw Error('Audio file missing. Reimport the project or audio.');blobs.set(s.id,b);return b}async function audioURL(s){if(urls.has(s.id))return urls.get(s.id);const url=URL.createObjectURL(await asset(s));urls.set(s.id,url);return url}
+let speakerDirectConnected=false,routeSerial=0;
+const audioDeviceSupported=()=>!!(window.isSecureContext&&window.HTMLMediaElement&&typeof HTMLMediaElement.prototype.setSinkId==='function');
+function routeStatus(text,kind='neutral'){const el=$('routingInfo');el.textContent=text;el.dataset.state=kind}
+function updateOutputSupport(){const supported=audioDeviceSupported(),media=!!navigator.mediaDevices?.enumerateDevices;
+ $('outSupportBadge').textContent=!window.isSecureContext?'HTTPS REQUIRED':!supported?'DEVICE PICKER UNAVAILABLE':'DEVICE ROUTING SUPPORTED';
+ $('outSupportBadge').dataset.state=supported?'ready':'warning';
+ for(const id of ['audDevice','djDevice'])$(id).disabled=!supported;
+ $('findDevices').disabled=!media||!supported;
+ $('enableDeviceAccess').disabled=!media||!navigator.mediaDevices?.getUserMedia||!window.isSecureContext;
+ for(const id of ['chooseAud','chooseDJ'])$(id).classList.toggle('hidden',!supported||typeof navigator.mediaDevices?.selectAudioOutput!=='function');
+ $('testDJ').disabled=!supported||!$('djDevice').value||!$('audDevice').value||$('djDevice').value===$('audDevice').value;
+ updateCueControls();
+ if(!supported){$('audStatus').textContent='System default only';$('djStatus').textContent='Private cue unavailable';routeStatus(window.isSecureContext?'This browser cannot choose audio outputs. Speaker playback uses system default; DJ cue remains muted.':'Open the app through HTTPS or localhost to enable output selection. DJ cue remains muted.','warning')}
+}
+function setSpeakerDirect(shouldConnect){if(!ctx||!master)return;if(shouldConnect&&!speakerDirectConnected){master.connect(ctx.destination);speakerDirectConnected=true}else if(!shouldConnect&&speakerDirectConnected){try{master.disconnect(ctx.destination)}catch(e){}speakerDirectConnected=false}}
+async function initAudio(){
+ if(ctx){if(ctx.state!=='running')await ctx.resume();return}
+ const AC=window.AudioContext||window.webkitAudioContext;if(!AC)throw Error('Web Audio unsupported');
+ ctx=new AC({latencyHint:'interactive'});audBus=ctx.createGain();djBus=ctx.createGain();master=ctx.createGain();recordDest=ctx.createMediaStreamDestination();audBus.connect(master);master.connect(recordDest);
+ master.gain.value=project.settings.master/100;audBus.gain.value=project.settings.aud/100;djBus.gain.value=project.settings.dj/100;
+ const audienceStream=ctx.createMediaStreamDestination(),cueStream=ctx.createMediaStreamDestination();master.connect(audienceStream);setSpeakerDirect(true);djBus.connect(cueStream);
+ audSink=new Audio();djSink=new Audio();audSink.srcObject=audienceStream.stream;djSink.srcObject=cueStream.stream;audSink.autoplay=true;djSink.autoplay=true;audSink.playsInline=true;djSink.playsInline=true;
+ audSink.muted=true;djSink.muted=true;
+ await ctx.resume();await applyRoute();
+}
+async function applyRoute(){
+ const request=++routeSerial,supported=audioDeviceSupported(),aud=$('audDevice').value,dj=$('djDevice').value;
+ routeOk=false;
+ if(djSink)djSink.muted=true;
+ if(!audSink){updateOutputSupport();return}
+ // Always keep a safe default speaker path until the selected device is confirmed.
+ if(audSink)audSink.muted=true;
+ setSpeakerDirect(true);
+ let audienceReady=false,reason='';
+ if(aud&&supported){try{
+   await audSink.setSinkId(aud);
+   if(request!==routeSerial)return;
+   await audSink.play();
+   if(request!==routeSerial)return;
+   audienceReady=audSink.sinkId===aud;
+   if(!audienceReady)throw Error('Device was not activated');
+ }catch(e){reason='Speaker selection failed: '+e.message;$('audDevice').value='';}}
+ if(request!==routeSerial)return;
+ if(audienceReady){setSpeakerDirect(false);audSink.muted=false}else{setSpeakerDirect(true);audSink.muted=true}
+ // A cue is NEVER permitted on the audience route or the browser default route.
+ const effectiveAud=audienceReady?aud:'';
+ if(dj&&supported&&audienceReady&&dj!=='communications'&&dj!=='default'&&dj!==effectiveAud){try{
+   await djSink.setSinkId(dj);
+   if(request!==routeSerial)return;
+   if(djSink.sinkId!==dj)throw Error('Device did not activate');
+   await djSink.play();
+   if(request!==routeSerial)return;
+   routeOk=true;djSink.muted=false;
+ }catch(e){reason=(reason?reason+' · ':'')+'Headphones selection failed: '+e.message;djSink.muted=true;routeOk=false;}}
+ if(request!==routeSerial)return;
+ if(!routeOk&&preview.size)for(const key of [...preview.keys()])stop(key,true);
+ if(dj&&!audienceReady&&!reason)reason='Select the audience speaker explicitly before enabling private cue.';
+ if(dj&&audienceReady&&dj===effectiveAud&&!reason)reason='Speakers and headphones must use different devices.';
+ if(dj&&(dj==='communications'||dj==='default')&&!reason)reason='DJ headphones need a distinct physical device, not a Windows default alias.';
+ $('audStatus').innerHTML=audienceReady?'<span class="status-dot ok"></span> Routed to selected speaker':'<span class="status-dot ok"></span> Playing on system default';
+ $('djStatus').innerHTML=routeOk?'<span class="status-dot ok"></span> Private cue ready':'<span class="status-dot"></span> Private cue muted';
+ $('testDJ').disabled=!audioDeviceSupported()||!$('djDevice').value||!$('audDevice').value||['default','communications'].includes($('djDevice').value)||$('djDevice').value===$('audDevice').value;
+ updateCueControls();
+ routeStatus(reason|| (routeOk?'Speakers and separate DJ cue are routed.':'Live sound uses the selected speaker. Choose separate headphones to enable private preview.'),reason?'warning':routeOk?'success':'neutral');
+ updateOutputSupport();
+}
+async function findDevices(){
+ if(!navigator.mediaDevices?.enumerateDevices){updateOutputSupport();$('deviceCount').textContent='Device list unavailable in this browser';return}
+ const button=$('findDevices');button.disabled=true;button.textContent='↻ Checking…';
+ try{
+  const available=await navigator.mediaDevices.enumerateDevices();
+  const outputs=available.filter(d=>d.kind==='audiooutput'&&d.deviceId);
+  // The default and communications device IDs are Windows aliases. They are not
+  // guaranteed to be physically separate from a selected speaker/headphone.
+  const physical=outputs.filter(d=>d.deviceId!=='default'&&d.deviceId!=='communications');
+  const communication=outputs.find(d=>d.deviceId==='communications');
+  for(const name of ['audDevice','djDevice']){
+   const el=$(name),old=el.value;
+   el.replaceChildren(new Option(name==='audDevice'?'System default (Windows)':'Choose private headphones',''));
+   if(name==='audDevice'&&communication)el.add(new Option('Windows communication default (alias)','communications'));
+   physical.forEach((d,i)=>el.add(new Option(d.label?.trim()||'Audio output '+(i+1)+' (permission needed for name)',d.deviceId)));
+   if([...el.options].some(x=>x.value===old))el.value=old;
+  }
+  $('deviceCount').textContent=physical.length+' selectable '+(physical.length===1?'device':'devices')+' found';
+  await applyRoute();
+  if(!physical.length){routeStatus('Only Windows default audio is visible. Click Show All Audio Devices and allow access to reveal more outputs.','warning')}
+  else if(physical.length===1){routeStatus('One independent output is visible. Click Show All Audio Devices if Windows lists more speakers/headphones.','warning')}
+  else if(outputs.some(d=>!d.label))routeStatus(physical.length+' devices found. Click Show All Audio Devices to reveal names, then select speaker and headphones.','neutral');
+ }catch(e){$('deviceCount').textContent='Could not read output devices';routeStatus('Cannot list audio outputs: '+e.message,'warning')}
+ finally{button.textContent='⟳ Refresh Devices';updateOutputSupport()}
+}
+async function enableDeviceAccess(){
+ const button=$('enableDeviceAccess');
+ if(!navigator.mediaDevices?.getUserMedia){routeStatus('This browser cannot request device access. Use a supported browser on HTTPS or localhost.','warning');return}
+ button.disabled=true;button.textContent='◉ Requesting access…';
+ try{
+  // The stream is requested strictly to unlock device enumeration; never connect,
+  // record, or persist the stream. End it as soon as permission is granted.
+  const temporary=await navigator.mediaDevices.getUserMedia({audio:true});
+  temporary.getTracks().forEach(track=>track.stop());
+  await findDevices();
+  const count=[...$('audDevice').options].filter(o=>o.value&&o.value!=='communications').length;
+  if(count>1)routeStatus(count+' independent output devices are visible. Select one for Speakers and a different one for DJ Headphones.','success');
+  else routeStatus('Permission checked, but the browser still shows '+count+' independent output(s). Check Windows audio devices, browser permissions, or try Chrome/Edge on HTTPS.','warning');
+ }catch(e){
+  await findDevices();
+  if(e.name==='NotAllowedError'||e.name==='PermissionDeniedError')routeStatus('Device access was declined. Nothing was recorded. Some output devices may remain hidden; you can still use system default audio.','warning');
+  else routeStatus('Unable to reveal more outputs: '+e.message,'warning');
+ }finally{button.disabled=false;button.textContent='◉ Show All Audio Devices';updateOutputSupport()}
+}
+
+async function chooseOutputDevice(role){
+ if(typeof navigator.mediaDevices?.selectAudioOutput!=='function')return;
+ try{const device=await navigator.mediaDevices.selectAudioOutput();if(!device?.deviceId)return;
+   const selector=$(role==='aud'?'audDevice':'djDevice');
+   if(![...selector.options].some(o=>o.value===device.deviceId))selector.add(new Option(device.label||(role==='aud'?'Selected speakers':'Selected headphones'),device.deviceId));
+   selector.value=device.deviceId;if(!ctx)await initAudio();else await applyRoute();
+ }catch(e){if(e.name!=='NotAllowedError')routeStatus('Device permission was not granted: '+e.message,'warning')}
+}
+function refreshCueChoices(){const el=$('cueTrack'),current=el.value;el.replaceChildren(new Option('Choose a sound',''));project.sounds.forEach(sound=>el.add(new Option(sound.name,sound.id)));if(project.sounds.some(sound=>sound.id===current))el.value=current;updateCueControls()}
+function updateCueControls(){if(!$('cueTrack'))return;const selected=$('cueTrack').value,active=!!selected&&preview.has(selected);$('cuePlay').disabled=!routeOk||!selected;$('cuePlay').textContent=active?'↺ Restart':'▶ Cue';$('cueStop').disabled=!active}
+async function startCuePreview(){const chosen=$('cueTrack').value;if(!chosen||!routeOk){routeStatus('Route two separate devices before private preview.','warning');return}for(const key of [...preview.keys()])stop(key,true);await play(chosen,true);updateCueControls()}
+function stopCuePreview(){for(const key of [...preview.keys()])stop(key,true);updateCueControls()}
+function outputToneWave(){const rate=22050,duration=.44,count=Math.floor(rate*duration),pcm=new ArrayBuffer(44+count*2),view=new DataView(pcm);
+ const word=(pos,str)=>{for(let i=0;i<str.length;i++)view.setUint8(pos+i,str.charCodeAt(i))};
+ word(0,'RIFF');view.setUint32(4,36+count*2,true);word(8,'WAVE');word(12,'fmt ');view.setUint32(16,16,true);view.setUint16(20,1,true);view.setUint16(22,1,true);view.setUint32(24,rate,true);view.setUint32(28,rate*2,true);view.setUint16(32,2,true);view.setUint16(34,16,true);word(36,'data');view.setUint32(40,count*2,true);
+ for(let i=0;i<count;i++){const t=i/rate,env=Math.pow(Math.sin(Math.PI*i/count),2),signal=(Math.sin(2*Math.PI*523.25*t)+.42*Math.sin(2*Math.PI*659.25*t))*.3*env;view.setInt16(44+i*2,Math.round(signal*32767),true)}return new Blob([pcm],{type:'audio/wav'})}
+async function testOutput(role){
+ const id=role==='aud'?'audDevice':'djDevice',target=$(id).value;
+ if(role==='dj'&&(!target||!$('audDevice').value||['default','communications'].includes(target)||target===$('audDevice').value)){routeStatus('Select two different speaker/headphone devices before testing the private output.','warning');return}
+ if(target&&!audioDeviceSupported()){routeStatus('The browser cannot direct audio to selected devices.','warning');return}
+ const sound=new Audio(),url=URL.createObjectURL(outputToneWave());sound.src=url;sound.preload='auto';sound.volume=.5;
+ let cleaned=false;const cleanup=()=>{if(cleaned)return;cleaned=true;URL.revokeObjectURL(url);sound.removeAttribute('src');sound.load()};
+ sound.addEventListener('ended',cleanup,{once:true});sound.addEventListener('error',cleanup,{once:true});
+ try{if(target)await sound.setSinkId(target);await sound.play();routeStatus('Test tone playing on '+(role==='aud'?'speakers':'headphones')+'.', 'success')}
+ catch(e){cleanup();routeStatus('Could not play the test tone: '+e.message,'warning')}
+}
+function applyDucking(){if(!ctx)return;const priority=[...live.values()].some(x=>x.sound.category==='Priority'&&!x.el.paused);for(const x of live.values()){const goal=x.sound.category==='Background'&&project.settings.duck&&priority?project.settings.duckVol/100:1;const t=ctx.currentTime;x.duck.gain.cancelScheduledValues(t);x.duck.gain.setTargetAtTime(goal,t,Math.max(.015,project.settings.fade/3))}}
+function stop(id,isPreview=false){audioCache.delete((isPreview?'p:':'l:')+id);const m=isPreview?preview:live,x=m.get(id);if(!x)return;x.el.pause();x.el.removeAttribute('src');x.el.load();try{x.source.disconnect();x.gain.disconnect();x.duck.disconnect()}catch(e){}m.delete(id);applyDucking();renderCards();count()}
+async function play(id,isPreview=false){const s=get(id);if(!s)return;const m=isPreview?preview:live;stop(id,isPreview);const token={};audioCache.set((isPreview?'p:':'l:')+id,token);try{await initAudio();if(audioCache.get((isPreview?'p:':'l:')+id)!==token)return;if(isPreview&&!routeOk){notify('Separate DJ output unavailable. Preview was not played.');return}const el=new Audio();el.preload='auto';el.src=await audioURL(s);el.defaultPlaybackRate=1;el.playbackRate=Number(s.speed)===1?1:clamp(Number(s.speed)||1,.5,2);el.preservesPitch=true;el.mozPreservesPitch=true;el.webkitPreservesPitch=true;el.loop=false;if(audioCache.get((isPreview?'p:':'l:')+id)!==token)return;const source=ctx.createMediaElementSource(el),gain=ctx.createGain(),duck=ctx.createGain();gain.gain.value=(s.volume??80)/100;source.connect(gain);gain.connect(duck);duck.connect(isPreview?djBus:audBus);const x={el,source,gain,duck,sound:s};(isPreview?preview:live).set(id,x);el.onended=()=>{if(s.loop){el.currentTime=Number(s.start)||0;el.play().catch(()=>stop(id,isPreview))}else stop(id,isPreview)};el.onerror=()=>{notify('Could not decode '+s.name);stop(id,isPreview)};await new Promise((resolve,reject)=>{if(el.readyState>=3)return resolve();const timeout=setTimeout(()=>{cleanup();resolve()},1800);const ok=()=>{clearTimeout(timeout);cleanup();resolve()},bad=()=>{clearTimeout(timeout);cleanup();reject(Error('Audio file cannot be decoded'))},cleanup=()=>{el.removeEventListener('canplay',ok);el.removeEventListener('error',bad)};el.addEventListener('canplay',ok,{once:true});el.addEventListener('error',bad,{once:true});el.load()});if((isPreview?preview:live).get(id)!==x)return;el.currentTime=Math.max(0,Number(s.start)||0);await el.play();if(Number(s.speed)===1&&el.playbackRate!==1)el.playbackRate=1;applyDucking();renderCards();count()}catch(e){if(audioCache.get((isPreview?'p:':'l:')+id)===token){stop(id,isPreview);notify('Playback failed: '+e.message)}}}
+function pause(id){const x=live.get(id);if(!x)return;if(x.el.paused)x.el.play().catch(e=>notify(e.message));else x.el.pause();applyDucking();renderCards();count()}
+function stopAll(){for(const k of [...live.keys()])stop(k);for(const k of [...preview.keys()])stop(k);for(const k of ['A','B'])if(djDecks[k])djStop(k);count()}
+function count(){$('activeCount').textContent=live.size+' live';const playing=[...live.values()].filter(x=>!x.el.paused).length+Object.values(djDecks).filter(d=>d&&!d.el.paused).length;$('footCount').textContent=playing+' playing'}
+const categoryPalette={Intro:'#3b82f6',Background:'#10b981',Priority:'#ef4444',Effect:'#f59e0b',Transition:'#06b6d4',Advertisement:'#ec4899',Outro:'#a855f7'};
+let selectedCategory='All';
+function categoryColor(cat){return categoryPalette[cat]||'#94a3b8'}
+function updateFilterRail(){
+ const root=$('categoryFilters'),rail=$('soundFilterRail'),button=$('categoryScroll');if(!root||!rail||!button)return;
+ // Compute overflow before the optional end padding is applied (prevents false overflows).
+ rail.classList.remove('has-overflow');
+ const overflows=root.scrollWidth>root.clientWidth+3;
+ rail.classList.toggle('has-overflow',overflows);
+ const atEnd=root.scrollLeft+root.clientWidth>=root.scrollWidth-3;
+ rail.classList.toggle('at-end',atEnd);
+ button.hidden=!overflows;
+ button.dataset.direction=atEnd?'left':'right';
+ button.textContent=atEnd?'‹':'›';
+ button.setAttribute('aria-label',atEnd?'Scroll to previous sound categories':'Scroll to more sound categories');
+}
+function renderCategoryFilters(){
+ const root=$('categoryFilters');if(!root)return;
+ const left=root.scrollLeft;
+ const categories=['All',...new Set(project.sounds.map(s=>s.category||'Effect'))];
+ if(selectedCategory!=='All'&&!categories.includes(selectedCategory))selectedCategory='All';
+ root.innerHTML=categories.map(cat=>{
+  const n=cat==='All'?project.sounds.length:project.sounds.filter(s=>(s.category||'Effect')===cat).length;
+  const color=cat==='All'?'#60a5fa':categoryColor(cat);
+  return `<button type="button" class="category-filter ${cat===selectedCategory?'selected':''}" data-category="${esc(cat)}" style="--category-accent:${color}" aria-pressed="${cat===selectedCategory}"><span class="filter-name">${esc(cat)}</span><span class="filter-count">${n}</span></button>`;
+ }).join('');
+ root.scrollLeft=left;
+ requestAnimationFrame(updateFilterRail);
+}
+$('categoryFilters').addEventListener('click',e=>{
+ const button=e.target.closest('button[data-category]');if(!button)return;
+ selectedCategory=button.dataset.category;
+ const viaKeyboard=e.detail===0;
+ renderCards();
+ if(viaKeyboard)requestAnimationFrame(()=>[...$('categoryFilters').querySelectorAll('button')].find(el=>el.dataset.category===selectedCategory)?.focus({preventScroll:true}));
+});
+$('categoryFilters').addEventListener('scroll',()=>{
+ const root=$('categoryFilters'),rail=$('soundFilterRail'),button=$('categoryScroll');
+ const atEnd=root.scrollLeft+root.clientWidth>=root.scrollWidth-3;
+ rail.classList.toggle('at-end',atEnd);
+ button.dataset.direction=atEnd?'left':'right';button.textContent=atEnd?'‹':'›';
+ button.setAttribute('aria-label',atEnd?'Scroll to previous sound categories':'Scroll to more sound categories');
+},{passive:true});
+$('categoryScroll').addEventListener('click',()=>{
+ const root=$('categoryFilters'),direction=$('categoryScroll').dataset.direction==='left'?-1:1;
+ root.scrollBy({left:direction*Math.max(135,root.clientWidth*.72),behavior:'smooth'});
+});
+window.addEventListener('resize',()=>requestAnimationFrame(updateFilterRail));
+function cardHTML(s){const x=live.get(s.id),p=preview.get(s.id),playing=x&&!x.el.paused;return `<article style="--category-accent:${categoryColor(s.category)}" class="sound categorized ${x?'live':''} ${p?'preview':''}" data-id="${s.id}" draggable="false"><div class="soundhead"><button class="handle" data-action="handle" aria-label="Hold to reorder" title="Drag to reorder">⠿</button><div class="soundidentity"><div class="soundname" title="${esc(s.name)}">${esc(s.name)}</div><div class="cat">${esc(s.category)} · ${playing?'● LIVE':x?'Ⅱ PAUSED':p?'◉ PREVIEW':'READY'}</div></div><button class="btn small sound-edit" data-action="edit" title="Edit sound" aria-label="Edit ${esc(s.name)}">⚙</button></div><div class="sound-controls"><button class="trigger" data-action="play" title="${x?'Restart from beginning':'Play from start'}" aria-label="${x?'Restart':'Play'} ${esc(s.name)}">${x?'↻':'▶'}</button><button class="btn small" data-action="pause" title="${x?.el.paused?'Resume':'Pause'}" aria-label="${x?.el.paused?'Resume':'Pause'} ${esc(s.name)}" ${!x?'disabled':''}>${x?.el.paused?'▶':'Ⅱ'}</button><button class="btn small" data-action="stop" title="Stop" aria-label="Stop ${esc(s.name)}">■</button><div class="sound-timing"><div class="progress"><div data-progress></div></div><div class="times"><span data-elapsed>0:00</span><span data-total>--:--</span></div></div></div><div class="volume"><span>♫</span><input aria-label="${esc(s.name)} volume" type="range" data-action="volume" min="0" max="100" value="${s.volume}"><span>${s.volume}%</span></div></article>`}
+
+function renderCards(){const root=$('cards');renderCategoryFilters();const visible=selectedCategory==='All'?project.sounds:project.sounds.filter(s=>(s.category||'Effect')===selectedCategory);root.innerHTML=visible.map(cardHTML).join('');$('empty').classList.toggle('hidden',project.sounds.length>0);$('soundCount').textContent=`(${project.sounds.length})`;$('projectTitle').textContent=project.name;count()}
+function renderLibrary(){$('libraryList').innerHTML=project.sounds.length?project.sounds.map(s=>`<div class="listrow"><span>♫</span><span class="grow"><b>${esc(s.name)}</b><div class="hint">${esc(s.category)} · ${s.speed}× · ${s.volume}%</div></span><button class="btn small" data-edit="${s.id}">Edit</button><button class="btn danger small" data-remove="${s.id}">Remove</button></div>`).join(''):'<div class="empty">No sounds uploaded yet.</div>'}
+function modal(title,html){$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modalBg').classList.remove('hidden')}function closeModal(){stopEditorPreview();$('modalBg').classList.add('hidden')}
+function clockTime(sec){sec=Math.max(0,Math.round(Number(sec)||0));return String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0')}
+function parseClock(value){const t=String(value).trim();if(!t)return 0;if(/^\d+(?::[0-5]?\d)?$/.test(t)){const p=t.split(':').map(Number);return p.length===2?p[0]*60+p[1]:p[0]}return NaN}
+let editorAudio=null;
+function stopEditorPreview(){if(editorAudio){editorAudio.pause();editorAudio.removeAttribute('src');editorAudio.load();editorAudio=null}}
+function editSound(id){const s=get(id);if(!s)return;stopEditorPreview();modal('Edit Sound',`<div class="editor-v9"><div class="field"><label>Sound title</label><input id="sName" type="text" maxlength="100" value="${esc(s.name)}"></div><div class="edit-quick-settings" aria-label="Sound playback settings"><div class="field"><label for="sCat">Category</label><select id="sCat">${['Intro','Background','Priority','Effect','Transition','Advertisement','Outro'].map(c=>`<option ${c===s.category?'selected':''}>${c}</option>`).join('')}</select></div><div class="field"><label for="sVol">Volume</label><input id="sVol" type="number" min="0" max="100" value="${s.volume}"></div><div class="field"><label for="sSpeed">Speed</label><select id="sSpeed">${[.5,.75,1,1.25,1.5,2].map(v=>`<option value="${v}" ${Number(s.speed)===v?'selected':''}>${v}×</option>`).join('')}</select></div><div class="field edit-repeat"><label for="sLoop">Repeat</label><div class="toggle"><input id="sLoop" type="checkbox" ${s.loop?'checked':''}><label for="sLoop">Repeat</label></div></div></div><div class="edit-section edit-trim"><div class="edit-heading"><span>✂ Play only this part</span><span class="hint" id="rangeDuration">Loading…</span><button class="btn small" id="rangeReset" type="button">↺ Full song</button></div><div class="edit-times"><div class="field"><label>Start (MM:SS)</label><input id="sStart" type="text" inputmode="numeric" placeholder="00:00" maxlength="9" value="${clockTime(s.start??0)}"></div><div class="field"><label>End (MM:SS)</label><input id="sEnd" type="text" inputmode="numeric" placeholder="00:00" maxlength="9" value="${s.end>0?clockTime(s.end):''}"></div></div><div class="edit-range" aria-label="Select the start and end of the song"><div class="range-line"><span>START</span><input id="rangeStart" type="range" min="0" max="1000" value="0"></div><div class="range-line"><span>END</span><input id="rangeEnd" type="range" min="0" max="1000" value="1000"></div></div></div><div class="edit-section"><div class="edit-heading">♫ Smooth fades</div><div class="fade-row"><label for="sFadeIn">Fade in</label><div class="fade-pills" data-fade="sFadeIn"><button type="button" data-val="0">Off</button><button type="button" data-val="1">1s</button><button type="button" data-val="2">2s</button><button type="button" data-val="3">3s</button></div><input id="sFadeIn" aria-label="Custom fade in seconds" type="number" min="0" max="60" step="0.1" value="${s.fadeIn??0}"></div><div class="fade-row"><label for="sFadeOut">Fade out</label><div class="fade-pills" data-fade="sFadeOut"><button type="button" data-val="0">Off</button><button type="button" data-val="1">1s</button><button type="button" data-val="2">2s</button><button type="button" data-val="3">3s</button></div><input id="sFadeOut" aria-label="Custom fade out seconds" type="number" min="0" max="60" step="0.1" value="${s.fadeOut??0}"></div></div><div class="edit-bottom"><div class="edit-preview"><button class="btn green" id="rangePreview">▶ Listen to selection</button><button class="btn" id="rangeStop">■ Stop</button></div><div class="edit-save"><button class="btn primary" id="saveSound">✓ Save Changes</button><button class="btn" id="cancelSound">Cancel</button></div><p class="hint" id="previewNotice">Use headphones for private listening.</p></div></div>`);
+document.querySelectorAll('.fade-pills').forEach(group=>{const input=$(group.dataset.fade);const refresh=()=>group.querySelectorAll('button').forEach(btn=>btn.classList.toggle('selected',Number(btn.dataset.val)===Number(input.value)));group.querySelectorAll('button').forEach(btn=>btn.onclick=()=>{input.value=btn.dataset.val;refresh()});input.addEventListener('input',refresh);refresh()});
+let duration=0;const st=$('sStart'),en=$('sEnd'),rs=$('rangeStart'),re=$('rangeEnd');
+const valid=()=>{let start=parseClock(st.value),end=parseClock(en.value);if(!Number.isFinite(start)||!Number.isFinite(end))return null;start=Math.max(0,start);end=Math.max(0,end);if(duration){start=Math.min(start,Math.max(0,duration-1));end=end<=0?duration:Math.min(duration,end)}return {start,end,fadeIn:Math.max(0,Number($('sFadeIn').value)||0),fadeOut:Math.max(0,Number($('sFadeOut').value)||0)}};
+const sync=()=>{if(!duration)return;const a=parseClock(st.value),b=parseClock(en.value);if(Number.isFinite(a))rs.value=Math.round(Math.max(0,Math.min(1,a/duration))*1000);if(Number.isFinite(b))re.value=Math.round(Math.max(0,Math.min(1,(b||duration)/duration))*1000)};
+const normalizeTime=el=>{const n=parseClock(el.value);if(Number.isFinite(n))el.value=clockTime(n)};
+rs.max=re.max=1000;rs.oninput=()=>{const v=Math.round(duration*Number(rs.value)/1000);st.value=clockTime(v);if(v>=parseClock(en.value||clockTime(duration)))en.value=clockTime(Math.min(duration,v+1));sync()};re.oninput=()=>{const v=Math.round(duration*Number(re.value)/1000);en.value=clockTime(v);if(v<=parseClock(st.value))st.value=clockTime(Math.max(0,v-1));sync()};st.oninput=en.oninput=sync;st.onblur=()=>{normalizeTime(st);sync()};en.onblur=()=>{normalizeTime(en);sync()};
+$('rangeReset').onclick=()=>{st.value='00:00';en.value=clockTime(duration||0);$('sFadeIn').value=0;$('sFadeOut').value=0;document.querySelectorAll('.fade-pills button').forEach(b=>b.classList.toggle('selected',b.dataset.val==='0'));sync()};
+$('rangeStop').onclick=stopEditorPreview;
+$('rangePreview').onclick=async()=>{try{stopEditorPreview();const v=valid();if(!v||v.end<=v.start){notify('Enter a valid Start and End time, like 01:15');return}const a=new Audio(await audioURL(s));editorAudio=a;a.preload='auto';a.playbackRate=Number($('sSpeed').value)||1;a.preservesPitch=true;a.volume=0;const end=v.end||duration;const section=Math.max(.01,end-v.start),fi=Math.min(v.fadeIn,section/2),fo=Math.min(v.fadeOut,section/2),base=clamp(Number($('sVol').value)/100,0,1);a.currentTime=v.start;const update=()=>{if(editorAudio!==a)return;if(a.currentTime>=end-.025){stopEditorPreview();return}const t=Math.max(0,a.currentTime-v.start),left=Math.max(0,end-a.currentTime);a.volume=clamp(base*Math.min(1,fi?t/fi:1,fo?left/fo:1),0,1)};a.ontimeupdate=update;a.onended=stopEditorPreview;await a.play();update();}catch(e){stopEditorPreview();notify('Preview error: '+e.message)}};
+$('saveSound').onclick=()=>{const v=valid();if(!v||v.end<=v.start){notify('End time must be after Start time. Use MM:SS, like 01:15');return}stopEditorPreview();s.name=$('sName').value.trim()||s.name;s.category=$('sCat').value;s.volume=clamp(Number($('sVol').value)||0,0,100);s.speed=Number($('sSpeed').value);s.loop=$('sLoop').checked;s.start=v.start;s.end=v.end;s.fadeIn=v.fadeIn;s.fadeOut=v.fadeOut;stop(id);stop(id,true);scheduleSave();renderCards();renderLibrary();closeModal()};$('cancelSound').onclick=closeModal;
+audioURL(s).then(url=>{if(!$('rangeDuration'))return;const probe=new Audio();probe.preload='metadata';probe.onloadedmetadata=()=>{if(!$('rangeDuration'))return;duration=Number.isFinite(probe.duration)?probe.duration:0;$('rangeDuration').textContent=duration?fmt(duration):'Unknown length';if(!parseClock(en.value)&&duration)en.value=clockTime(duration);sync()};probe.src=url}).catch(e=>notify(e.message));}
+async function addFiles(files){if(!files.length)return;let ok=0;for(const f of files){if(!f.type.startsWith('audio/')&&!/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(f.name)){notify('Skipped unsupported file: '+f.name);continue}const s={id:id(),name:f.name.replace(/\.[^.]+$/,''),category:'Effect',volume:80,speed:1,loop:false};try{if(db)await put('assets',s.id,f);blobs.set(s.id,f);project.sounds.push(s);ok++}catch(e){notify('Storage full or unavailable for '+f.name);blobs.set(s.id,f);project.sounds.push(s);ok++}}if(ok){scheduleSave();renderCards();renderLibrary();notify(ok+' audio file(s) added. Default speed: 1× natural.')} }
+async function removeSound(id){const s=get(id);if(!s||!confirm('Remove '+s.name+' from this project?'))return;stop(id);stop(id,true);project.sounds=project.sounds.filter(x=>x.id!==id);if(urls.has(id)){URL.revokeObjectURL(urls.get(id));urls.delete(id)}blobs.delete(id);if(db)await del('assets',id).catch(()=>{});scheduleSave();renderCards();renderLibrary()}
+function reorder(a,b){if(!a||!b||a===b)return;const i=project.sounds.findIndex(s=>s.id===a),j=project.sounds.findIndex(s=>s.id===b);if(i<0||j<0)return;project.sounds.splice(j,0,project.sounds.splice(i,1)[0]);scheduleSave();renderCards();renderLibrary()}
+async function record(){try{await initAudio();if(!window.MediaRecorder)throw Error('MediaRecorder unavailable');let stream=new MediaStream(recordDest.stream.getAudioTracks());if($('micToggle').checked){if(!navigator.mediaDevices?.getUserMedia)throw Error('Microphone requires browser permission and usually localhost or HTTPS');micStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}});micSource=ctx.createMediaStreamSource(micStream);micSource.connect(recordDest)}const type=['audio/webm;codecs=opus','audio/webm','audio/mp4'].find(t=>MediaRecorder.isTypeSupported(t));mediaRecorder=new MediaRecorder(stream,type?{mimeType:type}:undefined);recChunks=[];mediaRecorder.ondataavailable=e=>{if(e.data.size)recChunks.push(e.data)};mediaRecorder.onstop=()=>{const blob=new Blob(recChunks,{type:mediaRecorder.mimeType||'audio/webm'});const url=URL.createObjectURL(blob);recordings.unshift({name:project.name+' — '+new Date().toLocaleString(),url,blob,duration:Math.max(0,(Date.now()-recStart)/1000)});renderRecordings();releaseMic();$('recState').textContent='SAVED — DOWNLOAD';$('recordBtn').disabled=false;$('stopRecord').disabled=true;clearInterval(recTimer)};mediaRecorder.start(1000);recStart=Date.now();$('recState').textContent='● RECORDING';$('recordBtn').disabled=true;$('stopRecord').disabled=false;recTimer=setInterval(()=>$('recTime').textContent=fmt((Date.now()-recStart)/1000).padStart(8,'0'),250)}catch(e){releaseMic();notify('Recording unavailable: '+e.message)}}function releaseMic(){try{micSource?.disconnect()}catch(e){}micSource=null;micStream?.getTracks().forEach(t=>t.stop());micStream=null}function stopRecord(){if(mediaRecorder?.state==='recording')mediaRecorder.stop()}
+function recFormatTime(value){
+ const total=Math.max(0,Math.floor(Number.isFinite(value)?value:0));
+ const h=Math.floor(total/3600),m=Math.floor(total%3600/60),s=total%60;
+ return h?`${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`:`${m}:${String(s).padStart(2,'0')}`;
+}
+function recDuration(audio,item){
+ const d=Number(audio.duration);
+ return Number.isFinite(d)&&d>0?d:Math.max(0,Number(item.duration)||0);
+}
+function syncRecordingCard(audio,idx){
+ const card=audio.closest('.rec-card'),r=recordings[idx];if(!card||!r)return;
+ const elapsed=Number.isFinite(audio.currentTime)?Math.max(0,audio.currentTime):0;
+ const duration=recDuration(audio,r),ratio=duration?Math.min(1,elapsed/duration):0;
+ const slider=card.querySelector('[data-rec-seek]');
+ if(!slider.matches(':active'))slider.value=Math.round(ratio*1000);
+ slider.style.setProperty('--rec-progress',Math.round(ratio*100)+'%');
+ slider.disabled=!duration;
+ card.querySelector('[data-rec-elapsed]').textContent=recFormatTime(elapsed);
+ card.querySelector('[data-rec-total]').textContent=recFormatTime(duration);
+ const isPlaying=!audio.paused&&!audio.ended;
+ const toggle=card.querySelector('[data-rec-play]');
+ toggle.textContent=isPlaying?'Ⅱ':'▶';
+ toggle.setAttribute('aria-label',isPlaying?'Pause recording':'Play recording');
+ toggle.title=isPlaying?'Pause recording':'Play recording';
+ card.classList.toggle('rec-playing',isPlaying);
+ const status=card.querySelector('.rec-play-state');status.textContent=isPlaying?'PLAYING':audio.ended?'FINISHED':elapsed>0?'PAUSED':'READY';
+}
+function renderRecordings(){
+ const container=$('recordingList');
+ // Refreshes occur when a new recording is captured; release old audio nodes first.
+ container.querySelectorAll('audio').forEach(a=>a.pause());
+ container.innerHTML=recordings.length?recordings.map((r,i)=>`<article class="rec-card" data-rec-card="${i}">
+ <div class="rec-card-top"><div class="rec-art" aria-hidden="true">♫</div><div class="rec-meta"><div class="rec-name" title="${esc(r.name)}">${esc(r.name)}</div><div class="rec-details"><span class="rec-play-state">READY</span><span>·</span><span>${(r.blob.size/1048576).toFixed(1)} MB</span><span>·</span><span>Broadcast recording</span></div></div><button class="btn small rec-download" type="button" data-download="${i}" title="Download recording">↓ <span>Download</span></button></div>
+ <div class="rec-transport"><button class="rec-play" type="button" data-rec-play="${i}" title="Play recording" aria-label="Play recording">▶</button><div class="rec-timeline"><input data-rec-seek="${i}" aria-label="Seek recording" type="range" min="0" max="1000" value="0" step="1" style="--rec-progress:0%"><div class="rec-times"><span data-rec-elapsed>0:00</span><span data-rec-total>${recFormatTime(Number(r.duration)||0)}</span></div></div><button class="rec-stop" type="button" data-rec-stop="${i}" aria-label="Stop playback" title="Stop playback">■</button></div>
+ <audio class="rec-audio" preload="metadata" src="${r.url}" playsinline></audio>
+ </article>`).join(''):'<div class="rec-empty"><span aria-hidden="true">◉</span><strong>No recordings yet</strong><p>Record your broadcast, then preview and download it here.</p></div>';
+ container.querySelectorAll('.rec-card').forEach(card=>{
+  const idx=Number(card.dataset.recCard),audio=card.querySelector('audio');
+  const update=()=>syncRecordingCard(audio,idx);
+  for(const event of ['loadedmetadata','durationchange','timeupdate','play','pause','ended','seeking','seeked'])audio.addEventListener(event,update);
+  audio.addEventListener('error',()=>{const status=card.querySelector('.rec-play-state');if(status)status.textContent='UNAVAILABLE'});
+  update();
+ });
+}
+// Progress paints from the actual media element's currentTime, not an independent wall-clock counter.
+function animateRecordingProgress(audio,idx){
+ if(audio.paused||audio.ended||!audio.isConnected)return;
+ syncRecordingCard(audio,idx);
+ requestAnimationFrame(()=>animateRecordingProgress(audio,idx));
+}
+async function toggleRecordingPlayback(idx){
+ const card=$('recordingList').querySelector(`[data-rec-card="${idx}"]`),audio=card?.querySelector('audio');
+ if(!audio)return;
+ if(!audio.paused){audio.pause();return}
+ $('recordingList').querySelectorAll('audio').forEach(a=>{if(a!==audio)a.pause()});
+ try{
+  if(audio.ended)audio.currentTime=0;
+  await audio.play();
+  animateRecordingProgress(audio,idx);
+ }catch(e){notify('Could not play recording: '+e.message)}
+}
+function stopRecordingPlayback(idx){
+ const audio=$('recordingList').querySelector(`[data-rec-card="${idx}"] audio`);if(!audio)return;
+ audio.pause();try{audio.currentTime=0}catch(e){}syncRecordingCard(audio,idx);
+}
+function seekRecordingPlayback(idx,slider){
+ const audio=$('recordingList').querySelector(`[data-rec-card="${idx}"] audio`),item=recordings[idx];if(!audio||!item)return;
+ const duration=recDuration(audio,item);if(!duration)return;
+ try{audio.currentTime=duration*Number(slider.value)/1000}catch(e){}
+ syncRecordingCard(audio,idx);
+}
+function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000)}
+function blob64(blob){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(blob)})}async function exportProject(){try{const files=[];for(const s of project.sounds)files.push({id:s.id,data:await blob64(await asset(s))});download(new Blob([JSON.stringify({format:'on-air-studio-project',version:2,project,files})],{type:'application/json'}),(project.name.replace(/[^a-z0-9 _-]/gi,'').trim()||'ON-AIR-Project')+'.onair.json');notify('Portable project exported with all audio. Keep this file as a backup.')}catch(e){notify('Export failed: '+e.message)}}
+async function loadProject(p,files){stopAll();for(const u of urls.values())URL.revokeObjectURL(u);urls.clear();blobs.clear();project=p;project.settings={aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,...(p.settings||{})};for(const f of files||[]){const r=await fetch(f.data),b=await r.blob();blobs.set(f.id,b);if(db)await put('assets',f.id,b)}setSettings();$('scriptText').value=project.script||'';renderCards();renderLibrary();scheduleSave()}
+function projectDialog(){
+ modal('My Projects',`<div class="pm">
+ <div class="pm-current"><div class="pm-eyebrow">CURRENT PROJECT</div><label for="projName" class="pm-label">Project name</label><div class="pm-namebox"><span aria-hidden="true">✎</span><input id="projName" type="text" maxlength="80" autocomplete="off" spellcheck="false" placeholder="Name your broadcast" value="${esc(project.name)}"></div><div class="pm-actions"><button class="btn primary" id="renameProj">✓ Save Project</button><button class="btn" id="newProj">＋ New Project</button></div><div class="pm-feedback" id="pmFeedback" role="status">Changes to your sounds and script are saved automatically.</div></div>
+ <div class="pm-sectionhead"><div><strong>Saved Projects</strong><div class="pm-sub">Choose a project to continue.</div></div><span class="pm-count" id="pmCount">…</span></div><div id="savedList" class="pm-list" aria-live="polite"><div class="pm-empty">Loading projects…</div></div>
+ <details class="pm-more"><summary>More options</summary><div class="pm-extra"><button class="btn" id="exportProj">↓ Save a Copy</button><button class="btn" id="importProj">↑ Open a Backup</button></div><p class="pm-sub">Projects are saved on this device. Save a copy if you plan to use another device or browser.</p></details></div>`);
+ const input=$('projName');const feedback=$('pmFeedback');
+ const saveName=async()=>{const name=input.value.trim()||'Untitled Broadcast';project.name=name;input.value=name;const ok=await save();renderCards();feedback.textContent=ok?'✓ Project saved successfully.':'Could not save here. Use Save a Copy under More options.';feedback.classList.toggle('pm-error',!ok);await listProjects()};
+ $('renameProj').onclick=saveName;input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();saveName()}};
+ $('newProj').onclick=async()=>{if(!confirm('Start a new project? Your current project will be saved first.'))return;const ok=await save();if(!ok&&!confirm('Your current project could not be saved here. Continue anyway?'))return;stopAll();for(const u of urls.values())URL.revokeObjectURL(u);urls.clear();blobs.clear();project={id:id(),name:'Untitled Broadcast',sounds:[],script:'',settings:{aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35}};$('scriptText').value='';setSettings();renderCards();renderLibrary();await save();projectDialog()};
+ $('exportProj').onclick=exportProject;$('importProj').onclick=()=>$('importProject').click();listProjects();
+}
+async function listProjects(){const el=$('savedList');if(!el)return;if(!db){el.innerHTML='<div class="pm-empty">Local saving is unavailable. Use Save a Copy to keep your work.</div>';return}try{const all=await dbOp('projects','readonly',o=>o.getAll());const projects=all.filter(x=>x&&Array.isArray(x.sounds)&&x.id).sort((a,b)=>(a.id===project.id?-1:0)-(b.id===project.id?-1:0));$('pmCount').textContent=projects.length+' saved';el.innerHTML=projects.map(p=>`<div class="pm-item ${p.id===project.id?'pm-active':''}"><div class="pm-item-icon">${p.id===project.id?'●':'♫'}</div><div class="pm-item-info"><strong title="${esc(p.name)}">${esc(p.name)}</strong><span>${p.sounds.length} sound${p.sounds.length===1?'':'s'}${p.id===project.id?' · Current project':''}</span></div>${p.id===project.id?'<span class="pm-currentbadge">Open</span>':`<button class="btn small" data-open="${esc(p.id)}">Open →</button>`}</div>`).join('')||'<div class="pm-empty">No saved projects yet. Save your current project to get started.</div>'}catch(e){el.innerHTML='<div class="pm-empty">Could not load saved projects.</div>'}}
+function setSettings(){const s=project.settings;for(const [k,v] of [['audVol',s.aud],['djVol',s.dj],['master',s.master],['duckVol',s.duckVol],['fadeSec',s.fade]])$(k).value=v;$('duckToggle').checked=s.duck;updateLabels();if(ctx){audBus.gain.value=s.aud/100;djBus.gain.value=s.dj/100;master.gain.value=s.master/100;applyDucking()}}function updateLabels(){$('audLabel').textContent=project.settings.aud+'%';$('djLabel').textContent=project.settings.dj+'%';$('duckLabel').textContent=project.settings.duckVol+'%';$('masterValue').textContent=project.settings.master+'%';$('master').style.setProperty('--master-fill',project.settings.master+'%')}
+// Delegated clicks keep cards functional while updating their live state.
+$('cards').addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;const id=b.closest('.sound')?.dataset.id;if(!id)return;switch(b.dataset.action){case'play':play(id);break;case'pause':pause(id);break;case'preview':preview.has(id)?stop(id,true):play(id,true);break;case'stop':stop(id);break;case'edit':editSound(id);break}});$('cards').addEventListener('input',e=>{if(e.target.dataset.action!=='volume')return;const s=get(e.target.closest('.sound').dataset.id);if(!s)return;s.volume=Number(e.target.value);for(const x of [live.get(s.id),preview.get(s.id)])if(x)x.gain.gain.value=s.volume/100;e.target.nextElementSibling.textContent=s.volume+'%';scheduleSave()});
+// Visible drag-and-drop: the card follows the finger/pointer and surrounding cards rearrange live.
+let dragging=null;
+const grid=$('cards');
+function dragCleanup(commit=true){
+ const d=dragging;if(!d)return;dragging=null;
+ document.removeEventListener('pointermove',dragMove);
+ document.removeEventListener('pointerup',dragUp);
+ document.removeEventListener('pointercancel',dragCancel);
+ if(d.ghost)d.ghost.remove();
+ if(d.card){d.card.style.visibility='';d.card.classList.remove('dragging');}
+ grid.querySelectorAll('.sound').forEach(c=>c.classList.remove('drop-target'));
+ if(commit&&d.active){
+  const ordered=[...grid.querySelectorAll('.sound')].map(c=>c.dataset.id);
+  project.sounds.sort((a,b)=>ordered.indexOf(a.id)-ordered.indexOf(b.id));
+  scheduleSave();renderCards();renderLibrary();
+ } else if(d.active)renderCards();
+ document.body.style.userSelect='';
+}
+function dragMove(e){
+ const d=dragging;if(!d||e.pointerId!==d.pointerId)return;
+ if(!d.active&&Math.hypot(e.clientX-d.startX,e.clientY-d.startY)<6)return;
+ if(!d.active){
+  d.active=true;
+  d.ghost=d.card.cloneNode(true);
+  d.ghost.classList.add('drag-ghost');d.ghost.classList.remove('live');
+  d.ghost.style.width=d.rect.width+'px';d.ghost.style.height=d.rect.height+'px';
+  d.ghost.style.left=d.rect.left+'px';d.ghost.style.top=d.rect.top+'px';
+  d.ghost.style.pointerEvents='none';
+  document.body.appendChild(d.ghost);
+  d.card.style.visibility='hidden';document.body.style.userSelect='none';
+ }
+ e.preventDefault();
+ d.ghost.style.transform=`translate3d(${e.clientX-d.startX}px,${e.clientY-d.startY}px,0) scale(1.035)`;
+ const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('.sound');
+ if(target&&target!==d.card&&grid.contains(target)){
+  const old=[...grid.children].filter(c=>c.classList.contains('sound'));
+  const before=new Map(old.map(c=>[c,c.getBoundingClientRect()]));
+  const r=target.getBoundingClientRect();
+  const isAfter=e.clientY>r.top+r.height/2 || (Math.abs(e.clientY-(r.top+r.height/2))<r.height*.35&&e.clientX>r.left+r.width/2);
+  grid.insertBefore(d.card,isAfter?target.nextSibling:target);
+  for(const c of old){if(c===d.card)continue;const a=before.get(c),b=c.getBoundingClientRect();const dx=a.left-b.left,dy=a.top-b.top;if(dx||dy){c.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'translate(0,0)'}],{duration:170,easing:'ease-out'});}}
+ }
+ const margin=65;if(e.clientY<margin)window.scrollBy(0,-12);else if(e.clientY>innerHeight-margin)window.scrollBy(0,12);
+}
+function dragUp(e){if(dragging&&e.pointerId===dragging.pointerId)dragCleanup(true)}
+function dragCancel(){dragCleanup(false)}
+grid.addEventListener('pointerdown',e=>{
+ const handle=e.target.closest('.handle');if(!handle||dragging)return;
+ const card=handle.closest('.sound');if(!card)return;
+ const rect=card.getBoundingClientRect();
+ dragging={card,rect,pointerId:e.pointerId,startX:e.clientX,startY:e.clientY,active:false,ghost:null};
+ document.addEventListener('pointermove',dragMove,{passive:false});
+ document.addEventListener('pointerup',dragUp);document.addEventListener('pointercancel',dragCancel);
+});
+$('libraryList').onclick=e=>{const a=e.target.closest('[data-edit],[data-remove]');if(!a)return;if(a.dataset.edit)editSound(a.dataset.edit);else removeSound(a.dataset.remove)};$('recordingList').onclick=e=>{
+ const play=e.target.closest('[data-rec-play]');if(play){toggleRecordingPlayback(Number(play.dataset.recPlay));return}
+ const stop=e.target.closest('[data-rec-stop]');if(stop){stopRecordingPlayback(Number(stop.dataset.recStop));return}
+ const b=e.target.closest('[data-download]');if(!b)return;
+ const r=recordings[Number(b.dataset.download)];if(r)download(r.blob,r.name.replace(/[^a-z0-9 _-]/gi,'')+'.'+(r.blob.type.includes('mp4')?'m4a':'webm'))
+};
+$('recordingList').addEventListener('input',e=>{
+ const slider=e.target.closest('[data-rec-seek]');if(slider)seekRecordingPlayback(Number(slider.dataset.recSeek),slider)
+});
+function getAudioDialog(){
+ modal('Get Audio',`<div class="get-audio-panel">
+  <div class="get-audio-hero"><div class="get-audio-symbol" aria-hidden="true">▶</div><div><strong>Audio from YouTube</strong><p>Paste a YouTube link, then open the converter.</p></div></div>
+  <label class="get-audio-label" for="youtubeInput">YouTube link</label>
+  <div class="get-audio-input-wrap"><span aria-hidden="true">🔗</span><textarea id="youtubeInput" rows="2" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="Paste YouTube link here…" aria-describedby="youtubeMsg"></textarea><button class="get-audio-clear" id="clearYoutube" type="button" title="Clear link" aria-label="Clear link">✕</button></div>
+  <p class="get-audio-status" id="youtubeMsg" role="status" aria-live="polite">Paste a link to continue.</p>
+  <button class="btn primary get-audio-action" id="openConverterBtn" type="button" disabled>Open Converter ↗</button>
+  <p class="get-audio-note">Your link will be copied when possible. Paste it on the converter website. Only download audio you have permission to use.</p>
+ </div>`);
+ const input=$('youtubeInput'),btn=$('openConverterBtn'),msg=$('youtubeMsg');
+ const validLink=()=>{try{const u=new URL(input.value.trim());return u.protocol==='https:'&&['youtube.com','www.youtube.com','m.youtube.com','music.youtube.com','youtu.be','www.youtu.be'].includes(u.hostname.toLowerCase())?u:null}catch{return null}};
+ const refresh=()=>{const value=input.value.trim(),ok=validLink();btn.disabled=!ok;msg.textContent=!value?'Paste a link to continue.':ok?'✓ Link ready':'Please paste a valid YouTube link.';msg.classList.toggle('error',!!value&&!ok)};
+ input.addEventListener('input',refresh);$('clearYoutube').onclick=()=>{input.value='';refresh();input.focus()};
+ btn.onclick=async()=>{const u=validLink();if(!u){refresh();return}
+  // Open the converter immediately on the user gesture to avoid popup blocking.
+  const external=window.open('https://v42.www-y2mate.com/','_blank','noopener,noreferrer');
+  let copied=false;
+  try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(u.href);copied=true}}catch{}
+  if(!copied){
+   // Selection is an accessible fallback for browsers that block clipboard writes.
+   input.focus();input.select();
+   try{copied=document.execCommand('copy')}catch{}
+  }
+  msg.textContent=copied?'✓ Link copied! Paste it into the converter.':'Select and copy the link, then paste it into the converter.';
+  msg.classList.remove('error');
+  btn.textContent='Open Converter Again ↗';
+  if(!external){msg.textContent+=(copied?'':' ')+' If the converter did not open, allow pop-ups for this page.'}
+ };
+ refresh();
+}
+$('getAudioBtn').onclick=getAudioDialog;
+for(const x of ['addBtn','emptyAdd','libraryAdd'])$(x).onclick=()=>$('files').click();$('files').onchange=async e=>{await addFiles([...e.target.files]);e.target.value=''};$('stopAll').onclick=stopAll;$('recordBtn').onclick=record;$('stopRecord').onclick=stopRecord;$('projectBtn').onclick=projectDialog;$('closeModal').onclick=closeModal;$('modalBg').onclick=e=>{if(e.target===$('modalBg'))closeModal()};$('scriptText').oninput=e=>{project.script=e.target.value;scheduleSave()};let floatPositionSet=false;
+function clampFloat(){const f=$('floatScript');if(!scriptFloating)return;const w=f.offsetWidth,h=f.offsetHeight;const bottomReserved=72;f.style.left=clamp(parseFloat(f.style.left)||8,4,Math.max(4,innerWidth-w-4))+'px';f.style.top=clamp(parseFloat(f.style.top)||70,4,Math.max(4,innerHeight-bottomReserved-h))+'px'}
+function scriptFloat(on){scriptFloating=on;$('floatScript').classList.toggle('hidden',!on);$('scriptFull').textContent=on?'↙ Dock':'↗ Float';(on?$('floatBody'):$('scriptSlot')).appendChild($('scriptText'));$('scriptText').style.minHeight=on?'0':'135px';$('scriptText').style.fontSize=on?Math.max(1,16*scriptZoom/100)+'px':'14px';if(on){if(!floatPositionSet){$('floatScript').style.left=(innerWidth<=800?8:16)+'px';$('floatScript').style.top=(innerWidth<=800?72:90)+'px';floatPositionSet=true}clampFloat()}}
+$('miniScript').onclick=()=>{const f=$('floatScript');const mini=f.classList.toggle('mini');$('miniScript').textContent=mini?'□':'▁';$('miniScript').title=mini?'Expand script':'Minimize script';$('miniScript').setAttribute('aria-label',mini?'Expand script':'Minimize script');clampFloat()};
+window.addEventListener('resize',clampFloat);
+$('scriptFull').onclick=()=>scriptFloat(!scriptFloating);$('dockScript').onclick=()=>scriptFloat(false);
+function setScriptZoom(v){scriptZoom=clamp(Math.round(v),0,1000);$('zoomRange').value=scriptZoom;$('zoomValue').textContent=scriptZoom+'%';$('scriptText').style.fontSize=Math.max(1,16*scriptZoom/100)+'px';$('scriptText').style.lineHeight='1.5'}
+$('zoomRange').oninput=e=>setScriptZoom(e.target.value);$('zoomOut').onclick=()=>setScriptZoom(scriptZoom-10);$('zoomIn').onclick=()=>setScriptZoom(scriptZoom+10);
+let floatDrag=null;$('floatHead').addEventListener('pointerdown',e=>{if(e.target.closest('button,input'))return;const r=$('floatScript').getBoundingClientRect();floatDrag={id:e.pointerId,x:e.clientX-r.left,y:e.clientY-r.top};$('floatHead').setPointerCapture(e.pointerId)});$('floatHead').addEventListener('pointermove',e=>{if(!floatDrag||e.pointerId!==floatDrag.id)return;const w=$('floatScript').offsetWidth,h=$('floatScript').offsetHeight;$('floatScript').style.left=clamp(e.clientX-floatDrag.x,0,Math.max(0,innerWidth-w))+'px';$('floatScript').style.top=clamp(e.clientY-floatDrag.y,4,Math.max(4,innerHeight-72-h))+'px'});for(const event of ['pointerup','pointercancel'])$('floatHead').addEventListener(event,()=>floatDrag=null);
+let pinch=null;const body=$('floatBody');body.addEventListener('touchstart',e=>{if(e.touches.length===2){pinch={distance:Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY),zoom:scriptZoom}}},{passive:true});body.addEventListener('touchmove',e=>{if(e.touches.length===2&&pinch){e.preventDefault();const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);setScriptZoom(pinch.zoom*d/Math.max(1,pinch.distance))}},{passive:false});body.addEventListener('touchend',e=>{if(e.touches.length<2)pinch=null});
+$('importProject').onchange=async e=>{try{const data=JSON.parse(await e.target.files[0].text());if(data.format!=='on-air-studio-project'||!data.project||!Array.isArray(data.files))throw Error('Invalid project backup');if(!confirm('Open imported project? Current project will remain saved locally.'))return;await save();data.project.id=id();data.project.sounds.forEach(s=>{const f=data.files.find(x=>x.id===s.id);if(!f)throw Error('Missing audio in backup: '+s.name)});await loadProject(data.project,data.files);closeModal();notify('Project imported with '+project.sounds.length+' audio files.')}catch(err){notify('Import failed: '+err.message)}e.target.value=''};
+$('modalBody').addEventListener('click',async e=>{const b=e.target.closest('[data-open]');if(!b)return;try{const ok=await save();if(!ok&&!confirm('Current project could not be saved. Open another project anyway?'))return;const p=await read('projects',b.dataset.open);if(!p)throw Error('Project not found');await loadProject(p);closeModal();notify('Loaded '+p.name+' with '+p.sounds.length+' sounds.')}catch(err){notify('Could not open project: '+err.message)}});
+for(const t of document.querySelectorAll('.tab'))t.onclick=()=>{document.querySelectorAll('.tabs .tab').forEach(x=>{const current=x===t;x.classList.toggle('active',current);x.setAttribute('aria-current',current?'page':'false')});for(const n of ['studio','library','recordings','outputs'])$(n).classList.toggle('hidden',n!==t.dataset.tab);if(t.dataset.tab==='library')renderLibrary();if(t.dataset.tab==='outputs'){updateOutputSupport();void findDevices()}};
+for(const [input,key] of [['audVol','aud'],['djVol','dj'],['master','master'],['duckVol','duckVol'],['fadeSec','fade']])$(input).oninput=e=>{project.settings[key]=Number(e.target.value);setSettings();scheduleSave()};$('duckToggle').onchange=e=>{project.settings.duck=e.target.checked;applyDucking();scheduleSave()};$('findDevices').onclick=findDevices;$('enableDeviceAccess').onclick=enableDeviceAccess;if(navigator.mediaDevices?.addEventListener)navigator.mediaDevices.addEventListener('devicechange',()=>{if(!$('outputs').classList.contains('hidden'))void findDevices()});$('audDevice').onchange=async()=>{if(!ctx){try{await initAudio()}catch(e){routeStatus('Audio routing unavailable: '+e.message,'warning')}}else await applyRoute()};$('djDevice').onchange=async()=>{if(!ctx){try{await initAudio()}catch(e){routeStatus('Audio routing unavailable: '+e.message,'warning')}}else await applyRoute()};$('chooseAud').onclick=()=>chooseOutputDevice('aud');$('chooseDJ').onclick=()=>chooseOutputDevice('dj');$('testAud').onclick=()=>testOutput('aud');$('testDJ').onclick=()=>testOutput('dj');$('cueTrack').onchange=updateCueControls;$('cuePlay').onclick=startCuePreview;$('cueStop').onclick=stopCuePreview;updateOutputSupport();
+function tick(){for(const [map,isPreview] of [[live,false],[preview,true]])for(const [id,x] of map){const card=[...document.querySelectorAll('.sound')].find(c=>c.dataset.id===id);if(!card||isPreview)continue;const dur=x.el.duration,now=x.el.currentTime,start=Math.max(0,Number(x.sound.start)||0),end=Math.min(Number.isFinite(dur)?dur:Infinity,Number(x.sound.end)>0?Number(x.sound.end):Infinity),range=Math.max(.01,end-start);if(Number.isFinite(end)&&now>=end-.035){if(x.sound.loop){x.el.currentTime=start;if(x.el.paused)x.el.play().catch(()=>stop(id,isPreview))}else{stop(id,isPreview);continue}}const t=Math.max(0,now-start),left=Math.max(0,end-now),fi=Math.min(Math.max(0,Number(x.sound.fadeIn)||0),range/2),fo=Math.min(Math.max(0,Number(x.sound.fadeOut)||0),range/2),fade=Math.min(1,fi?t/fi:1,fo?left/fo:1);x.gain.gain.setTargetAtTime((x.sound.volume??80)/100*clamp(fade,0,1),ctx.currentTime,.012);card.querySelector('[data-progress]').style.width=(Number.isFinite(end)?clamp(t/range*100,0,100):0)+'%';card.querySelector('[data-elapsed]').textContent=fmt(t);card.querySelector('[data-total]').textContent=fmt(range)}requestAnimationFrame(tick)}
+async function boot(){try{db=await openDB();const last=await read('projects','__last');if(last){const p=await read('projects',last);if(p&&Array.isArray(p.sounds)){project=p;let missing=0;for(const sound of p.sounds){const stored=await read('assets',sound.id);if(!stored)missing++}if(missing)notify(missing+' audio file(s) missing from browser storage. Import a backup to restore them.');$('saveStatus').textContent='✓ Restored: '+p.name}else{$('saveStatus').textContent='✓ Local storage ready'}}else{$('saveStatus').textContent='✓ New workspace'}if(navigator.storage?.persist)navigator.storage.persist().catch(()=>{})}catch(e){$('saveStatus').textContent='Export backups to save';notify('Browser local storage unavailable. You can still export a project backup.')}setSettings();$('scriptText').value=project.script||'';renderCards();renderLibrary();renderRecordings();bootComplete=true;tick();if(!window.isSecureContext)$('routingInfo').textContent='Secure context may be required for device selection or microphone.'}
+
+
+
+
+// DJ Mixer: shares the audience audio bus, so it is included in broadcast recordings.
+const djDecks={A:null,B:null};let djCrossValue=50,djMixRecorder=null,djMixChunks=[],djMixTap=null,djMixStarted=0;
+function djUpdatePicker(k){const sel=$('djSelect'+k),sound=get(sel.value);$('djPickName'+k).textContent=sound?.name||'Choose a sound';$('djPickMeta'+k).textContent=sound?'Ready to play · '+(sound.category||'Audio'):'Tap to load audio';$('djPick'+k).classList.toggle('has-sound',!!sound)}
+let djPickerDeck='A';
+function djOpenPicker(k){djPickerDeck=k;const modal=$('djSoundModal');modal.classList.remove('hidden');$('djSoundSearch').value='';$('djSoundModalTitle').textContent='Choose Sound · Deck '+k;djRenderPicker();$('djSoundSearch').focus()}
+function djRenderPicker(){const q=$('djSoundSearch').value.trim().toLowerCase(),selected=$('djSelect'+djPickerDeck).value,items=project.sounds.filter(s=>s.name.toLowerCase().includes(q));$('djSoundResults').innerHTML=items.length?items.map(s=>`<button type="button" class="dj-sound-option ${s.id===selected?'active':''}" data-sound-id="${esc(s.id)}"><span class="dj-option-note">♫</span><span class="dj-option-text"><strong>${esc(s.name)}</strong><small>${esc(s.category||'Audio sound')}</small></span><span class="dj-option-mark">${s.id===selected?'✓':'＋'}</span></button>`).join(''):'<div class="dj-picker-empty">No matching sounds. Add audio to your soundboard first.</div>'}
+function djClosePicker(){$('djSoundModal').classList.add('hidden')}
+function djRefreshChoices(){for(const k of ['A','B']){const sel=$('djSelect'+k),old=sel.value;sel.innerHTML='<option value="">Choose a sound</option>'+project.sounds.map(s=>`<option value="${esc(s.id)}">${esc(s.name)}</option>`).join('');if(project.sounds.some(s=>s.id===old))sel.value=old;djUpdatePicker(k)}}
+function djStop(k){const d=djDecks[k];if(!d)return;if(djScratchState[k]?.active)djEndScratch(k);d.el.pause();d.el.removeAttribute('src');d.el.load();try{d.source.disconnect();d.bass.disconnect();d.treble.disconnect();d.filter.disconnect();d.dry.disconnect();d.delay.disconnect();d.feedback.disconnect();d.wet.disconnect();d.gain.disconnect()}catch(e){}djDecks[k]=null;count();$('djState'+k).textContent='Ready';$('djDisc'+k).classList.remove('spinning');$('djTime'+k).textContent='0:00 / 0:00';$('djSeek'+k).value=0}
+function djLevels(){for(const k of ['A','B']){const d=djDecks[k];if(!d||!ctx)continue;const vol=Number($('djLevel'+k).value)/100;const factor=k==='A'?Math.cos(djCrossValue*Math.PI/200):Math.sin(djCrossValue*Math.PI/200);d.gain.gain.setTargetAtTime(vol*factor,ctx.currentTime,.025)}}
+function djEffects(k){const d=djDecks[k];if(!d||!ctx)return;d.bass.gain.value=Number($('djBass'+k).value);d.treble.gain.value=Number($('djTreble'+k).value);const f=Number($('djFilter'+k).value);d.filter.frequency.setTargetAtTime(f>=99?20000:300*Math.pow(20000/300,f/100),ctx.currentTime,.03);d.wet.gain.value=Number($('djEcho'+k).value)/100*.5;d.feedback.gain.value=Math.min(.4,Number($('djEcho'+k).value)/100*.4)}
+async function djPlay(k){const sound=get($('djSelect'+k).value);if(!sound){notify('Choose a sound for Deck '+k);return}const existing=djDecks[k];if(existing&&existing.soundId===sound.id){if(djScratchState[k].active)djEndScratch(k);existing.el.pause();existing.el.currentTime=0;await existing.el.play();$('djDisc'+k).classList.add('spinning');return}djStop(k);try{await initAudio();const el=new Audio();el.preload='auto';el.src=await audioURL(sound);el.playbackRate=1;el.preservesPitch=true;const source=ctx.createMediaElementSource(el),bass=ctx.createBiquadFilter(),treble=ctx.createBiquadFilter(),filter=ctx.createBiquadFilter(),dry=ctx.createGain(),delay=ctx.createDelay(1),feedback=ctx.createGain(),wet=ctx.createGain(),gain=ctx.createGain();bass.type='lowshelf';bass.frequency.value=220;treble.type='highshelf';treble.frequency.value=3200;filter.type='lowpass';delay.delayTime.value=.27;source.connect(bass);bass.connect(treble);treble.connect(filter);filter.connect(dry);dry.connect(gain);filter.connect(delay);delay.connect(wet);wet.connect(gain);delay.connect(feedback);feedback.connect(delay);gain.connect(audBus);const d={el,source,bass,treble,filter,dry,delay,feedback,wet,gain,soundId:sound.id};djDecks[k]=d;el.addEventListener('play',count);el.addEventListener('pause',count);djPrepareScratch(k,d);djEffects(k);djLevels();el.onended=()=>{if(djDecks[k]===d)djStop(k)};el.onerror=()=>{notify('Could not play this sound');if(djDecks[k]===d)djStop(k)};el.addEventListener('loadedmetadata',()=>{if(djDecks[k]===d)el.currentTime=0},{once:true});if(el.readyState<1)await new Promise((resolve,reject)=>{el.addEventListener('loadedmetadata',resolve,{once:true});el.addEventListener('error',()=>reject(new Error('Audio could not load')),{once:true})});el.currentTime=0;await el.play();$('djState'+k).textContent='Playing';$('djDisc'+k).classList.add('spinning')}catch(e){djStop(k);notify('Deck '+k+': '+e.message)}}
+
+// Scratch audio follows the platter's angular movement, including reverse playback.
+const djScratchState={A:{},B:{}};
+function djAngle(e,disc){const r=disc.getBoundingClientRect();return Math.atan2(e.clientY-(r.top+r.height/2),e.clientX-(r.left+r.width/2))}
+async function djPrepareScratch(k,d){if(d.buffer)return;try{const sound=get(d.soundId);const url=await audioURL(sound);const response=await fetch(url);const bytes=await response.arrayBuffer();const decoded=await ctx.decodeAudioData(bytes);if(djDecks[k]===d)d.buffer=decoded}catch(e){console.warn('Scratch decoding unavailable:',e)}}
+function djStartScratch(k,e){const d=djDecks[k],disc=$('djDisc'+k);if(!d||!d.buffer){if(d)$('djState'+k).textContent='Preparing scratch…';return}const st=djScratchState[k];if(st.active)return;e.preventDefault();st.active=true;st.pointer=e.pointerId;st.angle=djAngle(e,disc);st.last=performance.now();st.velocity=0;st.position=d.el.currentTime*d.buffer.sampleRate;st.targetPosition=st.position;st.duration=d.buffer.duration;st.lastVisual=0;st.wasPlaying=!d.el.paused;st.rotation=Number(st.rotation)||0;d.el.pause();d.source.disconnect();const proc=ctx.createScriptProcessor(512,0,2);st.processor=proc;proc.onaudioprocess=ev=>{const out=ev.outputBuffer,buf=d.buffer,rate=buf.sampleRate,channels=buf.numberOfChannels;const L=out.getChannelData(0),R=out.getChannelData(1);for(let i=0;i<L.length;i++){const pos=st.position;const n=Math.floor(pos),f=pos-n;if(n>=0&&n<buf.length-1){const l=buf.getChannelData(0);L[i]=l[n]*(1-f)+l[n+1]*f;const r=buf.getChannelData(Math.min(1,channels-1));R[i]=r[n]*(1-f)+r[n+1]*f}else{L[i]=0;R[i]=0}st.position=Math.max(0,Math.min(buf.length-2,st.position+st.velocity*rate/ctx.sampleRate));st.velocity*=.99995;} };proc.connect(d.bass);st.keepAlive=proc;disc.classList.add('scratching');disc.classList.remove('spinning');try{disc.setPointerCapture(e.pointerId)}catch(_){}}
+function djMoveScratch(k,e){const st=djScratchState[k];if(!st.active||st.pointer!==e.pointerId)return;e.preventDefault();const disc=$('djDisc'+k),a=djAngle(e,disc),now=performance.now();let delta=a-st.angle;while(delta>Math.PI)delta-=Math.PI*2;while(delta< -Math.PI)delta+=Math.PI*2;const elapsed=Math.max(1,now-st.last);const turns=delta/(Math.PI*2);const turnsPerSecond=turns*1000/elapsed;const speed=Math.abs(turnsPerSecond);const rate=Math.max(-12,Math.min(12,turnsPerSecond*2.5));st.velocity=rate;const travelSeconds=turns*2.5*(1+Math.min(3,speed*.7));const buffer=djDecks[k]?.buffer;if(buffer){st.position=Math.max(0,Math.min(buffer.length-2,st.position+travelSeconds*buffer.sampleRate));}st.rotation+=delta*180/Math.PI;disc.style.setProperty('--scratch-angle',st.rotation+'deg');st.angle=a;st.last=now;djShowScratchPosition(k)}
+function fmtPrecise(t){const m=Math.floor(t/60),sec=Math.floor(t%60),tenths=Math.floor((t%1)*10);return m+':'+String(sec).padStart(2,'0')+'.'+tenths}
+function djShowScratchPosition(k){const st=djScratchState[k],d=djDecks[k];if(!st.active||!d?.buffer)return;const seconds=Math.max(0,Math.min(d.buffer.duration,st.position/d.buffer.sampleRate));$('djTime'+k).textContent=fmtPrecise(seconds)+' / '+fmt(d.buffer.duration);$('djSeek'+k).value=Math.round(seconds/d.buffer.duration*1000);$('djState'+k).textContent=st.velocity<-.07?'◀ REWIND':st.velocity>.07?'FAST FORWARD ▶':'HOLDING';$('djTime'+k).classList.add('dj-scratch-time')}
+function djEndScratch(k,e){const st=djScratchState[k],d=djDecks[k];if(!st.active||e&&st.pointer!==e.pointerId)return;st.active=false;try{st.processor?.disconnect();st.processor.onaudioprocess=null}catch(_){}st.processor=null;const disc=$('djDisc'+k);disc.classList.remove('scratching');$('djTime'+k).classList.remove('dj-scratch-time');disc.style.removeProperty('--scratch-angle');if(!d)return;try{d.source.connect(d.bass)}catch(_){}d.el.currentTime=Math.max(0,Math.min((d.el.duration||Infinity)-.01,st.position/(d.buffer?.sampleRate||44100)));if(st.wasPlaying)d.el.play().catch(err=>notify(err.message));$('djState'+k).textContent=st.wasPlaying?'Playing':'Paused'}
+for(const k of ['A','B']){const disc=$('djDisc'+k);disc.setAttribute('role','slider');disc.setAttribute('aria-label','Scratch Deck '+k+' turntable');disc.style.touchAction='none';disc.addEventListener('pointerdown',e=>djStartScratch(k,e));disc.addEventListener('pointermove',e=>djMoveScratch(k,e));disc.addEventListener('pointerup',e=>djEndScratch(k,e));disc.addEventListener('pointercancel',e=>djEndScratch(k,e))}
+
+function djTick(){for(const k of ['A','B']){const d=djDecks[k];if(!d)continue;if(djScratchState[k].active){djShowScratchPosition(k);continue;}const el=d.el,s=get(d.soundId),end=Math.min(Number.isFinite(el.duration)?el.duration:Infinity,Number(s?.end)>0?Number(s.end):Infinity);if(Number.isFinite(end)&&el.currentTime>=end-.04){djStop(k);continue}$('djTime'+k).textContent=fmt(el.currentTime)+' / '+fmt(Number.isFinite(end)?end:el.duration);if(Number.isFinite(el.duration)&&el.duration>0)$('djSeek'+k).value=Math.round(el.currentTime/el.duration*1000);$('djState'+k).textContent=el.paused?'Paused':'Playing';$('djDisc'+k).classList.toggle('spinning',!el.paused)}requestAnimationFrame(djTick)}
+function djWorkspace(mode){const active=mode==='dj';$('djWorkspace').classList.toggle('hidden',!active);document.querySelector('.dashboard.workspace').classList.toggle('hidden',active);$('wsDJ').classList.toggle('selected',active);$('wsBoard').classList.toggle('selected',!active);if(active)djRefreshChoices();try{localStorage.setItem('on-air-workspace',active?'dj':'board')}catch(e){}}
+$('wsDJ').onclick=()=>djWorkspace('dj');$('wsBoard').onclick=()=>djWorkspace('board');
+for(const k of ['A','B']){$('djPlay'+k).onclick=()=>djPlay(k);$('djPause'+k).onclick=()=>{const d=djDecks[k];if(!d)return;if(d.el.paused)d.el.play().catch(e=>notify(e.message));else d.el.pause()};$('djReset'+k).onclick=()=>{const d=djDecks[k];if(d){if(djScratchState[k].active)djEndScratch(k);d.el.currentTime=0;$('djTime'+k).textContent=fmt(d.el.currentTime)+' / '+fmt(d.el.duration||0)}};$('djSelect'+k).onchange=()=>{djStop(k);djUpdatePicker(k);$('djTime'+k).textContent='0:00 / 0:00';$('djSeek'+k).value=0;$('djState'+k).textContent='Ready · starts at 0:00'};$('djPick'+k).onclick=()=>djOpenPicker(k);$('djSeek'+k).oninput=e=>{const d=djDecks[k];if(d&&Number.isFinite(d.el.duration))d.el.currentTime=d.el.duration*Number(e.target.value)/1000};$('djLevel'+k).oninput=e=>{$('djVolText'+k).textContent=e.target.value+'%';djLevels()};for(const key of ['Bass','Treble','Filter','Echo'])$('dj'+key+k).oninput=e=>{$('dj'+key+'Text'+k).textContent=key==='Filter'&&e.target.value==='100'||key==='Echo'&&e.target.value==='0'?'Off':e.target.value;djEffects(k)}}
+$('djCross').oninput=e=>{djCrossValue=Number(e.target.value);djLevels()};$('djStopAll').onclick=()=>{djStop('A');djStop('B')};
+$('djRecordMix').onclick=async()=>{if(djMixRecorder)return;try{await initAudio();if(!window.MediaRecorder)throw Error('Recording is not available in this browser');djMixTap=ctx.createMediaStreamDestination();master.connect(djMixTap);const type=['audio/webm;codecs=opus','audio/webm','audio/mp4'].find(t=>MediaRecorder.isTypeSupported(t));djMixRecorder=new MediaRecorder(djMixTap.stream,type?{mimeType:type}:undefined);djMixChunks=[];djMixRecorder.ondataavailable=e=>{if(e.data.size)djMixChunks.push(e.data)};djMixRecorder.start(250);djMixStarted=Date.now();$('djRecordMix').disabled=true;$('djFinishMix').disabled=false;$('djMixStatus').textContent='Recording your mix…';}catch(e){notify('Could not record mix: '+e.message);if(djMixTap){try{master.disconnect(djMixTap)}catch(_){}djMixTap=null}djMixRecorder=null}};
+$('djFinishMix').onclick=()=>{if(!djMixRecorder)return;const r=djMixRecorder;r.onstop=async()=>{try{const blob=new Blob(djMixChunks,{type:r.mimeType||'audio/webm'});if(!blob.size)throw Error('Nothing was recorded');const name=prompt('Name your new sound','My DJ Mix');if(name===null){$('djMixStatus').textContent='Mix discarded';return}const sound={id:id(),name:name.trim()||'My DJ Mix',category:'Effect',volume:80,speed:1,loop:false};if(db)await put('assets',sound.id,blob);blobs.set(sound.id,blob);project.sounds.push(sound);scheduleSave();renderCards();renderLibrary();djRefreshChoices();$('djMixStatus').textContent='Saved as a sound card: '+sound.name;notify('Mix saved to your soundboard')}catch(e){notify('Could not save mix: '+e.message)}finally{if(djMixTap){try{master.disconnect(djMixTap)}catch(e){}djMixTap=null}djMixRecorder=null;$('djRecordMix').disabled=false;$('djFinishMix').disabled=true}};r.stop()};
+const originalRenderCards=renderCards;renderCards=function(){originalRenderCards();if(!$('djWorkspace').classList.contains('hidden'))djRefreshChoices()};
+const originalStopAll=stopAll;stopAll=function(){originalStopAll();djStop('A');djStop('B')};
+try{djWorkspace(localStorage.getItem('on-air-workspace')==='dj'?localStorage.getItem('on-air-workspace'):'board')}catch(e){djWorkspace('board')}djTick();
+
+
+$('djSoundClose').onclick=djClosePicker;
+$('djSoundModal').addEventListener('click',e=>{if(e.target===$('djSoundModal'))djClosePicker()});
+$('djSoundSearch').addEventListener('input',djRenderPicker);
+$('djSoundResults').addEventListener('click',e=>{const btn=e.target.closest('[data-sound-id]');if(!btn)return;const sel=$('djSelect'+djPickerDeck);sel.value=btn.dataset.soundId;sel.dispatchEvent(new Event('change'));djClosePicker()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('djSoundModal').classList.contains('hidden'))djClosePicker()});
+
+boot();
+})();
+</script><script id="studio-v12-theme-js">
+(()=>{
+ const root=document.documentElement;
+ const key='on-air-studio-theme';
+ let saved='dark';
+ try{saved=localStorage.getItem(key)||'dark'}catch(e){}
+ const button=document.createElement('button');
+ button.type='button';button.className='btn small theme-switch';button.id='themeSwitch';
+ button.title='Switch between light and dark';button.setAttribute('aria-label','Switch color theme');
+ const toolbar=document.querySelector('header.top .toolbar');
+ if(toolbar)toolbar.insertBefore(button,toolbar.firstChild);
+ function apply(theme){
+  const light=theme==='light';root.dataset.theme=light?'light':'dark';
+  button.textContent=light?'☀ Light':'☾ Dark';
+  button.setAttribute('aria-pressed',String(light));
+  const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=light?'#f3f6fb':'#0b1220';
+  try{localStorage.setItem(key,light?'light':'dark')}catch(e){}
+ }
+ button.addEventListener('click',()=>apply(root.dataset.theme==='light'?'dark':'light'));
+ apply(saved);
+})();
+</script></body></html>
