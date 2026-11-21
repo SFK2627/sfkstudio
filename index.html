@@ -1882,6 +1882,40 @@ html body :is(button, input, select, textarea):disabled:disabled * {
 /* The intro's animated border-right remains a visual typewriter caret.
    It is not the mouse cursor and must stay visible. */
 </style>
+
+<style id="v81-five-card-marquee">
+/* Desktop Soundboard: five equal-width cards beside the script panel. */
+@media (min-width:1001px){
+  .dashboard.workspace{grid-template-columns:minmax(0,1fr) clamp(205px,18vw,255px)!important;column-gap:10px}
+  #cards.grid{grid-template-columns:repeat(5,minmax(0,1fr))!important;column-gap:6px!important;row-gap:8px!important}
+  #cards .sound{padding:7px 6px!important;min-width:0}
+  #cards .soundhead{gap:3px!important}
+  #cards .soundhead .handle{padding:2px!important;font-size:15px}
+  #cards .sound-edit{width:24px!important;min-width:24px!important;padding:1px 3px!important}
+  #cards .sound-controls{gap:3px!important}
+  #cards .sound-controls>button{width:27px!important;min-width:27px!important;min-height:28px!important;height:28px!important}
+  #cards .sound-timing{padding-left:1px!important}
+  #cards .sound-timing .times{font-size:8px!important;gap:2px}
+  #cards .volume{gap:4px!important}
+}
+@media (min-width:1001px) and (max-width:1120px){
+  #cards .sound-controls>button{width:24px!important;min-width:24px!important}
+  #cards .soundname{font-size:11px!important}
+  #cards .sound-timing .times{font-size:7.5px!important}
+}
+/* Give each long sound title a slow, gentle back-and-forth scroll within one line. */
+#cards .soundname{display:block!important;min-width:0;overflow:hidden!important;text-overflow:clip!important;white-space:nowrap!important;position:relative}
+#cards .soundname .soundname-marquee-text{display:inline-block;white-space:nowrap;max-width:none;width:max-content;transform:translateX(0)}
+#cards .soundname.is-overflowing .soundname-marquee-text{animation:v81-title-pan var(--marquee-duration,9s) ease-in-out infinite;will-change:transform}
+@keyframes v81-title-pan{
+  0%,13%{transform:translateX(0)}
+  46%,62%{transform:translateX(calc(-1 * var(--marquee-shift,0px)))}
+  95%,100%{transform:translateX(0)}
+}
+@media(prefers-reduced-motion:reduce){
+  #cards .soundname.is-overflowing .soundname-marquee-text{animation:none!important;will-change:auto}
+}
+</style>
 </head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div><button id="splashSkip" type="button" class="v64-skip">Skip intro</button></div>
 </div>
@@ -2380,10 +2414,43 @@ $('categoryScroll').addEventListener('click',()=>{
  root.scrollBy({left:direction*Math.max(135,root.clientWidth*.72),behavior:'smooth'});
 });
 window.addEventListener('resize',()=>requestAnimationFrame(updateFilterRail));
-function cardHTML(s){const x=live.get(s.id),p=preview.get(s.id),playing=!!(x&&!x.el.paused),paused=!!(x&&x.el.paused);const bgEq=playing?'<div class="card-bg-equalizer" aria-hidden="true">'+[44,69,36,88,55,72,39,100,61,77,43,91,59,73,48,65].map((h,i)=>'<i style="--bar-h:'+h+'%;--bar-delay:-'+(i*0.13).toFixed(2)+'s;--bar-speed:'+(1.1+(i%5)*0.21).toFixed(2)+'s"></i>').join('')+'</div>':'';const status=playing?'<span class="sound-status status-playing"><span class="eq-meter" aria-hidden="true"><i></i><i></i><i></i></span>LIVE</span>':paused?'<span class="sound-status status-paused">Ⅱ PAUSED</span>':p?'<span class="sound-status status-preview">PREVIEW</span>':'<span class="sound-status status-ready">READY</span>';return `<article style="--category-accent:${categoryColor(s.category)}" class="sound categorized ${x?'live':''} ${playing?'is-playing':paused?'is-paused':''} ${playing&&lastStartedSoundId===s.id?'is-recent':''} ${p?'preview':''}" data-playback="${playing?'playing':paused?'paused':'stopped'}" data-id="${s.id}" draggable="false">${bgEq}<div class="soundhead"><button class="handle" data-action="handle" aria-label="Hold to reorder" title="Drag to reorder">⠿</button><div class="soundidentity"><div class="soundname" title="${esc(s.name)}">${esc(s.name)}</div><div class="cat"><span class="category-label">${esc(s.category)}</span>${status}</div></div><button class="btn small sound-edit" data-action="edit" title="Edit sound" aria-label="Edit ${esc(s.name)}">⚙</button></div><div class="sound-controls"><button class="trigger" data-action="play" title="${x?'Restart from beginning':'Play from start'}" aria-label="${x?'Restart':'Play'} ${esc(s.name)}">${x?'↻':'▶'}</button><button class="btn small" data-action="pause" title="${x?.el.paused?'Resume':'Pause'}" aria-label="${x?.el.paused?'Resume':'Pause'} ${esc(s.name)}" ${!x?'disabled':''}>${x?.el.paused?'▶':'Ⅱ'}</button><button class="btn small" data-action="stop" title="Stop" aria-label="Stop ${esc(s.name)}">■</button><div class="sound-timing"><div class="progress"><div data-progress></div></div><div class="times"><span data-elapsed>0:00</span><span data-total>--:--</span></div></div></div><div class="volume"><span>♫</span><input aria-label="${esc(s.name)} volume" type="range" data-action="volume" min="0" max="100" value="${s.volume}"><span>${s.volume}%</span></div></article>`}
+function cardHTML(s){const x=live.get(s.id),p=preview.get(s.id),playing=!!(x&&!x.el.paused),paused=!!(x&&x.el.paused);const bgEq=playing?'<div class="card-bg-equalizer" aria-hidden="true">'+[44,69,36,88,55,72,39,100,61,77,43,91,59,73,48,65].map((h,i)=>'<i style="--bar-h:'+h+'%;--bar-delay:-'+(i*0.13).toFixed(2)+'s;--bar-speed:'+(1.1+(i%5)*0.21).toFixed(2)+'s"></i>').join('')+'</div>':'';const status=playing?'<span class="sound-status status-playing"><span class="eq-meter" aria-hidden="true"><i></i><i></i><i></i></span>LIVE</span>':paused?'<span class="sound-status status-paused">Ⅱ PAUSED</span>':p?'<span class="sound-status status-preview">PREVIEW</span>':'<span class="sound-status status-ready">READY</span>';return `<article style="--category-accent:${categoryColor(s.category)}" class="sound categorized ${x?'live':''} ${playing?'is-playing':paused?'is-paused':''} ${playing&&lastStartedSoundId===s.id?'is-recent':''} ${p?'preview':''}" data-playback="${playing?'playing':paused?'paused':'stopped'}" data-id="${s.id}" draggable="false">${bgEq}<div class="soundhead"><button class="handle" data-action="handle" aria-label="Hold to reorder" title="Drag to reorder">⠿</button><div class="soundidentity"><div class="soundname" title="${esc(s.name)}"><span class="soundname-marquee-text">${esc(s.name)}</span></div><div class="cat"><span class="category-label">${esc(s.category)}</span>${status}</div></div><button class="btn small sound-edit" data-action="edit" title="Edit sound" aria-label="Edit ${esc(s.name)}">⚙</button></div><div class="sound-controls"><button class="trigger" data-action="play" title="${x?'Restart from beginning':'Play from start'}" aria-label="${x?'Restart':'Play'} ${esc(s.name)}">${x?'↻':'▶'}</button><button class="btn small" data-action="pause" title="${x?.el.paused?'Resume':'Pause'}" aria-label="${x?.el.paused?'Resume':'Pause'} ${esc(s.name)}" ${!x?'disabled':''}>${x?.el.paused?'▶':'Ⅱ'}</button><button class="btn small" data-action="stop" title="Stop" aria-label="Stop ${esc(s.name)}">■</button><div class="sound-timing"><div class="progress"><div data-progress></div></div><div class="times"><span data-elapsed>0:00</span><span data-total>--:--</span></div></div></div><div class="volume"><span>♫</span><input aria-label="${esc(s.name)} volume" type="range" data-action="volume" min="0" max="100" value="${s.volume}"><span>${s.volume}%</span></div></article>`}
 
 function updateWorkspaceCount(){const n=project.sounds.length;$('soundCount').textContent=!$('queueWorkspace').classList.contains('hidden')?`(${(project.nextUp||[]).length} up next)`:`(${n} sound${n===1?'':'s'})`}
-function renderCards(){const root=$('cards');renderQueuePicker();renderCategoryFilters();const visible=selectedCategory==='All'?project.sounds:project.sounds.filter(s=>(s.category||'Effect')===selectedCategory);root.innerHTML=visible.map(cardHTML).join('');$('empty').classList.toggle('hidden',project.sounds.length>0);updateWorkspaceCount();$('projectTitle').textContent=project.name;count()}
+
+// v81: Only overflowed Soundboard titles pan. The text remains inside its own title line.
+let soundboardMarqueeFrame=0;
+function scheduleSoundboardMarquee(){
+  if(soundboardMarqueeFrame)return;
+  soundboardMarqueeFrame=requestAnimationFrame(()=>{
+    soundboardMarqueeFrame=0;
+    const root=$('cards');
+    if(!root || root.clientWidth===0)return;
+    root.querySelectorAll('.soundname').forEach(el=>{
+      const text=el.querySelector('.soundname-marquee-text');
+      if(!text)return;
+      // Reset before measuring, so a previously animated title can become static.
+      el.classList.remove('is-overflowing');
+      el.style.removeProperty('--marquee-shift');
+      el.style.removeProperty('--marquee-duration');
+      const available=el.clientWidth;
+      if(!available)return;
+      const excess=Math.ceil(text.scrollWidth-available);
+      if(excess>3){
+        el.style.setProperty('--marquee-shift',Math.ceil(excess+3)+'px');
+        el.style.setProperty('--marquee-duration',Math.min(19,Math.max(7,7+excess/24)).toFixed(2)+'s');
+        el.classList.add('is-overflowing');
+      }
+    });
+  });
+}
+if(typeof ResizeObserver!=='undefined'){
+  new ResizeObserver(scheduleSoundboardMarquee).observe($('cards'));
+}else{
+  window.addEventListener('resize',scheduleSoundboardMarquee,{passive:true});
+}
+
+function renderCards(){const root=$('cards');renderQueuePicker();renderCategoryFilters();const visible=selectedCategory==='All'?project.sounds:project.sounds.filter(s=>(s.category||'Effect')===selectedCategory);root.innerHTML=visible.map(cardHTML).join('');scheduleSoundboardMarquee();$('empty').classList.toggle('hidden',project.sounds.length>0);updateWorkspaceCount();$('projectTitle').textContent=project.name;count()}
 function renderLibrary(){$('libraryList').innerHTML=project.sounds.length?project.sounds.map(s=>`<div class="listrow"><span>♫</span><span class="grow"><b>${esc(s.name)}</b><div class="hint">${esc(s.category)} · ${s.speed}× · ${s.volume}%</div></span><button class="btn small" data-edit="${s.id}">Edit</button><button class="btn danger small" data-remove="${s.id}">Remove</button></div>`).join(''):'<div class="empty">No sounds yet. Select Add Audio in Studio to get started.</div>'}
 function modal(title,html){getAudioCleanup();$('modalBg').classList.remove('sound-editor-open');$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modalBg').classList.remove('hidden')}function closeModal(){getAudioCleanup();stopEditorPreview();$('modalBg').classList.remove('sound-editor-open');$('modalBg').classList.add('hidden')}
 function clockTime(sec){sec=Math.max(0,Math.round(Number(sec)||0));return String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0')}
