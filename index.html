@@ -2417,7 +2417,29 @@ html[data-theme="light"] .v87-studio-header #saveStatus[data-state="error"]::aft
  .v87-studio-header .v87-header-tools{gap:2px!important}
 }
 @media(prefers-reduced-motion:reduce){.v87-studio-header .v87-icon-action{transition:none!important;transform:none!important}}
-</style></head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
+</style>
+<style id="v88-recording-safety-styles">
+/* Acknowledgement is separate from the fixed 45px mobile broadcast footer. */
+.rec-feedback-toast{position:fixed;z-index:500;bottom:75px;left:50%;transform:translate(-50%,8px);opacity:0;pointer-events:none;display:flex;align-items:center;justify-content:center;gap:9px;min-width:0;max-width:min(92vw,410px);padding:9px 13px;border-radius:12px;background:#172b36;border:1px solid #477181;box-shadow:0 12px 30px #0005;color:#f6fcff;font-size:12px;font-weight:700;line-height:1.4;text-align:center;transition:opacity .2s,transform .2s}
+.rec-feedback-toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.rec-feedback-toast[data-kind="saved"]{background:#15372e;border-color:#388d71}
+.rec-feedback-toast[data-kind="recording"]{background:#3c2029;border-color:#c75b6e}
+.rec-feedback-toast[data-kind="error"]{background:#48252b;border-color:#d67380}
+.rec-feedback-toast button{border:1px solid #e7a4ac;background:#ffedf0;color:#6d1829;white-space:nowrap;border-radius:7px;padding:6px 8px;font:inherit;cursor:pointer}
+.rec-fly-token{position:fixed;pointer-events:none;z-index:600;transform:translate(-50%,-50%);opacity:1;display:grid;place-items:center;white-space:nowrap;padding:7px 12px;border-radius:12px;border:1px solid #44b795;background:#154a3b;color:#d6ffef;font-size:11px;font-weight:800;box-shadow:0 6px 22px #02070d6e;transition:transform .82s cubic-bezier(.16,.86,.26,1),opacity .82s ease-out}
+.tabs .tab.rec-tab-saved{animation:recTabPulse .95s ease-out 1}
+@keyframes recTabPulse{0%,100%{box-shadow:none}40%{box-shadow:inset 0 -3px 0 #3cbd94,0 0 13px #42c59d66}}
+.rec-file-actions{display:flex;flex:0 0 auto;align-items:center;gap:5px}
+.rec-delete{background:transparent!important;color:var(--ux-muted,#aebccf)!important;border:1px solid transparent!important;padding:5px 7px!important;font-size:11px!important;white-space:nowrap}
+.rec-delete:hover{border-color:#e8a7ad!important;color:#e8818f!important;background:#a83c4c17!important}
+.rec-delete:focus-visible{outline:2px solid #e8818f;outline-offset:2px}
+.rec-delete-dialog{display:grid;gap:10px;padding:4px 0 2px}
+.rec-delete-dialog>p{margin:0;overflow-wrap:anywhere;font-size:13px;line-height:1.5}
+.rec-delete-buttons{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
+@media(max-width:620px){.rec-feedback-toast{bottom:55px;font-size:11px;padding:8px 10px}.rec-delete span{display:none}.rec-delete{font-size:15px!important;min-width:30px;min-height:32px;padding:5px!important}.rec-file-actions{gap:2px}}
+@media(prefers-reduced-motion:reduce){.rec-fly-token{display:none!important}.tabs .tab.rec-tab-saved{animation:none}.rec-feedback-toast{transition:none}}
+</style>
+</head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div><button id="splashSkip" type="button" class="v64-skip">Skip intro</button></div>
 </div>
 <div id="projectLauncher" class="v64-launcher v74-launcher hidden" role="dialog" aria-modal="true" aria-labelledby="launcherTitle">
@@ -2463,7 +2485,7 @@ html[data-theme="light"] .v87-studio-header #saveStatus[data-state="error"]::aft
   </div>
 </div><div id="deleteProjectDialog" class="project-delete-overlay hidden" role="alertdialog" aria-modal="true" aria-labelledby="deleteProjectTitle" aria-describedby="deleteProjectDescription">
  <div class="project-delete-sheet"><div class="project-delete-icon" aria-hidden="true">!</div><h2 id="deleteProjectTitle">Delete saved project?</h2><p id="deleteProjectDescription">You are about to delete <strong id="deleteProjectName"></strong>. Its saved sounds, script, and queue will be removed from this browser.</p><p class="project-delete-warning">This cannot be undone.</p><div class="project-delete-actions"><button type="button" class="btn" id="deleteProjectCancel">Cancel</button><button type="button" class="btn danger" id="deleteProjectConfirm">Delete Project</button></div><p class="project-delete-feedback" id="deleteProjectFeedback" role="status"></p></div>
-</div><main class="app"><header class="top v87-studio-header"><div class="v87-header-brand"><div class="brand">◉ ON AIR <b>STUDIO</b></div></div><div class="toolbar v87-header-tools"><span class="pill v87-save-indicator" id="saveStatus" role="status" aria-live="polite" title="Loading project…">Loading project…</span><button type="button" class="btn small v87-icon-action" id="projectBtn" aria-label="Open Projects" title="Open Projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.2V6.5a2 2 0 0 1 2-2h5.1l2.1 2.3h5.8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/><path d="M3.5 10.6h17"/></svg></button></div></header><nav class="tabs" aria-label="Studio sections"><button type="button" class="tab active" data-tab="studio" aria-controls="studio" aria-current="page"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.2" y="8" width="17.6" height="12.8" rx="2.5"/><path d="M6 8 18 4.2M8 12.8a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8ZM14 13h4m-4 3.5h4"/></svg><span>Studio</span></button><button type="button" class="tab" data-tab="library" aria-controls="library" aria-current="false"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5.2a2 2 0 0 1 2-2h13v17H6a2 2 0 0 1 0-4h13M8 7.5h7M8 11h7"/></svg><span>Library</span></button><button type="button" class="tab" data-tab="recordings" aria-controls="recordings" aria-current="false"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0M12 17v4.5M8.5 21.5h7"/></svg><span>Recordings</span></button></nav><div id="notice"></div>
+</div><main class="app"><header class="top v87-studio-header"><div class="v87-header-brand"><div class="brand">◉ ON AIR <b>STUDIO</b></div></div><div class="toolbar v87-header-tools"><span class="pill v87-save-indicator" id="saveStatus" role="status" aria-live="polite" title="Loading project…">Loading project…</span><button type="button" class="btn small v87-icon-action" id="projectBtn" aria-label="Open Projects" title="Open Projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.2V6.5a2 2 0 0 1 2-2h5.1l2.1 2.3h5.8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/><path d="M3.5 10.6h17"/></svg></button></div></header><nav class="tabs" aria-label="Studio sections"><button type="button" class="tab active" data-tab="studio" aria-controls="studio" aria-current="page"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.2" y="8" width="17.6" height="12.8" rx="2.5"/><path d="M6 8 18 4.2M8 12.8a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8ZM14 13h4m-4 3.5h4"/></svg><span>Studio</span></button><button type="button" class="tab" data-tab="library" aria-controls="library" aria-current="false"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5.2a2 2 0 0 1 2-2h13v17H6a2 2 0 0 1 0-4h13M8 7.5h7M8 11h7"/></svg><span>Library</span></button><button type="button" class="tab" data-tab="recordings" aria-controls="recordings" aria-current="false"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0M12 17v4.5M8.5 21.5h7"/></svg><span>Recordings</span></button></nav><div id="notice"></div><div class="rec-feedback-toast" id="recFeedbackToast" role="status" aria-live="polite" aria-atomic="true"></div>
 <section id="studio"><div class="studio-compact"><div class="studio-mainline"><div class="studio-heading"><strong><span id="activeWorkspaceLabel">Live Soundboard</span> <span class="hint" id="soundCount"></span></strong><span class="hint project-subtitle" id="projectTitle">Untitled Broadcast</span></div><div class="studio-helper"><span class="pill" id="activeCount">0 live</span><span class="gripnote">⠿ Drag to rearrange sounds</span></div><div class="toolbar"><button class="btn small" id="getAudioBtn" type="button" title="Get audio"><svg class="soundboard-header-action-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-4-4 4 4 4-4"/><path d="M5 17v3h14v-3"/></svg><span>Get Audio</span></button><button class="btn primary small" id="addBtn" type="button" title="Add audio"><svg class="soundboard-header-action-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span>Add Audio</span></button></div></div><div class="studio-control-row"><div class="workspace-switch" role="group" aria-label="Workspace"><button id="wsBoard" class="ws-choice selected" type="button">▦ Soundboard</button><button id="wsDJ" class="ws-choice" type="button">🎛 DJ Mixer</button><button id="wsQueue" class="ws-choice" type="button">☷ Audio Queue</button></div><div class="studio-recbar"><span class="rec-label">● <span class="rec-label-text">Broadcast</span></span><span class="rec-timer" id="recTime">00:00:00</span><span class="pill rec-state" id="recState">READY</span><div class="rec-actions"><button class="btn danger small" id="recordBtn">● REC</button><button class="btn small" id="stopRecord" disabled>■ Stop</button></div><label class="mic-compact" title="Include your voice in the recording"><input type="checkbox" id="micToggle" aria-label="Include microphone voice in recording"><span class="mic-word">🎙 Include Voice</span></label></div></div></div><section id="djWorkspace" class="dj-workspace hidden" aria-label="DJ Mixer"><div class="dj-heading"><div><strong>DJ Mixer</strong><small>Dual-deck broadcast console</small></div><button class="btn small dj-stop-decks" id="djStopAll" type="button"><span aria-hidden="true">■</span><span>Stop Both</span></button></div><div class="dj-decks"><div class="dj-deck" data-deck="A"><div class="dj-deck-top"><span class="dj-deck-label">DECK A</span><span class="dj-deck-state" id="djStateA">Ready</span></div><div class="dj-sound-picker"><span class="dj-picker-caption">LOADED SOUND</span><button type="button" class="dj-picker-btn" id="djPickA" aria-label="Choose sound for deck A"><span class="dj-picker-icon">♫</span><span class="dj-picker-info"><strong id="djPickNameA">Choose a sound</strong><small id="djPickMetaA">Tap to load audio</small></span><span class="dj-picker-chevron">⌄</span></button><select id="djSelectA" class="dj-native-select" aria-label="Choose sound for deck A"><option value="">Choose a sound</option></select></div><div class="dj-platter" id="djDiscA"><div class="dj-disc-core">A</div></div><div class="dj-time" id="djTimeA">0:00 / 0:00</div><input type="range" id="djSeekA" min="0" max="1000" value="0" aria-label="Deck A position"><div class="dj-deck-actions"><button class="btn primary dj-transport dj-transport-play" id="djPlayA" type="button" aria-label="Play Deck A"><span class="dj-action-glyph" aria-hidden="true">▶</span><span class="dj-action-text">Play</span></button><button class="btn dj-transport dj-transport-pause" id="djPauseA" type="button" aria-label="Pause Deck A"><span class="dj-action-glyph" aria-hidden="true">Ⅱ</span><span class="dj-action-text">Pause</span></button><button class="btn dj-transport dj-transport-rewind" id="djResetA" type="button" aria-label="Restart Deck A from beginning"><span class="dj-action-glyph" aria-hidden="true">↺</span><span class="dj-action-text">Restart</span></button></div><label class="dj-control-label">Volume <output id="djVolTextA">80%</output></label><input type="range" id="djLevelA" min="0" max="100" value="80" aria-label="Deck A volume"><details class="dj-effects"><summary><span>✦ Sound shaping</span><span class="dj-fx-summary-note">BASS · TREBLE · FILTER · ECHO</span></summary><div class="dj-effects-inner"><div class="dj-effects-top"><span>Fine-tune Deck A</span><button type="button" class="dj-fx-reset" data-deck="A" aria-label="Reset deck A effects to default">↺ Reset FX</button></div><div class="dj-fx-grid"><div class="dj-fx-control"><label for="djBassA">Bass <output id="djBassTextA">0</output></label><input type="range" id="djBassA" min="-18" max="18" value="0"></div><div class="dj-fx-control"><label for="djTrebleA">Treble <output id="djTrebleTextA">0</output></label><input type="range" id="djTrebleA" min="-18" max="18" value="0"></div><div class="dj-fx-control"><label for="djFilterA">Filter <output id="djFilterTextA">Off</output></label><input type="range" id="djFilterA" min="0" max="100" value="100"></div><div class="dj-fx-control"><label for="djEchoA">Echo <output id="djEchoTextA">Off</output></label><input type="range" id="djEchoA" min="0" max="60" value="0"></div></div></div></details></div><div class="dj-deck" data-deck="B"><div class="dj-deck-top"><span class="dj-deck-label">DECK B</span><span class="dj-deck-state" id="djStateB">Ready</span></div><div class="dj-sound-picker"><span class="dj-picker-caption">LOADED SOUND</span><button type="button" class="dj-picker-btn" id="djPickB" aria-label="Choose sound for deck B"><span class="dj-picker-icon">♫</span><span class="dj-picker-info"><strong id="djPickNameB">Choose a sound</strong><small id="djPickMetaB">Tap to load audio</small></span><span class="dj-picker-chevron">⌄</span></button><select id="djSelectB" class="dj-native-select" aria-label="Choose sound for deck B"><option value="">Choose a sound</option></select></div><div class="dj-platter dj-platter-b" id="djDiscB"><div class="dj-disc-core">B</div></div><div class="dj-time" id="djTimeB">0:00 / 0:00</div><input type="range" id="djSeekB" min="0" max="1000" value="0" aria-label="Deck B position"><div class="dj-deck-actions"><button class="btn primary dj-transport dj-transport-play" id="djPlayB" type="button" aria-label="Play Deck B"><span class="dj-action-glyph" aria-hidden="true">▶</span><span class="dj-action-text">Play</span></button><button class="btn dj-transport dj-transport-pause" id="djPauseB" type="button" aria-label="Pause Deck B"><span class="dj-action-glyph" aria-hidden="true">Ⅱ</span><span class="dj-action-text">Pause</span></button><button class="btn dj-transport dj-transport-rewind" id="djResetB" type="button" aria-label="Restart Deck B from beginning"><span class="dj-action-glyph" aria-hidden="true">↺</span><span class="dj-action-text">Restart</span></button></div><label class="dj-control-label">Volume <output id="djVolTextB">80%</output></label><input type="range" id="djLevelB" min="0" max="100" value="80" aria-label="Deck B volume"><details class="dj-effects"><summary><span>✦ Sound shaping</span><span class="dj-fx-summary-note">BASS · TREBLE · FILTER · ECHO</span></summary><div class="dj-effects-inner"><div class="dj-effects-top"><span>Fine-tune Deck B</span><button type="button" class="dj-fx-reset" data-deck="B" aria-label="Reset deck B effects to default">↺ Reset FX</button></div><div class="dj-fx-grid"><div class="dj-fx-control"><label for="djBassB">Bass <output id="djBassTextB">0</output></label><input type="range" id="djBassB" min="-18" max="18" value="0"></div><div class="dj-fx-control"><label for="djTrebleB">Treble <output id="djTrebleTextB">0</output></label><input type="range" id="djTrebleB" min="-18" max="18" value="0"></div><div class="dj-fx-control"><label for="djFilterB">Filter <output id="djFilterTextB">Off</output></label><input type="range" id="djFilterB" min="0" max="100" value="100"></div><div class="dj-fx-control"><label for="djEchoB">Echo <output id="djEchoTextB">Off</output></label><input type="range" id="djEchoB" min="0" max="60" value="0"></div></div></div></details></div></div><div class="dj-mix-panel"><div class="dj-cross-head"><span class="dj-cross-side dj-cross-side-a">DECK A</span><div class="dj-cross-title"><strong>Crossfader</strong><small>Blend the two decks smoothly</small></div><span class="dj-cross-side dj-cross-side-b">DECK B</span></div>
 <div class="dj-cross-control"><input type="range" id="djCross" min="0" max="100" value="50" aria-label="Crossfade between Deck A and B"><div class="dj-cross-footer"><span>A: <b id="djMixAValue">50%</b></span><button type="button" id="djCrossCenter" class="dj-cross-center" title="Reset crossfader to center">◎ Center</button><span>B: <b id="djMixBValue">50%</b></span></div></div><div class="dj-mix-actions"><button class="btn danger" id="djRecordMix" type="button"><span class="dj-mix-button-icon" aria-hidden="true">●</span> Record Mix</button><button class="btn" id="djFinishMix" type="button" disabled><span class="dj-mix-button-icon" aria-hidden="true">■</span> Finish & Save</button></div><div class="dj-mix-note" id="djMixStatus">Your mix can be saved as a new sound card.</div></div></section><section id="queueWorkspace" class="queue-workspace hidden" aria-label="Audio Queue workspace">
   <div class="queue-stage">
@@ -2498,7 +2520,7 @@ html[data-theme="light"] .v87-studio-header #saveStatus[data-state="error"]::aft
 </section>
 <div class="dashboard workspace"><div class="sound-workspace"><div class="soundlist-head soundlist-inline"><h2 class="title">Sounds</h2><div class="sound-filter-rail" id="soundFilterRail"><div id="categoryFilters" class="category-filters" role="group" aria-label="Filter sounds by category"></div><button class="sound-filter-scroll" id="categoryScroll" type="button" aria-label="More sound categories" title="Scroll sound categories" hidden>›</button></div></div><div id="cards" class="grid"></div><div id="empty" class="empty">Add your first audio files to start broadcasting.<div style="margin-top:12px"><button class="btn primary" id="emptyAdd">＋ Add Sounds</button></div></div></div><aside class="panel broadcast-script-aside" style="align-self:start;margin-top:10px"><div class="spread"><h2 class="title">📄 Broadcast Script</h2><button class="btn small" id="scriptFull">↗ Float</button></div><div class="hint" style="margin-bottom:8px">Paste your sequence, cues, lines, and timing. Autosaved with the project.</div><div id="scriptSlot"><textarea id="scriptText" class="script" placeholder="00:00 — PLAY News Intro&#10;ANCHOR: Good morning, everyone…&#10;00:15 — FADE Background Music&#10;TECH: PLAY Breaking News…"></textarea></div><div class="hint" style="margin-top:7px">Tip: Add [PLAY: Sound Name] cues beside your script.</div></aside></div></section>
 <section id="library" class="hidden"><div class="panel"><div class="spread"><h2 class="title">Audio Library</h2><button class="btn primary small" id="libraryAdd">＋ Import</button></div><p class="hint">Edit sounds and playback settings here. Arrange their order in Soundboard.</p><div id="libraryList"></div></div></section>
-<section id="recordings" class="hidden"><div class="panel"><h2 class="title">Recordings</h2><p class="hint recordings-intro">Replay and review your broadcast. Download your recordings to keep them after closing the page.</p><div id="recordingList" class="recordings-grid"></div></div></section>
+<section id="recordings" class="hidden"><div class="panel"><h2 class="title">Recordings</h2><p class="hint recordings-intro">Recordings are saved to this browser for the current project. You can play, download, or delete them. Download a copy before clearing browser data or switching devices.</p><div id="recordingList" class="recordings-grid"></div></div></section>
 
 </main><div id="floatScript" class="floating-script hidden"><div id="floatHead" class="float-head" title="Drag to move the Broadcast Script"><strong title="Broadcast Script · Drag to move">📄 Script</strong><div class="float-tools"><button type="button" class="btn small" id="zoomMenu" aria-label="Script text size controls" aria-expanded="false" aria-controls="zoomOptions" title="Text size">Aa</button><div id="zoomOptions" class="float-zoom-popover hidden" aria-label="Adjust script text size"><span class="float-zoom-label">Text size</span><div class="float-zoom-row"><button type="button" class="btn small" id="zoomOut" title="Zoom out" aria-label="Decrease text size">−</button><input id="zoomRange" class="float-zoom" type="range" min="0" max="1000" value="100" aria-label="Script zoom 0 to 1000 percent"><button type="button" class="btn small" id="zoomIn" title="Zoom in" aria-label="Increase text size">+</button><span id="zoomValue" class="tiny">100%</span></div></div><button type="button" class="btn small" id="miniScript" title="Minimize floating script" aria-label="Minimize script">▁</button><button type="button" class="btn small" id="dockScript" title="Dock script" aria-label="Dock script">↙</button></div></div><div id="floatBody" class="float-body"></div><button type="button" id="floatResizeHandle" class="float-resize-handle" aria-label="Resize floating Broadcast Script" title="Drag corner to resize · Arrow keys to adjust" aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M20 7 7 20M20 14l-6 6M20 20h-1"/></svg></button></div><footer class="footer" aria-label="Live playback controls"><div class="footinner">
  <div class="footer-playing"><span class="footer-playing-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 14v-4m5 9V5m5 12V7m5 7v-4"/></svg></span><span class="footer-playing-details"><span class="footer-kicker">NOW PLAYING</span><strong id="footCount" aria-live="polite">0 playing</strong></span></div>
@@ -2742,8 +2764,31 @@ $('nextUpClear').addEventListener('click',clearQueue);
 $('nextUpAuto').addEventListener('change',e=>{project.settings.autoNext=e.target.checked;renderQueue();scheduleSave()});
 $('nextUpCollapse').addEventListener('click',()=>{const body=$('nextUpBody'),collapsed=body.classList.toggle('hidden');$('nextUpCollapse').textContent=collapsed?'⌄':'⌃';$('nextUpCollapse').setAttribute('aria-expanded',String(!collapsed));$('nextUpCollapse').title=collapsed?'Expand queue':'Collapse queue'});
 
-function openDB(){return new Promise((res,rej)=>{if(!('indexedDB'in window))return rej(Error('IndexedDB unavailable'));const r=indexedDB.open('on-air-studio-v2',1);r.onupgradeneeded=()=>{const d=r.result;d.createObjectStore('projects');d.createObjectStore('assets')};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
-function dbOp(store,mode,fn){return new Promise((res,rej)=>{if(!db)return rej(Error('Local storage unavailable'));const t=db.transaction(store,mode),r=fn(t.objectStore(store));let value;t.oncomplete=()=>res(value);t.onerror=()=>rej(t.error);if(r&&r.onsuccess!==undefined)r.onsuccess=()=>value=r.result})}const put=(s,k,v)=>dbOp(s,'readwrite',o=>o.put(v,k)),read=(s,k)=>dbOp(s,'readonly',o=>o.get(k)),del=(s,k)=>dbOp(s,'readwrite',o=>o.delete(k));
+// v89: Open the existing project database without forcing a version upgrade.
+// v88 requested version 2, which could remain blocked by another open ON AIR Studio tab.
+// Keep v88 recordings in its existing store; use a separate recording DB for v87-era stores.
+let recordingDB=null;
+function openRecordingsDB(){return new Promise((resolve,reject)=>{
+ const req=indexedDB.open('on-air-studio-recordings-v1',1);
+ req.onupgradeneeded=()=>{const d=req.result;if(!d.objectStoreNames.contains('recordings')){const store=d.createObjectStore('recordings');store.createIndex('projectId','projectId',{unique:false})}};
+ req.onsuccess=()=>resolve(req.result);
+ req.onerror=()=>reject(req.error||Error('Recordings storage unavailable'));
+ req.onblocked=()=>console.warn('Recording storage is busy in another tab');
+})}
+async function openDB(){
+ if(!('indexedDB'in window))throw Error('IndexedDB unavailable');
+ const primary=await new Promise((resolve,reject)=>{
+  const req=indexedDB.open('on-air-studio-v2'); // no forced upgrade of existing projects
+  req.onupgradeneeded=()=>{const d=req.result;if(!d.objectStoreNames.contains('projects'))d.createObjectStore('projects');if(!d.objectStoreNames.contains('assets'))d.createObjectStore('assets')};
+  req.onsuccess=()=>resolve(req.result);
+  req.onerror=()=>reject(req.error||Error('Project storage unavailable'));
+  req.onblocked=()=>{const msg=document.querySelector('.v64-splash-foot');if(msg)msg.textContent='Close other ON AIR tabs to unlock your saved projects';};
+ });
+ if(primary.objectStoreNames.contains('recordings'))recordingDB=primary; // v88, preserve saved audio
+ else try{recordingDB=await openRecordingsDB()}catch(e){console.warn('Cannot enable recordings storage',e);recordingDB=null}
+ return primary;
+}
+function dbOp(store,mode,fn){return new Promise((res,rej)=>{const target=store==='recordings'?recordingDB:db;if(!target)return rej(Error('Local storage unavailable'));let t,r;try{t=target.transaction(store,mode);r=fn(t.objectStore(store))}catch(e){rej(e);return}let value;t.oncomplete=()=>res(value);t.onerror=()=>rej(t.error);t.onabort=()=>rej(t.error||Error('Storage transaction cancelled'));if(r&&r.onsuccess!==undefined)r.onsuccess=()=>value=r.result})}const put=(s,k,v)=>dbOp(s,'readwrite',o=>o.put(v,k)),read=(s,k)=>dbOp(s,'readonly',o=>o.get(k)),del=(s,k)=>dbOp(s,'readwrite',o=>o.delete(k));
 let saveChain=Promise.resolve(),saveVersion=0,savedVersion=0,bootComplete=false,projectSelectionRequired=true;
 let lastStartedSoundId=null;
 function persistSnapshot(snapshot){return new Promise((resolve,reject)=>{if(!db)return reject(Error('Local storage unavailable'));const tx=db.transaction('projects','readwrite');const store=tx.objectStore('projects');store.put(snapshot,snapshot.id);store.put(snapshot.id,'__last');tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error)})}
@@ -2755,7 +2800,7 @@ window.addEventListener('pagehide',()=>{if(bootComplete&&db&&!projectSelectionRe
 // A deleted active project cannot be silently resurrected by autosave/pagehide.
 async function deleteSavedProject(projectId){
  if(!db)throw Error('Browser storage is unavailable.');
- if(mediaRecorder?.state==='recording'||(typeof djMixRecorder!=='undefined'&&djMixRecorder?.state==='recording'))throw Error('Stop recording before deleting a project.');
+ if((mediaRecorder?.state==='recording'||recordingFinalizing||recordingStarting)||(typeof djMixRecorder!=='undefined'&&djMixRecorder?.state==='recording'))throw Error('Stop recording before deleting a project.');
  const active=project.id===projectId;
  if(active)projectSelectionRequired=true;
  clearTimeout(saveTimer);
@@ -2769,8 +2814,9 @@ async function deleteSavedProject(projectId){
   const unusedAudioIds=[...new Set(target.sounds.map(sound=>sound.id))].filter(soundId=>!otherAudioIds.has(soundId));
   const lastId=await read('projects','__last');
   await new Promise((resolve,reject)=>{
-   const tx=db.transaction(['projects','assets'],'readwrite');
+   const tx=db.transaction(recordingDB===db?['projects','assets','recordings']:['projects','assets'],'readwrite');
    const ps=tx.objectStore('projects'),as=tx.objectStore('assets');
+   if(recordingDB===db){const cr=tx.objectStore('recordings').index('projectId').openCursor(projectId);cr.onsuccess=()=>{const cursor=cr.result;if(cursor){cursor.delete();cursor.continue()}}}
    ps.delete(projectId);
    if(lastId===projectId){
     const newest=others.slice().sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0))[0];
@@ -2779,17 +2825,25 @@ async function deleteSavedProject(projectId){
    for(const soundId of unusedAudioIds)as.delete(soundId);
    tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error||Error('Storage error'));tx.onabort=()=>reject(tx.error||Error('Delete was cancelled'));
   });
+  if(recordingDB&&recordingDB!==db){
+   try{await new Promise((resolve,reject)=>{
+    const tx=recordingDB.transaction('recordings','readwrite');
+    const req=tx.objectStore('recordings').index('projectId').openCursor(projectId);
+    req.onsuccess=()=>{const cursor=req.result;if(cursor){cursor.delete();cursor.continue()}};
+    tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);
+   })}catch(e){console.warn('Project removed but some recording files could not be cleaned up',e)}
+  }
   if(active){
    stopAll();
    for(const url of urls.values())URL.revokeObjectURL(url);
    urls.clear();blobs.clear();audioCache.clear();
-   const emptyId=id();swapRecordingProject(emptyId);recordingsByProject.delete(projectId);
+   const emptyId=id();swapRecordingProject(emptyId);releaseRecordingCache(projectId);
    project={id:emptyId,name:'Untitled Broadcast',sounds:[],script:'',nextUp:[],settings:{aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,autoNext:false}};
    $('scriptText').value='';setSettings();ensureQueue();renderQueue();renderCards();renderLibrary();renderRecordings();
    $('saveStatus').textContent='Select a project to continue';
    closeModal();showProjectLauncher('open');
   }else{
-   recordingsByProject.delete(projectId);
+   releaseRecordingCache(projectId);
   }
   return target.name||'Untitled Broadcast';
  }catch(e){if(active)projectSelectionRequired=false;throw e}
@@ -2800,7 +2854,7 @@ let deletionIntent=null,deletionFocus=null;
 async function askDeleteProject(projectId){
  try{
   if(!db)throw Error('Browser storage is unavailable.');
-  if(mediaRecorder?.state==='recording'||(typeof djMixRecorder!=='undefined'&&djMixRecorder?.state==='recording'))throw Error('Stop recording before deleting a project.');
+  if((mediaRecorder?.state==='recording'||recordingFinalizing||recordingStarting)||(typeof djMixRecorder!=='undefined'&&djMixRecorder?.state==='recording'))throw Error('Stop recording before deleting a project.');
   const p=await read('projects',projectId);
   if(!p?.id)throw Error('Project not found.');
   deletionIntent=projectId;deletionFocus=document.activeElement;
@@ -2990,7 +3044,84 @@ audioURL(s).then(url=>{if(!$('rangeDuration'))return;const probe=new Audio();pro
 async function addFiles(files){if(!files.length)return;let ok=0;for(const f of files){if(!f.type.startsWith('audio/')&&!/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(f.name)){notify('Skipped unsupported file: '+f.name);continue}const s={id:id(),name:f.name.replace(/\.[^.]+$/,''),category:'Effect',volume:80,speed:1,loop:false};try{if(db)await put('assets',s.id,f);blobs.set(s.id,f);project.sounds.push(s);ok++}catch(e){notify('Storage full or unavailable for '+f.name);blobs.set(s.id,f);project.sounds.push(s);ok++}}if(ok){scheduleSave();renderCards();renderLibrary();notify(ok+' audio file(s) added. Default speed: 1× natural.')} }
 async function removeSound(id){const s=get(id);if(!s||!confirm('Remove '+s.name+' from this project?'))return;stop(id);stop(id,true);project.sounds=project.sounds.filter(x=>x.id!==id);if(queueCurrentId===id)cancelQueuedPlayback();ensureQueue();renderQueue();if(urls.has(id)){URL.revokeObjectURL(urls.get(id));urls.delete(id)}blobs.delete(id);if(db)await del('assets',id).catch(()=>{});scheduleSave();renderCards();renderLibrary()}
 function reorder(a,b){if(!a||!b||a===b)return;const i=project.sounds.findIndex(s=>s.id===a),j=project.sounds.findIndex(s=>s.id===b);if(i<0||j<0)return;project.sounds.splice(j,0,project.sounds.splice(i,1)[0]);scheduleSave();renderCards();renderLibrary()}
-async function record(){try{await initAudio();if(!window.MediaRecorder)throw Error('MediaRecorder unavailable');let stream=new MediaStream(recordDest.stream.getAudioTracks());if($('micToggle').checked){if(!navigator.mediaDevices?.getUserMedia)throw Error('Microphone requires browser permission and usually localhost or HTTPS');micStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}});micSource=ctx.createMediaStreamSource(micStream);micSource.connect(recordDest)}const type=['audio/webm;codecs=opus','audio/webm','audio/mp4'].find(t=>MediaRecorder.isTypeSupported(t));mediaRecorder=new MediaRecorder(stream,type?{mimeType:type}:undefined);recChunks=[];mediaRecorder.ondataavailable=e=>{if(e.data.size)recChunks.push(e.data)};mediaRecorder.onstop=()=>{const blob=new Blob(recChunks,{type:mediaRecorder.mimeType||'audio/webm'});const url=URL.createObjectURL(blob);recordings.unshift({name:project.name+' — '+new Date().toLocaleString(),url,blob,duration:Math.max(0,(Date.now()-recStart)/1000)});renderRecordings();releaseMic();$('recState').textContent='SAVED — DOWNLOAD';$('recordBtn').disabled=false;$('stopRecord').disabled=true;clearInterval(recTimer)};mediaRecorder.start(1000);recStart=Date.now();$('recState').textContent='● RECORDING';$('recordBtn').disabled=true;$('stopRecord').disabled=false;recTimer=setInterval(()=>$('recTime').textContent=fmt((Date.now()-recStart)/1000).padStart(8,'0'),250)}catch(e){releaseMic();notify('Recording unavailable: '+e.message)}}function releaseMic(){try{micSource?.disconnect()}catch(e){}micSource=null;micStream?.getTracks().forEach(t=>t.stop());micStream=null}function stopRecord(){if(mediaRecorder?.state==='recording')mediaRecorder.stop()}
+let recordingFinalizing=false,recordingStarting=false,recordingOwnerId=null,recFeedbackTimer=null;
+function recordingFeedback(message,kind='info',item=null){
+ const toast=$('recFeedbackToast');if(!toast)return;
+ clearTimeout(recFeedbackTimer);toast.replaceChildren();toast.dataset.kind=kind;
+ const label=document.createElement('span');label.textContent=message;toast.append(label);
+ if(item){const action=document.createElement('button');action.type='button';action.textContent='Download now';action.onclick=()=>download(item.blob,recordingFilename(item));toast.append(action)}
+ toast.classList.add('show');recFeedbackTimer=setTimeout(()=>toast.classList.remove('show'),item?11000:4500);
+}
+function recordingFilename(item){return (item.name.replace(/[^a-z0-9 _-]/gi,'').trim()||'Broadcast Recording')+'.'+(item.blob.type.includes('mp4')?'m4a':'webm')}
+function animateRecordingSaved(){
+ const from=$('stopRecord').getBoundingClientRect(),tab=document.querySelector('.tabs .tab[data-tab="recordings"]');
+ const to=tab?.getBoundingClientRect();if(!to)return;
+ tab.classList.remove('rec-tab-saved');void tab.offsetWidth;tab.classList.add('rec-tab-saved');
+ setTimeout(()=>tab.classList.remove('rec-tab-saved'),1600);
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const fly=document.createElement('span');fly.className='rec-fly-token';fly.textContent='♫ Saved';fly.setAttribute('aria-hidden','true');
+ const startX=from.left+from.width/2,startY=from.top+from.height/2,endX=to.left+to.width/2,endY=to.top+to.height/2;
+ Object.assign(fly.style,{left:startX+'px',top:startY+'px'});document.body.appendChild(fly);
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  fly.style.transform=`translate3d(${endX-startX}px,${endY-startY}px,0) translate(-50%,-50%) scale(.56)`;
+  fly.style.opacity='0';
+ }));
+ fly.addEventListener('transitionend',()=>fly.remove(),{once:true});setTimeout(()=>fly.remove(),1500);
+}
+async function record(){
+ if(recordingStarting||recordingFinalizing||mediaRecorder?.state==='recording')return;
+ recordingStarting=true;$('recordBtn').disabled=true;
+ try{
+  if(projectSelectionRequired)throw Error('Open a project before recording.');
+  await initAudio();if(!window.MediaRecorder)throw Error('MediaRecorder unavailable');
+  const stream=new MediaStream(recordDest.stream.getAudioTracks());
+  if($('micToggle').checked){
+   if(!navigator.mediaDevices?.getUserMedia)throw Error('Microphone requires browser permission and usually localhost or HTTPS');
+   micStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}});
+   micSource=ctx.createMediaStreamSource(micStream);micSource.connect(recordDest);
+  }
+  const type=['audio/webm;codecs=opus','audio/webm','audio/mp4'].find(t=>MediaRecorder.isTypeSupported(t));
+  mediaRecorder=new MediaRecorder(stream,type?{mimeType:type}:undefined);recChunks=[];recordingOwnerId=project.id;
+  mediaRecorder.ondataavailable=e=>{if(e.data.size)recChunks.push(e.data)};
+  mediaRecorder.onerror=e=>{recordingFeedback('Recording error: '+(e.error?.message||'Capture failed'),'error')};
+  mediaRecorder.onstop=async()=>{
+   const source=mediaRecorder,ownerId=recordingOwnerId,finalDuration=Math.max(0,(Date.now()-recStart)/1000);
+   recordingFinalizing=true;$('recState').textContent='SAVING…';recordingFeedback('Saving recording…','saving');
+   try{
+    const blob=new Blob(recChunks,{type:source?.mimeType||'audio/webm'});
+    if(!blob.size)throw Error('No audio data was captured.');
+    const savedData={id:id(),projectId:ownerId,name:project.name+' — '+new Date().toLocaleString(),blob,duration:finalDuration,createdAt:Date.now()};
+    let saved=false;
+    try{if(!db)throw Error('Browser storage unavailable');await put('recordings',savedData.id,savedData);saved=true}
+    catch(e){console.warn('Recording could not be saved to local storage:',e)}
+    const item={...savedData,saved,url:URL.createObjectURL(blob)};
+    let group=recordingsByProject.get(ownerId);
+    if(!group){group=project.id===ownerId?recordings:[];recordingsByProject.set(ownerId,group)}
+    group.unshift(item);if(project.id===ownerId){recordings=group;renderRecordings()}
+    if(saved){
+     $('recState').textContent='✓ SAVED';recordingFeedback('✓ Recording saved to Recordings','saved');animateRecordingSaved();
+    }else{
+     $('recState').textContent='DOWNLOAD NOW';recordingFeedback('Not saved in browser — download your recording now.','error',item);
+    }
+   }catch(e){$('recState').textContent='SAVE FAILED';recordingFeedback('Recording could not finish: '+e.message,'error');notify(e.message)}
+   finally{releaseMic();clearInterval(recTimer);recChunks=[];recordingStarting=false;recordingFinalizing=false;recordingOwnerId=null;$('recordBtn').disabled=false;$('stopRecord').disabled=true}
+  };
+  mediaRecorder.start(1000);recStart=Date.now();$('recTime').textContent='00:00:00';
+  $('recState').textContent='● RECORDING';$('stopRecord').disabled=false;
+  recordingFeedback('● Recording started','recording');
+  recTimer=setInterval(()=>$('recTime').textContent=fmt((Date.now()-recStart)/1000).padStart(8,'0'),250);
+ }catch(e){releaseMic();$('recordBtn').disabled=false;recordingFeedback('Recording unavailable: '+e.message,'error');notify('Recording unavailable: '+e.message)}
+ finally{recordingStarting=false}
+}
+function releaseMic(){try{micSource?.disconnect()}catch(e){}micSource=null;micStream?.getTracks().forEach(t=>t.stop());micStream=null}
+// Best-effort browser confirmation if a student closes or refreshes mid-recording.
+window.addEventListener('beforeunload',event=>{if(mediaRecorder?.state==='recording'||recordingStarting||recordingFinalizing){event.preventDefault();event.returnValue=''}});
+function stopRecord(){
+ if(mediaRecorder?.state!=='recording'||recordingFinalizing)return;
+ recordingFinalizing=true;$('recState').textContent='FINISHING…';recordingFeedback('Finishing recording…','saving');
+ try{mediaRecorder.stop()}catch(e){recordingFinalizing=false;recordingFeedback('Could not stop recording: '+e.message,'error')}
+}
+
 function recFormatTime(value){
  const total=Math.max(0,Math.floor(Number.isFinite(value)?value:0));
  const h=Math.floor(total/3600),m=Math.floor(total%3600/60),s=total%60;
@@ -3023,7 +3154,7 @@ function renderRecordings(){
  // Refreshes occur when a new recording is captured; release old audio nodes first.
  container.querySelectorAll('audio').forEach(a=>a.pause());
  container.innerHTML=recordings.length?recordings.map((r,i)=>`<article class="rec-card" data-rec-card="${i}">
- <div class="rec-card-top"><div class="rec-art" aria-hidden="true">♫</div><div class="rec-meta"><div class="rec-name" title="${esc(r.name)}">${esc(r.name)}</div><div class="rec-details"><span class="rec-play-state">READY</span><span>·</span><span>${(r.blob.size/1048576).toFixed(1)} MB</span><span>·</span><span>Broadcast recording</span></div></div><button class="btn small rec-download" type="button" data-download="${i}" title="Download recording">↓ <span>Download</span></button></div>
+ <div class="rec-card-top"><div class="rec-art" aria-hidden="true">♫</div><div class="rec-meta"><div class="rec-name" title="${esc(r.name)}">${esc(r.name)}</div><div class="rec-details"><span class="rec-play-state">READY</span><span>·</span><span>${(r.blob.size/1048576).toFixed(1)} MB</span><span>·</span><span>${r.saved?'Saved on this device':'Download required'}</span></div></div><div class="rec-file-actions"><button class="btn small rec-download" type="button" data-download="${i}" title="Download recording">↓ <span>Download</span></button><button class="btn small rec-delete" type="button" data-rec-delete="${i}" title="Delete recording" aria-label="Delete recording">✕ <span>Delete</span></button></div></div>
  <div class="rec-transport"><button class="rec-play" type="button" data-rec-play="${i}" title="Play recording" aria-label="Play recording">▶</button><div class="rec-timeline"><input data-rec-seek="${i}" aria-label="Seek recording" type="range" min="0" max="1000" value="0" step="1" style="--rec-progress:0%"><div class="rec-times"><span data-rec-elapsed>0:00</span><span data-rec-total>${recFormatTime(Number(r.duration)||0)}</span></div></div><button class="rec-stop" type="button" data-rec-stop="${i}" aria-label="Stop playback" title="Stop playback">■</button></div>
  <audio class="rec-audio" preload="metadata" src="${r.url}" playsinline></audio>
  </article>`).join(''):'<div class="rec-empty"><span aria-hidden="true">◉</span><strong>No recordings yet</strong><p>Record your broadcast, then preview and download it here.</p></div>';
@@ -3064,14 +3195,54 @@ function seekRecordingPlayback(idx,slider){
 }
 function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000)}
 function blob64(blob){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(blob)})}async function exportProject(){try{const files=[];for(const s of project.sounds)files.push({id:s.id,data:await blob64(await asset(s))});download(new Blob([JSON.stringify({format:'on-air-studio-project',version:2,project,files})],{type:'application/json'}),(project.name.replace(/[^a-z0-9 _-]/gi,'').trim()||'ON-AIR-Project')+'.onair.json');notify('Portable project exported with all audio. Keep this file as a backup.')}catch(e){notify('Export failed: '+e.message)}}
-const recordingsByProject=new Map();
+const recordingsByProject=new Map();let recordingRestoreToken=0;
+async function restoreRecordingsForProject(targetId,token=++recordingRestoreToken){
+ if(!db)return;
+ try{
+  const saved=await dbOp('recordings','readonly',store=>store.index('projectId').getAll(targetId));
+  if(token!==recordingRestoreToken||project.id!==targetId)return;
+  const cached=recordingsByProject.get(targetId)||[];
+  const cachedById=new Map(cached.map(r=>[r.id,r]));
+  const restored=saved.map(data=>{
+   const existing=cachedById.get(data.id);if(existing)return existing;
+   return {...data,url:URL.createObjectURL(data.blob),saved:true};
+  });
+  const pending=cached.filter(r=>!restored.some(s=>s.id===r.id));
+  recordings=[...pending,...restored].sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+  recordingsByProject.set(targetId,recordings);renderRecordings();
+ }catch(e){console.warn('Could not restore recordings:',e);recordingFeedback('Could not load saved recordings. Check browser storage.','error')}
+}
 function swapRecordingProject(nextId){
  $('recordingList').querySelectorAll('audio').forEach(a=>a.pause());
  recordingsByProject.set(project.id,recordings);
  recordings=recordingsByProject.get(nextId)||[];
  renderRecordings();
+ const token=++recordingRestoreToken;
+ // Called before project is assigned by loadProject/launcherCreate: defer identity check one microtask.
+ queueMicrotask(()=>void restoreRecordingsForProject(nextId,token));
 }
-async function loadProject(p,files){if(mediaRecorder?.state==='recording')throw Error('Stop the current recording before opening another project.');swapRecordingProject(p.id);stopAll();for(const u of urls.values())URL.revokeObjectURL(u);urls.clear();blobs.clear();project=p;project.settings={aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,...(p.settings||{})};for(const f of files||[]){const r=await fetch(f.data),b=await r.blob();blobs.set(f.id,b);if(db)await put('assets',f.id,b)}setSettings();$('scriptText').value=project.script||'';ensureQueue();renderQueue();renderCards();renderLibrary();scheduleSave()}
+function releaseRecordingCache(projectId){
+ const items=recordingsByProject.get(projectId)||[];
+ for(const item of items)if(item.url)URL.revokeObjectURL(item.url);
+ recordingsByProject.delete(projectId);
+}
+async function deleteRecording(idx){
+ const item=recordings[idx];if(!item)return;
+ modal('Delete Recording',`<div class="rec-delete-dialog"><p>Delete <strong>${esc(item.name)}</strong> from this browser?</p><p class="hint">This cannot be undone. Download the recording first if you want to keep a copy.</p><div class="rec-delete-buttons"><button class="btn" type="button" id="cancelRecordingDelete">Cancel</button><button class="btn danger" type="button" id="confirmRecordingDelete">Delete Recording</button></div><p class="hint" role="status" id="recordingDeleteStatus"></p></div>`);
+ $('cancelRecordingDelete').onclick=closeModal;
+ $('confirmRecordingDelete').onclick=async()=>{
+  const btn=$('confirmRecordingDelete');btn.disabled=true;
+  try{
+   if(item.saved){if(!db)throw Error('Browser storage unavailable');await del('recordings',item.id)}
+   const arr=recordingsByProject.get(item.projectId)||recordings;
+   const pos=arr.findIndex(r=>r.id===item.id);if(pos!==-1)arr.splice(pos,1);
+   if(project.id===item.projectId){recordings=arr;renderRecordings()}
+   if(item.url)URL.revokeObjectURL(item.url);
+   closeModal();recordingFeedback('Recording deleted','saved');
+  }catch(e){$('recordingDeleteStatus').textContent='Could not delete: '+e.message;btn.disabled=false}
+ };
+}
+async function loadProject(p,files){if(mediaRecorder?.state==='recording'||recordingFinalizing||recordingStarting)throw Error('Finish saving the recording before opening another project.');swapRecordingProject(p.id);stopAll();for(const u of urls.values())URL.revokeObjectURL(u);urls.clear();blobs.clear();project=p;project.settings={aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,...(p.settings||{})};for(const f of files||[]){const r=await fetch(f.data),b=await r.blob();blobs.set(f.id,b);if(db)await put('assets',f.id,b)}setSettings();$('scriptText').value=project.script||'';ensureQueue();renderQueue();renderCards();renderLibrary();scheduleSave()}
 function projectDialog(){
  modal('My Projects',`<div class="pm">
  <div class="pm-current"><div class="pm-eyebrow">CURRENT PROJECT</div><label for="projName" class="pm-label">Project name</label><div class="pm-namebox"><span aria-hidden="true">✎</span><input id="projName" type="text" maxlength="80" autocomplete="off" spellcheck="false" placeholder="Name your broadcast" value="${esc(project.name)}"></div><div class="pm-actions"><button class="btn primary" id="renameProj">✓ Save Project</button><button class="btn" id="newProj">＋ New Project</button></div><div class="pm-feedback" id="pmFeedback" role="status">Changes to your sounds and script are saved automatically.</div><button type="button" id="pmSwitchProjects" class="btn small" style="margin-top:8px">↗ New or Open Project</button></div>
@@ -3079,9 +3250,9 @@ function projectDialog(){
  <div class="pm-copy"><button class="btn small" id="exportProj" type="button">↓ Download Project Copy</button><span>Optional: keep a copy of your current project on your device.</span></div></div>`);
  const input=$('projName');const feedback=$('pmFeedback');
  const saveName=async()=>{const name=input.value.trim()||'Untitled Broadcast';project.name=name;input.value=name;const ok=await save();renderCards();feedback.textContent=ok?'✓ Project saved successfully.':'Could not save here. Use Save a Copy under More options.';feedback.classList.toggle('pm-error',!ok);await listProjects()};
- $('pmSwitchProjects').onclick=async()=>{if(mediaRecorder?.state==='recording'){feedback.textContent='Stop the recording before switching projects.';return}const ok=await save();if(!ok){feedback.textContent='Could not save this project. Export a copy before switching.';return}closeModal();showProjectLauncher()};
+ $('pmSwitchProjects').onclick=async()=>{if(mediaRecorder?.state==='recording'||recordingFinalizing||recordingStarting){feedback.textContent='Finish saving the recording before switching projects.';return}const ok=await save();if(!ok){feedback.textContent='Could not save this project. Export a copy before switching.';return}closeModal();showProjectLauncher()};
  $('renameProj').onclick=saveName;input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();saveName()}};
- $('newProj').onclick=async()=>{if(mediaRecorder?.state==='recording'){feedback.textContent='Stop the recording before switching projects.';return}const ok=await save();if(!ok){feedback.textContent='Could not save project. Export backup first.';return}closeModal();showProjectLauncher('new')};
+ $('newProj').onclick=async()=>{if(mediaRecorder?.state==='recording'||recordingFinalizing||recordingStarting){feedback.textContent='Finish saving the recording before switching projects.';return}const ok=await save();if(!ok){feedback.textContent='Could not save project. Export backup first.';return}closeModal();showProjectLauncher('new')};
  $('exportProj').onclick=exportProject;listProjects();
 }
 async function listProjects(){const el=$('savedList');if(!el)return;if(!db){el.innerHTML='<div class="pm-empty">Local saving is unavailable. Use Save a Copy to keep your work.</div>';return}try{const all=await dbOp('projects','readonly',o=>o.getAll());const projects=all.filter(x=>x&&Array.isArray(x.sounds)&&x.id).sort((a,b)=>(a.id===project.id?-1:0)-(b.id===project.id?-1:0));$('pmCount').textContent=projects.length+' saved';el.innerHTML=projects.map(p=>`<div class="pm-item ${p.id===project.id?'pm-active':''}"><div class="pm-item-icon">${p.id===project.id?'●':'♫'}</div><div class="pm-item-info"><strong title="${esc(p.name)}">${esc(p.name)}</strong><span>${p.sounds.length} sound${p.sounds.length===1?'':'s'}${p.id===project.id?' · Current project':''}</span></div>${p.id===project.id?'<span class="pm-currentbadge">Open</span>':`<button class="btn small" data-open="${esc(p.id)}">Open →</button>`}<button type="button" class="project-delete-btn pm-delete-btn" data-delete-project="${esc(p.id)}" title="Delete ${esc(p.name||'project')}" aria-label="Delete ${esc(p.name||'project')}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 4h4M6 7l1 13h10l1-13M10 11v5M14 11v5"/></svg></button></div>`).join('')||'<div class="pm-empty">No saved projects yet. Save your current project to get started.</div>'}catch(e){el.innerHTML='<div class="pm-empty">Could not load saved projects.</div>'}}
@@ -3154,8 +3325,9 @@ grid.addEventListener('pointerdown',e=>{
 $('libraryList').onclick=e=>{const a=e.target.closest('[data-edit],[data-remove]');if(!a)return;if(a.dataset.edit)editSound(a.dataset.edit);else removeSound(a.dataset.remove)};$('recordingList').onclick=e=>{
  const play=e.target.closest('[data-rec-play]');if(play){toggleRecordingPlayback(Number(play.dataset.recPlay));return}
  const stop=e.target.closest('[data-rec-stop]');if(stop){stopRecordingPlayback(Number(stop.dataset.recStop));return}
+ const deletion=e.target.closest('[data-rec-delete]');if(deletion){void deleteRecording(Number(deletion.dataset.recDelete));return}
  const b=e.target.closest('[data-download]');if(!b)return;
- const r=recordings[Number(b.dataset.download)];if(r)download(r.blob,r.name.replace(/[^a-z0-9 _-]/gi,'')+'.'+(r.blob.type.includes('mp4')?'m4a':'webm'))
+ const r=recordings[Number(b.dataset.download)];if(r)download(r.blob,recordingFilename(r))
 };
 $('recordingList').addEventListener('input',e=>{
  const slider=e.target.closest('[data-rec-seek]');if(slider)seekRecordingPlayback(Number(slider.dataset.recSeek),slider)
@@ -3291,7 +3463,7 @@ $('modalBody').addEventListener('click',async e=>{const b=e.target.closest('[dat
 for(const t of document.querySelectorAll('.tab'))t.onclick=()=>{document.querySelectorAll('.tabs .tab').forEach(x=>{const current=x===t;x.classList.toggle('active',current);x.setAttribute('aria-current',current?'page':'false')});for(const n of ['studio','library','recordings'])$(n).classList.toggle('hidden',n!==t.dataset.tab);if(t.dataset.tab==='library')renderLibrary()};
 $('master').oninput=e=>{project.settings.master=Number(e.target.value);setSettings();scheduleSave()};
 function tick(){for(const [map,isPreview] of [[live,false],[preview,true]])for(const [id,x] of map){const card=[...document.querySelectorAll('.sound')].find(c=>c.dataset.id===id);if(isPreview)continue;const dur=x.el.duration,now=x.el.currentTime,start=Math.max(0,Number(x.sound.start)||0),end=Math.min(Number.isFinite(dur)?dur:Infinity,Number(x.sound.end)>0?Number(x.sound.end):Infinity),range=Math.max(.01,end-start);if(Number.isFinite(end)&&now>=end-.035){if(x.sound.loop){x.el.currentTime=start;if(x.el.paused)x.el.play().catch(()=>stop(id,isPreview))}else{stop(id,isPreview);finishQueuedTrack(id,x);continue}}const t=Math.max(0,now-start),left=Math.max(0,end-now),fi=Math.min(Math.max(0,Number(x.sound.fadeIn)||0),range/2),fo=Math.min(Math.max(0,Number(x.sound.fadeOut)||0),range/2),fade=Math.min(1,fi?t/fi:1,fo?left/fo:1);x.gain.gain.setTargetAtTime((x.sound.volume??80)/100*clamp(fade,0,1),ctx.currentTime,.012);if(card){card.querySelector('[data-progress]').style.width=(Number.isFinite(end)?clamp(t/range*100,0,100):0)+'%';card.querySelector('[data-elapsed]').textContent=fmt(t);card.querySelector('[data-total]').textContent=fmt(range)}}if(!$('queueWorkspace').classList.contains('hidden'))queueNowUpdate();requestAnimationFrame(tick)}
-async function boot(){try{db=await openDB();const last=await read('projects','__last');if(last){const p=await read('projects',last);if(p&&Array.isArray(p.sounds)){project=p;projectSelectionRequired=false;let missing=0;for(const sound of p.sounds){const stored=await read('assets',sound.id);if(!stored)missing++}if(missing)notify(missing+' audio file(s) missing from browser storage. Remove and re-add those sounds.');$('saveStatus').textContent='✓ Restored: '+p.name}else{$('saveStatus').textContent='✓ Local storage ready'}}else{$('saveStatus').textContent='✓ New workspace'}if(navigator.storage?.persist)navigator.storage.persist().catch(()=>{})}catch(e){$('saveStatus').textContent='Export backups to save';notify('Browser local storage unavailable. You can still export a project backup.')}setSettings();$('scriptText').value=project.script||'';ensureQueue();renderQueue();renderCards();renderLibrary();renderRecordings();bootComplete=true;launcherBootReady=true;revealLauncherWhenReady();tick()}
+async function boot(){try{db=await openDB();const last=await read('projects','__last');if(last){const p=await read('projects',last);if(p&&Array.isArray(p.sounds)){project=p;projectSelectionRequired=false;let missing=0;for(const sound of p.sounds){const stored=await read('assets',sound.id);if(!stored)missing++}if(missing)notify(missing+' audio file(s) missing from browser storage. Remove and re-add those sounds.');$('saveStatus').textContent='✓ Restored: '+p.name}else{$('saveStatus').textContent='✓ Local storage ready'}}else{$('saveStatus').textContent='✓ New workspace'}if(navigator.storage?.persist)navigator.storage.persist().catch(()=>{})}catch(e){$('saveStatus').textContent='Export backups to save';notify('Browser local storage unavailable. You can still export a project backup.')}setSettings();$('scriptText').value=project.script||'';ensureQueue();renderQueue();renderCards();renderLibrary();renderRecordings();void restoreRecordingsForProject(project.id);bootComplete=true;launcherBootReady=true;revealLauncherWhenReady();tick()}
 
 
 
@@ -3401,9 +3573,19 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('djSoundModal').
 // Explicit start: intro -> launcher -> named/saved project -> studio.
 let launcherBootReady=false,introMinimumElapsed=false,introDismissed=false;
 const splashTimer=setTimeout(()=>{introMinimumElapsed=true;revealLauncherWhenReady()},3650);
+const splashSafetyTimer=setTimeout(()=>{
+ if(launcherBootReady||introDismissed)return;
+ const label=document.querySelector('.v64-splash-foot');
+ if(label)label.textContent='STORAGE IS BUSY · CLOSE OTHER ON AIR STUDIO TABS';
+ const hint=document.querySelector('.v64-splash-tagline');
+ if(hint)hint.textContent='Your projects have not been deleted. Close other ON AIR Studio tabs, then retry.';
+ const retry=$('splashSkip');retry.textContent='Retry loading';
+ retry.onclick=()=>location.reload();
+},7000);
 function revealLauncherWhenReady(){
  if(!launcherBootReady||!introMinimumElapsed||introDismissed)return;
  introDismissed=true;
+ clearTimeout(splashSafetyTimer);
  $('splashScreen').classList.add('splash-leave');
  $('projectLauncher').classList.remove('hidden');
  void populateLauncherProjects();
@@ -3465,7 +3647,7 @@ $('launcherCreate').onclick=async()=>{
  if(!name){$('launcherFeedback').textContent='Please enter a project name first.';$('launcherProjectName').focus();return}
  const button=$('launcherCreate');button.disabled=true;
  try{
-  if(mediaRecorder?.state==='recording')throw Error('Stop your current recording before creating a new project.');
+  if(mediaRecorder?.state==='recording'||recordingFinalizing||recordingStarting)throw Error('Finish saving the recording before creating a new project.');
   if(!db)throw Error('Local saving is unavailable in this browser. Enable site storage before creating a project.');
   stopAll();for(const url of urls.values())URL.revokeObjectURL(url);urls.clear();blobs.clear();
   const newProjectId=id();swapRecordingProject(newProjectId);
@@ -3494,7 +3676,14 @@ $('launcherProjects').addEventListener('click',async e=>{
 });
 
 // Press Escape within launcher: remain until project is explicitly selected.
-boot();
+boot().catch(err=>{
+ console.error('Studio startup error:',err);
+ const foot=document.querySelector('.v64-splash-foot');
+ if(foot)foot.textContent='STARTUP ERROR · RELOAD TO TRY AGAIN';
+ const hint=document.querySelector('.v64-splash-tagline');
+ if(hint)hint.textContent='Your saved projects were not deleted. Close other ON AIR Studio tabs and retry.';
+ const retry=$('splashSkip');retry.textContent='Retry loading';retry.onclick=()=>location.reload();
+});
 })();
 </script><script id="studio-v12-theme-js">
 (()=>{
