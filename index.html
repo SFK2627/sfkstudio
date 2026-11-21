@@ -1414,15 +1414,262 @@ html[data-theme="light"] .dj-heading .dj-stop-decks{color:#a53b48!important;back
  .dj-cross-title small{display:none}
 }
 @media(prefers-reduced-motion:reduce){.dj-deck,.dj-deck *{transition:none!important}.dj-deck[data-player-status="playing"] .dj-deck-state::before{animation:none}}
+
+/* v73: simplified project management and safe delete actions */
+.v73-project-row{display:flex;align-items:stretch;gap:7px;min-width:0}
+.v73-project-row .v64-project-item{flex:1;min-width:0;width:auto;cursor:pointer}
+.project-delete-btn{display:grid;place-items:center;flex:0 0 42px;min-width:42px;min-height:42px;border:1px solid #744344;background:#311d20;color:#ff9d9d;border-radius:10px;cursor:pointer;transition:background .16s,border-color .16s,transform .16s}
+.project-delete-btn svg{width:18px;height:18px;pointer-events:none}
+.project-delete-btn:hover{background:#56252a;border-color:#f07878;color:#fff}
+.project-delete-btn:active{transform:scale(.96)}
+.project-delete-btn:focus-visible{outline:3px solid #ffa8a8;outline-offset:2px}
+.pm-delete-btn{flex-basis:36px;min-width:36px;min-height:36px}
+.pm-copy{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding-top:11px;border-top:1px solid #3c3c3c}
+.pm-copy span{font-size:11px;color:#aeaeae;line-height:1.4;flex:1;min-width:160px}
+.project-delete-overlay{position:fixed;inset:0;z-index:140;background:rgba(0,0,0,.83);display:grid;place-items:center;padding:16px;overflow:auto}
+.project-delete-sheet{width:min(420px,100%);background:#202020;color:#f7f7f7;border:1px solid #555;border-radius:19px;padding:24px;box-shadow:0 20px 70px #000b}
+.project-delete-icon{width:42px;height:42px;border-radius:14px;background:#4b2428;color:#ffb4b4;font-size:24px;font-weight:900;display:grid;place-items:center;margin-bottom:14px}
+.project-delete-sheet h2{font-size:20px;line-height:1.2;margin:0 0 9px;font-weight:850}
+.project-delete-sheet p{font-size:13px;line-height:1.55;margin:0 0 8px;color:#c9c9cb;overflow-wrap:anywhere}
+.project-delete-sheet p strong{color:#fff}
+.project-delete-sheet .project-delete-warning{font-size:12px;color:#ffb4b4;font-weight:750;margin-bottom:20px}
+.project-delete-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.project-delete-actions .btn{min-height:45px;justify-content:center}
+.project-delete-sheet .project-delete-feedback{min-height:0;margin:10px 0 0;color:#ffc3c3}
+.project-delete-sheet .project-delete-feedback:empty{display:none}
+html[data-theme="light"] .project-delete-btn{background:#fff4f3;border-color:#e9c8c8;color:#a52d38}
+html[data-theme="light"] .project-delete-btn:hover{background:#ffe1df;border-color:#c73b48;color:#8f1e2d}
+html[data-theme="light"] .pm-copy{border-color:#d6e0ed}
+html[data-theme="light"] .pm-copy span{color:#5f7186}
+html[data-theme="light"] .project-delete-sheet{background:#fff;color:#223248;border-color:#d6dce5}
+html[data-theme="light"] .project-delete-icon{background:#ffe7e7;color:#bd2d39}
+html[data-theme="light"] .project-delete-sheet p{color:#4c5b6c}
+html[data-theme="light"] .project-delete-sheet p strong{color:#192a41}
+html[data-theme="light"] .project-delete-sheet .project-delete-warning{color:#b52b37}
+html[data-theme="light"] .project-delete-sheet .project-delete-feedback{color:#b52b37}
+/* Contrast repair for launcher in Light Mode (older generic button rules override its palette). */
+html[data-theme="light"] #projectLauncher .v64-choice{background:#f6f9fc!important;border-color:#cad9e7!important;color:#17354f!important}
+html[data-theme="light"] #projectLauncher .v64-choice.active,html[data-theme="light"] #projectLauncher .v64-choice:hover{background:#e8f7f2!important;border-color:#10aa9c!important}
+html[data-theme="light"] #projectLauncher .v64-choice strong{color:#17354f!important}
+html[data-theme="light"] #projectLauncher .v64-choice small{color:#5c7389!important}
+html[data-theme="light"] #projectLauncher .v64-project-item{background:#fff!important;color:#1e3953!important;border-color:#cdd9e8!important}
+html[data-theme="light"] #projectLauncher .v64-project-item:hover{background:#edf9f5!important}
+html[data-theme="light"] #projectLauncher .v64-project-item-info strong{color:#1e3953!important}
+html[data-theme="light"] #projectLauncher .v64-project-item-info small{color:#5a738a!important}
+html[data-theme="light"] #projectLauncher .v64-launcher-actions .btn{background:#fff!important;color:#1c3b55!important;border-color:#b6cadd!important}
+html[data-theme="light"] #projectLauncher .v64-launcher-actions .btn:hover{background:#eef6fb!important}
+html[data-theme="light"] #projectLauncher .project-delete-btn{background:#fff1f1!important;border-color:#e9c8c8!important;color:#a52d38!important}
+html[data-theme="light"] #projectLauncher .project-delete-btn:hover{background:#ffe0e0!important}
+@media(max-width:430px){.v73-project-row{gap:5px}.v73-project-row .v64-project-item{padding:10px 7px}.project-delete-btn{flex-basis:40px;min-width:40px;min-height:40px}.pm-item{gap:6px}.pm-delete-btn{flex-basis:34px;min-width:34px;min-height:34px}.project-delete-sheet{padding:20px}.project-delete-actions{gap:7px}}
+
+/* v74: Project Hub redesign — zero dependencies, launcher-only styles. */
+#projectLauncher.v74-launcher{--hub-surface:#141719;--hub-elev:#1d2224;--hub-line:#323a3d;--hub-ink:#f1f7f5;--hub-muted:#a8b7b3;--hub-accent:#3ce2be;--hub-accent2:#21a88e;--hub-soft:rgba(38,201,168,.1);background:radial-gradient(ellipse 75% 75% at 52% -12%,rgba(32,156,135,.21),transparent 72%),#070909;padding:24px;align-items:center;justify-items:center;overscroll-behavior:contain}
+#projectLauncher .v74-shell{width:min(820px,100%);padding:clamp(20px,3.25vw,34px);border:1px solid #344440;border-radius:26px;background:linear-gradient(153deg,#1a2220 0%,#111515 55%,#131817 100%);color:var(--hub-ink);box-shadow:0 28px 100px rgba(0,0,0,.67),0 1px 0 rgba(255,255,255,.04) inset;gap:18px;position:relative;overflow:visible}
+#projectLauncher .v74-launcher-topline{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#projectLauncher .v74-brand{display:flex;align-items:center;gap:10px;min-width:0}
+#projectLauncher .v74-brand-emblem{width:40px;height:40px;border-radius:13px;background:linear-gradient(145deg,#194a40,#0d3028);border:1px solid #276d5c;display:grid;place-items:center;color:#6af6d0;flex:none;box-shadow:inset 0 1px rgba(255,255,255,.08)}
+#projectLauncher .v74-brand-emblem svg{width:23px;height:23px}
+#projectLauncher .v74-brand-wordmark{font-weight:850;font-size:14px;line-height:1.15;letter-spacing:.04em;color:#fafcfb}
+#projectLauncher .v74-brand-wordmark b{color:#4ae7c2}
+#projectLauncher .v74-brand-wordmark small{display:block;margin-top:3px;font-size:10px;font-weight:620;letter-spacing:.12em;color:#92aaa3}
+#projectLauncher .v74-top-tag{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;border:1px solid #3b5049;background:#1e302b;border-radius:100px;padding:8px 11px;color:#b2eadd;font-size:10px;letter-spacing:.12em;font-weight:850}
+#projectLauncher .v74-top-dot{width:6px;height:6px;border-radius:100px;background:#35ddb1;box-shadow:0 0 0 3px rgba(48,209,162,.1)}
+#projectLauncher .v74-intro{display:grid;gap:5px;margin-top:2px}
+#projectLauncher .v74-eyebrow{font-size:10px;font-weight:850;letter-spacing:.15em;color:#79d7c3}
+#projectLauncher .v74-intro h1{margin:1px 0 0;font-size:clamp(27px,4vw,39px);font-weight:900;letter-spacing:-.05em;line-height:1.13;color:#fff}
+#projectLauncher .v74-intro h1 span{color:#66e4c4}
+#projectLauncher .v74-intro .v64-launcher-lead{font-size:13px;line-height:1.55;margin:2px 0 0;color:#aabbb6}
+#projectLauncher .v74-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#projectLauncher .v74-choice{position:relative;isolation:isolate;display:flex;align-items:center;min-height:104px;gap:13px;text-align:left;border-radius:16px;border:1px solid #3c514c;background:linear-gradient(135deg,#1e312b,#1a2523 72%);padding:15px;color:#f3fff9;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.07);transition:border-color .16s,background .16s,transform .16s,box-shadow .16s}
+#projectLauncher .v74-choice::after{content:"";position:absolute;inset:0;border-radius:inherit;border:1px solid transparent;pointer-events:none}
+#projectLauncher .v74-choice-open{border-color:#39434d;background:linear-gradient(135deg,#262d35,#1c2429 75%)}
+#projectLauncher .v74-choice:hover,#projectLauncher .v74-choice.active{border-color:#38d6b2;background:linear-gradient(135deg,#25483d,#19332e 80%);box-shadow:0 0 0 2px rgba(52,218,182,.08),0 10px 25px rgba(0,0,0,.15)}
+#projectLauncher .v74-choice:focus-visible{outline:3px solid #59ebce;outline-offset:3px}
+#projectLauncher .v74-choice:active{transform:translateY(1px)}
+#projectLauncher .v74-choice-symbol{flex:none;width:49px;height:49px;border-radius:14px;display:grid;place-items:center;color:#a0ffdf;background:linear-gradient(145deg,#266d56,#1a4b3e);border:1px solid #37836a}
+#projectLauncher .v74-choice-open .v74-choice-symbol{background:linear-gradient(145deg,#334756,#273846);border-color:#4b6a7c;color:#addcf6}
+#projectLauncher .v74-choice-symbol svg{width:25px;height:25px}
+#projectLauncher .v74-choice-copy{display:grid;gap:5px;min-width:0;flex:1}
+#projectLauncher .v74-choice-copy strong{font-size:16px;font-weight:860;line-height:1.2;color:#f8fffc}
+#projectLauncher .v74-choice-copy small{font-size:11px;line-height:1.4;color:#a9c4ba}
+#projectLauncher .v74-choice-open .v74-choice-copy small{color:#b7c3d0}
+#projectLauncher .v74-choice-arrow{display:grid;place-items:center;flex:none;width:28px;height:28px;border-radius:100%;background:#2b5145;color:#affce5;transition:transform .15s}
+#projectLauncher .v74-choice-open .v74-choice-arrow{background:#344958;color:#c4eaff}
+#projectLauncher .v74-choice:hover .v74-choice-arrow,#projectLauncher .v74-choice.active .v74-choice-arrow{transform:translateX(2px)}
+#projectLauncher .v74-choice-arrow svg{width:16px;height:16px}
+#projectLauncher .v74-action-panel{gap:12px;border:1px solid #354c45;border-radius:17px;padding:17px;background:#18231f;color:var(--hub-ink);box-shadow:inset 0 1px 0 rgba(255,255,255,.03);animation:v74-panel-show .18s ease-out both}
+@keyframes v74-panel-show{from{opacity:.55;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+#projectLauncher .v74-panel-heading{display:flex;align-items:center;gap:11px;min-width:0}
+#projectLauncher .v74-panel-icon{width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:11px;background:#214f42;color:#8dffdd;border:1px solid #377962}
+#projectLauncher .v74-panel-icon svg{width:19px;height:19px}
+#projectLauncher .v74-panel-heading>span:nth-child(2){display:grid;gap:3px;min-width:0;flex:1}
+#projectLauncher .v74-panel-heading strong{font-weight:850;font-size:15px;color:#f8fffc}
+#projectLauncher .v74-panel-heading small{font-size:11px;line-height:1.4;color:#a9bfb7}
+#projectLauncher .v74-input-label{margin:1px 0 -7px;font-size:12px;font-weight:760;color:#d5e4df}
+#projectLauncher .v74-name-field{display:flex;align-items:center;gap:10px;background:#0d1413;border:1px solid #48635a;border-radius:12px;padding:0 13px;min-height:49px;transition:border-color .18s,box-shadow .18s}
+#projectLauncher .v74-name-field:focus-within{border-color:#39d4b0;box-shadow:0 0 0 3px rgba(54,218,176,.13)}
+#projectLauncher .v74-name-field svg{width:18px;height:18px;flex:none;color:#8cbaa9}
+#projectLauncher #launcherProjectName{font:inherit;font-size:14px!important;display:block;min-width:0;width:100%;height:49px;min-height:49px;padding:0;border:0!important;border-radius:0;background:transparent!important;color:#f9fffc!important;box-shadow:none!important;outline:none!important}
+#projectLauncher #launcherProjectName::placeholder{color:#7b9189;opacity:1}
+#projectLauncher .v74-input-hint{margin:-6px 0 0;font-size:11px;line-height:1.4;color:#a1b4ad}
+#projectLauncher .v74-launcher-actions{display:flex;gap:9px;flex-wrap:nowrap;flex-direction:row;margin-top:2px}
+#projectLauncher .v74-launcher-actions .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;border-radius:11px;font-size:12px;padding:10px 15px;flex:0 0 auto;width:auto;white-space:nowrap;cursor:pointer}
+#projectLauncher .v74-launcher-actions .v74-create-button{flex:1;background:linear-gradient(135deg,#35dfb4,#14b999)!important;color:#063228!important;border:1px solid #54edc6!important;box-shadow:0 5px 16px rgba(11,186,148,.13)}
+#projectLauncher .v74-create-button svg{width:17px;height:17px}
+#projectLauncher .v74-create-button:hover{filter:brightness(1.075)}
+#projectLauncher .v74-back-button{background:#29322f!important;border:1px solid #485b54!important;color:#d7ebe3!important}
+#projectLauncher .v74-back-button:hover{background:#32413b!important}
+#projectLauncher .v74-project-heading{margin-bottom:1px}
+#projectLauncher .v74-count{display:inline-flex;align-items:center;justify-content:center;flex:none;min-width:65px;padding:6px 10px;border:1px solid #426458;background:#254138;color:#baf2e1;border-radius:99px;font-size:10px!important;font-weight:800}
+#projectLauncher .v74-project-list{display:grid;gap:8px;max-height:min(34vh,300px);min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-color:#476f5f transparent;scrollbar-width:thin;padding:1px 3px 1px 0}
+#projectLauncher .v74-project-row{display:flex;align-items:stretch;gap:8px;min-width:0}
+#projectLauncher .v74-project-row .v64-project-item{display:flex;align-items:center;gap:11px;min-width:0;min-height:66px;flex:1;border:1px solid #3b4c49;background:#202d29;border-radius:12px;padding:9px 12px;cursor:pointer;text-align:left;color:#f4fff9;transition:background .16s,border-color .16s,transform .16s}
+#projectLauncher .v74-project-row .v64-project-item:hover{border-color:#4cdeb8;background:#254137}
+#projectLauncher .v74-project-row .v64-project-item:focus-visible{outline:3px solid #55e1c2;outline-offset:1px}
+#projectLauncher .v74-project-row .v64-project-item:active{transform:scale(.997)}
+#projectLauncher .v74-project-row.is-current .v64-project-item{border-color:#398873;background:#203d33}
+#projectLauncher .v74-project-icon{display:grid;place-items:center;width:39px;height:39px;flex:none;border:1px solid #4c7769;border-radius:11px;background:#305247;color:#9bf9d4}
+#projectLauncher .v74-project-icon svg{width:20px;height:20px}
+#projectLauncher .v74-project-row .v64-project-item-info{display:grid;gap:5px;min-width:0;flex:1}
+#projectLauncher .v74-project-row .v64-project-item-info strong{font-size:13px;font-weight:800;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#projectLauncher .v74-project-row .v64-project-item-info small{font-size:10px;color:#b1c4bd;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#projectLauncher .v74-open-cta{display:flex;align-items:center;gap:3px;font-size:11px;font-weight:850;flex:none;white-space:nowrap;color:#75efcc}
+#projectLauncher .v74-open-cta svg{width:13px;height:13px}
+#projectLauncher .v74-project-row .project-delete-btn{display:grid;place-items:center;flex:0 0 46px;min-width:46px;min-height:46px;border:1px solid #68454a;border-radius:12px;color:#ffb2b2;background:#352329;transition:background .16s,border-color .16s;cursor:pointer}
+#projectLauncher .v74-project-row .project-delete-btn:hover{background:#512931;border-color:#ed8286}
+#projectLauncher .v74-project-empty{min-height:145px;display:grid;place-items:center;align-content:center;gap:9px;text-align:center;padding:16px;border:1px dashed #4c6960;background:#14201c;border-radius:13px}
+#projectLauncher .v74-empty-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:#26433b;color:#a4f9da;border:1px solid #3e6a5d}
+#projectLauncher .v74-empty-icon svg{width:22px;height:22px}
+#projectLauncher .v74-project-empty strong{font-size:14px;color:#f3fff8}
+#projectLauncher .v74-project-empty p{margin:0;color:#a8c0b5;font-size:11px;line-height:1.45}
+#projectLauncher .v74-empty-create{margin-top:2px;min-height:37px;padding:8px 15px;border:1px solid #4cc7a5;border-radius:9px;background:#295244;color:#d4ffed;font-weight:800;font-size:11px;cursor:pointer}
+#projectLauncher .v74-open-actions{display:flex;justify-content:flex-start}
+#projectLauncher .v74-open-actions .v74-back-button{flex:0 0 auto}
+#projectLauncher .v74-feedback{font-size:12px;line-height:1.4;min-height:0;color:#ffd6a1}
+#projectLauncher .v74-feedback:empty{display:none}
+#projectLauncher .v74-launcher-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:15px;margin-top:0;border-top:1px solid #35413d;text-align:left;color:#94a79e;font-size:10px;line-height:1.4}
+#projectLauncher .v74-launcher-footer span:first-child{display:flex;align-items:center;gap:6px}
+#projectLauncher .v74-launcher-footer svg{width:14px;height:14px;flex:none;color:#77cead}
+#projectLauncher button:disabled{cursor:not-allowed;opacity:.55}
+/* Clear bright/light palette; override legacy specificity from v69/v70. */
+html[data-theme="light"] #projectLauncher.v74-launcher{--hub-ink:#1f3a35;--hub-muted:#5a716a;background:radial-gradient(ellipse 75% 55% at 50% -5%,#d7f1e8,transparent 78%),#f3f7f5;color:#1d342f}
+html[data-theme="light"] #projectLauncher .v74-shell{background:linear-gradient(145deg,#fff,#f9fcfa);border-color:#d6e2dd;box-shadow:0 20px 65px rgba(47,86,74,.15),0 1px 0 #fff inset;color:#1d342f}
+html[data-theme="light"] #projectLauncher .v74-brand-emblem{background:#e1f8ee;border-color:#b5e7d3;color:#16886b}
+html[data-theme="light"] #projectLauncher .v74-brand-wordmark{color:#193a31}
+html[data-theme="light"] #projectLauncher .v74-brand-wordmark b{color:#0c977a}
+html[data-theme="light"] #projectLauncher .v74-brand-wordmark small{color:#66877b}
+html[data-theme="light"] #projectLauncher .v74-top-tag{background:#e8f8f1;border-color:#caeadd;color:#25836a}
+html[data-theme="light"] #projectLauncher .v74-eyebrow{color:#218d72}
+html[data-theme="light"] #projectLauncher .v74-intro h1{color:#142e26}
+html[data-theme="light"] #projectLauncher .v74-intro h1 span{color:#11967a}
+html[data-theme="light"] #projectLauncher .v74-intro .v64-launcher-lead{color:#587266}
+html[data-theme="light"] #projectLauncher .v74-choice{background:linear-gradient(140deg,#eef9f4,#f5fcf9)!important;border-color:#d1e9de!important;color:#193e31!important}
+html[data-theme="light"] #projectLauncher .v74-choice-open{background:linear-gradient(145deg,#eef5fa,#f8fbfd)!important;border-color:#d6e4ed!important}
+html[data-theme="light"] #projectLauncher .v74-choice:hover,html[data-theme="light"] #projectLauncher .v74-choice.active{background:#e5f8f0!important;border-color:#2ab996!important;box-shadow:0 0 0 2px rgba(53,207,160,.1)}
+html[data-theme="light"] #projectLauncher .v74-choice-symbol{color:#16826a;background:#d7f3e6;border-color:#b6e4d2}
+html[data-theme="light"] #projectLauncher .v74-choice-open .v74-choice-symbol{background:#e1edf8;border-color:#c8ddeb;color:#407195}
+html[data-theme="light"] #projectLauncher .v74-choice-copy strong{color:#1b3930!important}
+html[data-theme="light"] #projectLauncher .v74-choice-copy small,html[data-theme="light"] #projectLauncher .v74-choice-open .v74-choice-copy small{color:#60786e!important}
+html[data-theme="light"] #projectLauncher .v74-choice-arrow{color:#078f71;background:#d3efe3}
+html[data-theme="light"] #projectLauncher .v74-choice-open .v74-choice-arrow{color:#3e799a;background:#e0edf7}
+html[data-theme="light"] #projectLauncher .v74-action-panel{background:#f3f8f5;border-color:#d5e7de}
+html[data-theme="light"] #projectLauncher .v74-panel-icon{background:#d7f4e7;border-color:#bce6d3;color:#0c9573}
+html[data-theme="light"] #projectLauncher .v74-panel-heading strong{color:#183b30}
+html[data-theme="light"] #projectLauncher .v74-panel-heading small{color:#5a796e}
+html[data-theme="light"] #projectLauncher .v74-input-label{color:#375a4d}
+html[data-theme="light"] #projectLauncher .v74-name-field{background:#fff;border-color:#b9d6c9}
+html[data-theme="light"] #projectLauncher .v74-name-field svg{color:#609983}
+html[data-theme="light"] #projectLauncher #launcherProjectName{background:transparent!important;color:#153a2d!important}
+html[data-theme="light"] #projectLauncher #launcherProjectName::placeholder{color:#879f95}
+html[data-theme="light"] #projectLauncher .v74-input-hint{color:#638073}
+html[data-theme="light"] #projectLauncher .v74-launcher-actions .v74-create-button{background:linear-gradient(135deg,#12b994,#0b9b7a)!important;border-color:#0c9a7b!important;color:#fff!important;box-shadow:0 4px 12px #17b29125}
+html[data-theme="light"] #projectLauncher .v74-launcher-actions .v74-back-button{background:#fff!important;border-color:#c6dbd1!important;color:#345d4c!important}
+html[data-theme="light"] #projectLauncher .v74-count{border-color:#c3e6d5;background:#e4f7ed;color:#278565}
+html[data-theme="light"] #projectLauncher .v74-project-row .v64-project-item{background:#fff!important;border-color:#d2e3d9!important;color:#18392e!important}
+html[data-theme="light"] #projectLauncher .v74-project-row .v64-project-item:hover{background:#f0fbf5!important;border-color:#49be9c!important}
+html[data-theme="light"] #projectLauncher .v74-project-row.is-current .v64-project-item{background:#e8f8ef!important;border-color:#a6dcca!important}
+html[data-theme="light"] #projectLauncher .v74-project-icon{background:#e0f7ec;border-color:#c1e6d3;color:#148264}
+html[data-theme="light"] #projectLauncher .v74-project-row .v64-project-item-info strong{color:#1a3930!important}
+html[data-theme="light"] #projectLauncher .v74-project-row .v64-project-item-info small{color:#648075!important}
+html[data-theme="light"] #projectLauncher .v74-open-cta{color:#0e906e}
+html[data-theme="light"] #projectLauncher .v74-project-row .project-delete-btn{background:#fff2f3!important;border-color:#f0d9db!important;color:#af4a53!important}
+html[data-theme="light"] #projectLauncher .v74-project-empty{background:#f5faf6;border-color:#bbd9c9}
+html[data-theme="light"] #projectLauncher .v74-empty-icon{background:#e1f6ea;border-color:#b5ddcc;color:#208769}
+html[data-theme="light"] #projectLauncher .v74-project-empty strong{color:#2d5142}
+html[data-theme="light"] #projectLauncher .v74-project-empty p{color:#617d6d}
+html[data-theme="light"] #projectLauncher .v74-empty-create{color:#0e7659;border-color:#a5dccc;background:#e4f7ee}
+html[data-theme="light"] #projectLauncher .v74-launcher-footer{color:#668279;border-top-color:#e0eae4}
+html[data-theme="light"] #projectLauncher .v74-launcher-footer svg{color:#2d9e7a}
+html[data-theme="light"] #projectLauncher .v74-feedback{color:#bb651d}
+@media(max-width:620px){#projectLauncher.v74-launcher{padding:12px;align-items:start}#projectLauncher .v74-shell{padding:20px;gap:17px;border-radius:19px;margin:auto 0}#projectLauncher .v74-intro h1{font-size:clamp(27px,7.3vw,34px)}#projectLauncher .v74-choice-grid{grid-template-columns:1fr;gap:9px}#projectLauncher .v74-choice{min-height:78px;padding:12px;gap:12px;border-radius:13px}#projectLauncher .v74-choice-symbol{width:44px;height:44px;border-radius:12px}#projectLauncher .v74-choice-symbol svg{width:23px;height:23px}#projectLauncher .v74-choice-copy strong{font-size:15px}#projectLauncher .v74-choice-copy small{font-size:11px}#projectLauncher .v74-action-panel{padding:14px;gap:11px}#projectLauncher .v74-project-list{max-height:min(34vh,280px)}#projectLauncher .v74-launcher-footer{flex-wrap:wrap;gap:5px}}
+@media(max-width:360px){#projectLauncher.v74-launcher{padding:8px}#projectLauncher .v74-shell{padding:15px;gap:14px}#projectLauncher .v74-top-tag{font-size:9px;padding:7px 9px}#projectLauncher .v74-brand-wordmark{font-size:12px}#projectLauncher .v74-brand-emblem{width:36px;height:36px}#projectLauncher .v74-choice{padding:10px;min-height:74px}#projectLauncher .v74-project-row .v64-project-item{padding:7px;gap:7px}#projectLauncher .v74-project-icon{width:34px;height:34px}#projectLauncher .v74-open-cta{font-size:10px}#projectLauncher .v74-project-row .project-delete-btn{flex-basis:40px;min-width:40px}#projectLauncher .v74-launcher-actions{gap:6px}#projectLauncher .v74-launcher-actions .btn{padding:10px;font-size:11px}}
+@media(prefers-reduced-motion:reduce){#projectLauncher .v74-action-panel{animation:none}#projectLauncher .v74-choice,#projectLauncher .v74-choice-arrow,#projectLauncher .v74-project-row .v64-project-item{transition:none}}
+
+
+/* v75: Project Hub theme control — shared with the existing Studio theme setting. */
+#projectLauncher .v75-hub-controls{display:flex;align-items:center;justify-content:flex-end;gap:9px;flex:none;min-width:0}
+#projectLauncher .v75-theme-switch{appearance:none;-webkit-appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:7px 10px 7px 11px;border-radius:12px;border:1px solid #4a665c;background:#24352f;color:#dcfff0;box-shadow:inset 0 1px 0 #ffffff0c,0 2px 7px #00000018;cursor:pointer;font:inherit;font-size:12px;font-weight:800;line-height:1;white-space:nowrap;transition:background .15s,border-color .15s,box-shadow .15s}
+#projectLauncher .v75-theme-switch:hover{background:#2c483b;border-color:#51bf9f}
+#projectLauncher .v75-theme-switch:focus-visible{outline:3px solid #5ae8c5;outline-offset:3px}
+#projectLauncher .v75-theme-switch:active{transform:translateY(1px)}
+#projectLauncher .v75-theme-icon{display:grid;place-items:center;width:17px;flex:none;font-size:18px;line-height:1;color:#d4e9ff}
+#projectLauncher .v75-theme-label{min-width:31px;text-align:left}
+#projectLauncher .v75-theme-track{position:relative;display:block;flex:none;width:30px;height:18px;border-radius:99px;background:#53685e;border:1px solid #6d8e7c;transition:background .17s}
+#projectLauncher .v75-theme-knob{position:absolute;left:2px;top:2px;width:12px;height:12px;border-radius:50%;background:#f3fff9;box-shadow:0 1px 3px #0818106b;transition:transform .17s}
+html[data-theme="light"] #projectLauncher .v75-theme-switch{background:#f0faf5!important;color:#155c49!important;border-color:#b8decf!important;box-shadow:0 2px 9px #1f55421c}
+html[data-theme="light"] #projectLauncher .v75-theme-switch:hover{background:#e2f8ed!important;border-color:#52bd98!important}
+html[data-theme="light"] #projectLauncher .v75-theme-icon{color:#d58d13}
+html[data-theme="light"] #projectLauncher .v75-theme-track{background:#14a986;border-color:#0e9b78}
+html[data-theme="light"] #projectLauncher .v75-theme-knob{transform:translateX(12px);background:#fff}
+@media(max-width:620px){#projectLauncher .v75-hub-controls .v74-top-tag{display:none}#projectLauncher .v75-theme-switch{min-height:42px}#projectLauncher .v75-launcher-topline{gap:5px}}
+@media(max-width:360px){#projectLauncher .v75-theme-switch{gap:5px;padding:7px}#projectLauncher .v75-theme-track{width:28px}#projectLauncher .v75-theme-knob{width:12px;height:12px}#projectLauncher .v75-theme-label{min-width:27px;font-size:11px}}
+@media(prefers-reduced-motion:reduce){#projectLauncher .v75-theme-switch,#projectLauncher .v75-theme-track,#projectLauncher .v75-theme-knob{transition:none}}
 </style></head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div><button id="splashSkip" type="button" class="v64-skip">Skip intro</button></div>
 </div>
-<div id="projectLauncher" class="v64-launcher hidden" role="dialog" aria-modal="true" aria-labelledby="launcherTitle">
-  <div class="v64-launcher-shell"><div class="v64-launcher-mark">◉ ON AIR <b>STUDIO</b><span>for SFK</span></div><h1 id="launcherTitle">Welcome to your studio</h1><p class="v64-launcher-lead">Choose how to start your broadcast. Saved projects stay in this browser. Use a backup to move them to another device.</p>
-  <div class="v64-launcher-choices"><button type="button" id="launcherNew" class="v64-choice"><span class="v64-choice-icon">＋</span><strong>New Project</strong><small>Create a fresh broadcast workspace</small></button><button type="button" id="launcherOpen" class="v64-choice"><span class="v64-choice-icon">▤</span><strong>Open Project</strong><small>Continue an existing broadcast</small></button></div>
-  <div id="launcherNewForm" class="v64-launcher-panel hidden"><label for="launcherProjectName">Project name</label><input id="launcherProjectName" type="text" maxlength="80" autocomplete="off" placeholder="e.g. English Radio PETA"><div class="v64-launcher-actions"><button id="launcherCreate" type="button" class="btn primary">Create & Enter Studio →</button><button id="launcherNewCancel" type="button" class="btn">Cancel</button></div></div>
-  <div id="launcherOpenForm" class="v64-launcher-panel hidden"><div class="v64-open-title"><strong>Saved Projects</strong><span id="launcherCount">Checking…</span></div><div id="launcherProjects" class="v64-project-list"></div><div class="v64-launcher-actions"><button id="launcherImport" type="button" class="btn">↑ Open a Project Backup</button><button id="launcherOpenCancel" type="button" class="btn">Cancel</button></div></div>
-  <div id="launcherFeedback" class="v64-launcher-feedback" role="status"></div><div class="v64-launcher-footer">ON AIR Studio · Soundboard · DJ Mixer · Audio Queue</div></div>
+<div id="projectLauncher" class="v64-launcher v74-launcher hidden" role="dialog" aria-modal="true" aria-labelledby="launcherTitle">
+  <div class="v64-launcher-shell v74-shell">
+    <div class="v74-launcher-topline">
+      <div class="v74-brand"><span class="v74-brand-emblem" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M22 12h-3M12 22v-3M2 12h3"/></svg></span><span class="v74-brand-wordmark">ON AIR <b>STUDIO</b><small>for SFK</small></span></div>
+      <div class="v75-hub-controls">
+        <span class="v74-top-tag"><span class="v74-top-dot" aria-hidden="true"></span> PROJECT HUB</span>
+        <button type="button" id="launcherThemeSwitch" class="v75-theme-switch" aria-label="Switch to Light Mode" aria-pressed="false" title="Switch between Light and Dark Mode">
+          <span class="v75-theme-icon" aria-hidden="true">☾</span>
+          <span class="v75-theme-label">Dark</span>
+          <span class="v75-theme-track" aria-hidden="true"><span class="v75-theme-knob"></span></span>
+        </button>
+      </div>
+    </div>
+    <div class="v74-intro"><span class="v74-eyebrow">YOUR WORKSPACE</span><h1 id="launcherTitle">Ready to go <span>on air?</span></h1><p class="v64-launcher-lead">Start a new project or pick up where you left off.</p></div>
+    <div class="v64-launcher-choices v74-choice-grid" role="group" aria-label="Choose a project action">
+      <button type="button" id="launcherNew" class="v64-choice v74-choice v74-choice-new" aria-controls="launcherNewForm" aria-expanded="false">
+        <span class="v74-choice-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><path d="M12 8v8M8 12h8"/></svg></span>
+        <span class="v74-choice-copy"><strong>New Project</strong><small>Create a fresh broadcast</small></span>
+        <span class="v74-choice-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </button>
+      <button type="button" id="launcherOpen" class="v64-choice v74-choice v74-choice-open" aria-controls="launcherOpenForm" aria-expanded="false">
+        <span class="v74-choice-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v9H3Z"/><path d="M3 12h18"/></svg></span>
+        <span class="v74-choice-copy"><strong>Open Project</strong><small id="launcherSavedTotal">Continue a saved broadcast</small></span>
+        <span class="v74-choice-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+      </button>
+    </div>
+    <div id="launcherNewForm" class="v64-launcher-panel v74-action-panel hidden" role="region" aria-label="Create a new project">
+      <div class="v74-panel-heading"><span class="v74-panel-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><span><strong>Create a project</strong><small>Give your broadcast a name to get started.</small></span></div>
+      <label class="v74-input-label" for="launcherProjectName">Project name</label>
+      <div class="v74-name-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 20h16M5 16l10-10 3 3-10 10H5v-3ZM14 7l3 3"/></svg><input id="launcherProjectName" type="text" maxlength="80" autocomplete="off" spellcheck="false" placeholder="e.g. English Radio PETA"></div>
+      <p class="v74-input-hint">You can change the project name later.</p>
+      <div class="v64-launcher-actions v74-launcher-actions"><button id="launcherCreate" type="button" class="btn primary v74-create-button"><span>Create Project</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><button id="launcherNewCancel" type="button" class="btn v74-back-button">Back</button></div>
+    </div>
+    <div id="launcherOpenForm" class="v64-launcher-panel v74-action-panel v74-open-panel hidden" role="region" aria-label="Open a saved project">
+      <div class="v74-panel-heading v74-project-heading"><span class="v74-panel-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v9H3Z"/><path d="M3 12h18"/></svg></span><span><strong>Saved Projects</strong><small>Tap a project to continue working.</small></span><span class="v74-count" id="launcherCount">Checking…</span></div>
+      <div id="launcherProjects" class="v64-project-list v74-project-list" aria-live="polite"></div>
+      <div class="v64-launcher-actions v74-open-actions"><button id="launcherOpenCancel" type="button" class="btn v74-back-button">Back to choices</button></div>
+    </div>
+    <div id="launcherFeedback" class="v64-launcher-feedback v74-feedback" role="status" aria-live="polite"></div>
+    <div class="v64-launcher-footer v74-launcher-footer"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><path d="M12 3 4 7v5c0 5 3.7 8 8 9 4.3-1 8-4 8-9V7l-8-4Z"/></svg> Projects are saved on this device</span><span>Soundboard · DJ Mixer · Audio Queue</span></div>
+  </div>
+</div><div id="deleteProjectDialog" class="project-delete-overlay hidden" role="alertdialog" aria-modal="true" aria-labelledby="deleteProjectTitle" aria-describedby="deleteProjectDescription">
+ <div class="project-delete-sheet"><div class="project-delete-icon" aria-hidden="true">!</div><h2 id="deleteProjectTitle">Delete saved project?</h2><p id="deleteProjectDescription">You are about to delete <strong id="deleteProjectName"></strong>. Its saved sounds, script, and queue will be removed from this browser.</p><p class="project-delete-warning">This cannot be undone.</p><div class="project-delete-actions"><button type="button" class="btn" id="deleteProjectCancel">Cancel</button><button type="button" class="btn danger" id="deleteProjectConfirm">Delete Project</button></div><p class="project-delete-feedback" id="deleteProjectFeedback" role="status"></p></div>
 </div><main class="app"><header class="top"><div><div class="brand">◉ ON AIR <b>STUDIO</b></div></div><div class="toolbar"><span class="pill" id="saveStatus">Loading project…</span><button class="btn small" id="projectBtn">▤ Projects</button></div></header><nav class="tabs" aria-label="Studio sections"><button type="button" class="tab active" data-tab="studio" aria-controls="studio" aria-current="page"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.2" y="8" width="17.6" height="12.8" rx="2.5"/><path d="M6 8 18 4.2M8 12.8a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8ZM14 13h4m-4 3.5h4"/></svg><span>Studio</span></button><button type="button" class="tab" data-tab="library" aria-controls="library" aria-current="false"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5.2a2 2 0 0 1 2-2h13v17H6a2 2 0 0 1 0-4h13M8 7.5h7M8 11h7"/></svg><span>Library</span></button><button type="button" class="tab" data-tab="recordings" aria-controls="recordings" aria-current="false"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0M12 17v4.5M8.5 21.5h7"/></svg><span>Recordings</span></button></nav><div id="notice"></div>
 <section id="studio"><div class="studio-compact"><div class="studio-mainline"><div class="studio-heading"><strong><span id="activeWorkspaceLabel">Live Soundboard</span> <span class="hint" id="soundCount"></span></strong><span class="hint project-subtitle" id="projectTitle">Untitled Broadcast</span></div><div class="studio-helper"><span class="pill" id="activeCount">0 live</span><span class="gripnote">⠿ Drag to rearrange sounds</span></div><div class="toolbar"><button class="btn small" id="getAudioBtn">▶ Get Audio</button><button class="btn primary small" id="addBtn">＋ Add Audio</button></div></div><div class="studio-control-row"><div class="workspace-switch" role="group" aria-label="Workspace"><button id="wsBoard" class="ws-choice selected" type="button">▦ Soundboard</button><button id="wsDJ" class="ws-choice" type="button">🎛 DJ Mixer</button><button id="wsQueue" class="ws-choice" type="button">☷ Audio Queue</button></div><div class="studio-recbar"><span class="rec-label">● <span class="rec-label-text">Broadcast</span></span><span class="rec-timer" id="recTime">00:00:00</span><span class="pill rec-state" id="recState">READY</span><div class="rec-actions"><button class="btn danger small" id="recordBtn">● REC</button><button class="btn small" id="stopRecord" disabled>■ Stop</button></div><label class="mic-compact" title="Include your voice in the recording"><input type="checkbox" id="micToggle"><span class="mic-word">🎙 Include Voice</span></label></div></div></div><section id="djWorkspace" class="dj-workspace hidden" aria-label="DJ Mixer"><div class="dj-heading"><div><strong>DJ Mixer</strong><small>Dual-deck broadcast console</small></div><button class="btn small dj-stop-decks" id="djStopAll" type="button"><span aria-hidden="true">■</span><span>Stop Both</span></button></div><div class="dj-decks"><div class="dj-deck" data-deck="A"><div class="dj-deck-top"><span class="dj-deck-label">DECK A</span><span class="dj-deck-state" id="djStateA">Ready</span></div><div class="dj-sound-picker"><span class="dj-picker-caption">LOADED SOUND</span><button type="button" class="dj-picker-btn" id="djPickA" aria-label="Choose sound for deck A"><span class="dj-picker-icon">♫</span><span class="dj-picker-info"><strong id="djPickNameA">Choose a sound</strong><small id="djPickMetaA">Tap to load audio</small></span><span class="dj-picker-chevron">⌄</span></button><select id="djSelectA" class="dj-native-select" aria-label="Choose sound for deck A"><option value="">Choose a sound</option></select></div><div class="dj-platter" id="djDiscA"><div class="dj-disc-core">A</div></div><div class="dj-time" id="djTimeA">0:00 / 0:00</div><input type="range" id="djSeekA" min="0" max="1000" value="0" aria-label="Deck A position"><div class="dj-deck-actions"><button class="btn primary dj-transport dj-transport-play" id="djPlayA" type="button" aria-label="Play Deck A"><span class="dj-action-glyph" aria-hidden="true">▶</span><span class="dj-action-text">Play</span></button><button class="btn dj-transport dj-transport-pause" id="djPauseA" type="button" aria-label="Pause Deck A"><span class="dj-action-glyph" aria-hidden="true">Ⅱ</span><span class="dj-action-text">Pause</span></button><button class="btn dj-transport dj-transport-rewind" id="djResetA" type="button" aria-label="Restart Deck A from beginning"><span class="dj-action-glyph" aria-hidden="true">↺</span><span class="dj-action-text">Restart</span></button></div><label class="dj-control-label">Volume <output id="djVolTextA">80%</output></label><input type="range" id="djLevelA" min="0" max="100" value="80" aria-label="Deck A volume"><details class="dj-effects"><summary><span>✦ Sound shaping</span><span class="dj-fx-summary-note">BASS · TREBLE · FILTER · ECHO</span></summary><div class="dj-effects-inner"><div class="dj-effects-top"><span>Fine-tune Deck A</span><button type="button" class="dj-fx-reset" data-deck="A" aria-label="Reset deck A effects to default">↺ Reset FX</button></div><div class="dj-fx-grid"><div class="dj-fx-control"><label for="djBassA">Bass <output id="djBassTextA">0</output></label><input type="range" id="djBassA" min="-18" max="18" value="0"></div><div class="dj-fx-control"><label for="djTrebleA">Treble <output id="djTrebleTextA">0</output></label><input type="range" id="djTrebleA" min="-18" max="18" value="0"></div><div class="dj-fx-control"><label for="djFilterA">Filter <output id="djFilterTextA">Off</output></label><input type="range" id="djFilterA" min="0" max="100" value="100"></div><div class="dj-fx-control"><label for="djEchoA">Echo <output id="djEchoTextA">Off</output></label><input type="range" id="djEchoA" min="0" max="60" value="0"></div></div></div></details></div><div class="dj-deck" data-deck="B"><div class="dj-deck-top"><span class="dj-deck-label">DECK B</span><span class="dj-deck-state" id="djStateB">Ready</span></div><div class="dj-sound-picker"><span class="dj-picker-caption">LOADED SOUND</span><button type="button" class="dj-picker-btn" id="djPickB" aria-label="Choose sound for deck B"><span class="dj-picker-icon">♫</span><span class="dj-picker-info"><strong id="djPickNameB">Choose a sound</strong><small id="djPickMetaB">Tap to load audio</small></span><span class="dj-picker-chevron">⌄</span></button><select id="djSelectB" class="dj-native-select" aria-label="Choose sound for deck B"><option value="">Choose a sound</option></select></div><div class="dj-platter dj-platter-b" id="djDiscB"><div class="dj-disc-core">B</div></div><div class="dj-time" id="djTimeB">0:00 / 0:00</div><input type="range" id="djSeekB" min="0" max="1000" value="0" aria-label="Deck B position"><div class="dj-deck-actions"><button class="btn primary dj-transport dj-transport-play" id="djPlayB" type="button" aria-label="Play Deck B"><span class="dj-action-glyph" aria-hidden="true">▶</span><span class="dj-action-text">Play</span></button><button class="btn dj-transport dj-transport-pause" id="djPauseB" type="button" aria-label="Pause Deck B"><span class="dj-action-glyph" aria-hidden="true">Ⅱ</span><span class="dj-action-text">Pause</span></button><button class="btn dj-transport dj-transport-rewind" id="djResetB" type="button" aria-label="Restart Deck B from beginning"><span class="dj-action-glyph" aria-hidden="true">↺</span><span class="dj-action-text">Restart</span></button></div><label class="dj-control-label">Volume <output id="djVolTextB">80%</output></label><input type="range" id="djLevelB" min="0" max="100" value="80" aria-label="Deck B volume"><details class="dj-effects"><summary><span>✦ Sound shaping</span><span class="dj-fx-summary-note">BASS · TREBLE · FILTER · ECHO</span></summary><div class="dj-effects-inner"><div class="dj-effects-top"><span>Fine-tune Deck B</span><button type="button" class="dj-fx-reset" data-deck="B" aria-label="Reset deck B effects to default">↺ Reset FX</button></div><div class="dj-fx-grid"><div class="dj-fx-control"><label for="djBassB">Bass <output id="djBassTextB">0</output></label><input type="range" id="djBassB" min="-18" max="18" value="0"></div><div class="dj-fx-control"><label for="djTrebleB">Treble <output id="djTrebleTextB">0</output></label><input type="range" id="djTrebleB" min="-18" max="18" value="0"></div><div class="dj-fx-control"><label for="djFilterB">Filter <output id="djFilterTextB">Off</output></label><input type="range" id="djFilterB" min="0" max="100" value="100"></div><div class="dj-fx-control"><label for="djEchoB">Echo <output id="djEchoTextB">Off</output></label><input type="range" id="djEchoB" min="0" max="60" value="0"></div></div></div></details></div></div><div class="dj-mix-panel"><div class="dj-cross-head"><span class="dj-cross-side dj-cross-side-a">DECK A</span><div class="dj-cross-title"><strong>Crossfader</strong><small>Blend the two decks smoothly</small></div><span class="dj-cross-side dj-cross-side-b">DECK B</span></div>
 <div class="dj-cross-control"><input type="range" id="djCross" min="0" max="100" value="50" aria-label="Crossfade between Deck A and B"><div class="dj-cross-footer"><span>A: <b id="djMixAValue">50%</b></span><button type="button" id="djCrossCenter" class="dj-cross-center" title="Reset crossfader to center">◎ Center</button><span>B: <b id="djMixBValue">50%</b></span></div></div><div class="dj-mix-actions"><button class="btn danger" id="djRecordMix" type="button"><span class="dj-mix-button-icon" aria-hidden="true">●</span> Record Mix</button><button class="btn" id="djFinishMix" type="button" disabled><span class="dj-mix-button-icon" aria-hidden="true">■</span> Finish & Save</button></div><div class="dj-mix-note" id="djMixStatus">Your mix can be saved as a new sound card.</div></div></section><section id="queueWorkspace" class="queue-workspace hidden" aria-label="Audio Queue workspace">
@@ -1464,7 +1711,7 @@ html[data-theme="light"] .dj-heading .dj-stop-decks{color:#a53b48!important;back
  <div class="footer-playing"><span class="footer-playing-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 14v-4m5 9V5m5 12V7m5 7v-4"/></svg></span><span class="footer-playing-details"><span class="footer-kicker">NOW PLAYING</span><strong id="footCount" aria-live="polite">0 playing</strong></span></div>
  <div class="footer-master"><div class="footer-master-head"><label for="master">Master Volume</label><output for="master" id="masterValue">100%</output></div><div class="footer-volume-input"><svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15 9a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12"/></svg><input id="master" aria-label="Master volume" type="range" min="0" max="100" value="100" style="--master-fill:100%"></div></div>
  <button class="btn danger footer-stop" id="stopAll" type="button" title="Stop all sounds"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg><span>Stop All</span></button>
- </div></footer><input id="files" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac" multiple hidden><input id="importProject" type="file" accept=".json,application/json" hidden><div id="modalBg" class="modalbg hidden"><div class="modal"><div class="spread"><h2 class="title" id="modalTitle"></h2><button class="btn small" id="closeModal">✕</button></div><div id="modalBody"></div></div></div>
+ </div></footer><input id="files" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac" multiple hidden><div id="modalBg" class="modalbg hidden"><div class="modal"><div class="spread"><h2 class="title" id="modalTitle"></h2><button class="btn small" id="closeModal">✕</button></div><div id="modalBody"></div></div></div>
 <div id="djSoundModal" class="dj-sound-modal hidden" role="dialog" aria-modal="true" aria-labelledby="djSoundModalTitle"><div class="dj-sound-sheet"><div class="dj-sound-sheet-head"><div><small>SOUND LIBRARY</small><h3 id="djSoundModalTitle">Choose Sound</h3></div><button type="button" id="djSoundClose" class="dj-sound-close" aria-label="Close">✕</button></div><div class="dj-sound-search-wrap"><span>⌕</span><input id="djSoundSearch" type="search" placeholder="Search your sounds…" autocomplete="off"></div><div id="djSoundResults" class="dj-sound-results"></div><p class="dj-sound-footnote">Select a sound to load it into this deck.</p></div></div><script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id), esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),id=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+Math.random().toString(36).slice(2),clamp=(n,a,b)=>Math.min(b,Math.max(a,n)),fmt=n=>Number.isFinite(n)?`${Math.floor(n/60)}:${String(Math.floor(n%60)).padStart(2,'0')}`:'--:--';
@@ -1704,13 +1951,102 @@ $('nextUpCollapse').addEventListener('click',()=>{const body=$('nextUpBody'),col
 
 function openDB(){return new Promise((res,rej)=>{if(!('indexedDB'in window))return rej(Error('IndexedDB unavailable'));const r=indexedDB.open('on-air-studio-v2',1);r.onupgradeneeded=()=>{const d=r.result;d.createObjectStore('projects');d.createObjectStore('assets')};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
 function dbOp(store,mode,fn){return new Promise((res,rej)=>{if(!db)return rej(Error('Local storage unavailable'));const t=db.transaction(store,mode),r=fn(t.objectStore(store));let value;t.oncomplete=()=>res(value);t.onerror=()=>rej(t.error);if(r&&r.onsuccess!==undefined)r.onsuccess=()=>value=r.result})}const put=(s,k,v)=>dbOp(s,'readwrite',o=>o.put(v,k)),read=(s,k)=>dbOp(s,'readonly',o=>o.get(k)),del=(s,k)=>dbOp(s,'readwrite',o=>o.delete(k));
-let saveChain=Promise.resolve(),saveVersion=0,savedVersion=0,bootComplete=false;
+let saveChain=Promise.resolve(),saveVersion=0,savedVersion=0,bootComplete=false,projectSelectionRequired=true;
 let lastStartedSoundId=null;
 function persistSnapshot(snapshot){return new Promise((resolve,reject)=>{if(!db)return reject(Error('Local storage unavailable'));const tx=db.transaction('projects','readwrite');const store=tx.objectStore('projects');store.put(snapshot,snapshot.id);store.put(snapshot.id,'__last');tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error)})}
-function save(){if(!db){$('saveStatus').textContent='Export backup to keep project';return Promise.resolve(false)}clearTimeout(saveTimer);project.updatedAt=Date.now();const snapshot=structuredClone(project),version=++saveVersion;$('saveStatus').textContent='Saving…';const task=saveChain.catch(()=>{}).then(async()=>{await persistSnapshot(snapshot);savedVersion=version;if(version===saveVersion)$('saveStatus').textContent='✓ Saved locally';return true}).catch(e=>{$('saveStatus').textContent='Save failed — export backup';notify('Could not save project: '+e.message);return false});saveChain=task;return task}
-function scheduleSave(){if(!bootComplete)return;$('saveStatus').textContent='Saving…';clearTimeout(saveTimer);saveTimer=setTimeout(()=>{void save()},250)}
-window.addEventListener('pagehide',()=>{if(bootComplete&&db){clearTimeout(saveTimer);void save()}});
-async function asset(s){if(blobs.has(s.id))return blobs.get(s.id);const b=await read('assets',s.id);if(!b)throw Error('Audio file missing. Reimport the project or audio.');blobs.set(s.id,b);return b}async function audioURL(s){if(urls.has(s.id))return urls.get(s.id);const url=URL.createObjectURL(await asset(s));urls.set(s.id,url);return url}
+function save(){if(projectSelectionRequired)return Promise.resolve(false);if(!db){$('saveStatus').textContent='Export backup to keep project';return Promise.resolve(false)}clearTimeout(saveTimer);project.updatedAt=Date.now();const snapshot=structuredClone(project),version=++saveVersion;$('saveStatus').textContent='Saving…';const task=saveChain.catch(()=>{}).then(async()=>{await persistSnapshot(snapshot);savedVersion=version;if(version===saveVersion)$('saveStatus').textContent='✓ Saved locally';return true}).catch(e=>{$('saveStatus').textContent='Save failed — export backup';notify('Could not save project: '+e.message);return false});saveChain=task;return task}
+function scheduleSave(){if(!bootComplete||projectSelectionRequired)return;$('saveStatus').textContent='Saving…';clearTimeout(saveTimer);saveTimer=setTimeout(()=>{void save()},250)}
+window.addEventListener('pagehide',()=>{if(bootComplete&&db&&!projectSelectionRequired){clearTimeout(saveTimer);void save()}});
+
+// Delete a project atomically with its unshared audio assets.
+// A deleted active project cannot be silently resurrected by autosave/pagehide.
+async function deleteSavedProject(projectId){
+ if(!db)throw Error('Browser storage is unavailable.');
+ if(mediaRecorder?.state==='recording'||(typeof djMixRecorder!=='undefined'&&djMixRecorder?.state==='recording'))throw Error('Stop recording before deleting a project.');
+ const active=project.id===projectId;
+ if(active)projectSelectionRequired=true;
+ clearTimeout(saveTimer);
+ try{
+  await saveChain.catch(()=>{});
+  const all=await dbOp('projects','readonly',o=>o.getAll());
+  const target=all.find(p=>p?.id===projectId&&Array.isArray(p.sounds));
+  if(!target)throw Error('This saved project no longer exists.');
+  const others=all.filter(p=>p?.id!==projectId&&Array.isArray(p.sounds));
+  const otherAudioIds=new Set(others.flatMap(p=>p.sounds.map(sound=>sound.id)));
+  const unusedAudioIds=[...new Set(target.sounds.map(sound=>sound.id))].filter(soundId=>!otherAudioIds.has(soundId));
+  const lastId=await read('projects','__last');
+  await new Promise((resolve,reject)=>{
+   const tx=db.transaction(['projects','assets'],'readwrite');
+   const ps=tx.objectStore('projects'),as=tx.objectStore('assets');
+   ps.delete(projectId);
+   if(lastId===projectId){
+    const newest=others.slice().sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0))[0];
+    if(newest)ps.put(newest.id,'__last');else ps.delete('__last');
+   }
+   for(const soundId of unusedAudioIds)as.delete(soundId);
+   tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error||Error('Storage error'));tx.onabort=()=>reject(tx.error||Error('Delete was cancelled'));
+  });
+  if(active){
+   stopAll();
+   for(const url of urls.values())URL.revokeObjectURL(url);
+   urls.clear();blobs.clear();audioCache.clear();
+   const emptyId=id();swapRecordingProject(emptyId);recordingsByProject.delete(projectId);
+   project={id:emptyId,name:'Untitled Broadcast',sounds:[],script:'',nextUp:[],settings:{aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,autoNext:false}};
+   $('scriptText').value='';setSettings();ensureQueue();renderQueue();renderCards();renderLibrary();renderRecordings();
+   $('saveStatus').textContent='Select a project to continue';
+   closeModal();showProjectLauncher('open');
+  }else{
+   recordingsByProject.delete(projectId);
+  }
+  return target.name||'Untitled Broadcast';
+ }catch(e){if(active)projectSelectionRequired=false;throw e}
+}
+
+// One shared, keyboard-accessible confirmation dialog for launcher and project manager.
+let deletionIntent=null,deletionFocus=null;
+async function askDeleteProject(projectId){
+ try{
+  if(!db)throw Error('Browser storage is unavailable.');
+  if(mediaRecorder?.state==='recording'||(typeof djMixRecorder!=='undefined'&&djMixRecorder?.state==='recording'))throw Error('Stop recording before deleting a project.');
+  const p=await read('projects',projectId);
+  if(!p?.id)throw Error('Project not found.');
+  deletionIntent=projectId;deletionFocus=document.activeElement;
+  $('deleteProjectName').textContent='“'+(p.name||'Untitled Broadcast')+'”';
+  $('deleteProjectFeedback').textContent='';
+  $('deleteProjectConfirm').disabled=false;
+  $('deleteProjectDialog').classList.remove('hidden');
+  $('deleteProjectCancel').focus();
+ }catch(e){notify('Cannot delete project: '+e.message)}
+}
+function closeDeletePrompt(){
+ $('deleteProjectDialog').classList.add('hidden');deletionIntent=null;
+ if(deletionFocus?.isConnected)deletionFocus.focus();deletionFocus=null;
+}
+$('deleteProjectCancel').onclick=closeDeletePrompt;
+$('deleteProjectDialog').addEventListener('click',e=>{if(e.target===$('deleteProjectDialog'))closeDeletePrompt()});
+$('deleteProjectDialog').addEventListener('keydown',e=>{
+ if(e.key==='Escape'){e.preventDefault();closeDeletePrompt()}
+ if(e.key==='Tab'){
+  const buttons=[$('deleteProjectCancel'),$('deleteProjectConfirm')].filter(b=>!b.disabled);
+  const first=buttons[0],last=buttons[buttons.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+ }
+});
+$('deleteProjectConfirm').onclick=async()=>{
+ const targetId=deletionIntent;
+ if(!targetId)return;
+ const button=$('deleteProjectConfirm');button.disabled=true;
+ try{
+  const name=await deleteSavedProject(targetId);
+  closeDeletePrompt();
+  if(!$('projectLauncher').classList.contains('hidden'))await populateLauncherProjects();
+  if($('savedList'))await listProjects();
+  notify('Deleted “'+name+'” from saved projects.');
+ }catch(e){$('deleteProjectFeedback').textContent=e.message;button.disabled=false}
+};
+
+async function asset(s){if(blobs.has(s.id))return blobs.get(s.id);const b=await read('assets',s.id);if(!b)throw Error('Audio file missing. Remove the missing sound and add it again.');blobs.set(s.id,b);return b}async function audioURL(s){if(urls.has(s.id))return urls.get(s.id);const url=URL.createObjectURL(await asset(s));urls.set(s.id,url);return url}
 // Standard system output: the OS/browser chooses the current audio device.
 // No extra permissions, device selectors, or secondary routing required.
 async function initAudio(){
@@ -1897,15 +2233,15 @@ function projectDialog(){
  modal('My Projects',`<div class="pm">
  <div class="pm-current"><div class="pm-eyebrow">CURRENT PROJECT</div><label for="projName" class="pm-label">Project name</label><div class="pm-namebox"><span aria-hidden="true">✎</span><input id="projName" type="text" maxlength="80" autocomplete="off" spellcheck="false" placeholder="Name your broadcast" value="${esc(project.name)}"></div><div class="pm-actions"><button class="btn primary" id="renameProj">✓ Save Project</button><button class="btn" id="newProj">＋ New Project</button></div><div class="pm-feedback" id="pmFeedback" role="status">Changes to your sounds and script are saved automatically.</div><button type="button" id="pmSwitchProjects" class="btn small" style="margin-top:8px">↗ New or Open Project</button></div>
  <div class="pm-sectionhead"><div><strong>Saved Projects</strong><div class="pm-sub">Choose a project to continue.</div></div><span class="pm-count" id="pmCount">…</span></div><div id="savedList" class="pm-list" aria-live="polite"><div class="pm-empty">Loading projects…</div></div>
- <details class="pm-more"><summary>More options</summary><div class="pm-extra"><button class="btn" id="exportProj">↓ Save a Copy</button><button class="btn" id="importProj">↑ Open a Backup</button></div><p class="pm-sub">Projects are saved on this device. Save a copy if you plan to use another device or browser.</p></details></div>`);
+ <div class="pm-copy"><button class="btn small" id="exportProj" type="button">↓ Download Project Copy</button><span>Optional: keep a copy of your current project on your device.</span></div></div>`);
  const input=$('projName');const feedback=$('pmFeedback');
  const saveName=async()=>{const name=input.value.trim()||'Untitled Broadcast';project.name=name;input.value=name;const ok=await save();renderCards();feedback.textContent=ok?'✓ Project saved successfully.':'Could not save here. Use Save a Copy under More options.';feedback.classList.toggle('pm-error',!ok);await listProjects()};
  $('pmSwitchProjects').onclick=async()=>{if(mediaRecorder?.state==='recording'){feedback.textContent='Stop the recording before switching projects.';return}const ok=await save();if(!ok){feedback.textContent='Could not save this project. Export a copy before switching.';return}closeModal();showProjectLauncher()};
  $('renameProj').onclick=saveName;input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();saveName()}};
  $('newProj').onclick=async()=>{if(mediaRecorder?.state==='recording'){feedback.textContent='Stop the recording before switching projects.';return}const ok=await save();if(!ok){feedback.textContent='Could not save project. Export backup first.';return}closeModal();showProjectLauncher('new')};
- $('exportProj').onclick=exportProject;$('importProj').onclick=()=>$('importProject').click();listProjects();
+ $('exportProj').onclick=exportProject;listProjects();
 }
-async function listProjects(){const el=$('savedList');if(!el)return;if(!db){el.innerHTML='<div class="pm-empty">Local saving is unavailable. Use Save a Copy to keep your work.</div>';return}try{const all=await dbOp('projects','readonly',o=>o.getAll());const projects=all.filter(x=>x&&Array.isArray(x.sounds)&&x.id).sort((a,b)=>(a.id===project.id?-1:0)-(b.id===project.id?-1:0));$('pmCount').textContent=projects.length+' saved';el.innerHTML=projects.map(p=>`<div class="pm-item ${p.id===project.id?'pm-active':''}"><div class="pm-item-icon">${p.id===project.id?'●':'♫'}</div><div class="pm-item-info"><strong title="${esc(p.name)}">${esc(p.name)}</strong><span>${p.sounds.length} sound${p.sounds.length===1?'':'s'}${p.id===project.id?' · Current project':''}</span></div>${p.id===project.id?'<span class="pm-currentbadge">Open</span>':`<button class="btn small" data-open="${esc(p.id)}">Open →</button>`}</div>`).join('')||'<div class="pm-empty">No saved projects yet. Save your current project to get started.</div>'}catch(e){el.innerHTML='<div class="pm-empty">Could not load saved projects.</div>'}}
+async function listProjects(){const el=$('savedList');if(!el)return;if(!db){el.innerHTML='<div class="pm-empty">Local saving is unavailable. Use Save a Copy to keep your work.</div>';return}try{const all=await dbOp('projects','readonly',o=>o.getAll());const projects=all.filter(x=>x&&Array.isArray(x.sounds)&&x.id).sort((a,b)=>(a.id===project.id?-1:0)-(b.id===project.id?-1:0));$('pmCount').textContent=projects.length+' saved';el.innerHTML=projects.map(p=>`<div class="pm-item ${p.id===project.id?'pm-active':''}"><div class="pm-item-icon">${p.id===project.id?'●':'♫'}</div><div class="pm-item-info"><strong title="${esc(p.name)}">${esc(p.name)}</strong><span>${p.sounds.length} sound${p.sounds.length===1?'':'s'}${p.id===project.id?' · Current project':''}</span></div>${p.id===project.id?'<span class="pm-currentbadge">Open</span>':`<button class="btn small" data-open="${esc(p.id)}">Open →</button>`}<button type="button" class="project-delete-btn pm-delete-btn" data-delete-project="${esc(p.id)}" title="Delete ${esc(p.name||'project')}" aria-label="Delete ${esc(p.name||'project')}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 4h4M6 7l1 13h10l1-13M10 11v5M14 11v5"/></svg></button></div>`).join('')||'<div class="pm-empty">No saved projects yet. Save your current project to get started.</div>'}catch(e){el.innerHTML='<div class="pm-empty">Could not load saved projects.</div>'}}
 function setSettings(){
  const s=project.settings;
  $('master').value=s.master;
@@ -2107,12 +2443,12 @@ floatGrip.addEventListener('keydown',e=>{
  floatWindow.style.height=clamp(r.height+d[1]*step,minH,Math.max(minH,innerHeight-72-r.top))+'px';
 });
 let pinch=null;const body=$('floatBody');body.addEventListener('touchstart',e=>{if(e.touches.length===2){pinch={distance:Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY),zoom:scriptZoom}}},{passive:true});body.addEventListener('touchmove',e=>{if(e.touches.length===2&&pinch){e.preventDefault();const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);setScriptZoom(pinch.zoom*d/Math.max(1,pinch.distance))}},{passive:false});body.addEventListener('touchend',e=>{if(e.touches.length<2)pinch=null});
-$('importProject').onchange=async e=>{try{const data=JSON.parse(await e.target.files[0].text());if(data.format!=='on-air-studio-project'||!data.project||!Array.isArray(data.files))throw Error('Invalid project backup');if(!confirm('Open imported project? Current project will remain saved locally.'))return;await save();data.project.id=id();data.project.sounds.forEach(s=>{const f=data.files.find(x=>x.id===s.id);if(!f)throw Error('Missing audio in backup: '+s.name)});await loadProject(data.project,data.files);await save();closeModal();if(!$('projectLauncher').classList.contains('hidden'))enterStudio();notify('Project imported with '+project.sounds.length+' audio files.');}catch(err){notify('Import failed: '+err.message)}e.target.value=''};
+$('modalBody').addEventListener('click',e=>{const btn=e.target.closest('[data-delete-project]');if(btn){e.preventDefault();void askDeleteProject(btn.dataset.deleteProject)}});
 $('modalBody').addEventListener('click',async e=>{const b=e.target.closest('[data-open]');if(!b)return;try{const ok=await save();if(!ok&&!confirm('Current project could not be saved. Open another project anyway?'))return;const p=await read('projects',b.dataset.open);if(!p)throw Error('Project not found');await loadProject(p);closeModal();notify('Loaded '+p.name+' with '+p.sounds.length+' sounds.')}catch(err){notify('Could not open project: '+err.message)}});
 for(const t of document.querySelectorAll('.tab'))t.onclick=()=>{document.querySelectorAll('.tabs .tab').forEach(x=>{const current=x===t;x.classList.toggle('active',current);x.setAttribute('aria-current',current?'page':'false')});for(const n of ['studio','library','recordings'])$(n).classList.toggle('hidden',n!==t.dataset.tab);if(t.dataset.tab==='library')renderLibrary()};
 $('master').oninput=e=>{project.settings.master=Number(e.target.value);setSettings();scheduleSave()};
 function tick(){for(const [map,isPreview] of [[live,false],[preview,true]])for(const [id,x] of map){const card=[...document.querySelectorAll('.sound')].find(c=>c.dataset.id===id);if(isPreview)continue;const dur=x.el.duration,now=x.el.currentTime,start=Math.max(0,Number(x.sound.start)||0),end=Math.min(Number.isFinite(dur)?dur:Infinity,Number(x.sound.end)>0?Number(x.sound.end):Infinity),range=Math.max(.01,end-start);if(Number.isFinite(end)&&now>=end-.035){if(x.sound.loop){x.el.currentTime=start;if(x.el.paused)x.el.play().catch(()=>stop(id,isPreview))}else{stop(id,isPreview);finishQueuedTrack(id,x);continue}}const t=Math.max(0,now-start),left=Math.max(0,end-now),fi=Math.min(Math.max(0,Number(x.sound.fadeIn)||0),range/2),fo=Math.min(Math.max(0,Number(x.sound.fadeOut)||0),range/2),fade=Math.min(1,fi?t/fi:1,fo?left/fo:1);x.gain.gain.setTargetAtTime((x.sound.volume??80)/100*clamp(fade,0,1),ctx.currentTime,.012);if(card){card.querySelector('[data-progress]').style.width=(Number.isFinite(end)?clamp(t/range*100,0,100):0)+'%';card.querySelector('[data-elapsed]').textContent=fmt(t);card.querySelector('[data-total]').textContent=fmt(range)}}if(!$('queueWorkspace').classList.contains('hidden'))queueNowUpdate();requestAnimationFrame(tick)}
-async function boot(){try{db=await openDB();const last=await read('projects','__last');if(last){const p=await read('projects',last);if(p&&Array.isArray(p.sounds)){project=p;let missing=0;for(const sound of p.sounds){const stored=await read('assets',sound.id);if(!stored)missing++}if(missing)notify(missing+' audio file(s) missing from browser storage. Import a backup to restore them.');$('saveStatus').textContent='✓ Restored: '+p.name}else{$('saveStatus').textContent='✓ Local storage ready'}}else{$('saveStatus').textContent='✓ New workspace'}if(navigator.storage?.persist)navigator.storage.persist().catch(()=>{})}catch(e){$('saveStatus').textContent='Export backups to save';notify('Browser local storage unavailable. You can still export a project backup.')}setSettings();$('scriptText').value=project.script||'';ensureQueue();renderQueue();renderCards();renderLibrary();renderRecordings();bootComplete=true;launcherBootReady=true;revealLauncherWhenReady();tick()}
+async function boot(){try{db=await openDB();const last=await read('projects','__last');if(last){const p=await read('projects',last);if(p&&Array.isArray(p.sounds)){project=p;projectSelectionRequired=false;let missing=0;for(const sound of p.sounds){const stored=await read('assets',sound.id);if(!stored)missing++}if(missing)notify(missing+' audio file(s) missing from browser storage. Remove and re-add those sounds.');$('saveStatus').textContent='✓ Restored: '+p.name}else{$('saveStatus').textContent='✓ Local storage ready'}}else{$('saveStatus').textContent='✓ New workspace'}if(navigator.storage?.persist)navigator.storage.persist().catch(()=>{})}catch(e){$('saveStatus').textContent='Export backups to save';notify('Browser local storage unavailable. You can still export a project backup.')}setSettings();$('scriptText').value=project.script||'';ensureQueue();renderQueue();renderCards();renderLibrary();renderRecordings();bootComplete=true;launcherBootReady=true;revealLauncherWhenReady();tick()}
 
 
 
@@ -2236,6 +2572,8 @@ function chooseLauncherPane(which){
  $('launcherOpenForm').classList.toggle('hidden',which!=='open');
  $('launcherNew').classList.toggle('active',which==='new');
  $('launcherOpen').classList.toggle('active',which==='open');
+ $('launcherNew').setAttribute('aria-expanded',String(which==='new'));
+ $('launcherOpen').setAttribute('aria-expanded',String(which==='open'));
  $('launcherFeedback').textContent='';
  if(which==='new')$('launcherProjectName').focus();
  if(which==='open')void populateLauncherProjects();
@@ -2245,15 +2583,28 @@ $('launcherOpen').onclick=()=>chooseLauncherPane('open');
 $('launcherNewCancel').onclick=()=>chooseLauncherPane(null);
 $('launcherOpenCancel').onclick=()=>chooseLauncherPane(null);
 $('launcherProjectName').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('launcherCreate').click()}});
+function launcherSavedDate(stamp){
+ if(!Number.isFinite(stamp)||stamp<=0)return 'Saved locally';
+ try{return 'Saved '+new Date(stamp).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})}catch(e){return 'Saved locally'}
+}
 async function populateLauncherProjects(){
  const list=$('launcherProjects'),count=$('launcherCount');
- if(!db){count.textContent='Unavailable';list.innerHTML='<div class="v64-project-empty">Browser storage is unavailable. Try opening the site in a regular browser tab.</div>';return}
+ const summary=$('launcherSavedTotal');
+ if(!db){count.textContent='Unavailable';summary.textContent='Saved projects unavailable';list.innerHTML='<div class="v74-project-empty"><strong>Browser storage is unavailable</strong><p>Open this site in a regular browser tab with storage enabled.</p></div>';return}
  try{
   const all=await dbOp('projects','readonly',o=>o.getAll());
   const projects=all.filter(p=>p?.id&&Array.isArray(p.sounds)).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0));
   count.textContent=projects.length+' saved';
-  list.innerHTML=projects.length?projects.map(p=>`<button class="v64-project-item" type="button" data-launch-open="${esc(p.id)}"><span>♫</span><span class="v64-project-item-info"><strong>${esc(p.name||'Untitled Broadcast')}</strong><small>${p.sounds.length} sounds · ${Array.isArray(p.nextUp)?p.nextUp.length:0} queued</small></span><span aria-hidden="true">›</span></button>`).join(''):'<div class="v64-project-empty">No saved projects yet. Choose New Project to begin.</div>';
- }catch(e){count.textContent='Error';list.textContent='Could not read saved projects: '+e.message}
+  summary.textContent=projects.length?`${projects.length} saved project${projects.length===1?'':'s'}`:'Continue a saved broadcast';
+  list.innerHTML=projects.length?projects.map(p=>{
+   const name=esc(p.name||'Untitled Broadcast');
+   const current=p.id===project.id&&!projectSelectionRequired;
+   const soundCount=p.sounds.length;
+   const queuedCount=Array.isArray(p.nextUp)?p.nextUp.length:0;
+   const details=`${soundCount} sound${soundCount===1?'':'s'} · ${queuedCount} queued · ${launcherSavedDate(p.updatedAt)}${current?' · Current':''}`;
+   return `<div class="v74-project-row${current?' is-current':''}"><button class="v64-project-item" type="button" data-launch-open="${esc(p.id)}" aria-label="Open ${name}"><span class="v74-project-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span><span class="v64-project-item-info"><strong title="${name}">${name}</strong><small>${details}</small></span><span class="v74-open-cta">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button><button type="button" class="project-delete-btn" data-delete-project="${esc(p.id)}" title="Delete ${name}" aria-label="Delete ${name}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 4h4M6 7l1 13h10l1-13M10 11v5M14 11v5"/></svg></button></div>`;
+  }).join(''):'<div class="v74-project-empty"><span class="v74-empty-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg></span><strong>No projects saved yet</strong><p>Create a new project to start your broadcast.</p><button type="button" class="v74-empty-create" data-launch-new>＋ New Project</button></div>';
+ }catch(e){count.textContent='Error';summary.textContent='Could not load projects';list.textContent='Could not read saved projects: '+e.message}
 }
 function enterStudio(){
  $('projectLauncher').classList.add('hidden');
@@ -2278,24 +2629,27 @@ $('launcherCreate').onclick=async()=>{
   project={id:newProjectId,name,sounds:[],script:'',nextUp:[],settings:{aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,autoNext:false}};
   $('scriptText').value='';selectedCategory='All';
   setSettings();ensureQueue();renderQueue();renderCards();renderLibrary();
-  const ok=await save();if(!ok)throw Error('Cannot save this project. Check browser storage.');
+  projectSelectionRequired=false;
+  const ok=await save();if(!ok){projectSelectionRequired=true;throw Error('Cannot save this project. Check browser storage.')}
   djWorkspace('board');enterStudio();
  }catch(e){$('launcherFeedback').textContent=e.message}
  finally{button.disabled=false}
 };
+$('launcherProjects').addEventListener('click',e=>{const newButton=e.target.closest('[data-launch-new]');if(newButton){e.preventDefault();chooseLauncherPane('new');return}const btn=e.target.closest('[data-delete-project]');if(btn){e.preventDefault();void askDeleteProject(btn.dataset.deleteProject)}});
 $('launcherProjects').addEventListener('click',async e=>{
  const button=e.target.closest('[data-launch-open]');if(!button||!db)return;
  button.disabled=true;
  try{
   const p=await read('projects',button.dataset.launchOpen);
   if(!p||!Array.isArray(p.sounds))throw Error('Project not found.');
+  projectSelectionRequired=false;
   await loadProject(p);
   const ok=await save();if(!ok)throw Error('Could not mark project as active.');
   enterStudio();
  }catch(e){$('launcherFeedback').textContent='Unable to open project: '+e.message}
  finally{button.disabled=false}
 });
-$('launcherImport').onclick=()=>$('importProject').click();
+
 // Press Escape within launcher: remain until project is explicitly selected.
 boot();
 })();
@@ -2310,14 +2664,24 @@ boot();
  button.title='Switch between light and dark';button.setAttribute('aria-label','Switch color theme');
  const toolbar=document.querySelector('header.top .toolbar');
  if(toolbar)toolbar.insertBefore(button,toolbar.firstChild);
+ const launcherButton=document.getElementById('launcherThemeSwitch');
  function apply(theme){
   const light=theme==='light';root.dataset.theme=light?'light':'dark';
   button.textContent=light?'☀ Light':'☾ Dark';
   button.setAttribute('aria-pressed',String(light));
+  if(launcherButton){
+   launcherButton.querySelector('.v75-theme-icon').textContent=light?'☀':'☾';
+   launcherButton.querySelector('.v75-theme-label').textContent=light?'Light':'Dark';
+   launcherButton.setAttribute('aria-pressed',String(light));
+   launcherButton.setAttribute('aria-label',light?'Switch to Dark Mode':'Switch to Light Mode');
+   launcherButton.title=light?'Switch to Dark Mode':'Switch to Light Mode';
+  }
   const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=light?'#f3f6fb':'#080808';
   try{localStorage.setItem(key,light?'light':'dark')}catch(e){}
  }
- button.addEventListener('click',()=>apply(root.dataset.theme==='light'?'dark':'light'));
+ function toggle(){apply(root.dataset.theme==='light'?'dark':'light')}
+ button.addEventListener('click',toggle);
+ if(launcherButton)launcherButton.addEventListener('click',toggle);
  apply(saved);
 })();
 </script></body></html>
