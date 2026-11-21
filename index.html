@@ -2439,6 +2439,51 @@ html[data-theme="light"] .v87-studio-header #saveStatus[data-state="error"]::aft
 @media(max-width:620px){.rec-feedback-toast{bottom:55px;font-size:11px;padding:8px 10px}.rec-delete span{display:none}.rec-delete{font-size:15px!important;min-width:30px;min-height:32px;padding:5px!important}.rec-file-actions{gap:2px}}
 @media(prefers-reduced-motion:reduce){.rec-fly-token{display:none!important}.tabs .tab.rec-tab-saved{animation:none}.rec-feedback-toast{transition:none}}
 </style>
+<style id="v90-audio-editor-styles">
+/* v90 integrated non-destructive multitrack editor */
+#aeOpen{order:1}#themeSwitch{order:2}#projectBtn{order:3}
+.ae-hidden{display:none!important}
+.ae-overlay{position:fixed;inset:0;z-index:150;background:rgba(2,6,11,.78);backdrop-filter:blur(10px);display:flex;justify-content:center;align-items:center;padding:12px;color:var(--ae-ink);--ae-ink:#e9f0fa;--ae-sub:#93a4b9;--ae-bg:#101820;--ae-panel:#18232e;--ae-panel2:#202e3b;--ae-border:#334353;--ae-teal:#2cd8bd;--ae-blue:#60a5fa;--ae-red:#fb7185;--ae-button:#263544;--ae-shadow:0 24px 95px #0008;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+:root[data-theme="light"] .ae-overlay{--ae-ink:#152235;--ae-sub:#66758a;--ae-bg:#f4f7fa;--ae-panel:#ffffff;--ae-panel2:#eaf0f5;--ae-border:#d2dde8;--ae-teal:#087f72;--ae-blue:#2266ad;--ae-red:#d14658;--ae-button:#e8eef3;--ae-shadow:0 24px 95px #17263b38;background:rgba(15,23,42,.34)}
+.ae-shell{width:min(1510px,100%);height:min(900px,100%);min-height:0;display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--ae-border);border-radius:17px;background:var(--ae-bg);box-shadow:var(--ae-shadow)}
+.ae-shell button{font:inherit;cursor:pointer} .ae-shell button:disabled{opacity:.38;cursor:not-allowed}.ae-shell input,.ae-shell select{font:inherit;color:var(--ae-ink);background:var(--ae-panel);border:1px solid var(--ae-border);border-radius:7px;min-height:30px;min-width:0;padding:4px 7px}.ae-shell input[type="range"]{padding:0;border:0;accent-color:var(--ae-teal);background:transparent;min-height:25px;cursor:pointer}.ae-shell input[type="number"]{font-variant-numeric:tabular-nums}
+.ae-shell *:focus-visible{outline:2px solid var(--ae-teal)!important;outline-offset:2px}.ae-top{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:11px 15px;border-bottom:1px solid var(--ae-border);background:var(--ae-panel);flex-shrink:0}.ae-brand{display:flex;align-items:center;gap:9px;min-width:0}.ae-brandmark{display:grid;place-items:center;width:33px;height:33px;background:color-mix(in srgb,var(--ae-teal) 12%,transparent);border:1px solid color-mix(in srgb,var(--ae-teal) 40%,transparent);border-radius:9px;color:var(--ae-teal);font-size:21px}.ae-brand-copy{display:flex;flex-direction:column;line-height:1.15;gap:4px;min-width:0}.ae-brand-copy strong{font-size:15px;white-space:nowrap}.ae-brand-copy small{color:var(--ae-sub);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ae-top-actions,.ae-actions,.ae-transport,.ae-toolstrip{display:flex;align-items:center;gap:6px;min-width:0}.ae-button{display:inline-flex;justify-content:center;align-items:center;gap:6px;white-space:nowrap;border:1px solid var(--ae-border);color:var(--ae-ink);background:var(--ae-button);border-radius:9px;font-size:12px!important;font-weight:650;padding:7px 10px;min-height:34px;transition:background .13s,transform .13s}.ae-button:hover:not(:disabled){background:color-mix(in srgb,var(--ae-button) 65%,var(--ae-teal) 35%)}.ae-button:active:not(:disabled){transform:scale(.97)}.ae-button.ae-primary{border-color:var(--ae-teal);background:var(--ae-teal);color:var(--ae-bg)}.ae-button.ae-primary:hover{filter:brightness(1.08)}.ae-button.ae-ghost{background:transparent}.ae-button.ae-icon{padding:6px;min-width:33px}.ae-button.ae-quiet-danger{color:var(--ae-red)}.ae-button.ae-icon svg,.ae-top-actions svg,.ae-toolstrip svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}.ae-divider{width:1px;height:23px;background:var(--ae-border);flex:none}.ae-controls{padding:9px 13px;display:flex;gap:10px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--ae-border);flex-wrap:wrap;flex-shrink:0;background:var(--ae-bg)}.ae-controls-left,.ae-controls-right{display:flex;align-items:center;gap:7px}.ae-time{font-size:12px;font-weight:750;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ae-ink)}.ae-time small{font-weight:500;color:var(--ae-sub)}.ae-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--ae-sub)}.ae-status i{width:6px;height:6px;background:var(--ae-teal);border-radius:50%}.ae-current-name{max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:middle}.ae-toolstrip{padding:8px 13px;flex-shrink:0;border-bottom:1px solid var(--ae-border);overflow-x:auto;scrollbar-width:thin}.ae-toolstrip .ae-button{min-height:31px}.ae-zoom{font-variant-numeric:tabular-nums;font-size:11px;color:var(--ae-sub);min-width:36px;text-align:center}.ae-tracks-wrap{flex:1;min-height:100px;display:flex;flex-direction:column;position:relative;background:var(--ae-bg)}.ae-stage{flex:1;overflow:auto;min-height:0;overscroll-behavior:contain;position:relative;scrollbar-color:var(--ae-border) var(--ae-bg)}.ae-ruler,.ae-track-row{display:flex;min-width:max-content}.ae-ruler{height:29px;position:sticky;top:0;z-index:9;background:var(--ae-panel)}.ae-ruler-label{width:155px;flex:none;position:sticky;left:0;z-index:10;background:var(--ae-panel);border-right:1px solid var(--ae-border);padding:8px 10px;font-size:10px;color:var(--ae-sub)}.ae-ruler-grid{position:relative;height:29px;cursor:crosshair;background:repeating-linear-gradient(90deg,var(--ae-border) 0 1px,transparent 1px 60px)}.ae-ruler-mark{position:absolute;top:5px;transform:translateX(2px);font-size:10px;color:var(--ae-sub);pointer-events:none}.ae-track-row{height:102px;border-top:1px solid var(--ae-border);position:relative}.ae-track-label{position:sticky;left:0;z-index:7;width:155px;flex:none;display:flex;flex-direction:column;gap:7px;justify-content:center;padding:10px;background:var(--ae-panel);border-right:1px solid var(--ae-border)}.ae-track-name{display:flex;align-items:center;gap:6px;min-width:0}.ae-track-name input{width:100%;padding:0;background:transparent;border:0;font-size:12px;font-weight:750;outline-offset:1px}.ae-color{height:12px;width:3px;border-radius:4px;flex:none}.ae-track-buttons{display:flex;align-items:center;gap:4px}.ae-mini{border:1px solid var(--ae-border);background:var(--ae-button);color:var(--ae-sub);border-radius:5px;font-size:10px!important;font-weight:700;width:24px;height:24px;display:grid;place-items:center;padding:0}.ae-mini.ae-active{background:var(--ae-teal);color:var(--ae-bg);border-color:var(--ae-teal)}.ae-track-vol{width:55px!important;min-height:20px!important}.ae-track-lane{position:relative;height:100%;flex:none;cursor:crosshair;background:repeating-linear-gradient(to right,color-mix(in srgb,var(--ae-border) 58%,transparent) 0 1px,transparent 1px 60px)}.ae-track-lane::after{content:"";position:absolute;inset:50% 0 auto;border-top:1px solid color-mix(in srgb,var(--ae-border) 40%,transparent);pointer-events:none}.ae-clip{position:absolute;top:16px;height:66px;border:1px solid var(--ae-clip-color);background:color-mix(in srgb,var(--ae-clip-color) 21%,var(--ae-panel));border-radius:7px;box-shadow:0 2px 8px #0002;overflow:hidden;touch-action:none;cursor:grab;user-select:none!important}.ae-clip:active{cursor:grabbing}.ae-clip.selected{outline:2px solid var(--ae-teal);outline-offset:1px;z-index:4}.ae-clip-title{position:absolute;top:0;left:0;right:0;height:20px;line-height:20px;font-size:10px;font-weight:700;padding:0 11px;color:var(--ae-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:color-mix(in srgb,var(--ae-clip-color) 19%,transparent);pointer-events:none}.ae-wave{position:absolute;left:0;top:20px;width:100%;height:45px;pointer-events:none}.ae-clip-handle{position:absolute;z-index:5;top:0;bottom:0;width:12px;display:flex;align-items:center;justify-content:center;color:var(--ae-ink);background:color-mix(in srgb,var(--ae-clip-color) 26%,transparent);cursor:ew-resize;touch-action:none}.ae-clip-handle.left{left:0}.ae-clip-handle.right{right:0}.ae-clip-handle::after{content:"";height:18px;width:2px;border-left:1px solid currentColor;border-right:1px solid currentColor;opacity:.7}.ae-playhead{position:absolute;z-index:6;top:29px;bottom:0;width:2px;background:#ff6b83;pointer-events:none;box-shadow:0 0 5px #ff6b8345}.ae-playhead::before{content:"";position:absolute;top:0;left:-5px;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #ff6b83}.ae-inspector{border-top:1px solid var(--ae-border);background:var(--ae-panel);padding:11px 13px;flex:none;display:flex;gap:12px;align-items:center;justify-content:space-between;min-height:62px}.ae-inspector-info{min-width:0}.ae-inspector-info strong{display:block;max-width:220px;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ae-inspector-info small{display:block;color:var(--ae-sub);margin-top:3px;font-size:10px}.ae-inspector-fields{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.ae-field{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ae-sub);white-space:nowrap}.ae-field input[type="number"]{width:67px}.ae-field input[type="range"]{width:80px}.ae-bottom{border-top:1px solid var(--ae-border);padding:8px 13px;color:var(--ae-sub);font-size:11px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;flex:none}.ae-bottom span{display:inline-flex;align-items:center;gap:5px}.ae-bottom b{color:var(--ae-teal)}
+.ae-popover{position:absolute;z-index:30;inset:0;background:color-mix(in srgb,var(--ae-bg) 91%,transparent);display:grid;place-items:center;padding:14px;overflow:auto}.ae-dialog{width:min(550px,100%);max-height:100%;overflow:auto;border:1px solid var(--ae-border);border-radius:15px;background:var(--ae-panel);padding:22px;box-shadow:0 24px 75px #0004}.ae-dialog h2{font-size:21px;margin:4px 0 7px}.ae-dialog p{font-size:12px;color:var(--ae-sub);line-height:1.5;margin:0 0 13px}.ae-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.ae-dialog-eyebrow{font-size:10px;color:var(--ae-teal);font-weight:850;letter-spacing:.14em;text-transform:uppercase}.ae-project-list{max-height:300px;overflow:auto;display:flex;flex-direction:column;gap:7px;margin:13px 0}.ae-project-item{padding:12px;border:1px solid var(--ae-border);border-radius:9px;background:var(--ae-bg);display:flex;align-items:center;justify-content:space-between;gap:10px}.ae-project-item strong{font-size:13px;display:block;max-width:205px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ae-project-item small{color:var(--ae-sub);font-size:11px;display:block;margin-top:3px}.ae-form-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.ae-form-row>input{flex:1}.ae-choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:17px 0}.ae-choice-card{min-height:100px;display:flex;align-items:flex-start;justify-content:center;flex-direction:column;gap:6px;padding:13px!important;border:1px solid var(--ae-border);border-radius:11px;background:var(--ae-bg);color:var(--ae-ink);text-align:left}.ae-choice-card strong{font-size:14px}.ae-choice-card small{color:var(--ae-sub);font-size:11px}.ae-choice-card:hover{border-color:var(--ae-teal)}.ae-dialog input[type="text"]{width:100%}.ae-export-options{display:flex;gap:8px;margin:13px 0}.ae-export-options label{flex:1;padding:14px;border:1px solid var(--ae-border);border-radius:9px;font-weight:750;font-size:13px;cursor:pointer;background:var(--ae-bg)}.ae-export-options input{margin-right:7px;accent-color:var(--ae-teal)}.ae-progress{width:100%;height:6px;background:var(--ae-border);border-radius:9px;overflow:hidden;margin:9px 0}.ae-progress>div{height:100%;background:var(--ae-teal);width:0;transition:width .15s}.ae-notice{padding:9px 12px;border-radius:9px;font-size:12px;background:var(--ae-panel2);color:var(--ae-ink);border:1px solid var(--ae-border);margin:8px 0}.ae-alert{color:var(--ae-red)}.ae-empty{padding:40px 20px;text-align:center;color:var(--ae-sub);font-size:12px;line-height:1.6}.ae-empty strong{font-size:16px;color:var(--ae-ink);display:block;margin-bottom:6px}.ae-drop-hover{outline:3px dashed var(--ae-teal);outline-offset:-5px}
+@media(max-width:790px){.ae-overlay{padding:0;backdrop-filter:none}.ae-shell{height:100%;width:100%;border:0;border-radius:0}.ae-top{padding:9px 10px;gap:8px}.ae-brandmark{width:29px;height:29px}.ae-brand-copy strong{font-size:13px}.ae-brand-copy small{font-size:9px}.ae-top-actions{gap:4px}.ae-top-actions .ae-button{font-size:11px!important;padding:6px;min-height:32px}.ae-top-actions .ae-button .ae-hide-phone{display:none}.ae-controls{padding:7px 9px;gap:7px}.ae-controls-left,.ae-controls-right{gap:5px}.ae-button{font-size:11px!important;padding:6px 8px;min-height:32px}.ae-toolstrip{padding:7px 9px;gap:4px}.ae-ruler-label,.ae-track-label{width:88px}.ae-track-label{padding:7px;gap:3px}.ae-track-name input{font-size:10px}.ae-track-buttons{gap:3px}.ae-mini{width:21px;height:21px}.ae-track-vol{width:25px!important}.ae-track-row{height:80px}.ae-clip{top:10px;height:57px}.ae-wave{height:36px}.ae-inspector{padding:8px 9px;gap:6px;min-height:57px;align-items:flex-start}.ae-inspector-info{max-width:100px;align-self:center}.ae-inspector-info strong{max-width:100px;font-size:11px}.ae-inspector-fields{gap:5px}.ae-field{font-size:10px;gap:3px}.ae-field input[type="number"]{width:55px;min-height:29px;padding:4px}.ae-field input[type="range"]{width:62px}.ae-bottom{padding:7px 10px;font-size:10px}.ae-dialog{padding:16px;border-radius:12px}.ae-dialog h2{font-size:18px}}
+@media(max-width:380px){.ae-brand-copy strong{font-size:12px}.ae-top-actions .ae-button{padding:5px;min-width:27px}.ae-top-actions .ae-button svg{width:14px}.ae-controls-right .ae-button .ae-hide-phone,.ae-toolstrip .ae-button .ae-hide-phone{display:none}.ae-inspector{flex-direction:column;align-items:stretch}.ae-inspector-fields{justify-content:space-between}.ae-field input[type="range"]{width:65px}.ae-time{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.ae-shell *{animation:none!important;transition:none!important}}
+
+/* Keep studio controls balanced at narrow widths. */
+@media(max-width:790px){.ae-top .ae-brand{flex:1;min-width:0}.ae-brand-copy{min-width:0}.ae-brand-copy strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ae-brand-copy strong span{display:none}.ae-top-actions>.ae-status{width:9px;min-width:9px;max-width:9px;overflow:hidden}.ae-top-actions>.ae-status span{display:none}.ae-top-actions>.ae-status i{flex:none}.ae-top-actions .ae-button{width:30px;min-width:30px;padding:4px!important}.ae-top-actions .ae-button.ae-primary{font-size:18px!important}.ae-brand-copy small{max-width:110px}}
+@media(max-width:380px){.ae-brand-copy small{max-width:87px}.ae-inspector-info small{display:none}.ae-inspector{gap:3px}.ae-field{min-height:28px}}
+
+</style><style id="v91-millisecond-trim">
+/* Precise Edit Sound timecode without expanding its compact mobile dialog. */
+.sound-editor-open .v77-sound-editor .edit-times .field{min-width:0}
+.sound-editor-open .v77-sound-editor .edit-times label{display:flex;align-items:baseline;justify-content:space-between;gap:3px;white-space:nowrap}
+.sound-editor-open .v77-sound-editor .edit-times label span{font-size:9px;letter-spacing:-.1px;opacity:.76;white-space:nowrap}
+.sound-editor-open .v77-sound-editor .edit-times input{font-variant-numeric:tabular-nums;letter-spacing:0!important;font-size:14px!important;padding:5px 4px!important;width:100%;min-width:0;text-align:center}
+.sound-editor-open .v77-sound-editor #rangeDuration{font-variant-numeric:tabular-nums;max-width:none;font-size:9px!important}
+@media(max-width:380px){
+ .sound-editor-open .v77-sound-editor .edit-times input{font-size:13px!important}
+ .sound-editor-open .v77-sound-editor .edit-times label span{font-size:8px}
+}
+</style>
+<style id="v93-editor-capcut-style">
+/* Smooth draggable timeline, precision, edge cursors and resizable tracks */
+.ae-zoom-slider{width:118px!important;min-width:65px;accent-color:var(--ae-teal);cursor:ew-resize}.ae-zoom{min-width:37px}.ae-snap-label{font-size:11px;color:var(--ae-sub);display:flex;align-items:center;gap:5px;white-space:nowrap;cursor:pointer}.ae-snap-label input{accent-color:var(--ae-teal)}
+.ae-track-label{position:sticky}.ae-track-resizer{position:absolute;bottom:-4px;left:0;right:0;height:10px;z-index:12;cursor:row-resize;touch-action:none}.ae-track-resizer:hover,.ae-track-resizer:active{background:color-mix(in srgb,var(--ae-teal) 22%,transparent)}
+.ae-track-row{min-height:72px;max-height:260px}.ae-clip{top:12px;height:calc(100% - 26px);transition:box-shadow .12s,border-color .12s;will-change:left,width;contain:layout paint}.ae-wave{height:calc(100% - 20px)}
+.ae-clip-handle{width:11px;background:transparent;opacity:.72;cursor:col-resize}.ae-clip-handle:hover,.ae-clip.selected .ae-clip-handle{background:color-mix(in srgb,var(--ae-clip-color) 44%,transparent);opacity:1}.ae-clip-handle::after{content:'↔';font-family:Arial,sans-serif;border:0;width:auto;height:auto;font-size:14px;font-weight:700;text-shadow:0 0 4px #0005}.ae-clip-handle:hover::before{content:'';position:absolute;width:2px;background:currentColor;height:65%;left:50%;top:17.5%;transform:translateX(-50%)}
+.ae-playhead{z-index:8;background:#ff4357;width:2px;box-shadow:0 0 5px #ff43573a}.ae-playhead::before{display:none}.ae-head-grab{position:absolute;top:-25px;left:-12px;width:25px;height:26px;cursor:ew-resize;pointer-events:auto;touch-action:none;z-index:18}.ae-head-grab::after{content:'';position:absolute;left:6px;top:5px;border-left:7px solid transparent;border-right:7px solid transparent;border-top:10px solid #ff4357;filter:drop-shadow(0 1px 2px #0007)}.ae-ruler-grid{cursor:ew-resize;touch-action:pan-y}.ae-range-overlay{position:absolute;pointer-events:none;z-index:3;top:0;bottom:0;background:#ffbd3550;border-left:2px solid #ffc047;border-right:2px solid #ffc047}.ae-inspector-fields input[type=number]{width:81px}.ae-time{font-variant-numeric:tabular-nums}.ae-clip.selected .ae-wave{opacity:1}
+@media(max-width:790px){.ae-zoom-slider{width:68px!important}.ae-clip{top:8px;height:calc(100% - 18px)}.ae-inspector-fields input[type=number]{width:72px}.ae-snap-label{font-size:10px}}
+</style>
+<style id="v95-editor-clipboard">
+#aeCopy:disabled,#aeCut:disabled,#aePaste:disabled{opacity:.42;cursor:not-allowed}
+#aePaste:not(:disabled){border-color:color-mix(in srgb,var(--ae-teal) 55%,var(--ae-border));background:color-mix(in srgb,var(--ae-teal) 10%,var(--ae-button))}
+#aeCopy:not(:disabled):hover,#aeCut:not(:disabled):hover,#aePaste:not(:disabled):hover{border-color:var(--ae-teal)}
+@media(max-width:790px){#aeCopy,#aeCut,#aePaste{min-width:33px}}
+</style>
 </head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div><button id="splashSkip" type="button" class="v64-skip">Skip intro</button></div>
 </div>
@@ -3008,10 +3053,22 @@ if(typeof ResizeObserver!=='undefined'){
 function renderCards(){const root=$('cards');renderQueuePicker();renderCategoryFilters();const visible=selectedCategory==='All'?project.sounds:project.sounds.filter(s=>(s.category||'Effect')===selectedCategory);root.innerHTML=visible.map(cardHTML).join('');scheduleSoundboardMarquee();$('empty').classList.toggle('hidden',project.sounds.length>0);updateWorkspaceCount();$('projectTitle').textContent=project.name;count()}
 function renderLibrary(){$('libraryList').innerHTML=project.sounds.length?project.sounds.map(s=>`<div class="listrow"><span>♫</span><span class="grow"><b>${esc(s.name)}</b><div class="hint">${esc(s.category)} · ${s.speed}× · ${s.volume}%</div></span><button class="btn small" data-edit="${s.id}">Edit</button><button class="btn danger small" data-remove="${s.id}">Remove</button></div>`).join(''):'<div class="empty">No sounds yet. Select Add Audio in Studio to get started.</div>'}
 function modal(title,html){getAudioCleanup();$('modalBg').classList.remove('sound-editor-open');$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modalBg').classList.remove('hidden')}function closeModal(){getAudioCleanup();stopEditorPreview();$('modalBg').classList.remove('sound-editor-open');$('modalBg').classList.add('hidden')}
-function clockTime(sec){sec=Math.max(0,Math.round(Number(sec)||0));return String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0')}
-function parseClock(value){const t=String(value).trim();if(!t)return 0;if(/^\d+(?::[0-5]?\d)?$/.test(t)){const p=t.split(':').map(Number);return p.length===2?p[0]*60+p[1]:p[0]}return NaN}
-let editorAudio=null;
-function stopEditorPreview(){if(editorAudio){editorAudio.pause();editorAudio.removeAttribute('src');editorAudio.load();editorAudio=null}const stopBtn=$('rangeStop'),notice=$('previewNotice'),listenBtn=$('rangePreview');if(stopBtn)stopBtn.disabled=true;if(listenBtn)listenBtn.classList.remove('is-listening');if(notice&&$('modalBg')?.classList.contains('sound-editor-open'))notice.textContent='Preview stopped · Broadcast unaffected.'}
+// v91: Trim fields use MM:SS.mmm. All computations retain 1-millisecond precision.
+function clockTime(seconds){
+ const totalMs=Math.max(0,Math.round((Number(seconds)||0)*1000));
+ const whole=Math.floor(totalMs/1000);
+ return String(Math.floor(whole/60)).padStart(2,'0')+':'+String(whole%60).padStart(2,'0')+'.'+String(totalMs%1000).padStart(3,'0');
+}
+function parseClock(value){
+ const t=String(value??'').trim();if(!t)return NaN;
+ const match=t.match(/^(\d{1,6}):([0-5]?\d)(?:\.(\d{1,3}))?$/);
+ if(match)return Number(match[1])*60+Number(match[2])+Number((match[3]||'').padEnd(3,'0'))/1000;
+ // Also allow typing a plain number of seconds, e.g. 12.345.
+ if(/^\d+(?:\.\d{1,3})?$/.test(t))return Number(t);
+ return NaN;
+}
+let editorAudio=null,editorPreviewFrame=null;
+function stopEditorPreview(){if(editorPreviewFrame!==null){cancelAnimationFrame(editorPreviewFrame);editorPreviewFrame=null}if(editorAudio){editorAudio.pause();editorAudio.removeAttribute('src');editorAudio.load();editorAudio=null}const stopBtn=$('rangeStop'),notice=$('previewNotice'),listenBtn=$('rangePreview');if(stopBtn)stopBtn.disabled=true;if(listenBtn)listenBtn.classList.remove('is-listening');if(notice&&$('modalBg')?.classList.contains('sound-editor-open'))notice.textContent='Preview stopped · Broadcast unaffected.'}
 function editSound(id){const s=get(id);if(!s)return;stopEditorPreview();modal('Edit Sound',`<div class="editor-v9 v76-sound-editor v77-sound-editor">
 
 <div class="edit-editor-grid">
@@ -3019,8 +3076,8 @@ function editSound(id){const s=get(id);if(!s)return;stopEditorPreview();modal('E
 <div class="field edit-name-field"><label for="sName">Sound name</label><input id="sName" type="text" maxlength="100" autocomplete="off" value="${esc(s.name)}"></div>
 <div class="edit-quick-settings" aria-label="Sound playback settings"><div class="field"><label for="sCat">Category</label><select id="sCat">${['Intro','Background','Priority','Effect','Transition','Advertisement','Outro'].map(c=>`<option ${c===s.category?'selected':''}>${c}</option>`).join('')}</select></div><div class="field"><label for="sSpeed">Speed</label><select id="sSpeed">${[.5,.75,1,1.25,1.5,2].map(v=>`<option value="${v}" ${Number(s.speed)===v?'selected':''}>${v}×</option>`).join('')}</select></div><div class="edit-control-row"><div class="field edit-volume"><div class="edit-inline-label"><label for="sVol">Volume</label><output id="sVolValue" for="sVol">${s.volume}%</output></div><input id="sVol" type="range" min="0" max="100" step="1" value="${s.volume}" aria-label="Sound volume"></div><div class="field edit-repeat"><span class="edit-repeat-caption">Repeat</span><label class="edit-repeat-switch" for="sLoop"><input id="sLoop" type="checkbox" ${s.loop?'checked':''}><span class="edit-repeat-switch-track" aria-hidden="true"><span></span></span><span class="edit-repeat-switch-text" id="loopState">${s.loop?'On':'Off'}</span></label></div></div></div></section>
 <section class="edit-section edit-trim" aria-label="Trim audio and preview"><div class="edit-section-top"><span class="edit-step">02</span><div><strong>Trim audio</strong><small>Play only the part you need</small></div><div class="edit-trim-meta"><span class="edit-duration" id="rangeDuration">Loading…</span><button class="btn small edit-reset" id="rangeReset" type="button">↺ Full song</button></div></div>
-<div class="edit-times"><div class="field"><label for="sStart">Start time <span>MM:SS</span></label><input id="sStart" type="text" inputmode="numeric" placeholder="00:00" maxlength="9" value="${clockTime(s.start??0)}"></div><div class="field"><label for="sEnd">End time <span>MM:SS</span></label><input id="sEnd" type="text" inputmode="numeric" placeholder="00:00" maxlength="9" value="${s.end>0?clockTime(s.end):''}"></div></div>
-<div class="edit-range" aria-label="Select the start and end of the audio"><div class="range-line"><label for="rangeStart">START</label><input id="rangeStart" type="range" min="0" max="1000" value="0"></div><div class="range-line"><label for="rangeEnd">END</label><input id="rangeEnd" type="range" min="0" max="1000" value="1000"></div></div>
+<div class="edit-times"><div class="field"><label for="sStart">Start <span>MM:SS.mmm</span></label><input id="sStart" type="text" inputmode="decimal" spellcheck="false" placeholder="00:00.000" maxlength="13" value="${clockTime(s.start??0)}"></div><div class="field"><label for="sEnd">End <span>MM:SS.mmm</span></label><input id="sEnd" type="text" inputmode="decimal" spellcheck="false" placeholder="00:00.000" maxlength="13" value="${s.end>0?clockTime(s.end):''}"></div></div>
+<div class="edit-range" aria-label="Select the start and end of the audio"><div class="range-line"><label for="rangeStart">START</label><input id="rangeStart" type="range" min="0" max="1000" step="1" value="0" aria-label="Trim start position, 1 millisecond increments"></div><div class="range-line"><label for="rangeEnd">END</label><input id="rangeEnd" type="range" min="0" max="1000" step="1" value="1000" aria-label="Trim end position, 1 millisecond increments"></div></div>
 <div class="edit-listen-panel" aria-label="Listen preview controls"><div class="edit-listen-header"><span class="edit-listen-indicator" aria-hidden="true">◉</span><div><strong>Listen before saving</strong></div></div><div class="edit-preview"><button class="btn green" id="rangePreview" type="button">▶ Listen</button><button class="btn edit-stop-preview" id="rangeStop" type="button" disabled>■ Stop Preview</button></div><p class="hint" id="previewNotice" role="status" aria-live="polite">Only the preview stops, not the broadcast.</p></div></section>
 <section class="edit-section edit-fades" aria-label="Fade effects"><div class="edit-section-top"><span class="edit-step">03</span><div><strong>Smooth fades</strong><small>Set how gently your audio starts and ends</small></div></div><div class="edit-fades-grid"><div class="fade-row"><label for="sFadeIn">Fade in</label><div class="fade-pills" data-fade="sFadeIn"><button type="button" data-val="0">Off</button><button type="button" data-val="1">1s</button><button type="button" data-val="2">2s</button><button type="button" data-val="3">3s</button></div><div class="edit-custom-fade"><input id="sFadeIn" aria-label="Custom fade in seconds" type="number" min="0" max="60" step="0.1" value="${s.fadeIn??0}"><span>s</span></div></div><div class="fade-row"><label for="sFadeOut">Fade out</label><div class="fade-pills" data-fade="sFadeOut"><button type="button" data-val="0">Off</button><button type="button" data-val="1">1s</button><button type="button" data-val="2">2s</button><button type="button" data-val="3">3s</button></div><div class="edit-custom-fade"><input id="sFadeOut" aria-label="Custom fade out seconds" type="number" min="0" max="60" step="0.1" value="${s.fadeOut??0}"><span>s</span></div></div></div></section>
 </div>
@@ -3032,15 +3089,48 @@ soundVol.addEventListener('input',refreshSoundVol);refreshSoundVol();
 soundLoop.addEventListener('change',()=>{soundLoopValue.textContent=soundLoop.checked?'On':'Off'});
 document.querySelectorAll('.fade-pills').forEach(group=>{const input=$(group.dataset.fade);const refresh=()=>group.querySelectorAll('button').forEach(btn=>btn.classList.toggle('selected',Number(btn.dataset.val)===Number(input.value)));group.querySelectorAll('button').forEach(btn=>btn.onclick=()=>{input.value=btn.dataset.val;refresh()});input.addEventListener('input',refresh);refresh()});
 let duration=0;const st=$('sStart'),en=$('sEnd'),rs=$('rangeStart'),re=$('rangeEnd');
-const valid=()=>{let start=parseClock(st.value),end=parseClock(en.value);if(!Number.isFinite(start)||!Number.isFinite(end))return null;start=Math.max(0,start);end=Math.max(0,end);if(duration){start=Math.min(start,Math.max(0,duration-1));end=end<=0?duration:Math.min(duration,end)}return {start,end,fadeIn:Math.max(0,Number($('sFadeIn').value)||0),fadeOut:Math.max(0,Number($('sFadeOut').value)||0)}};
-const sync=()=>{if(!duration)return;const a=parseClock(st.value),b=parseClock(en.value);if(Number.isFinite(a))rs.value=Math.round(Math.max(0,Math.min(1,a/duration))*1000);if(Number.isFinite(b))re.value=Math.round(Math.max(0,Math.min(1,(b||duration)/duration))*1000)};
-const normalizeTime=el=>{const n=parseClock(el.value);if(Number.isFinite(n))el.value=clockTime(n)};
-rs.max=re.max=1000;rs.oninput=()=>{const v=Math.round(duration*Number(rs.value)/1000);st.value=clockTime(v);if(v>=parseClock(en.value||clockTime(duration)))en.value=clockTime(Math.min(duration,v+1));sync()};re.oninput=()=>{const v=Math.round(duration*Number(re.value)/1000);en.value=clockTime(v);if(v<=parseClock(st.value))st.value=clockTime(Math.max(0,v-1));sync()};st.oninput=en.oninput=sync;st.onblur=()=>{normalizeTime(st);sync()};en.onblur=()=>{normalizeTime(en);sync()};
-$('rangeReset').onclick=()=>{st.value='00:00';en.value=clockTime(duration||0);$('sFadeIn').value=0;$('sFadeOut').value=0;document.querySelectorAll('.fade-pills button').forEach(b=>b.classList.toggle('selected',b.dataset.val==='0'));sync()};
+const toMs=seconds=>Math.round(Math.max(0,seconds)*1000);
+const maxMs=()=>Math.max(1,toMs(duration));
+const valid=()=>{
+ let start=parseClock(st.value),end=parseClock(en.value);
+ if(!Number.isFinite(start)||!Number.isFinite(end)||start<0||end<=0)return null;
+ start=toMs(start)/1000;end=toMs(end)/1000;
+ if(duration){start=Math.min(start,Math.max(0,(maxMs()-1)/1000));end=Math.min(end,maxMs()/1000)}
+ if(end-start<.0005)return null;
+ return {start,end,fadeIn:Math.max(0,Number($('sFadeIn').value)||0),fadeOut:Math.max(0,Number($('sFadeOut').value)||0)};
+};
+const sync=()=>{
+ if(!duration)return;
+ const a=parseClock(st.value),b=parseClock(en.value),limit=maxMs();
+ rs.max=re.max=String(limit);
+ if(Number.isFinite(a))rs.value=String(Math.min(limit,Math.max(0,toMs(a))));
+ if(Number.isFinite(b))re.value=String(Math.min(limit,Math.max(0,toMs(b))));
+};
+const normalizeTime=el=>{const n=parseClock(el.value);if(Number.isFinite(n))el.value=clockTime(duration?Math.min(n,duration):n)};
+// Native range values represent milliseconds, not percentages or whole seconds.
+rs.oninput=()=>{
+ if(!duration)return;
+ const limit=maxMs();let startMs=Number(rs.value);let endMs=toMs(parseClock(en.value));
+ if(!Number.isFinite(endMs))endMs=limit;
+ startMs=Math.min(startMs,limit-1);
+ if(startMs>=endMs)endMs=Math.min(limit,startMs+1);
+ st.value=clockTime(startMs/1000);en.value=clockTime(endMs/1000);sync();
+};
+re.oninput=()=>{
+ if(!duration)return;
+ const limit=maxMs();let endMs=Math.max(1,Number(re.value));let startMs=toMs(parseClock(st.value));
+ if(!Number.isFinite(startMs))startMs=0;
+ if(endMs<=startMs)startMs=Math.max(0,endMs-1);
+ st.value=clockTime(startMs/1000);en.value=clockTime(Math.min(limit,endMs)/1000);sync();
+};
+st.oninput=en.oninput=sync;
+st.onblur=()=>{normalizeTime(st);sync()};
+en.onblur=()=>{normalizeTime(en);sync()};
+$('rangeReset').onclick=()=>{st.value='00:00.000';en.value=clockTime(duration||0);$('sFadeIn').value=0;$('sFadeOut').value=0;document.querySelectorAll('.fade-pills button').forEach(b=>b.classList.toggle('selected',b.dataset.val==='0'));sync()};
 $('rangeStop').onclick=stopEditorPreview;
-$('rangePreview').onclick=async()=>{try{stopEditorPreview();const v=valid();if(!v||v.end<=v.start){notify('Enter a valid Start and End time, like 01:15');return}const a=new Audio(await audioURL(s));editorAudio=a;a.preload='auto';applySoundSpeed(a,{speed:Number($('sSpeed').value)});a.preservesPitch=true;a.volume=0;const end=v.end||duration;const section=Math.max(.01,end-v.start),fi=Math.min(v.fadeIn,section/2),fo=Math.min(v.fadeOut,section/2),getBase=()=>clamp(Number($('sVol').value)/100,0,1);a.currentTime=v.start;const update=()=>{if(editorAudio!==a)return;if(a.currentTime>=end-.025){stopEditorPreview();return}const t=Math.max(0,a.currentTime-v.start),left=Math.max(0,end-a.currentTime);a.volume=clamp(getBase()*Math.min(1,fi?t/fi:1,fo?left/fo:1),0,1)};a.ontimeupdate=update;a.onended=stopEditorPreview;await a.play();if(editorAudio===a){$('rangeStop').disabled=false;$('rangePreview').classList.add('is-listening');$('previewNotice').textContent='Preview playing · Broadcast unaffected.'}update();}catch(e){stopEditorPreview();notify('Preview error: '+e.message)}};
-$('saveSound').onclick=()=>{const v=valid();if(!v||v.end<=v.start){notify('End time must be after Start time. Use MM:SS, like 01:15');return}stopEditorPreview();s.name=$('sName').value.trim()||s.name;s.category=$('sCat').value;s.volume=clamp(Number($('sVol').value)||0,0,100);s.speed=Number($('sSpeed').value);s.loop=$('sLoop').checked;s.start=v.start;s.end=v.end;s.fadeIn=v.fadeIn;s.fadeOut=v.fadeOut;stop(id);stop(id,true);void save();renderCards();renderLibrary();closeModal();notify('Sound settings saved · Speed '+soundSpeed(s)+'×')};$('cancelSound').onclick=closeModal;
-audioURL(s).then(url=>{if(!$('rangeDuration'))return;const probe=new Audio();probe.preload='metadata';probe.onloadedmetadata=()=>{if(!$('rangeDuration'))return;duration=Number.isFinite(probe.duration)?probe.duration:0;$('rangeDuration').textContent=duration?fmt(duration):'Unknown length';if(!parseClock(en.value)&&duration)en.value=clockTime(duration);sync()};probe.src=url}).catch(e=>notify(e.message));}
+$('rangePreview').onclick=async()=>{try{stopEditorPreview();const v=valid();if(!v||v.end<=v.start){notify('Enter a valid Start and End time (MM:SS.mmm), e.g. 01:15.250');return}const a=new Audio(await audioURL(s));editorAudio=a;a.preload='auto';applySoundSpeed(a,{speed:Number($('sSpeed').value)});a.preservesPitch=true;a.volume=0;const end=v.end||duration;const section=Math.max(.01,end-v.start),fi=Math.min(v.fadeIn,section/2),fo=Math.min(v.fadeOut,section/2),getBase=()=>clamp(Number($('sVol').value)/100,0,1);a.currentTime=v.start;const update=()=>{if(editorAudio!==a)return;if(a.currentTime>=end-.005){stopEditorPreview();return}const t=Math.max(0,a.currentTime-v.start),left=Math.max(0,end-a.currentTime);a.volume=clamp(getBase()*Math.min(1,fi?t/fi:1,fo?left/fo:1),0,1)};a.ontimeupdate=update;a.onended=stopEditorPreview;await a.play();if(editorAudio===a){const watch=()=>{if(editorAudio!==a){editorPreviewFrame=null;return}update();if(editorAudio===a)editorPreviewFrame=requestAnimationFrame(watch)};editorPreviewFrame=requestAnimationFrame(watch)};if(editorAudio===a){$('rangeStop').disabled=false;$('rangePreview').classList.add('is-listening');$('previewNotice').textContent='Preview playing · Broadcast unaffected.'}update();}catch(e){stopEditorPreview();notify('Preview error: '+e.message)}};
+$('saveSound').onclick=()=>{const v=valid();if(!v||v.end<=v.start){notify('End must be after Start. Use MM:SS.mmm, e.g. 01:15.250');return}stopEditorPreview();s.name=$('sName').value.trim()||s.name;s.category=$('sCat').value;s.volume=clamp(Number($('sVol').value)||0,0,100);s.speed=Number($('sSpeed').value);s.loop=$('sLoop').checked;s.start=v.start;s.end=v.end;s.fadeIn=v.fadeIn;s.fadeOut=v.fadeOut;stop(id);stop(id,true);void save();renderCards();renderLibrary();closeModal();notify('Sound settings saved · Speed '+soundSpeed(s)+'×')};$('cancelSound').onclick=closeModal;
+audioURL(s).then(url=>{if(!$('rangeDuration'))return;const probe=new Audio();probe.preload='metadata';probe.onloadedmetadata=()=>{if(!$('rangeDuration'))return;duration=Number.isFinite(probe.duration)?probe.duration:0;$('rangeDuration').textContent=duration?clockTime(duration):'Unknown length';if(!Number.isFinite(parseClock(en.value))&&duration)en.value=clockTime(duration);sync()};probe.src=url}).catch(e=>notify(e.message));}
 async function addFiles(files){if(!files.length)return;let ok=0;for(const f of files){if(!f.type.startsWith('audio/')&&!/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(f.name)){notify('Skipped unsupported file: '+f.name);continue}const s={id:id(),name:f.name.replace(/\.[^.]+$/,''),category:'Effect',volume:80,speed:1,loop:false};try{if(db)await put('assets',s.id,f);blobs.set(s.id,f);project.sounds.push(s);ok++}catch(e){notify('Storage full or unavailable for '+f.name);blobs.set(s.id,f);project.sounds.push(s);ok++}}if(ok){scheduleSave();renderCards();renderLibrary();notify(ok+' audio file(s) added. Default speed: 1× natural.')} }
 async function removeSound(id){const s=get(id);if(!s||!confirm('Remove '+s.name+' from this project?'))return;stop(id);stop(id,true);project.sounds=project.sounds.filter(x=>x.id!==id);if(queueCurrentId===id)cancelQueuedPlayback();ensureQueue();renderQueue();if(urls.has(id)){URL.revokeObjectURL(urls.get(id));urls.delete(id)}blobs.delete(id);if(db)await del('assets',id).catch(()=>{});scheduleSave();renderCards();renderLibrary()}
 function reorder(a,b){if(!a||!b||a===b)return;const i=project.sounds.findIndex(s=>s.id===a),j=project.sounds.findIndex(s=>s.id===b);if(i<0||j<0)return;project.sounds.splice(j,0,project.sounds.splice(i,1)[0]);scheduleSave();renderCards();renderLibrary()}
@@ -3462,7 +3552,7 @@ $('modalBody').addEventListener('click',e=>{const btn=e.target.closest('[data-de
 $('modalBody').addEventListener('click',async e=>{const b=e.target.closest('[data-open]');if(!b)return;try{const ok=await save();if(!ok&&!confirm('Current project could not be saved. Open another project anyway?'))return;const p=await read('projects',b.dataset.open);if(!p)throw Error('Project not found');await loadProject(p);closeModal();notify('Loaded '+p.name+' with '+p.sounds.length+' sounds.')}catch(err){notify('Could not open project: '+err.message)}});
 for(const t of document.querySelectorAll('.tab'))t.onclick=()=>{document.querySelectorAll('.tabs .tab').forEach(x=>{const current=x===t;x.classList.toggle('active',current);x.setAttribute('aria-current',current?'page':'false')});for(const n of ['studio','library','recordings'])$(n).classList.toggle('hidden',n!==t.dataset.tab);if(t.dataset.tab==='library')renderLibrary()};
 $('master').oninput=e=>{project.settings.master=Number(e.target.value);setSettings();scheduleSave()};
-function tick(){for(const [map,isPreview] of [[live,false],[preview,true]])for(const [id,x] of map){const card=[...document.querySelectorAll('.sound')].find(c=>c.dataset.id===id);if(isPreview)continue;const dur=x.el.duration,now=x.el.currentTime,start=Math.max(0,Number(x.sound.start)||0),end=Math.min(Number.isFinite(dur)?dur:Infinity,Number(x.sound.end)>0?Number(x.sound.end):Infinity),range=Math.max(.01,end-start);if(Number.isFinite(end)&&now>=end-.035){if(x.sound.loop){x.el.currentTime=start;if(x.el.paused)x.el.play().catch(()=>stop(id,isPreview))}else{stop(id,isPreview);finishQueuedTrack(id,x);continue}}const t=Math.max(0,now-start),left=Math.max(0,end-now),fi=Math.min(Math.max(0,Number(x.sound.fadeIn)||0),range/2),fo=Math.min(Math.max(0,Number(x.sound.fadeOut)||0),range/2),fade=Math.min(1,fi?t/fi:1,fo?left/fo:1);x.gain.gain.setTargetAtTime((x.sound.volume??80)/100*clamp(fade,0,1),ctx.currentTime,.012);if(card){card.querySelector('[data-progress]').style.width=(Number.isFinite(end)?clamp(t/range*100,0,100):0)+'%';card.querySelector('[data-elapsed]').textContent=fmt(t);card.querySelector('[data-total]').textContent=fmt(range)}}if(!$('queueWorkspace').classList.contains('hidden'))queueNowUpdate();requestAnimationFrame(tick)}
+function tick(){for(const [map,isPreview] of [[live,false],[preview,true]])for(const [id,x] of map){const card=[...document.querySelectorAll('.sound')].find(c=>c.dataset.id===id);if(isPreview)continue;const dur=x.el.duration,now=x.el.currentTime,start=Math.max(0,Number(x.sound.start)||0),end=Math.min(Number.isFinite(dur)?dur:Infinity,Number(x.sound.end)>0?Number(x.sound.end):Infinity),range=Math.max(.01,end-start);if(Number.isFinite(end)&&now>=end-.005){if(x.sound.loop){x.el.currentTime=start;if(x.el.paused)x.el.play().catch(()=>stop(id,isPreview))}else{stop(id,isPreview);finishQueuedTrack(id,x);continue}}const t=Math.max(0,now-start),left=Math.max(0,end-now),fi=Math.min(Math.max(0,Number(x.sound.fadeIn)||0),range/2),fo=Math.min(Math.max(0,Number(x.sound.fadeOut)||0),range/2),fade=Math.min(1,fi?t/fi:1,fo?left/fo:1);x.gain.gain.setTargetAtTime((x.sound.volume??80)/100*clamp(fade,0,1),ctx.currentTime,.012);if(card){card.querySelector('[data-progress]').style.width=(Number.isFinite(end)?clamp(t/range*100,0,100):0)+'%';card.querySelector('[data-elapsed]').textContent=fmt(t);card.querySelector('[data-total]').textContent=fmt(range)}}if(!$('queueWorkspace').classList.contains('hidden'))queueNowUpdate();requestAnimationFrame(tick)}
 async function boot(){try{db=await openDB();const last=await read('projects','__last');if(last){const p=await read('projects',last);if(p&&Array.isArray(p.sounds)){project=p;projectSelectionRequired=false;let missing=0;for(const sound of p.sounds){const stored=await read('assets',sound.id);if(!stored)missing++}if(missing)notify(missing+' audio file(s) missing from browser storage. Remove and re-add those sounds.');$('saveStatus').textContent='✓ Restored: '+p.name}else{$('saveStatus').textContent='✓ Local storage ready'}}else{$('saveStatus').textContent='✓ New workspace'}if(navigator.storage?.persist)navigator.storage.persist().catch(()=>{})}catch(e){$('saveStatus').textContent='Export backups to save';notify('Browser local storage unavailable. You can still export a project backup.')}setSettings();$('scriptText').value=project.script||'';ensureQueue();renderQueue();renderCards();renderLibrary();renderRecordings();void restoreRecordingsForProject(project.id);bootComplete=true;launcherBootReady=true;revealLauncherWhenReady();tick()}
 
 
@@ -3492,7 +3582,7 @@ function djShowScratchPosition(k){const st=djScratchState[k],d=djDecks[k];if(!st
 function djEndScratch(k,e){const st=djScratchState[k],d=djDecks[k];if(!st.active||e&&st.pointer!==e.pointerId)return;st.active=false;try{st.processor?.disconnect();st.processor.onaudioprocess=null}catch(_){}st.processor=null;const disc=$('djDisc'+k);disc.classList.remove('scratching');$('djTime'+k).classList.remove('dj-scratch-time');disc.style.removeProperty('--scratch-angle');if(!d)return;try{d.source.connect(d.bass)}catch(_){}d.el.currentTime=Math.max(0,Math.min((d.el.duration||Infinity)-.01,st.position/(d.buffer?.sampleRate||44100)));if(st.wasPlaying)d.el.play().catch(err=>notify(err.message));$('djState'+k).textContent=st.wasPlaying?'Playing':'Paused'}
 for(const k of ['A','B']){const disc=$('djDisc'+k);disc.setAttribute('role','slider');disc.setAttribute('aria-label','Scratch Deck '+k+' turntable');disc.style.touchAction='none';disc.addEventListener('pointerdown',e=>djStartScratch(k,e));disc.addEventListener('pointermove',e=>djMoveScratch(k,e));disc.addEventListener('pointerup',e=>djEndScratch(k,e));disc.addEventListener('pointercancel',e=>djEndScratch(k,e))}
 
-function djTick(){for(const k of ['A','B']){const d=djDecks[k];djSyncDeckUI(k);if(!d)continue;if(djScratchState[k].active){djShowScratchPosition(k);continue;}const el=d.el,s=get(d.soundId),end=Math.min(Number.isFinite(el.duration)?el.duration:Infinity,Number(s?.end)>0?Number(s.end):Infinity);if(Number.isFinite(end)&&el.currentTime>=end-.04){djStop(k);continue}$('djTime'+k).textContent=fmt(el.currentTime)+' / '+fmt(Number.isFinite(end)?end:el.duration);if(Number.isFinite(el.duration)&&el.duration>0)$('djSeek'+k).value=Math.round(el.currentTime/el.duration*1000);$('djState'+k).textContent=el.paused?'Paused':'Playing';$('djDisc'+k).classList.toggle('spinning',!el.paused)}requestAnimationFrame(djTick)}
+function djTick(){for(const k of ['A','B']){const d=djDecks[k];djSyncDeckUI(k);if(!d)continue;if(djScratchState[k].active){djShowScratchPosition(k);continue;}const el=d.el,s=get(d.soundId),end=Math.min(Number.isFinite(el.duration)?el.duration:Infinity,Number(s?.end)>0?Number(s.end):Infinity);if(Number.isFinite(end)&&el.currentTime>=end-.005){djStop(k);continue}$('djTime'+k).textContent=fmt(el.currentTime)+' / '+fmt(Number.isFinite(end)?end:el.duration);if(Number.isFinite(el.duration)&&el.duration>0)$('djSeek'+k).value=Math.round(el.currentTime/el.duration*1000);$('djState'+k).textContent=el.paused?'Paused':'Playing';$('djDisc'+k).classList.toggle('spinning',!el.paused)}requestAnimationFrame(djTick)}
 function djWorkspace(mode){
  if(!['dj','board','queue'].includes(mode))mode='board';
  const dj=mode==='dj',queue=mode==='queue';
@@ -3675,6 +3765,12 @@ $('launcherProjects').addEventListener('click',async e=>{
  finally{button.disabled=false}
 });
 
+// v90: import rendered Audio Editor mix into currently open broadcast project.
+window.addEventListener('on-air-v90-import-sound', async event=>{
+ const item=event.detail;if(!item?.blob||!item?.fileName||projectSelectionRequired)return;
+ try{const file=new File([item.blob],item.fileName,{type:item.blob.type||'audio/wav'});await addFiles([file]);notify('Finished editor mix added to Soundboard: '+file.name)}
+ catch(err){notify('Could not add edited mix to Soundboard: '+err.message)}
+});
 // Press Escape within launcher: remain until project is explicitly selected.
 boot().catch(err=>{
  console.error('Studio startup error:',err);
@@ -3760,4 +3856,1198 @@ boot().catch(err=>{
  observer.observe(status,{childList:true,characterData:true,subtree:true});
  refresh();
 })();
+</script><style id="ae-v94-range-style">
+/* Selected audio ranges: two precise boundary markers and translucent waveform highlighting. */
+#aeStage .ae-range-lane{position:absolute;top:0;bottom:0;z-index:2;background:rgba(255,189,61,.10);border-top:2px solid rgba(255,191,69,.85);border-bottom:2px solid rgba(255,191,69,.85);pointer-events:none;box-sizing:border-box}
+#aeStage .ae-range-overlay.is-complete{position:absolute;z-index:4;top:0;bottom:0;pointer-events:none;background:rgba(255,184,49,.43);box-shadow:inset 0 0 0 1px rgba(255,210,99,.28);border-left:1px solid rgba(255,210,99,.75);border-right:1px solid rgba(255,210,99,.75)}
+#aeStage .ae-range-point{position:absolute;z-index:8;top:0;bottom:0;width:2px;transform:translateX(-1px);background:#ffcb63;pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.14)}
+#aeStage .ae-range-point.end{background:#fff0bb}
+#aeStage .ae-range-point-dot{position:absolute;left:50%;top:-1px;transform:translate(-50%,-50%);width:10px;height:10px;background:#ffcb63;border:2px solid #643c08;border-radius:50%;box-shadow:0 0 0 2px rgba(255,189,61,.35)}
+#aeStage .ae-range-point.end .ae-range-point-dot{background:#fff0bb}
+#aeStage .ae-clip{isolation:isolate}
+#aeStage .ae-clip .ae-clip-handle{z-index:6}
+#aeStage .ae-track-lane{isolation:isolate}
+#aeStage:focus{outline:none}
+#aeStage:focus-visible{outline:1px dotted var(--ae-border);outline-offset:-1px}
+/* v96: dynamic time grid, ultra-compressed clips, and expanded zoom scale. */
+.ae-ruler-grid{background-image:linear-gradient(90deg,var(--ae-border) 0 1px,transparent 1px);background-size:var(--ae-grid-size,80px) 100%;background-repeat:repeat-x}
+.ae-track-lane{background-image:linear-gradient(90deg,color-mix(in srgb,var(--ae-border) 58%,transparent) 0 1px,transparent 1px);background-size:var(--ae-grid-size,80px) 100%;background-repeat:repeat-x}
+.ae-ruler-mark{top:0;height:29px;display:flex;align-items:center;padding-left:4px;transform:none;white-space:nowrap;letter-spacing:-.15px}
+.ae-clip.ae-compact{border-radius:2px;box-shadow:none}
+.ae-clip.ae-compact .ae-clip-handle,.ae-clip.ae-compact .ae-clip-title,.ae-clip.ae-compact .ae-wave{display:none}
+.ae-zoom{min-width:33px;text-align:center;font-variant-numeric:tabular-nums;font-size:12px}
+.ae-fit{padding:5px 9px!important;min-height:29px!important;font-size:11px!important}
+@media(max-width:790px){.ae-fit{padding:5px 6px!important}}
+</style>
+<style id="ae-v97-fade-selection-style">
+/* v97: selected sound is immediately recognizable, even with many tracks. */
+#aeStage.ae-has-selection .ae-clip:not(.selected){opacity:.74;filter:saturate(.70)}
+#aeStage .ae-clip.selected{border:2px solid #77f0e0!important;outline:2px solid #75f8e2!important;outline-offset:2px;box-shadow:0 0 0 5px rgba(28,223,202,.16),0 0 22px rgba(37,223,207,.38),0 4px 16px #0005!important;background:color-mix(in srgb,var(--ae-clip-color) 32%,var(--ae-panel))!important;z-index:5!important}
+#aeStage .ae-clip.selected .ae-clip-title{background:color-mix(in srgb,var(--ae-clip-color) 45%,var(--ae-panel));padding-right:86px;color:var(--ae-ink)}
+#aeStage .ae-clip.selected:not(.ae-compact)::after{content:'✓ SELECTED';position:absolute;right:5px;top:2px;background:#07594f;color:#e5fff9;border:1px solid #8ef6e5;border-radius:4px;padding:2px 5px;font:800 9px/13px system-ui,sans-serif;pointer-events:none;z-index:5;letter-spacing:.15px}
+html[data-theme="light"] #aeStage .ae-clip.selected:not(.ae-compact)::after{background:#0b8073;color:white}
+#aeStage .ae-clip.selected .ae-clip-handle{background:rgba(128,252,232,.22)!important;opacity:1}
+#aeStage .ae-track-row.ae-track-selected .ae-track-label{box-shadow:inset 4px 0 0 #4adacb;background:color-mix(in srgb,var(--ae-teal) 10%,var(--ae-panel))}
+#aeStage .ae-clip .ae-fade-veil{position:absolute;top:20px;bottom:0;pointer-events:none;z-index:1;opacity:.9}
+#aeStage .ae-clip .ae-fade-veil.in{left:0;background:linear-gradient(90deg,rgba(251,192,70,.21),rgba(251,192,70,0));border-right:1px dashed rgba(255,213,123,.7)}
+#aeStage .ae-clip .ae-fade-veil.out{right:0;background:linear-gradient(270deg,rgba(251,192,70,.21),rgba(251,192,70,0));border-left:1px dashed rgba(255,213,123,.7)}
+#aeStage .ae-clip .ae-wave{z-index:2}
+#aeStage .ae-clip .ae-range-overlay{z-index:4}
+#aeStage .ae-clip .ae-clip-handle{z-index:6}
+#aeInspector .ae-fade-control{min-width:160px;max-width:240px;display:flex;flex-direction:column;gap:4px;padding:5px 8px;border:1px solid var(--ae-border);border-radius:9px;background:color-mix(in srgb,var(--ae-teal) 4%,var(--ae-panel))}
+#aeInspector .ae-fade-title{display:flex;justify-content:space-between;gap:9px;margin:0;color:var(--ae-ink);font-weight:750;font-size:11px}
+#aeInspector .ae-fade-title span{font-variant-numeric:tabular-nums;color:var(--ae-teal);font-size:11px}
+#aeInspector .ae-fade-inputs{display:flex;gap:5px;align-items:center}
+#aeInspector .ae-fade-inputs input[type=range]{width:116px;min-width:35px;flex:1;accent-color:#e6ad51;cursor:ew-resize}
+#aeInspector .ae-fade-inputs input[type=number]{width:67px;max-width:67px;padding:5px 4px;min-height:28px;font-size:11px;font-variant-numeric:tabular-nums}
+#aeInspector .ae-fade-inputs input:disabled{opacity:.5;cursor:not-allowed}
+@media(max-width:790px){#aeInspector .ae-fade-control{min-width:120px;flex:1;max-width:none}#aeInspector .ae-fade-inputs input[type=number]{width:61px;max-width:61px}}
+@media(max-width:480px){#aeInspector{flex-direction:column;align-items:stretch;gap:8px}#aeInspector .ae-inspector-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:8px}#aeInspector .ae-fade-control{min-width:0;width:100%}#aeInspector .ae-inspector-info{max-width:100%;width:100%;align-self:flex-start}#aeInspector .ae-inspector-info strong{max-width:90vw}#aeInspector .ae-fade-inputs input[type=range]{min-width:58px}}
+</style>
+<style id="ae-v98-contrast-style">
+/* v98: readable, saturated clips and high-contrast waveforms on BOTH themes.
+   The original per-track colors are preserved for existing saved projects. */
+.ae-overlay{
+  --ae-lane-surface:#111d2a;
+  --ae-wave-ink:#f3fbff;
+  --ae-clip-text:#f4f8ff;
+  --ae-clip-line:#f2f7fd;
+  --ae-clip-shadow:0 2px 7px rgba(0,0,0,.28);
+}
+html[data-theme="light"] .ae-overlay{
+  --ae-lane-surface:#eaf0f6;
+  --ae-wave-ink:#163047;
+  --ae-clip-text:#102c43;
+  --ae-clip-line:#133b52;
+  --ae-clip-shadow:0 2px 7px rgba(25,48,74,.17);
+}
+#aeStage .ae-track-lane{background-color:var(--ae-lane-surface);}
+#aeStage .ae-track-row{border-top-color:color-mix(in srgb,var(--ae-border) 85%,transparent)}
+#aeStage .ae-track-row:hover .ae-track-lane{background-color:color-mix(in srgb,var(--ae-lane-surface) 89%,var(--ae-panel2) 11%)}
+/* Dark theme: deep, distinguishable track colors rather than muddy faint tints. */
+#aeStage .ae-clip{
+  background:color-mix(in srgb,var(--ae-clip-color) 48%,#152334 52%)!important;
+  border:1.5px solid color-mix(in srgb,var(--ae-clip-color) 86%,#eef5ff 14%)!important;
+  box-shadow:var(--ae-clip-shadow)!important;
+  opacity:1!important;filter:none!important;
+}
+#aeStage .ae-clip .ae-clip-title{
+  color:var(--ae-clip-text)!important;
+  background:color-mix(in srgb,var(--ae-clip-color) 28%,#132131 72%)!important;
+  border-bottom:1px solid rgba(238,247,255,.15);
+  text-shadow:0 1px 1px rgba(0,0,0,.23);
+}
+#aeStage .ae-clip .ae-clip-handle{
+  color:var(--ae-clip-line)!important;
+  background:rgba(4,13,25,.12);
+  opacity:.82;
+}
+#aeStage .ae-clip:hover:not(.selected){
+  border-color:color-mix(in srgb,var(--ae-clip-color) 62%,white 38%)!important;
+  box-shadow:0 0 0 1px rgba(224,246,255,.2),0 3px 9px #0004!important;
+}
+/* Light theme: stronger colored blocks and dark, legible waveform lines. */
+html[data-theme="light"] #aeStage .ae-clip{
+  background:color-mix(in srgb,var(--ae-clip-color) 79%,#ffffff 21%)!important;
+  border-color:color-mix(in srgb,var(--ae-clip-color) 79%,#254861 21%)!important;
+}
+html[data-theme="light"] #aeStage .ae-clip .ae-clip-title{
+  background:color-mix(in srgb,var(--ae-clip-color) 69%,#ffffff 31%)!important;
+  border-bottom:1px solid rgba(20,48,74,.18);
+  text-shadow:none;
+}
+html[data-theme="light"] #aeStage .ae-clip .ae-clip-handle{
+  color:#15384e!important;
+  background:rgba(255,255,255,.09);
+}
+html[data-theme="light"] #aeStage .ae-clip:hover:not(.selected){
+  border-color:#284b66!important;
+  box-shadow:0 0 0 1px rgba(17,53,85,.23),0 3px 10px rgba(15,42,75,.2)!important;
+}
+/* Active clip is ALWAYS very clear without fading all of its neighbors. */
+#aeStage.ae-has-selection .ae-clip:not(.selected){opacity:1!important;filter:none!important}
+#aeStage .ae-clip.selected{
+  background:color-mix(in srgb,var(--ae-clip-color) 57%,#142838 43%)!important;
+  border:2px solid #72fff0!important;
+  outline:2px solid #72fff0!important;
+  outline-offset:1px;
+  box-shadow:0 0 0 4px rgba(17,218,202,.18),0 0 18px rgba(44,233,215,.42),0 5px 15px #0005!important;
+  z-index:5!important;
+}
+#aeStage .ae-clip.selected .ae-clip-title{
+  background:color-mix(in srgb,var(--ae-clip-color) 48%,#132738 52%)!important;
+  padding-right:86px;
+}
+html[data-theme="light"] #aeStage .ae-clip.selected{
+  background:color-mix(in srgb,var(--ae-clip-color) 86%,#ffffff 14%)!important;
+  border:2px solid #087d7e!important;
+  outline:2px solid #087d7e!important;
+  outline-offset:1px;
+  box-shadow:0 0 0 4px rgba(0,136,132,.17),0 0 13px rgba(2,140,133,.36),0 4px 12px #173a5a33!important;
+}
+html[data-theme="light"] #aeStage .ae-clip.selected .ae-clip-title{
+  background:color-mix(in srgb,var(--ae-clip-color) 73%,#ffffff 27%)!important;
+}
+#aeStage .ae-clip .ae-clip-handle:hover,
+#aeStage .ae-clip.selected .ae-clip-handle{opacity:1;background:rgba(255,255,255,.2)!important;}
+html[data-theme="light"] #aeStage .ae-clip .ae-clip-handle:hover,
+html[data-theme="light"] #aeStage .ae-clip.selected .ae-clip-handle{background:rgba(10,52,71,.12)!important;}
+/* Keep fade envelopes and the amber time-range highlight visually distinct. */
+#aeStage .ae-clip .ae-fade-veil.in{background:linear-gradient(90deg,rgba(18,11,45,.22),transparent);border-right:1px dashed rgba(255,236,175,.9)}
+#aeStage .ae-clip .ae-fade-veil.out{background:linear-gradient(270deg,rgba(18,11,45,.22),transparent);border-left:1px dashed rgba(255,236,175,.9)}
+html[data-theme="light"] #aeStage .ae-clip .ae-fade-veil.in{background:linear-gradient(90deg,rgba(15,43,66,.2),transparent);border-right:1px dashed #355c76}
+html[data-theme="light"] #aeStage .ae-clip .ae-fade-veil.out{background:linear-gradient(270deg,rgba(15,43,66,.2),transparent);border-left:1px dashed #355c76}
+html[data-theme="light"] #aeStage .ae-range-overlay.is-complete{background:rgba(251,191,55,.5);border-color:#a96a00}
+html[data-theme="light"] #aeStage .ae-range-point{background:#b87406}
+</style>
+
+<style id="ae-v99-hover-only-trim">
+/* v99: CapCut-style contextual handles. No visible resize arrows at rest.
+   Only a selected clip exposes edge resize affordances on hover/active drag. */
+#aeStage .ae-clip .ae-clip-handle,
+html[data-theme="light"] #aeStage .ae-clip .ae-clip-handle {
+  width:15px;
+  min-width:15px;
+  position:absolute;
+  z-index:7;
+  background:transparent!important;
+  color:var(--ae-clip-text)!important;
+  opacity:0!important;
+  border:0!important;
+  box-shadow:none!important;
+  pointer-events:none;
+  cursor:col-resize;
+  transition:opacity .09s ease;
+}
+/* Invisible hit zones on a selected clip. Not visible until precisely hovered. */
+#aeStage .ae-clip.selected .ae-clip-handle,
+html[data-theme="light"] #aeStage .ae-clip.selected .ae-clip-handle{pointer-events:auto}
+#aeStage .ae-clip .ae-clip-handle::before,
+#aeStage .ae-clip .ae-clip-handle::after{content:none!important;display:none!important}
+#aeStage .ae-clip.selected .ae-clip-handle:is(:hover,:focus-visible),
+#aeStage .ae-clip.ae-trimming.ae-trim-left .ae-clip-handle.left,
+#aeStage .ae-clip.ae-trimming.ae-trim-right .ae-clip-handle.right {
+  opacity:1!important;
+  background:rgba(12,33,43,.30)!important;
+  color:#f8ffff!important;
+}
+html[data-theme="light"] #aeStage .ae-clip.selected .ae-clip-handle:is(:hover,:focus-visible),
+html[data-theme="light"] #aeStage .ae-clip.ae-trimming.ae-trim-left .ae-clip-handle.left,
+html[data-theme="light"] #aeStage .ae-clip.ae-trimming.ae-trim-right .ae-clip-handle.right {
+  background:rgba(4,73,86,.19)!important;
+  color:#063b48!important;
+}
+/* Fine edge bar: appears ONLY on hover/while actively trimming. */
+#aeStage .ae-clip.selected .ae-clip-handle:is(:hover,:focus-visible)::before,
+#aeStage .ae-clip.ae-trimming.ae-trim-left .ae-clip-handle.left::before,
+#aeStage .ae-clip.ae-trimming.ae-trim-right .ae-clip-handle.right::before{
+  content:''!important;display:block!important;
+  position:absolute;left:50%;top:10%;height:80%;width:2px;
+  transform:translateX(-50%);background:currentColor;
+  border:0;border-radius:2px;opacity:1;
+  box-shadow:0 0 3px rgba(0,0,0,.15);
+}
+/* Inline left / center bar / right indicator: only materializes on hover/drag. */
+#aeStage .ae-clip.selected .ae-clip-handle:is(:hover,:focus-visible)::after,
+#aeStage .ae-clip.ae-trimming.ae-trim-left .ae-clip-handle.left::after,
+#aeStage .ae-clip.ae-trimming.ae-trim-right .ae-clip-handle.right::after{
+  content:'←│→'!important;display:flex!important;align-items:center;justify-content:center;
+  position:absolute;top:50%;left:0;transform:translateY(-50%);
+  height:27px;width:39px;border-radius:6px;
+  border:1px solid rgba(167,246,243,.65);background:#102a36;
+  box-shadow:0 2px 9px rgba(0,0,0,.28);
+  color:#eaffff!important;font:800 15px/1 system-ui,sans-serif;
+  white-space:nowrap;letter-spacing:-2px;pointer-events:none;
+}
+#aeStage .ae-clip.selected .ae-clip-handle.right:is(:hover,:focus-visible)::after,
+#aeStage .ae-clip.ae-trimming.ae-trim-right .ae-clip-handle.right::after{left:auto;right:0}
+html[data-theme="light"] #aeStage .ae-clip.selected .ae-clip-handle:is(:hover,:focus-visible)::after,
+html[data-theme="light"] #aeStage .ae-clip.ae-trimming.ae-trim-left .ae-clip-handle.left::after,
+html[data-theme="light"] #aeStage .ae-clip.ae-trimming.ae-trim-right .ae-clip-handle.right::after{
+  background:#e5faf6;border-color:#087c80;color:#063c48!important;
+}
+/* The live guide follows the *actual* trimmed edge as the pointer is held. */
+#aeStage .ae-track-lane .ae-trim-guide{
+  position:absolute;top:0;bottom:0;width:2px;z-index:12;
+  background:#61fff0;box-shadow:0 0 0 1px rgba(6,48,54,.75),0 0 10px rgba(73,240,224,.65);
+  pointer-events:none;transform:translateX(-1px);
+}
+#aeStage .ae-track-lane .ae-trim-guide::after{
+  content:attr(data-time);position:absolute;bottom:1px;left:6px;
+  padding:3px 5px;border-radius:4px;background:#09323a;color:#f0fffd;
+  border:1px solid #44cdbf;white-space:nowrap;font:700 10px/1.3 ui-monospace,monospace;
+  font-variant-numeric:tabular-nums;
+}
+#aeStage .ae-track-lane .ae-trim-guide[data-side="right"]::after{left:auto;right:6px}
+html[data-theme="light"] #aeStage .ae-track-lane .ae-trim-guide{
+  background:#007c81;box-shadow:0 0 0 1px #e7fcf9,0 0 7px rgba(0,109,109,.4)}
+@media (prefers-reduced-motion:reduce){#aeStage .ae-clip .ae-clip-handle{transition:none}}
+</style>
+<style id="ae-v100-responsive-usability">
+/* Compact editor: retain every control, but prioritize the timeline. */
+.ae-project-options{display:contents}
+.ae-project-toggle,.ae-tool-more,.ae-touch-range,.ae-inspector-toggle{display:none}
+.ae-quick-tools,.ae-secondary-tools,.ae-zoom-tools{display:contents}
+.ae-shell{min-width:0}
+.ae-top-actions{position:relative}
+.ae-inspector-description{min-width:0;max-width:100%}
+@media(max-width:1024px){
+ .ae-overlay{padding:0!important;backdrop-filter:none!important}
+ .ae-shell{width:100%;height:100dvh;min-height:0;max-height:100dvh;border:0;border-radius:0;overflow:hidden}
+ .ae-top{position:relative;z-index:31;padding:calc(6px + env(safe-area-inset-top,0px)) 9px 6px;gap:5px;min-height:52px}
+ .ae-brand{flex:1 1 auto;min-width:0;gap:6px}.ae-brandmark{height:27px;width:27px;font-size:17px;flex:none}
+ .ae-brand-copy{min-width:0}.ae-brand-copy strong{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ae-brand-copy small{display:none}
+ .ae-top-actions{flex:0 0 auto;gap:4px}.ae-top-actions>.ae-status{display:none}
+ .ae-top-actions>.ae-button{min-width:37px;height:38px;min-height:38px;padding:5px 8px!important;font-size:15px!important}
+ .ae-top-actions>.ae-button .ae-hide-phone{display:none!important}
+ .ae-project-toggle{display:inline-flex!important;font-size:22px!important;line-height:1}
+ .ae-project-options{display:none;position:absolute;right:42px;top:calc(100% + 7px);background:var(--ae-panel);border:1px solid var(--ae-border);border-radius:12px;padding:8px;min-width:166px;box-shadow:0 12px 30px #0005;z-index:45;flex-direction:column;gap:5px}
+ .ae-project-open .ae-project-options{display:flex}
+ .ae-project-options .ae-button{display:flex!important;justify-content:flex-start;width:100%!important;min-height:42px!important;min-width:0!important;font-size:13px!important;padding:8px 12px!important;gap:8px}
+ .ae-project-options .ae-hide-phone{display:inline!important}
+ #aeTheme{font-size:19px!important}
+ .ae-controls{padding:5px 9px;min-height:45px;gap:4px;flex-wrap:nowrap}
+ .ae-controls-left{width:100%;min-width:0;gap:5px}
+ .ae-controls .ae-button{min-height:39px;min-width:39px;padding:6px 8px}
+ #aePlay{min-width:84px;padding:5px 9px!important}
+ .ae-controls .ae-time{font-size:12px;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:auto;letter-spacing:-.15px}
+ .ae-controls .ae-time small{font-size:10px}
+ .ae-controls-right{display:none}
+ .ae-toolstrip{display:grid;grid-template-columns:minmax(0,1fr);gap:5px;padding:6px 9px 7px;overflow:visible;flex-shrink:0}
+ .ae-quick-tools{display:grid;grid-template-columns:minmax(66px,1.3fr) minmax(48px,1fr) 37px 37px minmax(49px,60px);gap:4px;align-items:stretch;min-width:0}
+ .ae-quick-tools .ae-button{min-height:39px;height:39px;min-width:0;padding:5px 4px!important;font-size:11px!important;overflow:hidden;text-overflow:ellipsis}
+ .ae-quick-tools .ae-icon{font-size:20px!important}
+ .ae-tool-more{display:inline-flex;align-items:center;gap:3px;justify-content:center}
+ .ae-tool-more[aria-expanded=true]{border-color:var(--ae-teal);color:var(--ae-teal);background:color-mix(in srgb,var(--ae-teal) 12%,var(--ae-panel))}
+ .ae-secondary-tools{display:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;background:var(--ae-panel);border:1px solid var(--ae-border);border-radius:10px;padding:7px;max-height:36dvh;overflow-y:auto;overscroll-behavior:contain}
+ .ae-edit-open .ae-secondary-tools{display:grid}
+ .ae-secondary-tools .ae-button{min-width:0;min-height:40px;padding:6px 3px!important;white-space:nowrap;font-size:11px!important}
+ .ae-secondary-tools .ae-button .ae-hide-phone{display:inline!important}
+ .ae-touch-range{display:inline-flex!important}
+ .ae-zoom-tools{display:grid;grid-template-columns:37px minmax(45px,1fr) 37px 37px 41px 60px;align-items:center;gap:4px;min-width:0}
+ .ae-zoom-tools>.ae-button{min-width:0;height:35px;min-height:35px;padding:4px!important}
+ .ae-zoom-tools .ae-zoom-slider{display:block;width:100%!important;min-width:0!important;min-height:34px;touch-action:pan-y}
+ .ae-zoom-tools .ae-zoom{min-width:0;font-size:11px;text-align:center}
+ .ae-zoom-tools .ae-snap-label{display:flex;align-items:center;justify-content:center;gap:3px;font-size:11px;padding:0 1px;min-width:0;height:35px;white-space:nowrap}
+ .ae-zoom-tools .ae-snap-label input{margin:0;min-width:15px;min-height:15px}
+ .ae-tracks-wrap{min-height:0;flex:1;position:relative}
+ .ae-stage{min-height:0;flex:1;overscroll-behavior:contain;touch-action:pan-x pan-y}
+ .ae-ruler-label,.ae-track-label{width:112px}
+ .ae-track-label{padding:7px 5px;gap:5px}
+ .ae-track-name input{font-size:11px}
+ .ae-track-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;justify-content:stretch;min-width:0}
+ .ae-mini{width:100%;height:30px;font-size:11px!important}
+ .ae-track-vol{grid-column:1/-1;grid-row:2;width:100%!important;min-width:0!important;min-height:23px!important}
+ .ae-track-buttons [data-track-remove]{grid-column:3;grid-row:1}
+ .ae-track-row{min-height:96px}
+ .ae-inspector{position:absolute;bottom:0;left:0;right:0;z-index:20;display:flex;flex-direction:column;align-items:stretch;justify-content:start;gap:0;height:47px;min-height:47px;max-height:60dvh;overflow:hidden;padding:0;background:var(--ae-panel);border-top:1px solid var(--ae-border);box-shadow:0 -6px 18px #0002}
+ .ae-inspector-info{display:flex;justify-content:space-between;align-items:center;gap:7px;width:100%;min-width:0;max-width:none!important;padding:6px 9px;min-height:46px;flex-shrink:0;align-self:stretch}
+ .ae-inspector-description{flex:1;min-width:0}.ae-inspector-info strong{display:block;font-size:12px;max-width:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ae-inspector-info small{display:block;font-size:10px;color:var(--ae-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .ae-inspector-toggle{display:inline-flex!important;min-width:74px;height:33px;min-height:33px;align-items:center;justify-content:center;gap:5px;padding:5px 8px!important;flex:none}
+ .ae-inspector-fields{display:none!important}
+ .ae-inspector-open .ae-inspector{height:auto;max-height:min(45dvh,310px);overflow:auto;scrollbar-width:thin}
+ .ae-inspector-open .ae-inspector-fields{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%;padding:8px 10px 12px;border-top:1px solid var(--ae-border);align-items:stretch;overflow:visible}
+ .ae-inspector-open .ae-field{display:flex;flex-direction:column;align-items:stretch;gap:5px;width:100%;font-size:11px;min-width:0;white-space:normal}
+ .ae-inspector-open #aePos{width:100%!important;min-height:36px;padding:6px 8px}
+ .ae-inspector-open #aeClipVolume{width:100%!important;min-height:28px}
+ .ae-inspector-open .ae-fade-control{min-width:0!important;max-width:none!important;width:100%;grid-column:span 1;padding:8px;gap:5px}
+ .ae-inspector-open .ae-fade-control input[type=number]{min-height:34px;min-width:49px;width:58px;max-width:58px}
+ .ae-inspector-open .ae-fade-inputs input[type=range]{min-height:34px;min-width:28px}
+ .ae-bottom{display:none}
+ .ae-dialog{max-height:calc(100dvh - 50px);overscroll-behavior:contain}
+ #aeFlash{left:12px!important;right:12px!important;max-width:none!important;text-align:center}
+ .ae-inspector-open #aeFlash{bottom:calc(min(45dvh,310px) + 7px)!important}
+ /* Selected touch clips provide real hit targets even without a hover state. */
+ .ae-clip{touch-action:none}
+}
+@media(max-width:580px){
+ .ae-shell{height:100dvh}
+ .ae-brandmark{width:25px;height:25px}.ae-brand-copy strong{font-size:12px}
+ .ae-top-actions>.ae-button{min-width:35px;height:37px;min-height:37px;padding:5px 6px!important}
+ .ae-controls .ae-time{font-size:11px}
+ .ae-controls .ae-time small{font-size:9px}
+ .ae-track-row{min-height:72px}
+ .ae-inspector-open .ae-fade-control{grid-column:span 2}
+ .ae-inspector-open .ae-inspector-fields{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px}
+ .ae-inspector-open .ae-inspector{max-height:48dvh}
+ .ae-inspector-open #aeFlash{bottom:calc(48dvh + 7px)!important}
+ .ae-dialog{width:min(100%,500px)}
+}
+@media(max-width:360px){
+ .ae-brand-copy strong{font-size:11px}
+ .ae-quick-tools{grid-template-columns:minmax(60px,1.35fr) minmax(43px,1fr) 35px 35px minmax(45px,53px);gap:3px}
+ .ae-zoom-tools{grid-template-columns:33px minmax(30px,1fr) 32px 33px 36px 54px;gap:3px}
+ .ae-zoom-tools .ae-snap-label{font-size:10px}
+ #aePlay{min-width:74px}
+ .ae-controls .ae-time small{display:none}
+ .ae-inspector-toggle{min-width:70px}
+}
+@media(min-width:600px) and (max-width:1024px){
+ .ae-quick-tools{grid-template-columns:140px 112px 43px 43px 72px;justify-content:start;gap:6px}
+ .ae-zoom-tools{grid-template-columns:40px minmax(160px,280px) 42px 40px 45px 67px;justify-content:start;gap:6px}
+}
+@media(pointer:coarse) and (max-width:1024px){
+ #aeStage .ae-clip.selected:not(.ae-compact) .ae-clip-handle{pointer-events:auto;width:20px;opacity:1!important;background:color-mix(in srgb,var(--ae-teal) 14%,transparent)!important}
+ #aeStage .ae-clip.selected:not(.ae-compact) .ae-clip-handle::before{content:''!important;display:block!important;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:22px;width:4px;border-radius:5px;background:var(--ae-ink);opacity:.85}
+ #aeStage .ae-clip.selected:not(.ae-compact) .ae-clip-handle:not(:hover)::after{content:none!important}
+ .ae-track-resizer{height:15px;bottom:-6px}
+ .ae-head-grab{width:33px;left:-16px;min-height:31px}
+ .ae-ruler-grid{touch-action:pan-y}
+}
+@media(orientation:landscape) and (max-height:560px) and (max-width:1024px){
+ .ae-top{min-height:40px;padding-top:3px;padding-bottom:3px}
+ .ae-controls{min-height:40px;padding-top:3px;padding-bottom:3px}
+ .ae-toolstrip{gap:3px;padding-top:3px;padding-bottom:4px}
+ .ae-quick-tools .ae-button{height:35px;min-height:35px}
+ .ae-zoom-tools>.ae-button{height:32px;min-height:32px}
+ .ae-secondary-tools{max-height:38dvh}
+ .ae-inspector-open .ae-inspector{max-height:62dvh}
+}
+@media(prefers-reduced-motion:reduce){.ae-inspector{transition:none}}
+</style>
+
+<style id="ae-v101-visual-system">
+/* v101 — cohesive, low-glare waveforms and restrained clip surfaces.
+   The source track color is retained; only presentation colors are blended. */
+.ae-overlay{
+  --ae-lane-surface:#111b27;
+  --ae-wave-ink:#a0cbd2;
+  --ae-fade-ink:#d3b071;
+  --ae-clip-text:#eaf1f9;
+  --ae-grid-muted:rgba(104,128,153,.19);
+}
+html[data-theme="light"] .ae-overlay{
+  --ae-lane-surface:#edf2f7;
+  --ae-wave-ink:#24415b;
+  --ae-fade-ink:#7c6754;
+  --ae-clip-text:#192c40;
+  --ae-grid-muted:rgba(91,113,135,.18);
+}
+/* A matte, distinct lane that lets each clip read as an editable object. */
+#aeStage .ae-track-lane{
+  background-color:var(--ae-lane-surface)!important;
+  background-image:linear-gradient(90deg,var(--ae-grid-muted) 0 1px,transparent 1px);
+  border-bottom:1px solid rgba(149,170,188,.09);
+}
+#aeStage .ae-track-lane::after{border-top-color:rgba(145,165,186,.09)}
+#aeStage .ae-track-row:hover .ae-track-lane{
+  background-color:color-mix(in srgb,var(--ae-lane-surface) 91%,#496477 9%)!important;
+}
+html[data-theme="light"] #aeStage .ae-track-row:hover .ae-track-lane{
+  background-color:#e8f0f7!important;
+}
+#aeStage .ae-track-label{
+  background:#152331;
+  border-right:1px solid #324456;
+}
+html[data-theme="light"] #aeStage .ae-track-label{
+  background:#f7fafc;
+  border-right-color:#c9d5e2;
+}
+#aeStage .ae-ruler-grid{
+  background-color:var(--ae-panel);
+  background-image:linear-gradient(90deg,var(--ae-grid-muted) 0 1px,transparent 1px);
+}
+#aeStage .ae-ruler-mark{color:var(--ae-sub);font-variant-numeric:tabular-nums}
+/* Lower chroma dark surfaces; individual track colors still differentiate clips. */
+#aeStage .ae-clip{
+  --ae-wave-ink:color-mix(in srgb,var(--ae-clip-color) 68%,#a5bac1 32%);
+  --ae-fade-ink:color-mix(in srgb,var(--ae-clip-color) 64%,#d9ba7b 36%);
+  background:color-mix(in srgb,var(--ae-clip-color) 22%,#172332 78%)!important;
+  border:1px solid color-mix(in srgb,var(--ae-clip-color) 57%,#46566a 43%)!important;
+  border-radius:6px;
+  opacity:1!important;
+  filter:none!important;
+  box-shadow:0 2px 5px rgba(0,0,0,.19),inset 0 1px 0 rgba(255,255,255,.045)!important;
+}
+#aeStage .ae-clip .ae-clip-title{
+  color:#e8edf3!important;
+  background:color-mix(in srgb,var(--ae-clip-color) 15%,#14212f 85%)!important;
+  border-bottom:1px solid rgba(230,241,250,.10);
+  text-shadow:none!important;
+  font-size:10px;
+  font-weight:650;
+  padding-left:9px;
+}
+html[data-theme="light"] #aeStage .ae-clip{
+  --ae-wave-ink:color-mix(in srgb,var(--ae-clip-color) 20%,#1b354f 80%);
+  --ae-fade-ink:color-mix(in srgb,var(--ae-clip-color) 35%,#56687c 65%);
+  background:color-mix(in srgb,var(--ae-clip-color) 38%,#f0f4f7 62%)!important;
+  border-color:color-mix(in srgb,var(--ae-clip-color) 48%,#8c9dae 52%)!important;
+  box-shadow:0 2px 4px rgba(36,55,80,.12),inset 0 1px 0 rgba(255,255,255,.55)!important;
+}
+html[data-theme="light"] #aeStage .ae-clip .ae-clip-title{
+  color:#172c41!important;
+  background:color-mix(in srgb,var(--ae-clip-color) 24%,#e9eff5 76%)!important;
+  border-bottom:1px solid rgba(39,66,87,.14);
+}
+/* Deliberate active outline without the old large neon halo. */
+#aeStage .ae-clip.selected{
+  border:2px solid #55d9d5!important;
+  outline:1px solid #65e4de!important;
+  outline-offset:1px;
+  background:color-mix(in srgb,var(--ae-clip-color) 28%,#182939 72%)!important;
+  box-shadow:0 0 0 3px rgba(55,212,205,.13),0 3px 10px rgba(0,0,0,.22)!important;
+  z-index:5!important;
+}
+#aeStage .ae-clip.selected .ae-clip-title{
+  background:color-mix(in srgb,var(--ae-clip-color) 20%,#182b3a 80%)!important;
+}
+html[data-theme="light"] #aeStage .ae-clip.selected{
+  border-color:#087e87!important;
+  outline-color:#087e87!important;
+  background:color-mix(in srgb,var(--ae-clip-color) 44%,#f3f6f9 56%)!important;
+  box-shadow:0 0 0 3px rgba(0,131,144,.12),0 3px 9px rgba(39,70,89,.14)!important;
+}
+html[data-theme="light"] #aeStage .ae-clip.selected .ae-clip-title{
+  background:color-mix(in srgb,var(--ae-clip-color) 31%,#f2f7fa 69%)!important;
+}
+#aeStage .ae-clip:hover:not(.selected){
+  border-color:color-mix(in srgb,var(--ae-clip-color) 68%,#8699a9 32%)!important;
+  box-shadow:0 0 0 1px rgba(148,185,189,.21),0 2px 8px rgba(0,0,0,.16)!important;
+}
+html[data-theme="light"] #aeStage .ae-clip:hover:not(.selected){
+  border-color:#67869b!important;
+  box-shadow:0 0 0 1px rgba(82,119,142,.13),0 3px 8px rgba(22,48,72,.13)!important;
+}
+/* Selected state must stay separate from a selected time range. */
+#aeStage .ae-clip.selected:not(.ae-compact)::after{
+  background:#176466;
+  color:#edfffe;
+  border-color:#4cbebd;
+  border-radius:4px;
+  font-size:9px;
+  letter-spacing:.02em;
+  padding:1px 5px;
+  box-shadow:none;
+}
+html[data-theme="light"] #aeStage .ae-clip.selected:not(.ae-compact)::after{
+  background:#087782;
+  border-color:#087782;
+  color:#fff;
+}
+#aeStage .ae-track-row.ae-track-selected .ae-track-label{
+  background:#1c303b;
+  box-shadow:inset 3px 0 0 #4dcac8;
+}
+html[data-theme="light"] #aeStage .ae-track-row.ae-track-selected .ae-track-label{
+  background:#e5f3f1;
+  box-shadow:inset 3px 0 0 #18888a;
+}
+/* Fades: read as small envelope guides, not opaque triangles over the waveform. */
+#aeStage .ae-clip .ae-fade-veil{opacity:1!important;pointer-events:none}
+#aeStage .ae-clip .ae-fade-veil.in{
+  background:linear-gradient(90deg,rgba(9,20,31,.20),transparent)!important;
+  border-right:1px dashed rgba(224,193,139,.41)!important;
+}
+#aeStage .ae-clip .ae-fade-veil.out{
+  background:linear-gradient(270deg,rgba(9,20,31,.20),transparent)!important;
+  border-left:1px dashed rgba(224,193,139,.41)!important;
+}
+html[data-theme="light"] #aeStage .ae-clip .ae-fade-veil.in{
+  background:linear-gradient(90deg,rgba(23,49,70,.10),transparent)!important;
+  border-right:1px dashed rgba(75,98,119,.42)!important;
+}
+html[data-theme="light"] #aeStage .ae-clip .ae-fade-veil.out{
+  background:linear-gradient(270deg,rgba(23,49,70,.10),transparent)!important;
+  border-left:1px dashed rgba(75,98,119,.42)!important;
+}
+#aeStage .ae-range-overlay.is-complete{
+  background:rgba(240,173,47,.31)!important;
+  border-color:#edb352!important;
+  box-shadow:inset 0 0 0 1px rgba(232,164,45,.17);
+}
+html[data-theme="light"] #aeStage .ae-range-overlay.is-complete{
+  background:rgba(238,172,46,.26)!important;
+  border-color:#ab7321!important;
+}
+#aeStage .ae-playhead{background:#ff536b;box-shadow:0 0 0 1px rgba(255,83,107,.10)}
+/* The v99 contextual trim rules and v100 phone hit targets are not changed. */
+</style>
+<div id="aeOverlay" class="ae-overlay ae-hidden" role="dialog" aria-modal="true" aria-label="Multitrack Audio Editor">
+  <div class="ae-shell">
+    <header class="ae-top">
+      <div class="ae-brand"><span class="ae-brandmark">≋</span><span class="ae-brand-copy"><strong>Audio Editor <span style="color:var(--ae-teal)">STUDIO</span></strong><small id="aeProjectTitle">Non-destructive multitrack editing</small></span></div>
+      <div class="ae-top-actions">
+        <span class="ae-status" id="aeSaveStatus" role="status" aria-live="polite"><i></i><span>Not loaded</span></span>
+        <div class="ae-project-options" id="aeProjectOptions">
+          <button class="ae-button ae-ghost" type="button" id="aeNewBtn" title="Create new editor project">＋ <span class="ae-hide-phone">New</span></button>
+          <button class="ae-button ae-ghost" type="button" id="aeOpenBtn" title="Open saved editor project">▱ <span class="ae-hide-phone">Projects</span></button>
+          <button class="ae-button ae-ghost ae-icon" type="button" id="aeTheme" title="Switch editor theme" aria-label="Toggle light/dark mode">☾</button>
+        </div>
+        <button class="ae-button ae-ghost" type="button" id="aeSaveBtn" title="Save editing project" aria-label="Save project">⇩ <span class="ae-hide-phone">Save</span></button>
+        <button class="ae-button ae-primary" type="button" id="aeExportBtn" title="Export MP3 or WAV" aria-label="Export audio">↓ <span class="ae-hide-phone">Export</span></button>
+        <button class="ae-button ae-ghost ae-project-toggle" type="button" id="aeProjectMore" title="Project options" aria-label="More project options" aria-expanded="false" aria-controls="aeProjectOptions">⋯</button>
+        <button class="ae-button ae-ghost ae-icon" type="button" id="aeClose" title="Close editor" aria-label="Close editor">✕</button>
+      </div>
+    </header>
+    <div class="ae-controls">
+      <div class="ae-controls-left ae-transport">
+        <button class="ae-button ae-icon" id="aeToStart" title="Go to beginning" aria-label="Go to beginning">|◀</button>
+        <button class="ae-button ae-primary" id="aePlay" title="Play or pause">▶ Play</button>
+        <button class="ae-button ae-icon" id="aeStop" title="Stop playback" aria-label="Stop playback">■</button>
+        <span class="ae-time"><span id="aeTime">0:00.000</span> <small>/ <span id="aeDuration">0:00.000</span></small></span>
+      </div>
+      <div class="ae-controls-right"><span class="ae-status"><i></i><span id="aeClipCount">0 clips</span></span></div>
+    </div>
+    <div class="ae-toolstrip" id="aeToolstrip">
+      <div class="ae-quick-tools">
+        <button class="ae-button ae-primary" id="aeAddAudio">＋ Add Audio</button><input id="aeFiles" class="ae-hidden" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac" multiple>
+        <button class="ae-button" id="aeSplit" title="Split selected clip at playhead">✂ Split</button>
+        <button class="ae-button ae-icon" id="aeUndo" aria-label="Undo" title="Undo">↶</button>
+        <button class="ae-button ae-icon" id="aeRedo" aria-label="Redo" title="Redo">↷</button>
+        <button class="ae-button ae-tool-more" id="aeEditMore" aria-controls="aeSecondaryTools" aria-expanded="false" title="More audio editing tools">Edit <span aria-hidden="true">▾</span></button>
+      </div>
+      <div class="ae-secondary-tools" id="aeSecondaryTools">
+        <button class="ae-button" id="aeAddTrack">＋ Track</button>
+        <button class="ae-button" id="aeDuplicate" title="Duplicate selected clip (Ctrl+D)">▣ <span class="ae-hide-phone">Duplicate</span></button>
+        <button class="ae-button" id="aeCopy" title="Copy selected clip or highlighted range (Ctrl+C)" aria-label="Copy audio selection">⧉ <span class="ae-hide-phone">Copy</span></button>
+        <button class="ae-button" id="aeCut" title="Cut selected clip or highlighted range (Ctrl+X)" aria-label="Cut audio selection">✂ <span class="ae-hide-phone">Cut</span></button>
+        <button class="ae-button" id="aePaste" title="Paste at red playhead (Ctrl+V)" aria-label="Paste copied audio at playhead" disabled>▣ <span class="ae-hide-phone">Paste</span></button>
+        <button class="ae-button ae-quiet-danger" id="aeDeleteClip" title="Delete selected clip">✕ <span class="ae-hide-phone">Delete</span></button>
+        <button class="ae-button ae-quiet-danger" id="aeDeleteRange" title="Delete the highlighted audio range (Backspace)" disabled>✂ <span class="ae-hide-phone">Delete Range</span></button>
+        <button class="ae-button ae-touch-range" id="aeTouchRange" title="Select audio range with two taps" aria-pressed="false" aria-label="Two-tap range selection">⌖ Range: Off</button>
+      </div>
+      <div class="ae-zoom-tools">
+        <button class="ae-button ae-icon" id="aeZoomOut" aria-label="Zoom out" title="Zoom out (−25)">−</button>
+        <input id="aeZoomSlider" class="ae-zoom-slider" type="range" min="0" max="1000" step="1" value="651" aria-label="Timeline zoom level 0 to 1000" title="0: ultra-compressed line · 1000: millisecond-level detail">
+        <output id="aeZoomLabel" class="ae-zoom" for="aeZoomSlider" title="Zoom level from 0 to 1000">651</output>
+        <button class="ae-button ae-icon" id="aeZoomIn" aria-label="Zoom in" title="Zoom in (+25)">＋</button>
+        <button class="ae-button ae-fit" id="aeZoomFit" title="Fit the full project timeline to the visible editor">Fit</button>
+        <label class="ae-snap-label" title="Snap to neighboring clip edges"><input type="checkbox" id="aeSnap" checked> Snap</label>
+      </div>
+    </div>
+    <div class="ae-tracks-wrap">
+      <div id="aeStage" class="ae-stage" tabindex="0" aria-label="Audio editing timeline"></div>
+      <div class="ae-inspector" id="aeInspector">
+        <div class="ae-inspector-info"><div class="ae-inspector-description"><strong id="aeSelectedName">Select a clip</strong><small id="aeSelectedHint">Move, trim or split clips on the timeline</small></div><button class="ae-button ae-inspector-toggle" id="aeInspectorToggle" aria-controls="aeInspectorFields" aria-expanded="false" title="Show clip controls">Adjust <span aria-hidden="true">▴</span></button></div>
+        <div class="ae-inspector-fields" id="aeInspectorFields">
+          <label class="ae-field">Position (s) <input id="aePos" type="number" step="0.001" min="0" disabled aria-label="Selected clip timeline position in seconds"></label>
+          <label class="ae-field">Volume <input id="aeClipVolume" type="range" min="0" max="200" value="100" disabled aria-label="Selected clip volume"><span id="aeClipVolLabel">100%</span></label>
+          <div class="ae-fade-control" role="group" aria-label="Fade in controls">
+            <label class="ae-fade-title" for="aeFadeIn">Fade In <span id="aeFadeInText">0.000s</span></label>
+            <div class="ae-fade-inputs"><input id="aeFadeIn" type="range" min="0" max="1" step="0.001" value="0" disabled aria-label="Fade in duration slider"><input id="aeFadeInExact" type="number" min="0" max="1" step="0.001" value="0" disabled title="Precise fade in seconds" aria-label="Precise fade in seconds"></div>
+          </div>
+          <div class="ae-fade-control" role="group" aria-label="Fade out controls">
+            <label class="ae-fade-title" for="aeFadeOut">Fade Out <span id="aeFadeOutText">0.000s</span></label>
+            <div class="ae-fade-inputs"><input id="aeFadeOut" type="range" min="0" max="1" step="0.001" value="0" disabled aria-label="Fade out duration slider"><input id="aeFadeOutExact" type="number" min="0" max="1" step="0.001" value="0" disabled title="Precise fade out seconds" aria-label="Precise fade out seconds"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="ae-bottom"><span>✦ <b>Local project</b> · Audio stays on your device</span><span>Selected clip glows cyan · Fade sliders show on waveform · Shift+Click range · Ctrl+C/X/V · Zoom 0–1000 · Ctrl+Z</span></footer>
+  </div>
+  <div id="aePopup" class="ae-popover ae-hidden" role="dialog" aria-modal="true" aria-label="Audio Editor projects"><div class="ae-dialog" id="aePopupContent"></div></div>
+</div>
+
+<script id="v90-audio-editor-script">
+/* ON AIR Studio v101: restrained theme palette and waveform rendering; preserves previous editing features. */
+(()=>{'use strict';
+ const $=id=>document.getElementById(id),overlay=$('aeOverlay'),popup=$('aePopup'),content=$('aePopupContent');
+ if(!overlay)return;
+ const uid=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+Math.random().toString(36).slice(2),clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const time=s=>{const ms=Math.max(0,Math.round(s*1000));return `${Math.floor(ms/60000)}:${String(Math.floor(ms/1000)%60).padStart(2,'0')}.${String(ms%1000).padStart(3,'0')}`};
+ const colors=['#30c7b0','#56a7fb','#efb85d','#bd90ef','#ee89b2','#81bc75','#d5a56c'];
+ let db=null,project=null,assetBlobs=new Map(),buffers=new Map(),ctx=null,playing=false,started=0,playhead=0,nodes=[],ticker=0,selected=null,drag=null,history=[],future=[],saveTimer=0,saveSerial=Promise.resolve(),saving=false,zoom=1,opening=false,importing=false,exporting=false,studioLock=false,lastRender=null,selectionRange=null,touchRangeMode=false,suppressClick=false,snapEnabled=true,rafDrag=0,editorClipboard=null,activePasteTrackId=null;
+ const makeProject=name=>({id:uid(),name,createdAt:Date.now(),updatedAt:Date.now(),tracks:[{id:uid(),name:'Music',color:colors[0],volume:100,mute:false,solo:false,height:102}],clips:[],zoom:1,playhead:0,snap:true});
+ const activeClip=()=>project?.clips.find(c=>c.id===selected),activeTrack=id=>project?.tracks.find(t=>t.id===id);
+ const duration=c=>Math.max(.001,c.out-c.in),endTime=()=>Math.max(0,...(project?.clips||[]).map(c=>c.at+duration(c)));
+ // v96: 0 zoom shows a 60-second audio as a ~4px line; 1000 zoom shows ~1 pixel/millisecond.
+ // Log scale spreads fine adjustments across the entire slider rather than jumping at either end.
+ const zoomMin=.002,zoomMax=28,zoomLimit=1000;
+ const zoomFactorFromLevel=n=>zoomMin*Math.pow(zoomMax/zoomMin,clamp(n,0,zoomLimit)/zoomLimit);
+ const zoomLevelFromFactor=n=>clamp(Math.round(Math.log(clamp(n,zoomMin,zoomMax)/zoomMin)/Math.log(zoomMax/zoomMin)*zoomLimit),0,zoomLimit);
+ // Use time-based grid steps. Only paint visible ruler marks to keep even 1000 zoom responsive.
+ const rulerSteps=[.001,.002,.005,.01,.02,.05,.1,.2,.5,1,2,5,10,15,30,60,120,300,600,900,1800,3600,7200,14400,28800,86400];
+ const rulerStep=()=>rulerSteps.find(s=>s*px()>=76)||86400;
+ const precise=n=>Math.round(n*1000)/1000;
+ const ceilMs=n=>Math.ceil(n*1000-1e-7)/1000;
+ const floorMs=n=>Math.floor(n*1000+1e-7)/1000;
+ const px=()=>36*zoom;
+ const timelineMaximum=()=>Math.min(1000000/px(),Math.max(60,endTime()+16,900/px()));
+ const collisionEpsilon=.000001;
+ const intervals=(trackId,ignoreId)=>project.clips.filter(c=>c.trackId===trackId&&c.id!==ignoreId).map(c=>({start:c.at,end:c.at+duration(c)})).sort((a,b)=>a.start-b.start);
+ function fitInGap(trackId,proposed,len,ignoreId){
+  const occupied=intervals(trackId,ignoreId), gaps=[];let floor=0;
+  for(const o of occupied){if(o.start-floor>=len-collisionEpsilon)gaps.push([floor,o.start-len]);floor=Math.max(floor,o.end)}
+  gaps.push([floor,Number.POSITIVE_INFINITY]);
+  let best=null,dist=Infinity;
+  for(const [lo,hi] of gaps){const lower=ceilMs(lo),upper=Number.isFinite(hi)?floorMs(hi):Infinity;if(lower>upper)continue;const at=clamp(proposed,lower,upper),distance=Math.abs(at-proposed);if(distance<dist){best=at;dist=distance}}
+  return precise(best??proposed);
+ }
+ function nextFree(trackId,proposed,len,ignoreId){
+  let at=Math.max(0,proposed);
+  for(const it of intervals(trackId,ignoreId)){if(at+len<=it.start+collisionEpsilon)break;if(at<it.end-collisionEpsilon)at=it.end}
+  return ceilMs(at);
+ }
+ function gapFor(trackId,refAt,ignoreId){const others=intervals(trackId,ignoreId);let low=0,high=Infinity;for(const o of others){if(o.end<=refAt+collisionEpsilon)low=Math.max(low,o.end);else if(o.start>=refAt-collisionEpsilon){high=Math.min(high,o.start);break}}return [low,high]}
+ function nearbySnap(value,points){if(!snapEnabled)return value;const near=8/px();const found=points.filter(n=>Number.isFinite(n)&&Math.abs(n-value)<=near).sort((a,b)=>Math.abs(a-value)-Math.abs(b-value));return found.length?found[0]:value}
+ function markerPositionFromPointer(e){const stage=$('aeStage');return Math.max(0,(e.clientX-stage.getBoundingClientRect().left+stage.scrollLeft-labelWidth())/px())}
+ function cursorTime(e,clip){const r=e.currentTarget?.getBoundingClientRect?.();return clip?precise(clamp(clip.at+(e.clientX-e.target.closest('[data-clip]').getBoundingClientRect().left)/px(),clip.at,clip.at+duration(clip))):precise(markerPositionFromPointer(e))}
+ // v94 selection: one ordinary click sets an anchor; Shift+Click chooses a time on the same track.
+ function clearSelection(){selectionRange=null;drawSelection();updateInspector()}
+ function selectionTime(e,clip,node){
+  if(clip&&node){const r=node.getBoundingClientRect();return precise(clamp(clip.at+(e.clientX-r.left)/px(),clip.at,clip.at+duration(clip)))}
+  return precise(clamp(markerPositionFromPointer(e),0,timelineMaximum()));
+ }
+ function selectAnchor(clip,at){
+  if(!clip)return;
+  selectionRange={trackId:clip.trackId,clipId:clip.id,start:precise(at),end:null};
+  selected=clip.id;activePasteTrackId=clip.trackId;
+  updateInspector();refreshClipStyles();
+  if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))document.activeElement.blur();
+ }
+ function selectRangeEnd(trackId,at,clip){
+  if(!selectionRange){
+   if(clip)selectAnchor(clip,at);
+   else showMessage('First click anywhere inside an audio clip to set the start point.');
+   return;
+  }
+  if(selectionRange.trackId!==trackId){showMessage('Select the end point on the same audio track.');return}
+  selectionRange.end=precise(clamp(at,0,timelineMaximum()));
+  selected=selectionRange.clipId;activePasteTrackId=trackId;
+  updateInspector();refreshClipStyles();
+  if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))document.activeElement.blur();
+ }
+ function drawSelection(){
+  const stage=$('aeStage'),del=$('aeDeleteRange');
+  stage.querySelectorAll('.ae-range-overlay,.ae-range-lane,.ae-range-point').forEach(el=>el.remove());
+  del.disabled=true;
+  if(!project||!selectionRange)return;
+  const r=selectionRange,anchorClip=project.clips.find(c=>c.id===r.clipId);
+  const lane=stage.querySelector('[data-track-lane="'+CSS.escape(r.trackId)+'"]');
+  if(!anchorClip||!lane)return;
+  const anchor=precise(r.start),hasEnd=r.end!==null&&r.end!==undefined,finish=hasEnd?precise(r.end):anchor;
+  const left=Math.min(anchor,finish),right=Math.max(anchor,finish),width=Math.abs(right-left);
+  const marker=(when,kind)=>{
+   const dot=document.createElement('div');dot.className='ae-range-point '+kind;
+   dot.style.left=when*px()+'px';dot.innerHTML='<span class="ae-range-point-dot"></span>';
+   dot.title=(kind==='start'?'Start':'End')+' · '+time(when);
+   lane.appendChild(dot);
+  };
+  if(hasEnd&&width>=.001){
+   const band=document.createElement('div');band.className='ae-range-lane';band.style.left=left*px()+'px';band.style.width=Math.max(1,width*px())+'px';lane.appendChild(band);
+   for(const c of project.clips.filter(c=>c.trackId===r.trackId)){
+    const a=Math.max(left,c.at),b=Math.min(right,c.at+duration(c));
+    if(b<=a+collisionEpsilon)continue;
+    const node=stage.querySelector('[data-clip="'+CSS.escape(c.id)+'"]');if(!node)continue;
+    const shade=document.createElement('div');shade.className='ae-range-overlay is-complete';
+    shade.style.left=(a-c.at)*px()+'px';shade.style.width=Math.max(1,(b-a)*px())+'px';node.appendChild(shade);
+   }
+   del.disabled=!project.clips.some(c=>c.trackId===r.trackId&&c.at<right-collisionEpsilon&&c.at+duration(c)>left+collisionEpsilon);
+  }
+  marker(anchor,'start');if(hasEnd&&width>=.001)marker(finish,'end');
+ }
+ function deleteSelectedRange(){
+  if(!project||!selectionRange||selectionRange.end==null)return;
+  const r=selectionRange,a=precise(Math.max(0,Math.min(r.start,r.end))),b=precise(Math.max(r.start,r.end));
+  if(b-a<.001){showMessage('Select at least 1 millisecond of audio.');return}
+  const touched=project.clips.filter(c=>c.trackId===r.trackId&&c.at<b-collisionEpsilon&&c.at+duration(c)>a+collisionEpsilon);
+  if(!touched.length){showMessage('No audio is inside the selected range.');return}
+  commitHistory();if(playing)pause();
+  const removed=new Set(touched.map(c=>c.id));
+  project.clips=project.clips.filter(c=>!removed.has(c.id));
+  let chosen=null;
+  for(const old of touched){
+   const localStart=Math.max(old.at,a),localEnd=Math.min(old.at+duration(old),b);
+   const leftLength=precise(localStart-old.at),rightLength=precise(old.at+duration(old)-localEnd);
+   if(leftLength>=.001){
+    const left=structuredClone(old);left.out=precise(old.in+leftLength);
+    left.fadeIn=Math.min(left.fadeIn,duration(left));left.fadeOut=0;
+    project.clips.push(left);chosen=left.id;
+   }
+   if(rightLength>=.001){
+    const right=structuredClone(old);right.id=uid();right.at=precise(localEnd);
+    right.in=precise(old.in+(localEnd-old.at));right.fadeIn=0;
+    right.fadeOut=Math.min(right.fadeOut,duration(right));
+    project.clips.push(right);chosen=right.id;
+   }
+  }
+  selected=chosen;activePasteTrackId=r.trackId;clearSelection();markChanged();render();
+  showMessage(`Deleted ${time(b-a)} of selected audio · Undo available`);
+ }
+ // v95: non-destructive in-app audio clipboard (not text/system clipboard).
+ // A complete highlighted range takes precedence over a single selected clip.
+ // Source asset IDs are kept only inside this project; no re-encoding or file duplication.
+ function completeRange(){
+  if(!selectionRange||selectionRange.end==null)return null;
+  const start=precise(Math.min(selectionRange.start,selectionRange.end));
+  const end=precise(Math.max(selectionRange.start,selectionRange.end));
+  return end-start>=.001?{start,end,trackId:selectionRange.trackId}:null;
+ }
+ function clipboardSource(){
+  if(!project)return null;
+  const range=completeRange();
+  if(range){
+   const segments=project.clips.filter(c=>c.trackId===range.trackId&&c.at<range.end-collisionEpsilon&&c.at+duration(c)>range.start+collisionEpsilon)
+    .sort((a,b)=>a.at-b.at).map(c=>{
+     const start=precise(Math.max(range.start,c.at));
+     const end=precise(Math.min(range.end,c.at+duration(c)));
+     const copy=structuredClone(c);
+     copy.in=precise(c.in+(start-c.at));
+     copy.out=precise(c.in+(end-c.at));
+     copy.fadeIn=start>c.at+collisionEpsilon?0:Math.min(c.fadeIn,duration(copy));
+     copy.fadeOut=end<c.at+duration(c)-collisionEpsilon?0:Math.min(c.fadeOut,duration(copy));
+     return {clip:copy,offset:precise(start-range.start)};
+    }).filter(piece=>duration(piece.clip)>=.001);
+   return segments.length?{kind:'range',trackId:range.trackId,segments,width:precise(range.end-range.start)}:null;
+  }
+  // A single normal click sets the selection anchor, and also selects the whole clip
+  // when using Copy/Cut unless Shift+Click has finished a range.
+  const clip=activeClip();
+  return clip?{kind:'clip',trackId:clip.trackId,segments:[{clip:structuredClone(clip),offset:0}],width:precise(duration(clip))}:null;
+ }
+ function clipboardButtons(){
+  const canCopy=!!project&&(!!completeRange()||!!activeClip());
+  $('aeCopy').disabled=!canCopy;$('aeCut').disabled=!canCopy;
+  $('aePaste').disabled=!project||!editorClipboard||editorClipboard.projectId!==project.id;
+  $('aePaste').title=editorClipboard&&editorClipboard.projectId===project?.id?
+   `Paste ${editorClipboard.segments.length} audio part(s) at the red playhead (Ctrl+V)`:'Copy audio first (Ctrl+C)';
+ }
+ function copyAudio(notify=true){
+  const source=clipboardSource();
+  if(!source){showMessage('Click an audio clip, or complete a Shift+Click range, before copying.');return false}
+  editorClipboard={...source,projectId:project.id};
+  activePasteTrackId=source.trackId;
+  clipboardButtons();
+  if(notify)showMessage(`Copied ${source.kind==='range'?'selected audio range':'audio clip'} · Move red playhead and press Ctrl+V`);
+  return true;
+ }
+ function cutAudio(){
+  if(!copyAudio(false))return;
+  const originalTrackId=editorClipboard.trackId;
+  if(completeRange())deleteSelectedRange();
+  else removeClip();
+  activePasteTrackId=originalTrackId;
+  clipboardButtons();
+  showMessage(`Cut ${editorClipboard.kind==='range'?'selected audio range':'audio clip'} · Ctrl+V to paste`);
+ }
+ function pasteAudio(){
+  if(!project||!editorClipboard){showMessage('Nothing to paste. Select audio and press Ctrl+C first.');return}
+  if(editorClipboard.projectId!==project.id){showMessage('Copied audio belongs to a different mix. Copy it again in this project.',true);return}
+  const track=activeTrack(activePasteTrackId)||activeTrack(editorClipboard.trackId);
+  if(!track){showMessage('Choose an audio track for pasting.',true);return}
+  const position=precise(playhead);
+  const parts=editorClipboard.segments.map(({clip,offset})=>{
+   const copy=structuredClone(clip);copy.id=uid();copy.trackId=track.id;copy.at=precise(position+offset);
+   return copy;
+  });
+  if(!parts.length)return;
+  const all=[...project.clips.filter(c=>c.trackId===track.id),...parts].sort((a,b)=>a.at-b.at);
+  for(let i=1;i<all.length;i++){
+   if(all[i].at<all[i-1].at+duration(all[i-1])-collisionEpsilon){
+    showMessage(`Cannot paste at ${time(position)}: ${track.name} already has audio there. Move the red playhead or choose an empty area/track.`,true);return;
+   }
+  }
+  if(playing)pause();
+  commitHistory();project.clips.push(...parts);selected=parts[0].id;activePasteTrackId=track.id;
+  selectionRange=null;markChanged();render();
+  showMessage(`Pasted ${parts.length} audio part${parts.length===1?'':'s'} at ${time(position)} · Ctrl+Z to undo`);
+ }
+ // Keep a meaningful point pinned while zooming: first pointer location (Ctrl+wheel),
+ // otherwise selected clip/playhead, or visible timeline midpoint when the playhead is offscreen.
+ let pendingZoomLevel=null,pendingZoomPointer=null,zoomFrame=0;
+ function setZoomLevel(level,pointerClientX=null){
+  pendingZoomLevel=clamp(Math.round(level),0,zoomLimit);
+  if(pointerClientX!==null)pendingZoomPointer=pointerClientX;
+  $('aeZoomSlider').value=pendingZoomLevel;
+  $('aeZoomLabel').textContent=String(pendingZoomLevel);
+  if(zoomFrame)return;
+  zoomFrame=requestAnimationFrame(()=>{
+   zoomFrame=0;if(!project||pendingZoomLevel===null)return;
+   const requested=pendingZoomLevel,pointer=pendingZoomPointer;pendingZoomLevel=null;pendingZoomPointer=null;
+   const stage=$('aeStage'),oldPx=px(),label=labelWidth(),view=stage.getBoundingClientRect();
+   const screenX=pointer!==null?clamp(pointer-view.left,label+10,stage.clientWidth-10):null;
+   const anchorAtX=x=>Math.max(0,(stage.scrollLeft+x-label)/oldPx);
+   const currentHeadX=label+playhead*oldPx-stage.scrollLeft;
+   const selectedClip=activeClip();
+   const selectedMid=selectedClip?selectedClip.at+duration(selectedClip)/2:null;
+   const selectedX=selectedMid!==null?label+selectedMid*oldPx-stage.scrollLeft:null;
+   let anchorX,anchorT;
+   if(screenX!==null){anchorX=screenX;anchorT=anchorAtX(anchorX)}
+   else if(selectedX!==null&&selectedX>=label&&selectedX<=stage.clientWidth){anchorX=selectedX;anchorT=selectedMid}
+   else if(currentHeadX>=label-3&&currentHeadX<=stage.clientWidth){anchorX=Math.max(label,currentHeadX);anchorT=playhead}
+   else{anchorX=Math.max(label,stage.clientWidth*.5);anchorT=anchorAtX(anchorX)}
+   zoom=zoomFactorFromLevel(requested);
+   render();
+   stage.scrollLeft=Math.max(0,label+anchorT*px()-anchorX);
+   updateRuler();markChanged();
+  });
+ }
+ function fitTimeline(){
+  if(!project)return;
+  const stage=$('aeStage'),usable=Math.max(120,stage.clientWidth-labelWidth()-35),seconds=Math.max(1,endTime());
+  const desiredFactor=clamp(usable/(36*seconds),zoomMin,zoomMax);
+  setZoomLevel(zoomLevelFromFactor(desiredFactor));
+  // Fit starts at the first visible second rather than the previous screen center.
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{if(project)stage.scrollLeft=0}));
+ }
+ function updateRuler(){
+  const stage=$('aeStage'),grid=stage.querySelector('[data-ae-ruler]');if(!grid||!project)return;
+  const spacing=rulerStep(),start=Math.max(0,(stage.scrollLeft-labelWidth()-120)/px()),finish=(stage.scrollLeft+stage.clientWidth-labelWidth()+120)/px();
+  const a=Math.max(0,Math.floor(start/spacing)),lastVisible=Math.floor(Math.max(0,grid.clientWidth-55)/Math.max(.000001,spacing*px())),b=Math.min(a+100,Math.ceil(finish/spacing),lastVisible);
+  grid.innerHTML=Array.from({length:Math.max(0,b-a+1)},(_,i)=>{const sec=precise((a+i)*spacing);return `<span class="ae-ruler-mark" style="left:${sec*px()}px">${time(sec)}</span>`}).join('');
+ }
+
+ const labelWidth=()=>window.matchMedia('(max-width: 1024px)').matches?112:155;
+ const textStatus=(msg,state='ready')=>{const el=$('aeSaveStatus');el.querySelector('span').textContent=msg;el.dataset.state=state;el.title=msg;el.querySelector('i').style.background=state==='error'?'#fb7185':state==='saving'?'#efb85d':'var(--ae-teal)'};
+ const showMessage=(msg,error=false)=>{const old=overlay.querySelector('#aeFlash');if(old)old.remove();const n=document.createElement('div');n.id='aeFlash';n.className='ae-notice'+(error?' ae-alert':'');n.style.cssText='position:absolute;right:14px;bottom:45px;z-index:50;max-width:350px;box-shadow:0 8px 30px #0003';n.textContent=msg;overlay.appendChild(n);setTimeout(()=>n.remove(),5000)};
+ function openDB(){return new Promise((resolve,reject)=>{if(!('indexedDB'in window)){reject(Error('Browser storage unavailable'));return}const r=indexedDB.open('on-air-audio-editor-v1',1);r.onupgradeneeded=()=>{const d=r.result;if(!d.objectStoreNames.contains('projects'))d.createObjectStore('projects',{keyPath:'id'});if(!d.objectStoreNames.contains('assets')){const store=d.createObjectStore('assets',{keyPath:'id'});store.createIndex('by_project','projectId',{unique:false})}};r.onsuccess=()=>{const d=r.result;d.onversionchange=()=>d.close();resolve(d)};r.onerror=()=>reject(r.error||Error('Cannot open editor storage'));r.onblocked=()=>reject(Error('Audio Editor storage is busy. Close another editor tab.'))})}
+ function request(store,mode,method,argument){return new Promise((resolve,reject)=>{if(!db){reject(Error('Local editor storage unavailable'));return}const tx=db.transaction(store,mode),os=tx.objectStore(store);let r;try{r=os[method](argument)}catch(e){reject(e);return}let result; r.onsuccess=()=>result=r.result;tx.oncomplete=()=>resolve(result);tx.onerror=()=>reject(tx.error||Error('Storage operation failed'));tx.onabort=()=>reject(tx.error||Error('Storage operation aborted'))})}
+ async function projectAssets(projectId){return new Promise((resolve,reject)=>{const tx=db.transaction('assets','readonly');const req=tx.objectStore('assets').index('by_project').getAll(projectId);req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||Error('Cannot read editor audio'))})}
+ async function listProjects(){return (await request('projects','readonly','getAll')).sort((a,b)=>b.updatedAt-a.updatedAt)}
+ const cloneProject=()=>structuredClone(project);
+ function markChanged(){if(!project)return;project.updatedAt=Date.now();clearTimeout(saveTimer);textStatus('Unsaved edits','saving');saveTimer=setTimeout(()=>void saveProject(),650)}
+ function snapshot(){if(!project)return null;const p=cloneProject();p.playhead=playhead;p.zoom=zoom;p.snap=snapEnabled;return p}
+ function saveProject(){clearTimeout(saveTimer);if(!project)return Promise.resolve(false);const p=snapshot();saving=true;textStatus('Saving…','saving');saveSerial=saveSerial.catch(()=>{}).then(async()=>{await request('projects','readwrite','put',p);if(project?.id===p.id){saving=false;textStatus('Saved locally');return true}return true}).catch(e=>{saving=false;textStatus('Not saved','error');showMessage('Could not save edits: '+e.message,true);return false});return saveSerial}
+ function commitHistory(){if(!project)return;history.push({tracks:structuredClone(project.tracks),clips:structuredClone(project.clips)});if(history.length>60)history.shift();future=[]}
+ function replaceState(state){project.tracks=structuredClone(state.tracks);project.clips=structuredClone(state.clips);selected=null;clearSelection();pause();markChanged();render()}
+ function undo(){if(!history.length||!project)return;future.push({tracks:structuredClone(project.tracks),clips:structuredClone(project.clips)});replaceState(history.pop())}
+ function redo(){if(!future.length||!project)return;history.push({tracks:structuredClone(project.tracks),clips:structuredClone(project.clips)});replaceState(future.pop())}
+ const stopSources=()=>{for(const n of nodes){try{n.src.stop()}catch(e){}try{n.src.disconnect();n.gain.disconnect();n.amp?.disconnect()}catch(e){}}nodes=[]};
+ function pause(){if(!playing)return;playhead=clamp(playhead+(performance.now()-started)/1000,0,endTime());playing=false;cancelAnimationFrame(ticker);stopSources();$('aePlay').textContent='▶ Play';updateTime()}
+ function stop(){pause();playhead=0;updateTime()}
+ async function audioContext(){if(!ctx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)throw Error('AudioContext not supported');ctx=new AC()}if(ctx.state!=='running')await ctx.resume();return ctx}
+ async function bufferFor(assetId){if(buffers.has(assetId))return buffers.get(assetId);const blob=assetBlobs.get(assetId);if(!blob)throw Error('Missing original audio file. Reimport the sound.');const AC=window.AudioContext||window.webkitAudioContext;if(!AC)throw Error('AudioContext unsupported');if(!ctx)ctx=new AC();const audio=ctx;const p=audio.decodeAudioData((await blob.arrayBuffer()).slice(0)).then(b=>{buffers.set(assetId,b);return b}).catch(e=>{buffers.delete(assetId);throw Error('Cannot decode audio file: '+(e.message||'unsupported format'))});buffers.set(assetId,p);return p}
+ function shouldPlay(t){return !t.mute&&(!project.tracks.some(x=>x.solo)||t.solo)}
+ function scheduleClip(ac,buffer,track,clip,when,position,send){
+  if(!shouldPlay(track))return;
+  const begin=Math.max(position,clip.at),startOffset=clip.in+(begin-clip.at),remain=clip.out-startOffset;
+  if(remain<.0005)return;
+  const at=when+(begin-position),ending=at+remain;
+  const src=ac.createBufferSource();src.buffer=buffer;
+  const g=ac.createGain(),amp=ac.createGain();const base=clamp(clip.gain,0,2)*clamp(track.volume,0,100)/100;amp.gain.value=base;
+  const currentLocal=begin-clip.at;g.gain.setValueAtTime(fadeFactor(clip,currentLocal),at);
+  for(const point of fadeKnots(clip)){if(point>currentLocal+.000001)g.gain.linearRampToValueAtTime(fadeFactor(clip,point),at+point-currentLocal)}
+  src.connect(g);g.connect(amp);amp.connect(send);src.start(at,startOffset,remain);if(ac===ctx)nodes.push({src,gain:g,amp,clipId:clip.id,trackId:track.id,at,localAt:currentLocal,end:ending});
+ }
+ async function startPlayback(){if(!project)return;if(playing){pause();return}if(!project.clips.length){showMessage('Add audio files to start playing.');return}if(playhead>=endTime())playhead=0;
+  try{const ac=await audioContext();const pairs=await Promise.all(project.clips.map(async c=>({c,b:await bufferFor(c.assetId)})));const startAt=ac.currentTime+.035;for(const {c,b} of pairs){const t=activeTrack(c.trackId);if(t)scheduleClip(ac,b,t,c,startAt,playhead,ac.destination)}playing=true;started=performance.now();$('aePlay').textContent='Ⅱ Pause';tick()}
+  catch(e){pause();showMessage(e.message,true)} }
+ function updateLiveGains(){if(!ctx)return;for(const n of nodes){const c=project?.clips.find(x=>x.id===n.clipId),t=c&&activeTrack(c.trackId);if(!c||!t)continue;const gain=shouldPlay(t)?clamp(c.gain,0,2)*clamp(t.volume,0,100)/100:0;n.amp.gain.setTargetAtTime(gain,ctx.currentTime,.012)}}
+ // Rebuild only the fade automation for active clip nodes, without pausing the song.
+ function updateLiveFades(clipId){if(!ctx||!playing)return;for(const n of nodes.filter(x=>x.clipId===clipId)){
+  const c=project?.clips.find(x=>x.id===clipId);if(!c||ctx.currentTime>=n.end)continue;
+  const now=ctx.currentTime,p=n.gain.gain;
+  if(now<n.at){p.cancelScheduledValues(n.at);p.setValueAtTime(fadeFactor(c,n.localAt),n.at);for(const knot of fadeKnots(c)){if(knot>n.localAt+.000001)p.linearRampToValueAtTime(fadeFactor(c,knot),n.at+knot-n.localAt)}}
+  else{const when=Math.min(n.end,now+.016),local=clamp(n.localAt+(when-n.at),0,duration(c));const oldLevel=p.value;p.cancelScheduledValues(now);p.setValueAtTime(oldLevel,now);p.linearRampToValueAtTime(fadeFactor(c,local),when);
+   for(const knot of fadeKnots(c)){if(knot>local+.000001)p.linearRampToValueAtTime(fadeFactor(c,knot),n.at+knot-n.localAt)}}
+ } }
+ function tick(){if(!playing)return;const pos=playhead+(performance.now()-started)/1000;if(pos>=endTime()){
+   playing=false;playhead=endTime();stopSources();$('aePlay').textContent='▶ Play';updateTime();return
+  }updateTime(pos);const stage=$('aeStage');const line=stage.querySelector('.ae-playhead');const x=labelWidth()+pos*px();if(line)line.style.left=x+'px';if(x>stage.scrollLeft+stage.clientWidth-45)stage.scrollLeft=x-stage.clientWidth*.45;ticker=requestAnimationFrame(tick)}
+ function updateTime(current=playhead){$('aeTime').textContent=time(current);$('aeDuration').textContent=time(endTime());$('aeClipCount').textContent=project?project.clips.length+' clip'+(project.clips.length===1?'':'s'):'0 clips';const line=$('aeStage').querySelector('.ae-playhead');if(line)line.style.left=(labelWidth()+current*px())+'px'}
+ function seek(seconds){const was=playing;pause();playhead=precise(clamp(seconds,0,timelineMaximum()));updateTime();if(was)void startPlayback()}
+ function setProject(p){pause();stopSources();project=p;
+  let corrected=0;for(const tr of project.tracks){let cursor=0;for(const c of project.clips.filter(x=>x.trackId===tr.id).sort((a,b)=>a.at-b.at)){if(c.at<cursor-.0005){c.at=ceilMs(cursor);corrected++}cursor=c.at+duration(c)}}
+  if(corrected)showMessage(`${corrected} overlapping clip(s) were moved into free timeline space.`);
+if(editorClipboard?.projectId!==p.id)editorClipboard=null;activePasteTrackId=p.tracks[0]?.id||null;
+zoom=clamp(p.zoom||1,zoomMin,zoomMax);snapEnabled=p.snap!==false;$('aeSnap').checked=snapEnabled;playhead=clamp(p.playhead||0,0,timelineMaximum());history=[];future=[];selected=null;clearSelection();$('aeProjectTitle').textContent=p.name;textStatus('Loaded locally');render();closePopup();if(corrected)markChanged()}
+ function showPopup(html){content.innerHTML=html;popup.classList.remove('ae-hidden')}
+ function closePopup(){popup.classList.add('ae-hidden');content.innerHTML=''}
+ async function openPicker(){try{const projs=await listProjects();showPopup(`<div class="ae-dialog-head"><span class="ae-dialog-eyebrow">YOUR EDITING WORKSPACE</span><button class="ae-button ae-icon ae-ghost" data-ae-action="dismiss" aria-label="Close dialog">✕</button></div><h2>Audio Editor Projects</h2><p>Start a new mix or continue an editable project saved on this browser.</p><div class="ae-choice"><button type="button" class="ae-choice-card" data-ae-action="new"><span style="font-size:22px;color:var(--ae-teal)">⊞</span><strong>New Mix</strong><small>Start a fresh multitrack timeline</small></button><button type="button" class="ae-choice-card" data-ae-action="projects"><span style="font-size:22px;color:var(--ae-teal)">▱</span><strong>Open Saved Mix</strong><small>${projs.length} local editor project${projs.length===1?'':'s'}</small></button></div><div class="ae-notice">Audio Editor projects are separate from broadcast projects and are saved only on this device.</div>`)}catch(e){showPopup(`<h2>Storage unavailable</h2><p>${esc(e.message)}. Existing broadcast projects are not affected.</p><button class="ae-button" data-ae-action="dismiss">Close</button>`)}}
+ async function openSavedList(){const projs=await listProjects();showPopup(`<div class="ae-dialog-head"><span class="ae-dialog-eyebrow">LOCAL AUDIO MIXES</span><button class="ae-button ae-icon ae-ghost" data-ae-action="dismiss">✕</button></div><h2>Saved Editor Projects</h2><p>Open and continue a fully editable multitrack mix.</p><div class="ae-project-list">${projs.length?projs.map(p=>`<div class="ae-project-item"><div style="min-width:0"><strong>${esc(p.name)}</strong><small>${p.tracks.length} tracks · ${p.clips.length} clips · ${new Date(p.updatedAt).toLocaleString()}</small></div><div class="ae-actions"><button class="ae-button ae-primary" data-ae-action="load" data-id="${esc(p.id)}">Open</button><button class="ae-button ae-icon" title="Rename project" data-ae-action="rename" data-id="${esc(p.id)}">✎</button><button class="ae-button ae-icon ae-quiet-danger" title="Delete project" data-ae-action="delete" data-id="${esc(p.id)}">✕</button></div></div>`).join(''):'<div class="ae-empty"><strong>No saved mixes yet</strong>Choose New Mix to start editing.</div>'}</div><button class="ae-button" data-ae-action="new">＋ New Mix</button><button class="ae-button ae-ghost" data-ae-action="back">Back</button>`) }
+ function newProjectForm(){showPopup(`<div class="ae-dialog-head"><span class="ae-dialog-eyebrow">NEW MULTITRACK PROJECT</span><button class="ae-button ae-icon ae-ghost" data-ae-action="dismiss">✕</button></div><h2>Create a new mix</h2><p>Each mix saves all audio layers and editing progress locally.</p><label class="ae-field" for="aeNewName">Project name</label><input style="width:100%;margin:8px 0 15px" id="aeNewName" type="text" maxlength="80" value="Untitled Mix"/><div class="ae-form-row"><button class="ae-button ae-primary" data-ae-action="create">Create Mix</button><button class="ae-button" data-ae-action="back">Cancel</button></div>`);$('aeNewName').select()}
+ async function openEditor(){overlay.classList.remove('ae-hidden');document.body.style.overflow='hidden';if(!db){try{db=await openDB()}catch(e){showPopup(`<h2>Local storage unavailable</h2><p>${esc(e.message)}</p><button class="ae-button" data-ae-action="dismiss">Close</button>`);return}}if(!project)await openPicker();else{render();textStatus(saving?'Saving…':'Loaded locally',saving?'saving':'ready')}}
+ function closeEditor(){pause();void saveProject();overlay.classList.add('ae-hidden');document.body.style.overflow='';closePopup()}
+ async function loadProject(id){try{pause();if(project&&project.id!==id)await saveProject();const p=await request('projects','readonly','get',id);if(!p)throw Error('Saved mix not found');const assets=await projectAssets(p.id);assetBlobs.clear();buffers.clear();for(const a of assets)assetBlobs.set(a.id,a.blob);setProject(p);showMessage('Editable mix restored · '+p.name);const restoredId=p.id;Promise.allSettled([...assetBlobs.keys()].map(x=>bufferFor(x))).then(()=>{if(project?.id===restoredId)render()});for(const c of p.clips){if(!assetBlobs.has(c.assetId))showMessage('One or more original audio files are missing.',true)}render()}catch(e){showMessage('Cannot open mix: '+e.message,true)}}
+ async function createProject(name){if(!db)throw Error('Local saving unavailable');await saveProject();assetBlobs.clear();buffers.clear();setProject(makeProject(name.trim()||'Untitled Mix'));const ok=await saveProject();if(!ok)throw Error('Project could not be saved')}
+ async function renameProject(id){const p=await request('projects','readonly','get',id);if(!p)return;const name=prompt('Rename editor project',p.name);if(name===null)return;const next=name.trim().slice(0,80);if(!next)return;p.name=next;p.updatedAt=Date.now();await request('projects','readwrite','put',p);if(project?.id===p.id){project.name=next;$('aeProjectTitle').textContent=next}await openSavedList()}
+ async function deleteProject(id){clearTimeout(saveTimer);await saveSerial.catch(()=>{});const p=await request('projects','readonly','get',id);if(!p)return;const yes=confirm(`Delete "${p.name}" and all its saved audio files? This cannot be undone.`);if(!yes)return;const assets=await projectAssets(id);await request('projects','readwrite','delete',id);for(const a of assets)await request('assets','readwrite','delete',a.id);if(project?.id===id){pause();project=null;assetBlobs.clear();buffers.clear();selected=null;textStatus('No mix open');$('aeProjectTitle').textContent='Non-destructive multitrack editing';render()}await openSavedList()}
+ function render(){const stage=$('aeStage');if(!project){stage.innerHTML='<div class="ae-empty"><strong>Welcome to Audio Editor</strong>Create or open an editor project to start mixing audio.</div>';updateInspector();return}
+ const timelineWidth=Math.min(1000000,Math.max(320,stage.clientWidth-labelWidth(),Math.ceil(endTime()+16)*px()));const step=rulerStep();
+ const existingScroll=stage.scrollLeft,existingY=stage.scrollTop;
+ stage.innerHTML=`<div style="position:relative;width:${labelWidth()+timelineWidth}px;min-height:100%"><div class="ae-ruler"><div class="ae-ruler-label">TIMELINE</div><div class="ae-ruler-grid" style="width:${timelineWidth}px;--ae-grid-size:${step*px()}px" data-ae-ruler="1"></div></div>${project.tracks.map(t=>`<div class="ae-track-row" data-track-row="${esc(t.id)}" style="height:${clamp(t.height||102,72,260)}px"><div class="ae-track-label"><div class="ae-track-name"><span class="ae-color" style="background:${t.color}"></span><input maxlength="28" value="${esc(t.name)}" data-track-rename="${esc(t.id)}" aria-label="Track name"></div><div class="ae-track-buttons"><button class="ae-mini ${t.mute?'ae-active':''}" data-track-mute="${esc(t.id)}" title="Mute track" aria-label="Mute track ${esc(t.name)}" aria-pressed="${t.mute}">M</button><button class="ae-mini ${t.solo?'ae-active':''}" data-track-solo="${esc(t.id)}" title="Solo track" aria-label="Solo track ${esc(t.name)}" aria-pressed="${t.solo}">S</button><input class="ae-track-vol" type="range" min="0" max="100" value="${t.volume}" data-track-volume="${esc(t.id)}" title="Track volume ${t.volume}%" aria-label="Volume of ${esc(t.name)}"/><button class="ae-mini" data-track-remove="${esc(t.id)}" title="Remove empty track" aria-label="Remove track ${esc(t.name)}">×</button></div><div class="ae-track-resizer" data-track-resize="${esc(t.id)}" title="Drag to resize track height" aria-label="Resize track height"></div></div><div class="ae-track-lane" style="width:${timelineWidth}px;--ae-grid-size:${step*px()}px" data-track-lane="${esc(t.id)}">${project.clips.filter(c=>c.trackId===t.id).map(c=>{const a=c.at*px(),w=duration(c)*px();return `<div class="ae-clip ${duration(c)*px()<25?'ae-compact':''} ${selected===c.id?'selected':''}" data-clip="${esc(c.id)}" style="left:${a}px;width:${Math.max(w,2)}px;--ae-clip-color:${t.color}" title="${esc(c.name)} · Drag to move"><div class="ae-clip-title">${esc(c.name)}</div><div class="ae-fade-veil in" aria-hidden="true" style="width:${Math.min(100,Math.max(0,(c.fadeIn||0)/duration(c)*100))}%"></div><div class="ae-fade-veil out" aria-hidden="true" style="width:${Math.min(100,Math.max(0,(c.fadeOut||0)/duration(c)*100))}%"></div><canvas class="ae-wave" data-wave="${esc(c.id)}"></canvas><span class="ae-clip-handle left" data-trim="left" title="Trim start"></span><span class="ae-clip-handle right" data-trim="right" title="Trim end"></span></div>`}).join('')}</div></div>`).join('')}<div class="ae-playhead" style="left:${labelWidth()+playhead*px()}px"><div class="ae-head-grab" title="Drag playhead to seek" aria-label="Drag the red playhead"></div></div></div>`;
+ stage.scrollLeft=existingScroll;stage.scrollTop=existingY;
+ refreshClipSelectionVisuals(false);
+ $('aeProjectTitle').textContent=project.name;$('aeZoomSlider').value=zoomLevelFromFactor(zoom);$('aeZoomLabel').textContent=zoomLevelFromFactor(zoom);$('aeUndo').disabled=!history.length;$('aeRedo').disabled=!future.length;
+ for(const canvas of stage.querySelectorAll('canvas.ae-wave'))drawWave(canvas);
+ updateInspector();updateTime();drawSelection();updateRuler();
+ }
+ // Preview matches the same gain-envelope calculation used by live playback and export.
+ function fadeFactor(c,local){const d=duration(c),fi=clamp(Number(c.fadeIn)||0,0,d),fo=clamp(Number(c.fadeOut)||0,0,d);return clamp(Math.min(1,fi>0?local/fi:1,fo>0?(d-local)/fo:1),0,1)}
+ function fadeKnots(c){const d=duration(c),fi=clamp(Number(c.fadeIn)||0,0,d),fo=clamp(Number(c.fadeOut)||0,0,d);const points=[0,d];if(fi>0)points.push(fi);if(fo>0)points.push(d-fo);if(fi+fo>d&&fi>0&&fo>0)points.push(fi*d/(fi+fo));return [...new Set(points.map(x=>clamp(x,0,d)))].sort((a,b)=>a-b)}
+ function refreshClipFadePreview(c){const node=$('aeStage').querySelector('[data-clip="'+CSS.escape(c.id)+'"]');if(!node)return;
+  for(const side of ['in','out']){const veil=node.querySelector('.ae-fade-veil.'+side);if(veil)veil.style.width=(100*clamp((side==='in'?c.fadeIn:c.fadeOut)||0,0,duration(c))/duration(c))+'%'}
+  const canvas=node.querySelector('canvas.ae-wave');if(canvas)drawWave(canvas);
+ }
+ function drawWave(canvas){const c=project.clips.find(x=>x.id===canvas.dataset.wave);if(!c)return;const b=buffers.get(c.assetId);if(!b||typeof b.then==='function'){if(b?.then)b.then(()=>{if(canvas.isConnected)drawWave(canvas)}).catch(()=>{});return}
+  const width=Math.min(8192,Math.max(50,Math.round(duration(c)*px())));canvas.width=width;canvas.height=46;const g=canvas.getContext('2d');if(!g)return;
+  const samples=b.getChannelData(0),start=Math.max(0,Math.floor(c.in*b.sampleRate)),end=Math.min(samples.length,Math.ceil(c.out*b.sampleRate)),span=Math.max(1,end-start),step=span/width;
+  const isSelected=c.id===selected;
+  const waveStyle=getComputedStyle(canvas);
+  const waveInk=waveStyle.getPropertyValue('--ae-wave-ink').trim()||'#93b5bf';
+  const fadeInk=waveStyle.getPropertyValue('--ae-fade-ink').trim()||'#bc9b65';
+  // Matte single-pixel bars: unlike the former 1.7–2px pure-white peaks, dense
+  // waveforms retain dynamic detail instead of becoming a solid bright block.
+  g.strokeStyle=waveInk;g.lineWidth=1;g.globalAlpha=isSelected?.96:.81;g.beginPath();
+  for(let x=0;x<width;x++){
+    let peak=0,sumSquares=0,count=0;
+    const a=Math.floor(start+x*step),fin=Math.min(end,Math.ceil(start+(x+1)*step));
+    const jump=Math.max(1,Math.floor((fin-a)/14));
+    for(let j=a;j<fin;j+=jump){const s=Math.abs(samples[j]||0);peak=Math.max(peak,s);sumSquares+=s*s;count++}
+    const rms=Math.sqrt(sumSquares/Math.max(1,count));
+    const strength=.65*Math.pow(rms,.67)+.35*Math.pow(peak,.76);
+    const envelope=fadeFactor(c,(x+.5)/width*duration(c));
+    const amp=Math.max(.36,Math.min(19.2,strength*22*envelope));
+    g.moveTo(x+.5,23-amp);g.lineTo(x+.5,23+amp);
+  }
+  g.stroke();g.globalAlpha=1;
+  // Fine envelope guides: visible while editing, never overpower the waveform.
+  if(c.fadeIn>0||c.fadeOut>0){g.strokeStyle=fadeInk;g.globalAlpha=isSelected?.68:.47;g.lineWidth=1;
+   for(const sign of [-1,1]){g.beginPath();const stride=Math.max(1,Math.floor(width/450));for(let x=0;x<=width;x+=stride){const point=Math.min(x,width),amp=fadeFactor(c,point/width*duration(c));const y=23+sign*19*amp;if(!x)g.moveTo(point,y);else g.lineTo(point,y)}g.lineTo(width,23+sign*19*fadeFactor(c,duration(c)));g.stroke()}
+   g.globalAlpha=1;
+  }
+ }
+ function updateInspector(){const c=activeClip();$('aeSelectedName').textContent=c?'✓ '+c.name:'Select a clip';$('aeSelectedHint').textContent=selectionRange?(selectionRange.end==null?`Start ${time(selectionRange.start)} · Hold Shift + click the end point`:`Range ${time(Math.min(selectionRange.start,selectionRange.end))} – ${time(Math.max(selectionRange.start,selectionRange.end))} · Backspace to delete`):c?'Selected sound · Drag to move, adjust Fade or Shift+Click to select range':'Click an audio clip to mark a start point';for(const id of ['aePos','aeClipVolume','aeFadeIn','aeFadeOut','aeFadeInExact','aeFadeOutExact'])$(id).disabled=!c;if(c){$('aePos').value=c.at.toFixed(3);$('aeClipVolume').value=Math.round(c.gain*100)}for(const [id,key] of [['aeFadeIn','fadeIn'],['aeFadeOut','fadeOut']]){const seconds=c?clamp(precise(c[key]||0),0,duration(c)):0,slider=$(id),exact=$(id+'Exact');const length=c?precise(duration(c)):1;slider.max=length;exact.max=length;slider.value=seconds.toFixed(3);exact.value=seconds.toFixed(3);$(id+'Text').textContent=seconds.toFixed(3)+'s';slider.setAttribute('aria-valuetext',seconds.toFixed(3)+' seconds')}$('aeClipVolLabel').textContent=c?Math.round(c.gain*100)+'%':'100%';$('aeSplit').disabled=!c;$('aeDuplicate').disabled=!c;$('aeDeleteClip').disabled=!c;clipboardButtons()}
+ async function importFiles(fileList,trackId=null,atTime=playhead){if(!project){showMessage('Create or open a mix first.',true);return}if(importing)return;const files=[...fileList].filter(Boolean);if(!files.length)return;importing=true;textStatus('Importing audio…','saving');try{
+  const ac=await audioContext();let added=0;let cursor=atTime;
+  for(let i=0;i<files.length;i++){
+   const f=files[i];if(!f.type.startsWith('audio/')&&!/\.(mp3|wav|ogg|aac|m4a|flac)$/i.test(f.name)){showMessage('Skipped non-audio file: '+f.name,true);continue}
+   if(f.size>85*1024*1024){showMessage('File too large (85 MB max): '+f.name,true);continue}
+   let decoded;try{decoded=await ac.decodeAudioData(await f.arrayBuffer())}catch(e){showMessage('Unsupported/corrupt file: '+f.name,true);continue}
+   const id=uid();const blob=new Blob([f],{type:f.type||'application/octet-stream'});await request('assets','readwrite','put',{id,projectId:project.id,blob,name:f.name,type:blob.type,duration:decoded.duration});assetBlobs.set(id,blob);buffers.set(id,decoded);
+   if(!added)commitHistory();
+   let track=trackId?activeTrack(trackId):null;
+   if(!track&&i===0&&project.clips.length===0)track=project.tracks[0];
+   if(!track){if(project.tracks.length>=18){showMessage('18-track limit reached',true);break}track={id:uid(),name:f.name.replace(/\.[^.]+$/,'').slice(0,26)||'Audio '+(project.tracks.length+1),color:colors[project.tracks.length%colors.length],volume:100,mute:false,solo:false,height:102};project.tracks.push(track)}
+   const at=nextFree(track.id,cursor,decoded.duration,null);project.clips.push({id:uid(),name:f.name,assetId:id,trackId:track.id,at,in:0,out:decoded.duration,gain:1,fadeIn:0,fadeOut:0});added++;if(trackId)cursor=at+decoded.duration;
+  }if(added){markChanged();render();showMessage(`Imported ${added} audio file${added===1?'':'s'} · saved to editor project`)}else textStatus('No files imported','error');
+ }catch(e){showMessage('Import failed: '+e.message+' · Check available storage.',true);textStatus('Import failed','error')}finally{importing=false}}
+ function clipUpdate(k,v){const c=activeClip();if(!c)return;commitHistory();if(k==='at'){const target=clamp(precise(v),0,3600);c.at=fitInGap(c.trackId,target,duration(c),c.id);if(Math.abs(c.at-target)>.001)showMessage('Position adjusted: space is occupied by another clip.');}if(k==='gain')c.gain=clamp(v,0,2);if(k==='fadeIn')c.fadeIn=clamp(v,0,duration(c));if(k==='fadeOut')c.fadeOut=clamp(v,0,duration(c));markChanged();if(k==='gain'){updateLiveGains();render();return}if(k==='fadeIn'||k==='fadeOut'){updateLiveFades(c.id);refreshClipFadePreview(c);updateInspector();return}if(playing){pause();void startPlayback()}render()}
+ function split(){const c=activeClip();if(!c)return;const cut=playhead-c.at;if(cut<.001||cut>duration(c)-.001){showMessage('Place playhead inside the selected clip to split it.');return}commitHistory();const right=structuredClone(c);right.id=uid();right.in=c.in+cut;right.at=playhead;right.fadeIn=0;c.out=c.in+cut;c.fadeOut=0;project.clips.push(right);selected=right.id;markChanged();pause();render()}
+ function duplicate(){const c=activeClip();if(!c)return;commitHistory();const d=structuredClone(c);d.id=uid();d.at=nextFree(c.trackId,c.at+duration(c),duration(c),null);project.clips.push(d);selected=d.id;markChanged();render()}
+ function removeClip(){if(selectionRange?.end!=null){deleteSelectedRange();return}const c=activeClip();if(!c)return;commitHistory();project.clips=project.clips.filter(x=>x.id!==c.id);selected=null;clearSelection();pause();markChanged();render()}
+ async function exportMix(){lastRender=null;if(!project?.clips.length){showMessage('Add audio before exporting.',true);return}showPopup(`<div class="ae-dialog-head"><span class="ae-dialog-eyebrow">FINISH YOUR AUDIO</span><button class="ae-button ae-icon ae-ghost" data-ae-action="dismiss">✕</button></div><h2>Export Mix</h2><p>All audible tracks will be mixed into one audio file. Original clips and your editable project stay unchanged.</p><label class="ae-field">File name</label><input type="text" id="aeExportName" maxlength="95" value="${esc(project.name.replace(/[\\/\:*?"<>|]/g,'-'))}"><div class="ae-export-options"><label><input type="radio" name="aeFormat" value="mp3" checked> MP3 <small style="display:block;color:var(--ae-sub);font-weight:400;margin:4px 0 0 21px">Smaller file · default</small></label><label><input type="radio" name="aeFormat" value="wav"> WAV <small style="display:block;color:var(--ae-sub);font-weight:400;margin:4px 0 0 21px">Uncompressed</small></label></div><label class="ae-field" for="aeBitrate">MP3 quality</label><select id="aeBitrate" style="margin:6px 0 14px;min-width:160px"><option value="128">128 kbps</option><option value="192" selected>192 kbps</option><option value="320">320 kbps</option></select><div id="aeExportProgress" class="ae-progress"><div></div></div><div id="aeExportMessage" style="font-size:12px;color:var(--ae-sub);margin-bottom:12px">Ready to render.</div><div class="ae-form-row"><button class="ae-button ae-primary" id="aeRunExport" data-ae-action="render">↓ Export Audio</button><button class="ae-button ae-ghost ae-hidden" id="aeSendSoundboard" data-ae-action="to-soundboard">＋ Add to Soundboard</button><button class="ae-button ae-ghost" data-ae-action="dismiss">Cancel</button></div><p style="margin-top:13px">MP3 requires an online encoder library. Audio is processed locally in your browser; it is not uploaded.</p>`)}
+ async function encoder(){
+  if(window.lamejs?.Mp3Encoder)return window.lamejs;
+  const candidates=['https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js','https://unpkg.com/lamejs@1.2.1/lame.min.js'];
+  for(const url of candidates){
+   try{await new Promise((resolve,reject)=>{
+    const script=document.createElement('script');script.src=url;script.async=true;
+    const timeout=setTimeout(()=>{script.remove();reject(Error('Encoder loading timed out'))},8500);
+    script.onload=()=>{clearTimeout(timeout);window.lamejs?.Mp3Encoder?resolve():reject(Error('Invalid MP3 encoder response'))};
+    script.onerror=()=>{clearTimeout(timeout);script.remove();reject(Error('MP3 encoder download failed'))};
+    document.head.appendChild(script);
+   });return window.lamejs}catch(e){if(window.lamejs?.Mp3Encoder)return window.lamejs}
+  }
+  throw Error('MP3 encoder unavailable. Connect to the internet, then retry, or export as WAV.');
+ }
+ function toWav(buf){const chans=Math.min(2,buf.numberOfChannels),len=buf.length,header=44;const out=new ArrayBuffer(header+len*2*chans),dv=new DataView(out);const put=(off,str)=>{for(let i=0;i<str.length;i++)dv.setUint8(off+i,str.charCodeAt(i))};put(0,'RIFF');dv.setUint32(4,36+len*2*chans,true);put(8,'WAVE');put(12,'fmt ');dv.setUint32(16,16,true);dv.setUint16(20,1,true);dv.setUint16(22,chans,true);dv.setUint32(24,buf.sampleRate,true);dv.setUint32(28,buf.sampleRate*chans*2,true);dv.setUint16(32,chans*2,true);dv.setUint16(34,16,true);put(36,'data');dv.setUint32(40,len*chans*2,true);const channels=Array.from({length:chans},(_,i)=>buf.getChannelData(i));let pos=44;for(let i=0;i<len;i++)for(let j=0;j<chans;j++){const s=clamp(channels[j][i],-1,1);dv.setInt16(pos,s<0?s*32768:s*32767,true);pos+=2}return new Blob([out],{type:'audio/wav'})}
+ const waitUI=()=>new Promise(res=>setTimeout(res,0));
+ async function toMp3(buf,bitrate,progress){const lame=await encoder(),out=[],enc=new lame.Mp3Encoder(2,buf.sampleRate,bitrate),a=buf.getChannelData(0),b=buf.numberOfChannels>1?buf.getChannelData(1):a;for(let i=0;i<buf.length;i+=1152){const size=Math.min(1152,buf.length-i),L=new Int16Array(size),R=new Int16Array(size);for(let j=0;j<size;j++){const v=clamp(a[i+j],-1,1),w=clamp(b[i+j],-1,1);L[j]=v<0?v*32768:v*32767;R[j]=w<0?w*32768:w*32767}const chunk=enc.encodeBuffer(L,R);if(chunk.length)out.push(new Uint8Array(chunk));if(i%(1152*70)===0){progress(i/buf.length);await waitUI()}}const final=enc.flush();if(final.length)out.push(new Uint8Array(final));return new Blob(out,{type:'audio/mpeg'})}
+ async function runExport(){if(exporting||!project)return;exporting=true;const run=$('aeRunExport'),info=$('aeExportMessage'),bar=$('aeExportProgress').firstElementChild;run.disabled=true;const fmt=content.querySelector('input[name="aeFormat"]:checked')?.value||'mp3',bitrate=Number($('aeBitrate').value)||192;const name=($('aeExportName').value||project.name).replace(/[\\/\:*?"<>|]/g,'-').slice(0,95);const update=(msg,pct)=>{info.textContent=msg;bar.style.width=Math.min(100,pct)+'%'};
+ try{if(fmt==='mp3'){update('Loading MP3 encoder…',5);await encoder()}
+ const secs=endTime();if(secs<=0||secs>12*60)throw Error('Mix length must be between 0 and 12 minutes for browser export.');
+ update('Rendering audio layers…',15);const ac=new OfflineAudioContext(2,Math.ceil((secs+.1)*44100),44100);for(const c of project.clips){const tr=activeTrack(c.trackId);if(!tr||!shouldPlay(tr))continue;const blob=assetBlobs.get(c.assetId);if(!blob)throw Error('Audio file missing: '+c.name);const buffer=await ac.decodeAudioData(await blob.arrayBuffer());scheduleClip(ac,buffer,tr,c,0,0,ac.destination)}const mixed=await ac.startRendering();
+ let audio;if(fmt==='mp3'){update('Encoding MP3…',46);audio=await toMp3(mixed,bitrate,r=>update('Encoding MP3…',46+Math.floor(r*52)))}else{update('Building WAV…',75);audio=toWav(mixed)}
+ if(!audio.size)throw Error('Export returned an empty file');lastRender={blob:audio,fileName:(name.trim()||'ON AIR Mix')+'.'+fmt};const send=$('aeSendSoundboard');if(send)send.classList.remove('ae-hidden');const url=URL.createObjectURL(audio),a=document.createElement('a');a.href=url;a.download=(name.trim()||'ON AIR Mix')+'.'+fmt;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);update(`Export complete · ${(audio.size/1024/1024).toFixed(1)} MB · ${fmt.toUpperCase()}`,100);run.textContent='✓ Downloaded';showMessage(`Finished ${fmt.toUpperCase()} is downloading.`);
+ }catch(e){update('Export failed: '+e.message,0);showMessage(e.message,true)}finally{exporting=false;run.disabled=false}}
+ // Start interface bindings.
+ const mainButton=document.createElement('button');mainButton.type='button';mainButton.id='aeOpen';mainButton.className='btn small v87-icon-action';mainButton.title='Open Multitrack Audio Editor';mainButton.setAttribute('aria-label','Open Audio Editor');mainButton.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10v4M6 6v12M10 3v18M14 7v10M18 4v16M22 9v6"/></svg>';
+ const topTools=document.querySelector('.v87-header-tools');if(topTools)topTools.insertBefore(mainButton,$('themeSwitch')||$('projectBtn'));mainButton.addEventListener('click',()=>void openEditor());
+ const projectMore=$('aeProjectMore'),editMore=$('aeEditMore'),inspectorToggle=$('aeInspectorToggle'),rangeToggle=$('aeTouchRange');
+ const isCompactEditor=()=>matchMedia('(max-width:1024px)').matches;
+ function closeCompactMenus(){overlay.classList.remove('ae-project-open');projectMore.setAttribute('aria-expanded','false');}
+ projectMore.addEventListener('click',e=>{e.stopPropagation();const open=overlay.classList.toggle('ae-project-open');projectMore.setAttribute('aria-expanded',String(open));});
+ editMore.addEventListener('click',()=>{const open=overlay.classList.toggle('ae-edit-open');editMore.setAttribute('aria-expanded',String(open));});
+ inspectorToggle.addEventListener('click',()=>{const open=overlay.classList.toggle('ae-inspector-open');inspectorToggle.setAttribute('aria-expanded',String(open));inspectorToggle.querySelector('span').textContent=open?'▾':'▴';});
+ rangeToggle.addEventListener('click',()=>{touchRangeMode=!touchRangeMode;rangeToggle.setAttribute('aria-pressed',String(touchRangeMode));rangeToggle.textContent=touchRangeMode?'⌖ Range: On':'⌖ Range: Off';rangeToggle.classList.toggle('ae-primary',touchRangeMode);if(touchRangeMode){clearSelection();showMessage('Range mode: Tap the start point, then tap the end point on the same track. Tap Range again to return to Move mode.')}});
+ overlay.addEventListener('click',e=>{if(!e.target.closest('#aeProjectOptions,#aeProjectMore'))closeCompactMenus();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCompactMenus();if(overlay.classList.contains('ae-edit-open')){overlay.classList.remove('ae-edit-open');editMore.setAttribute('aria-expanded','false')}if(touchRangeMode){touchRangeMode=false;rangeToggle.setAttribute('aria-pressed','false');rangeToggle.textContent='⌖ Range: Off';rangeToggle.classList.remove('ae-primary')}}});
+ matchMedia('(min-width:1025px)').addEventListener('change',e=>{if(e.matches){closeCompactMenus();overlay.classList.remove('ae-edit-open','ae-inspector-open');editMore.setAttribute('aria-expanded','false');inspectorToggle.setAttribute('aria-expanded','false');}});
+ $('aeClose').onclick=closeEditor;
+ $('aeNewBtn').onclick=()=>newProjectForm();$('aeOpenBtn').onclick=()=>void openSavedList();$('aeSaveBtn').onclick=()=>void saveProject();$('aeExportBtn').onclick=()=>void exportMix();
+ $('aeAddAudio').onclick=()=>$('aeFiles').click();$('aeFiles').onchange=e=>{void importFiles(e.target.files);e.target.value=''};
+ $('aeAddTrack').onclick=()=>{if(!project)return; if(project.tracks.length>=18){showMessage('Maximum 18 tracks');return}commitHistory();project.tracks.push({id:uid(),name:'Track '+(project.tracks.length+1),color:colors[project.tracks.length%colors.length],volume:100,mute:false,solo:false,height:102});markChanged();render()};
+ $('aePlay').onclick=()=>void startPlayback();$('aeStop').onclick=stop;$('aeToStart').onclick=()=>seek(0);
+ $('aeSplit').onclick=split;$('aeDuplicate').onclick=duplicate;$('aeCopy').onclick=()=>copyAudio();$('aeCut').onclick=cutAudio;$('aePaste').onclick=pasteAudio;$('aeDeleteClip').onclick=removeClip;$('aeUndo').onclick=undo;$('aeRedo').onclick=redo;
+ $('aeZoomIn').onclick=()=>setZoomLevel(Number($('aeZoomSlider').value)+25);$('aeZoomOut').onclick=()=>setZoomLevel(Number($('aeZoomSlider').value)-25);$('aeZoomFit').onclick=fitTimeline;$('aeZoomSlider').addEventListener('input',e=>setZoomLevel(Number(e.target.value)));$('aeSnap').addEventListener('change',e=>{snapEnabled=e.target.checked;markChanged()});$('aeDeleteRange').onclick=deleteSelectedRange;
+ const aeTheme=$('aeTheme');function updateEditorTheme(){const light=document.documentElement.dataset.theme==='light';aeTheme.innerHTML=light?'☀':'☾';aeTheme.title=light?'Switch to dark mode':'Switch to light mode';if(project)for(const canvas of document.querySelectorAll('#aeStage canvas.ae-wave'))drawWave(canvas)}aeTheme.addEventListener('click',()=>document.getElementById('themeSwitch')?.click());new MutationObserver(updateEditorTheme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});updateEditorTheme();
+ for(const [id,k] of [['aePos','at'],['aeClipVolume','gain']]){const element=$(id);if(k!=='gain')element.addEventListener('change',()=>clipUpdate(k,Number(element.value)));if(k==='gain')element.addEventListener('input',()=>{const c=activeClip();if(c){if(!element.dataset.gesture){commitHistory();element.dataset.gesture='1'}c.gain=Number(element.value)/100;updateLiveGains();markChanged()}$('aeClipVolLabel').textContent=element.value+'%'});if(k==='gain')element.addEventListener('change',()=>{element.dataset.gesture='';render()})}
+ // One Undo snapshot per slider gesture. Update waveform and playing fade nodes on every input event.
+ for(const [id,key] of [['aeFadeIn','fadeIn'],['aeFadeOut','fadeOut']]){
+  const slider=$(id),exact=$(id+'Exact'),label=$(id+'Text');
+  const apply=(raw,first)=>{const c=activeClip();if(!c)return;if(first&&!slider.dataset.gesture){commitHistory();slider.dataset.gesture='1'}
+   const seconds=clamp(precise(Number.isFinite(Number(raw))?Number(raw):0),0,duration(c));c[key]=seconds;
+   slider.value=seconds.toFixed(3);exact.value=seconds.toFixed(3);label.textContent=seconds.toFixed(3)+'s';slider.setAttribute('aria-valuetext',seconds.toFixed(3)+' seconds');
+   refreshClipFadePreview(c);updateLiveFades(c.id);
+  };
+  slider.addEventListener('input',()=>apply(slider.value,true));
+  slider.addEventListener('change',()=>{apply(slider.value,true);slider.dataset.gesture='';markChanged()});
+  exact.addEventListener('change',()=>{commitHistory();apply(exact.value,false);slider.dataset.gesture='';markChanged()});
+ }
+ content.addEventListener('click',async e=>{const el=e.target.closest('[data-ae-action]');if(!el)return;const action=el.dataset.aeAction,id=el.dataset.id;
+  try{if(action==='dismiss'){closePopup();if(!project)closeEditor()}
+   if(action==='back')await openPicker();
+   if(action==='new')newProjectForm();
+   if(action==='projects')await openSavedList();
+   if(action==='create'){const name=($('aeNewName')?.value||'Untitled Mix').trim();await createProject(name);showMessage('Project created · locally saved')}
+   if(action==='load')await loadProject(id);
+   if(action==='delete')await deleteProject(id);
+   if(action==='rename')await renameProject(id);
+   if(action==='render')await runExport();
+   if(action==='to-soundboard'&&lastRender){window.dispatchEvent(new CustomEvent('on-air-v90-import-sound',{detail:lastRender}));showMessage('Adding finished mix to the Soundboard…')}
+  }catch(error){showMessage(error.message,true)} });
+ // v93: Dragging, scrubbing, cutting, and collision-safe timeline editing.
+ const stage=$('aeStage');
+ function refreshClipSelectionVisuals(redraw=true){const stage=$('aeStage');if(!stage||!project)return;stage.classList.toggle('ae-has-selection',!!selected);
+  stage.querySelectorAll('.ae-track-row').forEach(el=>el.classList.toggle('ae-track-selected',!!selected&&activeClip()?.trackId===el.dataset.trackRow));
+  stage.querySelectorAll('.ae-clip').forEach(el=>{const now=el.dataset.clip===selected,old=el.classList.contains('selected');el.classList.toggle('selected',now);if(redraw&&old!==now){const canvas=el.querySelector('canvas.ae-wave');if(canvas)drawWave(canvas)}});
+ }
+ function refreshClipStyles(){refreshClipSelectionVisuals();drawSelection()}
+
+ // Contextual trim visual lives outside the clipped waveform so it spans the lane.
+ function beginTrimVisual(d){
+  if(d.mode!=='left'&&d.mode!=='right')return;
+  d.node.classList.add('ae-trimming','ae-trim-'+d.mode);
+  const lane=d.node.closest('[data-track-lane]');if(!lane)return;
+  d.guide=document.createElement('div');d.guide.className='ae-trim-guide';
+  d.guide.dataset.side=d.mode;
+  d.guide.setAttribute('aria-hidden','true');lane.appendChild(d.guide);
+  updateTrimVisual(d);
+ }
+ function updateTrimVisual(d){
+  if(!d.guide||!project)return;
+  const c=project.clips.find(x=>x.id===d.id);if(!c)return;
+  const at=d.mode==='left'?c.at:c.at+duration(c);
+  d.guide.style.left=(at*px())+'px';d.guide.dataset.time=time(at);
+ }
+ function endTrimVisual(d){
+  if(!d)return;d.node?.classList.remove('ae-trimming','ae-trim-left','ae-trim-right');
+  d.guide?.remove();d.guide=null;
+ }
+ function applyPlayhead(t){playhead=precise(clamp(t,0,timelineMaximum()));updateTime()}
+ function beginPlayheadScrub(e){
+  if(e.button!==0&&e.pointerType==='mouse')return;
+  const wasPlaying=playing;if(playing)pause();
+  drag={mode:'scrub',pointerId:e.pointerId,wasPlaying,moved:false,startX:e.clientX};
+  applyPlayhead(markerPositionFromPointer(e));try{stage.setPointerCapture(e.pointerId)}catch(_){}
+  e.preventDefault();
+ }
+ stage.addEventListener('pointerdown',e=>{
+  if(!project)return;
+  if(e.button!==0&&!['touch','pen'].includes(e.pointerType))return;
+  if(e.shiftKey&&e.target.closest('[data-ae-ruler]')&&selectionRange){selectRangeEnd(selectionRange.trackId,selectionTime(e));e.preventDefault();return}
+  if(e.target.closest('.ae-head-grab')||e.target.closest('[data-ae-ruler]')){beginPlayheadScrub(e);return}
+  const resize=e.target.closest('[data-track-resize]');
+  if(resize){const t=activeTrack(resize.dataset.trackResize);if(!t)return;drag={mode:'resize-track',id:t.id,startX:e.clientX,startY:e.clientY,initialHeight:t.height||102,committed:false,moved:false,pointerId:e.pointerId};try{stage.setPointerCapture(e.pointerId)}catch(_){}e.preventDefault();return}
+  const node=e.target.closest('[data-clip]');
+  if(!node){
+   const lane=e.target.closest('[data-track-lane]');
+   if(lane&&(e.shiftKey||(touchRangeMode&&selectionRange))){selectRangeEnd(lane.dataset.trackLane,selectionTime(e));e.preventDefault()}
+   return;
+  }
+  const c=project.clips.find(x=>x.id===node.dataset.clip);if(!c)return;
+  if(touchRangeMode){
+   const point=selectionTime(e,c,node);
+   if(!selectionRange||selectionRange.end!=null){clearSelection();selectAnchor(c,point)}
+   else selectRangeEnd(c.trackId,point,c);
+   e.preventDefault();return;
+  }
+  if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))document.activeElement.blur();
+  if(e.shiftKey){selectRangeEnd(c.trackId,selectionTime(e,c,node),c);e.preventDefault();return}
+  activePasteTrackId=c.trackId;clearSelection();selected=c.id;updateInspector();refreshClipStyles();
+  const handle=e.target.closest('[data-trim]');drag={id:c.id,node,startX:e.clientX,startY:e.clientY,initialAt:c.at,initialIn:c.in,initialOut:c.out,initialTrack:c.trackId,mode:handle?.dataset.trim||'move',clickTime:selectionTime(e,c,node),moved:false,committed:false,pointerId:e.pointerId};
+  beginTrimVisual(drag);
+  try{stage.setPointerCapture(e.pointerId)}catch(_){}e.preventDefault();
+ });
+ function moveDrag(e){
+  if(!drag||!project||e.pointerId!==drag.pointerId)return;
+  const d=drag;
+  if(d.mode==='scrub'){d.moved=d.moved||Math.abs(e.clientX-d.startX)>=1;applyPlayhead(markerPositionFromPointer(e));const x=labelWidth()+playhead*px();if(e.clientX>stage.getBoundingClientRect().right-30)stage.scrollLeft+=Math.min(25,(e.clientX-stage.getBoundingClientRect().right+30)*.7+5);if(e.clientX<stage.getBoundingClientRect().left+30)stage.scrollLeft-=22;return}
+  if(d.mode==='resize-track'){
+   const diff=e.clientY-d.startY;if(Math.abs(diff)<2)return;
+   if(!d.committed){commitHistory();d.committed=true}d.moved=true;
+   const t=activeTrack(d.id);if(!t)return;t.height=Math.round(clamp(d.initialHeight+diff,72,260));const row=stage.querySelector('[data-track-row="'+CSS.escape(d.id)+'"]');if(row)row.style.height=t.height+'px';return;
+  }
+  const c=project.clips.find(x=>x.id===d.id);if(!c)return;
+  const dx=e.clientX-d.startX,dy=e.clientY-d.startY;
+  if(Math.abs(dx)<2&&Math.abs(dy)<3&&!d.moved)return;
+  if(!d.committed){commitHistory();d.committed=true;if(playing)pause()}
+  d.moved=true;const delta=dx/px(),oldEnd=d.initialAt+(d.initialOut-d.initialIn);
+  if(d.mode==='move'){
+    const under=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-track-row]');const target=under&&activeTrack(under.dataset.trackRow)?under.dataset.trackRow:d.initialTrack;
+    const requested=Math.max(0,d.initialAt+delta),len=d.initialOut-d.initialIn;
+    // Same-track moves are physically limited by nearest neighbors. Cross-track moves seek nearest valid free slot.
+    if(target===d.initialTrack){const [lo,hi]=gapFor(target,d.initialAt,c.id);const lower=ceilMs(lo),upper=Number.isFinite(hi)?floorMs(hi-len):Infinity;c.at=precise(clamp(nearbySnap(requested,[lower,upper]),lower,Math.max(lower,upper)))}
+    else c.at=fitInGap(target,requested,len,c.id);
+    c.trackId=target;
+    const lane=stage.querySelector('[data-track-lane="'+CSS.escape(target)+'"]');if(lane&&d.node.parentElement!==lane)lane.appendChild(d.node);
+  }else if(d.mode==='left'){
+    const [leftWall]=gapFor(d.initialTrack,d.initialAt,c.id);
+    let newAt=clamp(d.initialAt+delta,Math.max(0,d.initialAt-d.initialIn,leftWall),oldEnd-.001);
+    newAt=clamp(nearbySnap(newAt,[leftWall,0]),Math.max(0,d.initialAt-d.initialIn,leftWall),oldEnd-.001);
+    c.at=clamp(precise(newAt),ceilMs(Math.max(0,d.initialAt-d.initialIn,leftWall)),floorMs(oldEnd-.001));c.in=precise(d.initialIn+(c.at-d.initialAt));
+  }else{
+    const [_,rightWall]=gapFor(d.initialTrack,oldEnd,c.id);
+    const stored=buffers.get(c.assetId),limit=stored&&typeof stored.then!=='function'?stored.duration:Math.max(d.initialOut,d.initialOut+delta);
+    let newEnd=clamp(oldEnd+delta,d.initialAt+.001,Math.min(rightWall,d.initialAt+limit-d.initialIn));
+    newEnd=clamp(nearbySnap(newEnd,[rightWall]),d.initialAt+.001,Math.min(rightWall,d.initialAt+limit-d.initialIn));
+    c.out=clamp(precise(d.initialIn+newEnd-d.initialAt),ceilMs(c.in+.001),floorMs(Math.min(limit,d.initialIn+rightWall-d.initialAt)));
+  }
+  // Only change inexpensive DOM properties during the gesture. No full timeline render per pointer event.
+  d.node.style.left=(c.at*px())+'px';d.node.style.width=Math.max(2,duration(c)*px())+'px';d.node.classList.add('selected');
+  updateTrimVisual(d);
+  const name=$('aeSelectedHint');if(name)name.textContent=`${time(c.at)} · ${duration(c).toFixed(3)}s · ${d.mode==='move'?'Moving':'Trimming'}`;
+  $('aePos').value=c.at.toFixed(3);
+ }
+ let pendingPointer=null;
+ stage.addEventListener('pointermove',e=>{
+  if(!drag||e.pointerId!==drag.pointerId)return;
+  pendingPointer={clientX:e.clientX,clientY:e.clientY,pointerId:e.pointerId};
+  if(!rafDrag)rafDrag=requestAnimationFrame(()=>{rafDrag=0;if(pendingPointer){const data=pendingPointer;pendingPointer=null;moveDrag(data)}});
+ });
+ function endDrag(e){
+  if(rafDrag){cancelAnimationFrame(rafDrag);rafDrag=0}
+  if(pendingPointer){const data=pendingPointer;pendingPointer=null;moveDrag(data)}
+  if(!drag||e.pointerId!==drag.pointerId)return;
+  const d=drag;drag=null;
+  endTrimVisual(d);
+  try{stage.releasePointerCapture(e.pointerId)}catch(_){}
+  if(d.mode==='scrub'){suppressClick=true;requestAnimationFrame(()=>suppressClick=false);markChanged();if(d.wasPlaying)void startPlayback();return}
+  if(d.mode==='resize-track'){if(d.moved){markChanged();render()}return}
+  if(!project)return;const c=project.clips.find(x=>x.id===d.id);if(!c)return;
+  if(d.moved){c.fadeIn=Math.min(c.fadeIn,duration(c));c.fadeOut=Math.min(c.fadeOut,duration(c));markChanged();render();suppressClick=true;requestAnimationFrame(()=>suppressClick=false)}
+  else{selectAnchor(c,d.clickTime);seek(d.clickTime)}
+ }
+ stage.addEventListener('pointerup',endDrag);stage.addEventListener('pointercancel',endDrag);
+ stage.addEventListener('click',e=>{
+  if(!project||suppressClick||e.shiftKey)return;
+  const clip=e.target.closest('[data-clip]');if(clip)return; // Ordinary clip click establishes its anchor on pointerup.
+  const ruler=e.target.closest('[data-ae-ruler]');if(ruler)return; // Seek handled by pointerdown/scrubbing.
+  const lane=e.target.closest('[data-track-lane]');if(lane){activePasteTrackId=lane.dataset.trackLane;seek(markerPositionFromPointer(e));selected=null;clearSelection();updateInspector();refreshClipStyles()}
+ });
+ // Ctrl / Cmd + mouse wheel zooms at the cursor; ordinary wheel still scrolls normally.
+ stage.addEventListener('wheel',e=>{if(!project||!(e.ctrlKey||e.metaKey))return;e.preventDefault();setZoomLevel(Number($('aeZoomSlider').value)+(e.deltaY<0?20:-20),e.clientX)},{passive:false});
+ stage.addEventListener('scroll',()=>updateRuler(),{passive:true});
+ stage.addEventListener('input',e=>{const el=e.target;const t=activeTrack(el.dataset.trackVolume);if(t){if(!el.dataset.aeGesture){commitHistory();el.dataset.aeGesture='1'}t.volume=Number(el.value);updateLiveGains();markChanged()}});
+ stage.addEventListener('change',e=>{const el=e.target;if(el.dataset.trackVolume){el.dataset.aeGesture='';return}if(el.dataset.trackRename){const tr=activeTrack(el.dataset.trackRename);if(tr){commitHistory();tr.name=el.value.trim().slice(0,28)||tr.name;markChanged();render()}}});
+ stage.addEventListener('click',e=>{if(!project)return;const b=e.target.closest('[data-track-mute],[data-track-solo],[data-track-remove]');if(!b)return;const id=b.dataset.trackMute||b.dataset.trackSolo||b.dataset.trackRemove,t=activeTrack(id);if(!t)return;commitHistory();if(b.dataset.trackMute)t.mute=!t.mute;else if(b.dataset.trackSolo)t.solo=!t.solo;else if(project.tracks.length>1){const count=project.clips.filter(c=>c.trackId===id).length;if(count&&!confirm('Remove this track and its '+count+' clip(s)?')){history.pop();return}project.clips=project.clips.filter(c=>c.trackId!==id);project.tracks=project.tracks.filter(x=>x.id!==id);selected=null;clearSelection();pause()}else{history.pop();showMessage('At least one track must remain');return}updateLiveGains();markChanged();render()});
+ stage.addEventListener('dragover',e=>{if([...e.dataTransfer?.types||[]].includes('Files')){e.preventDefault();stage.classList.add('ae-drop-hover')}});
+ stage.addEventListener('dragleave',e=>{if(!stage.contains(e.relatedTarget))stage.classList.remove('ae-drop-hover')});
+ stage.addEventListener('drop',e=>{e.preventDefault();stage.classList.remove('ae-drop-hover');const lane=e.target.closest('[data-track-lane]'),targetTrack=lane?.dataset.trackLane||null,at=lane?Math.max(0,(e.clientX-lane.getBoundingClientRect().left)/px()):playhead;void importFiles(e.dataTransfer.files,targetTrack,at)});
+ document.addEventListener('keydown',e=>{
+  if(overlay.classList.contains('ae-hidden'))return;
+  if(e.key==='Escape'){if(!popup.classList.contains('ae-hidden'))closePopup();else if(selectionRange)clearSelection();else closeEditor();return}
+  if(!popup.classList.contains('ae-hidden'))return;
+  if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)||document.activeElement?.isContentEditable)return;
+  if(!project)return;
+  const modifier=e.ctrlKey||e.metaKey,keyboardKey=e.key.toLowerCase();
+  if(modifier&&!e.altKey&&!e.repeat){
+   if(keyboardKey==='c'){e.preventDefault();copyAudio();return}
+   if(keyboardKey==='x'){e.preventDefault();cutAudio();return}
+   if(keyboardKey==='v'){e.preventDefault();pasteAudio();return}
+   if(keyboardKey==='d'){e.preventDefault();const range=completeRange();if(range){if(copyAudio(false)){const trackId=editorClipboard.trackId;activePasteTrackId=trackId;seek(nextFree(trackId,range.end,editorClipboard.width,null));pasteAudio()}}else duplicate();return}
+  }
+  if(e.code==='Space'&&!modifier){e.preventDefault();void startPlayback()}
+  if(modifier&&(keyboardKey==='z'||keyboardKey==='y')){e.preventDefault();if(keyboardKey==='y'||e.shiftKey)redo();else undo();return}
+  if((e.key==='Delete'||e.key==='Backspace')&&!e.ctrlKey&&!e.metaKey&&!e.altKey){
+   if(selectionRange){e.preventDefault();if(selectionRange.end==null||Math.abs(selectionRange.end-selectionRange.start)<.001)showMessage('Hold Shift and click a second point to complete your selection.');else deleteSelectedRange();}
+   else if(selected){e.preventDefault();removeClip()}
+  }
+ });
+ // Files and editor session never sync to external servers. MP3 encoder JS is fetched only on demand.
+})();
+
 </script></body></html>
