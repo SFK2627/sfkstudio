@@ -1243,6 +1243,177 @@ input[type=range]{accent-color:#0cafa6}
 }
 @media(prefers-reduced-motion:reduce){button,.btn,.tab,.ws-choice,.v64-choice{transition:none!important}.v64-choice:hover{transform:none}}
 
+</style><style id="queue-action-ux-v71">
+/* A disabled Start Queue indicates what happens once audio is selected; no duplicate Add Sounds action. */
+.queue-workspace #nextUpPlay:disabled{box-shadow:none!important;opacity:.5;cursor:not-allowed;filter:grayscale(.3)}
+.queue-workspace #nextUpPlay:not(:disabled){transition:background-color .18s ease,transform .18s ease,box-shadow .18s ease}
+.queue-workspace #nextUpPlay:not(:disabled):hover{transform:translateY(-1px);box-shadow:0 3px 12px #0b97774d}
+.queue-workspace #queuePlayerNext:disabled{opacity:.44!important}
+html[data-theme="light"] .queue-workspace .nextup-empty{background:#f6f9fc;color:#526a7e}
+html[data-theme="dark"] .queue-workspace .nextup-empty{background:#232323;color:#c3d0d0;border-color:#4a5656}
+</style><style id="dj-v72-professional-console">
+/* v72: same mixer engine, simplified ergonomic studio skin */
+.dj-workspace{--deck-a:#22c9ec;--deck-b:#ec77bd;gap:12px;min-width:0}
+.dj-heading{padding:3px 1px 2px;align-items:center}
+.dj-heading strong{font-size:clamp(16px,1.55vw,20px);letter-spacing:-.03em;font-weight:850}
+.dj-heading small{font-size:11px;opacity:.78}
+.dj-heading .dj-stop-decks{border-radius:11px!important;padding:10px 13px!important;font-size:12px!important;font-weight:750!important;background:rgba(207,65,75,.1)!important;border:1px solid rgba(220,83,95,.38)!important;color:#f1a4ac!important;white-space:nowrap}
+.dj-decks{gap:12px;align-items:stretch}
+.dj-deck{
+ --deck-accent:var(--deck-a);
+ position:relative;display:grid;grid-template-columns:minmax(120px,32%) minmax(0,1fr);
+ grid-template-rows:auto auto auto auto auto auto auto auto;column-gap:15px;row-gap:6px;
+ align-content:start;align-items:center;min-width:0;padding:16px!important;border-radius:18px!important;
+ border:1px solid #353535!important;border-top:3px solid var(--deck-accent)!important;
+ background:linear-gradient(135deg,color-mix(in srgb,var(--deck-accent) 6%,#161616) 0%,#161616 44%,#111 100%)!important;
+ color:#f7f8fa!important;box-shadow:0 10px 28px #0003,inset 0 1px 0 #ffffff0c;
+ transition:box-shadow .2s,border-color .2s
+}
+.dj-deck[data-deck="B"]{--deck-accent:var(--deck-b)}
+.dj-deck[data-player-status="playing"]{box-shadow:0 13px 35px #0005,0 0 0 1px color-mix(in srgb,var(--deck-accent) 30%,transparent),inset 0 1px 0 #ffffff12}
+.dj-deck-top{grid-column:1 / -1;grid-row:1;min-width:0;margin:0 0 2px!important}
+.dj-deck-label{font-size:12px!important;color:var(--deck-accent)!important;letter-spacing:.11em;display:inline-flex;align-items:center;gap:6px}
+.dj-deck-label::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--deck-accent);box-shadow:0 0 9px color-mix(in srgb,var(--deck-accent) 50%,transparent)}
+.dj-deck-state{display:inline-flex;align-items:center;gap:6px;max-width:60%;font-size:11px!important;font-weight:750;color:#abb0b7!important;text-transform:uppercase;letter-spacing:.035em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dj-deck-state::before{content:"";width:6px;height:6px;border-radius:50%;flex:0 0 6px;background:#858b92}
+.dj-deck[data-player-status="playing"] .dj-deck-state{color:var(--deck-accent)!important}
+.dj-deck[data-player-status="playing"] .dj-deck-state::before{background:var(--deck-accent);box-shadow:0 0 10px var(--deck-accent);animation:dj72-status 1.8s ease-in-out infinite}
+.dj-deck[data-player-status="paused"] .dj-deck-state{color:#e3ac61!important}
+.dj-deck[data-player-status="paused"] .dj-deck-state::before{background:#e3ac61}
+@keyframes dj72-status{50%{opacity:.45}}
+.dj-sound-picker{grid-column:2;grid-row:2;margin:0 0 2px!important;min-width:0}
+.dj-picker-caption{font-size:9px!important;color:#919ca8!important;letter-spacing:.12em;margin:0 0 5px!important}
+.dj-picker-btn{width:100%;min-height:58px!important;padding:9px 10px!important;border-radius:12px!important;border:1px solid #414850!important;background:linear-gradient(115deg,#25282d,#1c1f23)!important;color:#fff!important;box-shadow:none!important;transition:border-color .2s,background .2s,transform .14s}
+.dj-picker-btn:active{transform:scale(.985)}.dj-picker-btn:hover{border-color:var(--deck-accent)!important}
+.dj-picker-icon{display:grid!important;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:9px;background:color-mix(in srgb,var(--deck-accent) 15%,#24272d);color:var(--deck-accent)!important;font-size:17px!important}
+.dj-picker-info{min-width:0}.dj-picker-info strong{font-size:12px!important;font-weight:800!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.dj-picker-info small{font-size:10px!important;color:#a9b1b9!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.dj-picker-chevron{font-size:20px!important;color:#a1a8b4!important}
+.dj-platter{grid-column:1;grid-row:2 / 8;width:min(100%,178px)!important;height:auto!important;max-width:100%!important;aspect-ratio:1;align-self:center;justify-self:center;margin:7px auto!important;border:8px solid #34363b!important;
+ background:repeating-radial-gradient(circle at center,#12151a 0 3px,#24282d 4px 4.5px,#14171a 5px 8px)!important;
+ box-shadow:0 0 0 2px color-mix(in srgb,var(--deck-accent) 45%,transparent),0 12px 23px #0009,inset 0 0 14px #000b!important;
+ position:relative;transition:box-shadow .2s;cursor:grab}
+.dj-platter::before{content:"";position:absolute;inset:8%;border:1px solid color-mix(in srgb,var(--deck-accent) 30%,transparent);border-radius:50%;pointer-events:none}
+.dj-platter::after{content:"";position:absolute;inset:28%;border:1px solid #ffffff23;border-radius:50%;pointer-events:none}
+.dj-platter .dj-disc-core{width:34%!important;height:34%!important;min-width:30px!important;min-height:30px!important;border:2px solid color-mix(in srgb,var(--deck-accent) 72%,#fff);border-radius:50%;background:radial-gradient(circle at 35% 30%,#3c4148,#191c22 75%)!important;color:var(--deck-accent)!important;font-size:clamp(17px,2vw,25px)!important;box-shadow:0 0 0 4px #0a0c10,0 0 18px color-mix(in srgb,var(--deck-accent) 12%,transparent)}
+.dj-deck[data-player-status="playing"] .dj-platter{box-shadow:0 0 0 2px var(--deck-accent),0 0 25px color-mix(in srgb,var(--deck-accent) 25%,transparent),0 12px 26px #0009!important}
+.dj-platter.scratching{transform:rotate(var(--scratch-angle,0deg))!important;animation:none!important;cursor:grabbing}
+.dj-time{grid-column:2;grid-row:3;text-align:left!important;margin:2px 0 0!important;font-size:12px!important;font-weight:750!important;letter-spacing:.03em;color:#d2d6db!important;font-variant-numeric:tabular-nums}
+.dj-deck>input[id^="djSeek"]{grid-column:2;grid-row:4;min-height:25px!important;margin:0!important}
+.dj-deck input[type=range],.dj-mix-panel input[type=range]{accent-color:var(--deck-accent,#21b7cf);cursor:pointer;min-width:0;touch-action:pan-x}
+.dj-deck-actions{grid-column:2;grid-row:5;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;flex-wrap:nowrap!important;margin:3px 0!important;min-width:0}
+.dj-deck-actions .btn{grid-column:auto!important;flex-basis:auto!important;min-width:0!important;min-height:43px;padding:6px 3px!important;border-radius:11px!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#e5e7eb!important;background:#303239!important;border:1px solid #42464d!important;font-size:10px!important;font-weight:800!important;box-shadow:none!important}
+.dj-deck-actions .btn .dj-action-glyph{font-size:16px;line-height:1}
+.dj-deck-actions .dj-transport-play{background:color-mix(in srgb,var(--deck-accent) 22%,#181a1e)!important;color:#fff!important;border-color:color-mix(in srgb,var(--deck-accent) 55%,#26282c)!important}
+.dj-deck-actions .btn:hover:not(:disabled){filter:brightness(1.2);transform:translateY(-1px)}
+.dj-deck-actions .btn:active:not(:disabled){transform:translateY(0)}
+.dj-deck-actions .btn:disabled{opacity:.38!important;cursor:not-allowed!important}
+.dj-control-label{grid-column:2;grid-row:6;margin:2px 0 0!important;display:flex!important;align-items:center;justify-content:space-between;font-size:11px!important;color:#adb6be!important}
+.dj-control-label output{font-weight:800;color:var(--deck-accent)}
+.dj-deck>input[id^="djLevel"]{grid-column:2;grid-row:7;min-height:22px!important;margin:0!important}
+.dj-effects{grid-column:1/-1;grid-row:8;margin:8px 0 0!important;padding:0!important;border:1px solid #383e45!important;border-radius:12px!important;overflow:hidden}
+.dj-effects summary{display:flex;align-items:center;justify-content:space-between;gap:6px;min-height:40px;padding:9px 12px;list-style:none;font-size:12px!important;font-weight:780!important;cursor:pointer;color:#e5e7eb!important;background:#25282d}
+.dj-effects summary::-webkit-details-marker{display:none}
+.dj-effects summary::after{content:'⌄';font-size:18px;color:#aebac5;margin-left:4px}
+.dj-effects[open] summary::after{transform:rotate(180deg)}
+.dj-fx-summary-note{font-size:9px;font-weight:600;color:#8995a0;letter-spacing:.03em;margin-left:auto}
+.dj-effects-inner{padding:11px;background:#1b1d21}
+.dj-effects-top{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:10px;color:#aab1b8;font-size:11px}
+.dj-fx-reset,.dj-cross-center{border:1px solid #525964;background:#30343a;color:#e7e9ec;border-radius:8px;padding:6px 9px;font-size:11px;font-weight:750;cursor:pointer;white-space:nowrap}
+.dj-fx-reset:hover,.dj-cross-center:hover{border-color:var(--deck-accent,#22c9ec);color:#fff}
+.dj-fx-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 15px}
+.dj-fx-control{min-width:0;padding:5px 0}
+.dj-fx-control label{margin:0 0 2px!important;display:flex;justify-content:space-between;gap:5px;color:#d5dbe2!important;font-size:11px}
+.dj-fx-control output{color:var(--deck-accent);font-weight:800}
+.dj-fx-control input{width:100%;display:block}
+.dj-mix-panel{border-radius:17px!important;padding:16px 18px!important;border:1px solid #33383e!important;background:linear-gradient(115deg,#191b20,#131416)!important;color:#f5f5f5!important;box-shadow:0 9px 24px #0002}
+.dj-cross-head{display:flex;align-items:center;justify-content:space-between;gap:10px!important;color:#9fb1c0!important}
+.dj-cross-side{font-size:11px;font-weight:850;letter-spacing:.06em;white-space:nowrap}
+.dj-cross-side-a{color:#59dafa}.dj-cross-side-b{color:#f092cf}
+.dj-cross-title{text-align:center;min-width:0}
+.dj-cross-title strong{display:block;font-size:15px;color:#fff!important;font-weight:850}
+.dj-cross-title small{display:block;margin-top:2px;font-size:10px;color:#a6aeb9}
+.dj-cross-control{max-width:820px;margin:8px auto 0;padding:4px 0}
+#djCross{--dj-cross-balance:50%;width:100%;height:29px;accent-color:#f1f5f9;cursor:pointer;touch-action:pan-x}
+#djCross::-webkit-slider-runnable-track{height:9px;border-radius:99px;background:linear-gradient(90deg,#177a95 0%,#4babc7 40%,#333b47 50%,#c474a9 60%,#a34381 100%);border:1px solid #565e68}
+#djCross::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:27px;height:27px;border-radius:8px;background:linear-gradient(145deg,#fff,#a5b5c4);box-shadow:0 3px 8px #0007;border:2px solid #121820;margin-top:-10px}
+.dj-cross-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:1px;color:#bdc8d2;font-size:11px;font-variant-numeric:tabular-nums}
+.dj-cross-footer b{color:#eef4f8}
+.dj-mix-actions{gap:9px!important;margin:10px 0 0!important}
+.dj-mix-actions .btn{min-height:42px;border-radius:11px!important;font-weight:800!important}
+.dj-mix-actions .dj-mix-button-icon{margin-right:5px}
+.dj-mix-note{font-size:11px!important;color:#aeb7be!important;text-align:center;margin:8px 0 0!important}
+html[data-theme="light"] .dj-deck{background:linear-gradient(140deg,color-mix(in srgb,var(--deck-accent) 5%,#fff),#fff 60%)!important;color:#172033!important;border-color:#d3d9e1!important;box-shadow:0 9px 21px #33415512}
+html[data-theme="light"] .dj-deck-state{color:#647084!important}
+html[data-theme="light"] .dj-picker-caption{color:#647084!important}
+html[data-theme="light"] .dj-picker-btn{background:#f4f7fa!important;color:#152334!important;border-color:#d4dce5!important}
+html[data-theme="light"] .dj-picker-info strong{color:#182639}
+html[data-theme="light"] .dj-picker-info small{color:#65768a!important}
+html[data-theme="light"] .dj-picker-icon{background:color-mix(in srgb,var(--deck-accent) 10%,#e8edf4)}
+html[data-theme="light"] .dj-time{color:#39495b!important}
+html[data-theme="light"] .dj-deck-actions .btn{background:#edf1f6!important;color:#27374a!important;border-color:#cbd5e1!important}
+html[data-theme="light"] .dj-deck-actions .dj-transport-play{background:color-mix(in srgb,var(--deck-accent) 18%,#f0f4f7)!important;color:#173041!important}
+html[data-theme="light"] .dj-control-label{color:#5d6a78!important}
+html[data-theme="light"] .dj-effects{border-color:#d5dde6!important}
+html[data-theme="light"] .dj-effects summary{color:#293a4b!important;background:#f1f4f7}
+html[data-theme="light"] .dj-fx-summary-note{color:#748193}
+html[data-theme="light"] .dj-effects-inner{background:#fbfcfd}
+html[data-theme="light"] .dj-effects-top{color:#687588}
+html[data-theme="light"] .dj-fx-control label{color:#334255!important}
+html[data-theme="light"] .dj-fx-reset,html[data-theme="light"] .dj-cross-center{background:#e8edf3;border-color:#c5d0df;color:#283a4d}
+html[data-theme="light"] .dj-mix-panel{background:linear-gradient(135deg,#fff,#f4f6f9)!important;border-color:#d1d9e3!important;color:#243244!important;box-shadow:0 6px 18px #3341550b}
+html[data-theme="light"] .dj-cross-title strong{color:#243244!important}
+html[data-theme="light"] .dj-cross-title small,html[data-theme="light"] .dj-cross-footer{color:#586b7c}
+html[data-theme="light"] .dj-cross-footer b{color:#243244}
+html[data-theme="light"] .dj-mix-note{color:#64748b!important}
+html[data-theme="light"] .dj-heading .dj-stop-decks{color:#a53b48!important;background:#fff1f1!important}
+@media(max-width:1070px){
+ .dj-deck{grid-template-columns:minmax(95px,35%) minmax(0,1fr);column-gap:9px;padding:12px!important}
+ .dj-platter{width:min(100%,160px)!important;border-width:6px!important}
+ .dj-fx-summary-note{font-size:8px}
+}
+@media(max-width:690px){
+ .dj-workspace{gap:9px}
+ .dj-decks{gap:7px!important}
+ .dj-deck{display:flex!important;flex-direction:column;align-items:stretch;gap:5px!important;padding:10px 8px!important;border-radius:15px!important}
+ .dj-deck-top{width:100%;min-height:19px}
+ .dj-deck-label{font-size:10px!important}.dj-deck-state{font-size:9px!important;max-width:65%}
+ .dj-sound-picker{margin:1px 0!important}
+ .dj-picker-caption{font-size:8px!important;margin-bottom:3px!important}
+ .dj-picker-btn{padding:6px 7px!important;min-height:46px!important;gap:5px!important}
+ .dj-picker-icon{width:23px;height:23px;flex-basis:23px;font-size:13px!important;border-radius:6px}
+ .dj-picker-info strong{font-size:10px!important}
+ .dj-picker-info small{font-size:9px!important}
+ .dj-platter{width:clamp(86px,26vw,145px)!important;max-width:94%!important;margin:7px auto 5px!important;border-width:5px!important}
+ .dj-disc-core{min-width:27px!important;min-height:27px!important;font-size:16px!important}
+ .dj-time{width:100%;text-align:center!important;font-size:10px!important;margin:1px 0!important}
+ .dj-deck>input[id^="djSeek"]{width:100%;min-height:22px!important}
+ .dj-deck-actions{width:100%;gap:4px!important;margin:2px 0!important}
+ .dj-deck-actions .btn{min-height:40px;padding:5px 1px!important;border-radius:8px!important;font-size:9px!important;gap:2px}
+ .dj-deck-actions .dj-action-glyph{font-size:15px!important}
+ .dj-control-label{width:100%;font-size:10px!important}
+ .dj-deck>input[id^="djLevel"]{width:100%;min-height:24px!important}
+ .dj-effects{width:100%;margin:4px 0 0!important}
+ .dj-effects summary{min-height:36px;padding:8px 7px;font-size:10px!important}
+ .dj-fx-summary-note{display:none}
+ .dj-effects-inner{padding:8px}
+ .dj-fx-grid{grid-template-columns:1fr;gap:4px}
+ .dj-fx-control label{font-size:11px!important}
+ .dj-cross-title strong{font-size:13px}
+ .dj-cross-title small{font-size:9px}
+ .dj-cross-side{font-size:9px}
+ .dj-mix-panel{padding:12px 10px!important}
+ .dj-mix-actions .btn{font-size:11px!important;padding:9px 4px!important}
+}
+@media(max-width:360px){
+ .dj-deck{padding:8px 5px!important}
+ .dj-picker-icon{display:none!important}
+ .dj-platter{width:92px!important}
+ .dj-deck-actions .dj-action-text{font-size:8px}
+ .dj-deck-actions .btn{min-height:39px}
+ .dj-cross-title small{display:none}
+}
+@media(prefers-reduced-motion:reduce){.dj-deck,.dj-deck *{transition:none!important}.dj-deck[data-player-status="playing"] .dj-deck-state::before{animation:none}}
 </style></head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div><button id="splashSkip" type="button" class="v64-skip">Skip intro</button></div>
 </div>
@@ -1253,10 +1424,11 @@ input[type=range]{accent-color:#0cafa6}
   <div id="launcherOpenForm" class="v64-launcher-panel hidden"><div class="v64-open-title"><strong>Saved Projects</strong><span id="launcherCount">Checking…</span></div><div id="launcherProjects" class="v64-project-list"></div><div class="v64-launcher-actions"><button id="launcherImport" type="button" class="btn">↑ Open a Project Backup</button><button id="launcherOpenCancel" type="button" class="btn">Cancel</button></div></div>
   <div id="launcherFeedback" class="v64-launcher-feedback" role="status"></div><div class="v64-launcher-footer">ON AIR Studio · Soundboard · DJ Mixer · Audio Queue</div></div>
 </div><main class="app"><header class="top"><div><div class="brand">◉ ON AIR <b>STUDIO</b></div></div><div class="toolbar"><span class="pill" id="saveStatus">Loading project…</span><button class="btn small" id="projectBtn">▤ Projects</button></div></header><nav class="tabs" aria-label="Studio sections"><button type="button" class="tab active" data-tab="studio" aria-controls="studio" aria-current="page"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.2" y="8" width="17.6" height="12.8" rx="2.5"/><path d="M6 8 18 4.2M8 12.8a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8ZM14 13h4m-4 3.5h4"/></svg><span>Studio</span></button><button type="button" class="tab" data-tab="library" aria-controls="library" aria-current="false"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5.2a2 2 0 0 1 2-2h13v17H6a2 2 0 0 1 0-4h13M8 7.5h7M8 11h7"/></svg><span>Library</span></button><button type="button" class="tab" data-tab="recordings" aria-controls="recordings" aria-current="false"><svg class="section-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5.5 10.5a6.5 6.5 0 0 0 13 0M12 17v4.5M8.5 21.5h7"/></svg><span>Recordings</span></button></nav><div id="notice"></div>
-<section id="studio"><div class="studio-compact"><div class="studio-mainline"><div class="studio-heading"><strong><span id="activeWorkspaceLabel">Live Soundboard</span> <span class="hint" id="soundCount"></span></strong><span class="hint project-subtitle" id="projectTitle">Untitled Broadcast</span></div><div class="studio-helper"><span class="pill" id="activeCount">0 live</span><span class="gripnote">⠿ Drag to rearrange sounds</span></div><div class="toolbar"><button class="btn small" id="getAudioBtn">▶ Get Audio</button><button class="btn primary small" id="addBtn">＋ Add Audio</button></div></div><div class="studio-control-row"><div class="workspace-switch" role="group" aria-label="Workspace"><button id="wsBoard" class="ws-choice selected" type="button">▦ Soundboard</button><button id="wsDJ" class="ws-choice" type="button">🎛 DJ Mixer</button><button id="wsQueue" class="ws-choice" type="button">☷ Audio Queue</button></div><div class="studio-recbar"><span class="rec-label">● <span class="rec-label-text">Broadcast</span></span><span class="rec-timer" id="recTime">00:00:00</span><span class="pill rec-state" id="recState">READY</span><div class="rec-actions"><button class="btn danger small" id="recordBtn">● REC</button><button class="btn small" id="stopRecord" disabled>■ Stop</button></div><label class="mic-compact" title="Include your voice in the recording"><input type="checkbox" id="micToggle"><span class="mic-word">🎙 Include Voice</span></label></div></div></div><section id="djWorkspace" class="dj-workspace hidden" aria-label="DJ Mixer"><div class="dj-heading"><div><strong>DJ Mixer</strong><small>Mix two sounds and make your own</small></div><button class="btn small" id="djStopAll">■ Stop Decks</button></div><div class="dj-decks"><div class="dj-deck" data-deck="A"><div class="dj-deck-top"><span class="dj-deck-label">DECK A</span><span class="dj-deck-state" id="djStateA">Ready</span></div><div class="dj-sound-picker"><span class="dj-picker-caption">LOADED SOUND</span><button type="button" class="dj-picker-btn" id="djPickA" aria-label="Choose sound for deck A"><span class="dj-picker-icon">♫</span><span class="dj-picker-info"><strong id="djPickNameA">Choose a sound</strong><small id="djPickMetaA">Tap to load audio</small></span><span class="dj-picker-chevron">⌄</span></button><select id="djSelectA" class="dj-native-select" aria-label="Choose sound for deck A"><option value="">Choose a sound</option></select></div><div class="dj-platter" id="djDiscA"><div class="dj-disc-core">A</div></div><div class="dj-time" id="djTimeA">0:00 / 0:00</div><input type="range" id="djSeekA" min="0" max="1000" value="0" aria-label="Deck A position"><div class="dj-deck-actions"><button class="btn primary" id="djPlayA">▶ Play</button><button class="btn" id="djPauseA">Ⅱ Pause</button><button class="btn" id="djResetA">↺ From Start</button></div><label class="dj-control-label">Volume <output id="djVolTextA">80%</output></label><input type="range" id="djLevelA" min="0" max="100" value="80" aria-label="Deck A volume"><details class="dj-effects"><summary>Sound Effects</summary><label>Bass <output id="djBassTextA">0</output></label><input type="range" id="djBassA" min="-18" max="18" value="0"><label>Treble <output id="djTrebleTextA">0</output></label><input type="range" id="djTrebleA" min="-18" max="18" value="0"><label>Filter <output id="djFilterTextA">Off</output></label><input type="range" id="djFilterA" min="0" max="100" value="100"><label>Echo <output id="djEchoTextA">Off</output></label><input type="range" id="djEchoA" min="0" max="60" value="0"></details></div><div class="dj-deck" data-deck="B"><div class="dj-deck-top"><span class="dj-deck-label">DECK B</span><span class="dj-deck-state" id="djStateB">Ready</span></div><div class="dj-sound-picker"><span class="dj-picker-caption">LOADED SOUND</span><button type="button" class="dj-picker-btn" id="djPickB" aria-label="Choose sound for deck B"><span class="dj-picker-icon">♫</span><span class="dj-picker-info"><strong id="djPickNameB">Choose a sound</strong><small id="djPickMetaB">Tap to load audio</small></span><span class="dj-picker-chevron">⌄</span></button><select id="djSelectB" class="dj-native-select" aria-label="Choose sound for deck B"><option value="">Choose a sound</option></select></div><div class="dj-platter dj-platter-b" id="djDiscB"><div class="dj-disc-core">B</div></div><div class="dj-time" id="djTimeB">0:00 / 0:00</div><input type="range" id="djSeekB" min="0" max="1000" value="0" aria-label="Deck B position"><div class="dj-deck-actions"><button class="btn primary" id="djPlayB">▶ Play</button><button class="btn" id="djPauseB">Ⅱ Pause</button><button class="btn" id="djResetB">↺ From Start</button></div><label class="dj-control-label">Volume <output id="djVolTextB">80%</output></label><input type="range" id="djLevelB" min="0" max="100" value="80" aria-label="Deck B volume"><details class="dj-effects"><summary>Sound Effects</summary><label>Bass <output id="djBassTextB">0</output></label><input type="range" id="djBassB" min="-18" max="18" value="0"><label>Treble <output id="djTrebleTextB">0</output></label><input type="range" id="djTrebleB" min="-18" max="18" value="0"><label>Filter <output id="djFilterTextB">Off</output></label><input type="range" id="djFilterB" min="0" max="100" value="100"><label>Echo <output id="djEchoTextB">Off</output></label><input type="range" id="djEchoB" min="0" max="60" value="0"></details></div></div><div class="dj-mix-panel"><div class="dj-cross-head"><span>A</span><strong>Crossfade</strong><span>B</span></div><input type="range" id="djCross" min="0" max="100" value="50" aria-label="Crossfade between decks"><div class="dj-mix-actions"><button class="btn danger" id="djRecordMix">● Record Mix</button><button class="btn" id="djFinishMix" disabled>■ Finish & Save</button></div><div class="dj-mix-note" id="djMixStatus">Your mix can be saved as a new sound card.</div></div></section><section id="queueWorkspace" class="queue-workspace hidden" aria-label="Audio Queue workspace">
+<section id="studio"><div class="studio-compact"><div class="studio-mainline"><div class="studio-heading"><strong><span id="activeWorkspaceLabel">Live Soundboard</span> <span class="hint" id="soundCount"></span></strong><span class="hint project-subtitle" id="projectTitle">Untitled Broadcast</span></div><div class="studio-helper"><span class="pill" id="activeCount">0 live</span><span class="gripnote">⠿ Drag to rearrange sounds</span></div><div class="toolbar"><button class="btn small" id="getAudioBtn">▶ Get Audio</button><button class="btn primary small" id="addBtn">＋ Add Audio</button></div></div><div class="studio-control-row"><div class="workspace-switch" role="group" aria-label="Workspace"><button id="wsBoard" class="ws-choice selected" type="button">▦ Soundboard</button><button id="wsDJ" class="ws-choice" type="button">🎛 DJ Mixer</button><button id="wsQueue" class="ws-choice" type="button">☷ Audio Queue</button></div><div class="studio-recbar"><span class="rec-label">● <span class="rec-label-text">Broadcast</span></span><span class="rec-timer" id="recTime">00:00:00</span><span class="pill rec-state" id="recState">READY</span><div class="rec-actions"><button class="btn danger small" id="recordBtn">● REC</button><button class="btn small" id="stopRecord" disabled>■ Stop</button></div><label class="mic-compact" title="Include your voice in the recording"><input type="checkbox" id="micToggle"><span class="mic-word">🎙 Include Voice</span></label></div></div></div><section id="djWorkspace" class="dj-workspace hidden" aria-label="DJ Mixer"><div class="dj-heading"><div><strong>DJ Mixer</strong><small>Dual-deck broadcast console</small></div><button class="btn small dj-stop-decks" id="djStopAll" type="button"><span aria-hidden="true">■</span><span>Stop Both</span></button></div><div class="dj-decks"><div class="dj-deck" data-deck="A"><div class="dj-deck-top"><span class="dj-deck-label">DECK A</span><span class="dj-deck-state" id="djStateA">Ready</span></div><div class="dj-sound-picker"><span class="dj-picker-caption">LOADED SOUND</span><button type="button" class="dj-picker-btn" id="djPickA" aria-label="Choose sound for deck A"><span class="dj-picker-icon">♫</span><span class="dj-picker-info"><strong id="djPickNameA">Choose a sound</strong><small id="djPickMetaA">Tap to load audio</small></span><span class="dj-picker-chevron">⌄</span></button><select id="djSelectA" class="dj-native-select" aria-label="Choose sound for deck A"><option value="">Choose a sound</option></select></div><div class="dj-platter" id="djDiscA"><div class="dj-disc-core">A</div></div><div class="dj-time" id="djTimeA">0:00 / 0:00</div><input type="range" id="djSeekA" min="0" max="1000" value="0" aria-label="Deck A position"><div class="dj-deck-actions"><button class="btn primary dj-transport dj-transport-play" id="djPlayA" type="button" aria-label="Play Deck A"><span class="dj-action-glyph" aria-hidden="true">▶</span><span class="dj-action-text">Play</span></button><button class="btn dj-transport dj-transport-pause" id="djPauseA" type="button" aria-label="Pause Deck A"><span class="dj-action-glyph" aria-hidden="true">Ⅱ</span><span class="dj-action-text">Pause</span></button><button class="btn dj-transport dj-transport-rewind" id="djResetA" type="button" aria-label="Restart Deck A from beginning"><span class="dj-action-glyph" aria-hidden="true">↺</span><span class="dj-action-text">Restart</span></button></div><label class="dj-control-label">Volume <output id="djVolTextA">80%</output></label><input type="range" id="djLevelA" min="0" max="100" value="80" aria-label="Deck A volume"><details class="dj-effects"><summary><span>✦ Sound shaping</span><span class="dj-fx-summary-note">BASS · TREBLE · FILTER · ECHO</span></summary><div class="dj-effects-inner"><div class="dj-effects-top"><span>Fine-tune Deck A</span><button type="button" class="dj-fx-reset" data-deck="A" aria-label="Reset deck A effects to default">↺ Reset FX</button></div><div class="dj-fx-grid"><div class="dj-fx-control"><label for="djBassA">Bass <output id="djBassTextA">0</output></label><input type="range" id="djBassA" min="-18" max="18" value="0"></div><div class="dj-fx-control"><label for="djTrebleA">Treble <output id="djTrebleTextA">0</output></label><input type="range" id="djTrebleA" min="-18" max="18" value="0"></div><div class="dj-fx-control"><label for="djFilterA">Filter <output id="djFilterTextA">Off</output></label><input type="range" id="djFilterA" min="0" max="100" value="100"></div><div class="dj-fx-control"><label for="djEchoA">Echo <output id="djEchoTextA">Off</output></label><input type="range" id="djEchoA" min="0" max="60" value="0"></div></div></div></details></div><div class="dj-deck" data-deck="B"><div class="dj-deck-top"><span class="dj-deck-label">DECK B</span><span class="dj-deck-state" id="djStateB">Ready</span></div><div class="dj-sound-picker"><span class="dj-picker-caption">LOADED SOUND</span><button type="button" class="dj-picker-btn" id="djPickB" aria-label="Choose sound for deck B"><span class="dj-picker-icon">♫</span><span class="dj-picker-info"><strong id="djPickNameB">Choose a sound</strong><small id="djPickMetaB">Tap to load audio</small></span><span class="dj-picker-chevron">⌄</span></button><select id="djSelectB" class="dj-native-select" aria-label="Choose sound for deck B"><option value="">Choose a sound</option></select></div><div class="dj-platter dj-platter-b" id="djDiscB"><div class="dj-disc-core">B</div></div><div class="dj-time" id="djTimeB">0:00 / 0:00</div><input type="range" id="djSeekB" min="0" max="1000" value="0" aria-label="Deck B position"><div class="dj-deck-actions"><button class="btn primary dj-transport dj-transport-play" id="djPlayB" type="button" aria-label="Play Deck B"><span class="dj-action-glyph" aria-hidden="true">▶</span><span class="dj-action-text">Play</span></button><button class="btn dj-transport dj-transport-pause" id="djPauseB" type="button" aria-label="Pause Deck B"><span class="dj-action-glyph" aria-hidden="true">Ⅱ</span><span class="dj-action-text">Pause</span></button><button class="btn dj-transport dj-transport-rewind" id="djResetB" type="button" aria-label="Restart Deck B from beginning"><span class="dj-action-glyph" aria-hidden="true">↺</span><span class="dj-action-text">Restart</span></button></div><label class="dj-control-label">Volume <output id="djVolTextB">80%</output></label><input type="range" id="djLevelB" min="0" max="100" value="80" aria-label="Deck B volume"><details class="dj-effects"><summary><span>✦ Sound shaping</span><span class="dj-fx-summary-note">BASS · TREBLE · FILTER · ECHO</span></summary><div class="dj-effects-inner"><div class="dj-effects-top"><span>Fine-tune Deck B</span><button type="button" class="dj-fx-reset" data-deck="B" aria-label="Reset deck B effects to default">↺ Reset FX</button></div><div class="dj-fx-grid"><div class="dj-fx-control"><label for="djBassB">Bass <output id="djBassTextB">0</output></label><input type="range" id="djBassB" min="-18" max="18" value="0"></div><div class="dj-fx-control"><label for="djTrebleB">Treble <output id="djTrebleTextB">0</output></label><input type="range" id="djTrebleB" min="-18" max="18" value="0"></div><div class="dj-fx-control"><label for="djFilterB">Filter <output id="djFilterTextB">Off</output></label><input type="range" id="djFilterB" min="0" max="100" value="100"></div><div class="dj-fx-control"><label for="djEchoB">Echo <output id="djEchoTextB">Off</output></label><input type="range" id="djEchoB" min="0" max="60" value="0"></div></div></div></details></div></div><div class="dj-mix-panel"><div class="dj-cross-head"><span class="dj-cross-side dj-cross-side-a">DECK A</span><div class="dj-cross-title"><strong>Crossfader</strong><small>Blend the two decks smoothly</small></div><span class="dj-cross-side dj-cross-side-b">DECK B</span></div>
+<div class="dj-cross-control"><input type="range" id="djCross" min="0" max="100" value="50" aria-label="Crossfade between Deck A and B"><div class="dj-cross-footer"><span>A: <b id="djMixAValue">50%</b></span><button type="button" id="djCrossCenter" class="dj-cross-center" title="Reset crossfader to center">◎ Center</button><span>B: <b id="djMixBValue">50%</b></span></div></div><div class="dj-mix-actions"><button class="btn danger" id="djRecordMix" type="button"><span class="dj-mix-button-icon" aria-hidden="true">●</span> Record Mix</button><button class="btn" id="djFinishMix" type="button" disabled><span class="dj-mix-button-icon" aria-hidden="true">■</span> Finish & Save</button></div><div class="dj-mix-note" id="djMixStatus">Your mix can be saved as a new sound card.</div></div></section><section id="queueWorkspace" class="queue-workspace hidden" aria-label="Audio Queue workspace">
   <div class="queue-stage">
     <div class="queue-main">
-      <div class="queue-main-header"><div><span class="queue-kicker">BROADCAST AUTOMATION</span><h2>Audio Queue</h2><p>Choose sounds, arrange your order, then press Play Next.</p></div><span class="queue-live-tag">NEXT UP</span></div>
+      <div class="queue-main-header"><div><span class="queue-kicker">BROADCAST AUTOMATION</span><h2>Audio Queue</h2><p>Use + in Sound Library to add sounds, then select Start Queue.</p></div><span class="queue-live-tag">NEXT UP</span></div>
 
       <div class="queue-now-card queue-player" id="queueNowCard" role="region" aria-label="Audio Queue player">
         <div class="queue-player-backdrop" aria-hidden="true"></div>
@@ -1266,18 +1438,18 @@ input[type=range]{accent-color:#0cafa6}
         </div>
         <div class="queue-player-hero">
           <div class="queue-player-cover" aria-hidden="true"><div class="queue-player-disc"><div class="queue-player-disc-core"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div></div><span class="queue-player-cover-shine"></span></div>
-          <div class="queue-player-track"><div class="queue-player-eyebrow">CURRENT AUDIO</div><strong id="queueNowTitle">Ready to broadcast</strong><p id="queueNowHint">Build your sequence and press Play Next.</p><div class="queue-player-tags"><span id="queuePlayerCategory">AUDIO QUEUE</span><span id="queuePlayerRate">READY</span><button id="queuePlayerRepeat" class="queue-player-repeat is-idle" type="button" disabled aria-pressed="false" title="Choose a sound to change Repeat" aria-label="Repeat unavailable: no current audio">REPEAT —</button></div></div>
+          <div class="queue-player-track"><div class="queue-player-eyebrow">CURRENT AUDIO</div><strong id="queueNowTitle">Ready to broadcast</strong><p id="queueNowHint">Use + in Sound Library to add sounds.</p><div class="queue-player-tags"><span id="queuePlayerCategory">AUDIO QUEUE</span><span id="queuePlayerRate">READY</span><button id="queuePlayerRepeat" class="queue-player-repeat is-idle" type="button" disabled aria-pressed="false" title="Choose a sound to change Repeat" aria-label="Repeat unavailable: no current audio">REPEAT —</button></div></div>
         </div>
         <div class="queue-player-visual" aria-hidden="true"><span class="queue-player-visual-caption">PLAYBACK VISUAL</span><div class="queue-player-visual-bars"><span style="--i:0;--h:19%;--delay:0.000s"></span><span style="--i:1;--h:37%;--delay:-0.087s"></span><span style="--i:2;--h:61%;--delay:-0.174s"></span><span style="--i:3;--h:27%;--delay:-0.261s"></span><span style="--i:4;--h:72%;--delay:-0.348s"></span><span style="--i:5;--h:48%;--delay:-0.435s"></span><span style="--i:6;--h:26%;--delay:-0.522s"></span><span style="--i:7;--h:55%;--delay:-0.609s"></span><span style="--i:8;--h:85%;--delay:-0.696s"></span><span style="--i:9;--h:37%;--delay:-0.783s"></span><span style="--i:10;--h:62%;--delay:-0.870s"></span><span style="--i:11;--h:47%;--delay:-0.957s"></span><span style="--i:12;--h:22%;--delay:-1.044s"></span><span style="--i:13;--h:76%;--delay:-1.131s"></span><span style="--i:14;--h:50%;--delay:-1.218s"></span><span style="--i:15;--h:29%;--delay:-1.305s"></span><span style="--i:16;--h:65%;--delay:-1.392s"></span><span style="--i:17;--h:44%;--delay:-1.479s"></span><span style="--i:18;--h:82%;--delay:-1.566s"></span><span style="--i:19;--h:36%;--delay:-1.653s"></span><span style="--i:20;--h:58%;--delay:-1.740s"></span><span style="--i:21;--h:27%;--delay:-1.827s"></span><span style="--i:22;--h:73%;--delay:-1.914s"></span><span style="--i:23;--h:48%;--delay:-2.001s"></span><span style="--i:24;--h:35%;--delay:-2.088s"></span><span style="--i:25;--h:63%;--delay:-2.175s"></span><span style="--i:26;--h:24%;--delay:-2.262s"></span><span style="--i:27;--h:79%;--delay:-2.349s"></span><span style="--i:28;--h:42%;--delay:-2.436s"></span><span style="--i:29;--h:60%;--delay:-2.523s"></span><span style="--i:30;--h:33%;--delay:-2.610s"></span><span style="--i:31;--h:70%;--delay:-2.697s"></span></div></div>
         <div class="queue-seek-wrap queue-player-timeline"><input type="range" id="queueCurrentSeek" min="0" max="1000" value="0" disabled aria-label="Seek current queued sound"><div class="queue-current-time"><span id="queueNowElapsed">0:00</span><span id="queueNowDuration">0:00</span></div></div>
-        <div class="queue-player-bottom"><div class="queue-player-transport-caption"><span class="queue-player-small-dot" aria-hidden="true"></span><span id="queuePlayerCaption">READY FOR YOUR NEXT CUE</span></div><div class="queue-now-actions queue-player-controls"><button class="queue-player-btn queue-player-btn-primary" type="button" id="queueCurrentPause" disabled aria-label="Pause or resume current audio"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4h3v16H7zm7 0h3v16h-3z"/></svg><span>Pause</span></button><button class="queue-player-btn queue-player-btn-stop" type="button" id="queueCurrentStop" disabled aria-label="Stop current audio"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg><span>Stop</span></button><button class="queue-player-btn queue-player-btn-next" type="button" id="queuePlayerNext" disabled aria-label="Play next queued sound"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m4 5 11 7-11 7V5zm13 0h3v14h-3z"/></svg><span>Next</span></button></div></div>
+        <div class="queue-player-bottom"><div class="queue-player-transport-caption"><span class="queue-player-small-dot" aria-hidden="true"></span><span id="queuePlayerCaption">READY FOR YOUR NEXT CUE</span></div><div class="queue-now-actions queue-player-controls"><button class="queue-player-btn queue-player-btn-primary" type="button" id="queueCurrentPause" disabled aria-label="Pause or resume current audio"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4h3v16H7zm7 0h3v16h-3z"/></svg><span>Pause</span></button><button class="queue-player-btn queue-player-btn-stop" type="button" id="queueCurrentStop" disabled aria-label="Stop current audio"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg><span>Stop</span></button><button class="queue-player-btn queue-player-btn-next" type="button" id="queuePlayerNext" disabled aria-label="Start queued audio"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m4 5 11 7-11 7V5zm13 0h3v14h-3z"/></svg><span>Start</span></button></div></div>
       </div>
       <section class="nextup-panel" id="nextUpPanel" aria-label="Next Up audio queue">
  <div class="nextup-bar">
   <div class="nextup-title"><span class="nextup-mark" aria-hidden="true">▤</span><strong>Next Up</strong><span class="nextup-count" id="nextUpCount">0</span><span class="nextup-now" id="nextUpNow">Ready for your sequence</span></div>
-  <div class="nextup-actions"><label class="nextup-autoplay" title="Play the next queued sound automatically after the current queued sound ends"><input type="checkbox" id="nextUpAuto"><span>Auto Play</span></label><button class="nextup-next" id="nextUpPlay" type="button" title="Play the next queued sound">▶ <span>Play Next</span></button><button class="nextup-clear" id="nextUpClear" type="button" title="Clear upcoming sounds">Clear</button><button class="nextup-collapse" id="nextUpCollapse" type="button" aria-expanded="true" aria-controls="nextUpBody" title="Collapse queue">⌃</button></div>
+  <div class="nextup-actions"><label class="nextup-autoplay" title="Play the next queued sound automatically after the current queued sound ends"><input type="checkbox" id="nextUpAuto"><span>Auto Play</span></label><button class="nextup-next" id="nextUpPlay" type="button" title="Start the queue when sounds are added">▶ <span>Start Queue</span></button><button class="nextup-clear" id="nextUpClear" type="button" title="Clear upcoming sounds">Clear</button><button class="nextup-collapse" id="nextUpCollapse" type="button" aria-expanded="true" aria-controls="nextUpBody" title="Collapse queue">⌃</button></div>
  </div>
- <div class="nextup-body" id="nextUpBody"><div class="nextup-list" id="nextUpList" aria-live="polite"><div class="nextup-empty">Choose sounds from the library to build your queue.</div></div></div>
+ <div class="nextup-body" id="nextUpBody"><div class="nextup-list" id="nextUpList" aria-live="polite"><div class="nextup-empty">Use + in Sound Library below to add your first sound.</div></div></div>
 </section>
       <div class="queue-picker"><div class="queue-picker-heading"><div><h3>Sound Library</h3><p>Add sounds to your upcoming sequence</p></div><span id="queueLibraryCount" class="pill">0 sounds</span></div><label class="queue-search-label" for="queueSearch">Find a sound</label><input type="search" id="queueSearch" placeholder="Search by title or category…" autocomplete="off"><div id="queuePickerList" class="queue-picker-list"></div><button class="btn small queue-import" id="queueAddFiles" type="button">＋ Add Audio Files</button></div>
     </div>
@@ -1312,15 +1484,15 @@ function renderQueue(){
  const queued=project.nextUp,active=get(queueCurrentId),isPlaying=queueCurrentId&&live.get(queueCurrentId)?.el&&!live.get(queueCurrentId).el.paused;
  $('nextUpCount').textContent=String(queued.length);
  updateWorkspaceCount();
- $('nextUpNow').textContent=active?(isPlaying?'● Playing: ':'Ⅱ Current: ')+active.name:(queued.length?'Ready · '+queued.length+' upcoming':'Build your sequence');
+ $('nextUpNow').textContent=active?(isPlaying?'● Playing: ':'Ⅱ Current: ')+active.name:(queued.length?'Ready · '+queued.length+' upcoming':'Empty · Use + in Sound Library');
  queueNowUpdate();
  $('nextUpAuto').checked=!!project.settings.autoNext;
- $('nextUpPlay').disabled=!queued.length||queueBusy;
+ // Both Start Queue / Play Next buttons are updated by queueNowUpdate().
  $('nextUpClear').disabled=!queued.length;
  let html='';
  if(active){html+=`<div class="nextup-item nextup-active" title="Current queued sound"><span class="nextup-position">♫</span><div class="nextup-item-info"><b>${esc(active.name)}</b><small>${isPlaying?'NOW PLAYING':'CURRENT · PAUSED'}</small></div><span class="nextup-pulse" aria-hidden="true">▮▯▮</span></div>`}
  html+=queued.map((soundId,i)=>{const sound=get(soundId);if(!sound)return '';return `<div class="nextup-item" data-queue-index="${i}" style="--cue-accent:${categoryColor(sound.category)}"><button class="nextup-drag-handle" type="button" aria-label="Drag to reorder ${esc(sound.name)}; alternatively use the arrow keys" title="Drag to reorder · Arrow keys also work">⠿</button><span class="nextup-position">${i+1}</span><div class="nextup-item-info"><b title="${esc(sound.name)}">${esc(sound.name)}</b><small>${esc(sound.category||'Sound')}</small></div><div class="nextup-item-tools"><button type="button" data-queue-action="remove" data-queue-index="${i}" aria-label="Remove ${esc(sound.name)} from queue" title="Remove from queue">×</button></div></div>`}).join('');
- root.innerHTML=html||'<div class="nextup-empty">Choose sounds from your library below to build your sequence.</div>';
+ root.innerHTML=html||'<div class="nextup-empty">Your queue is empty. Use the + button in Sound Library below to add sounds.</div>';
 }
 function addToQueue(soundId){const s=get(soundId);if(!s)return;ensureQueue();project.nextUp.push(soundId);renderQueue();scheduleSave();notify('Added to Next Up: '+s.name)}
 function moveQueue(index,action){ensureQueue();const q=project.nextUp;if(!Number.isInteger(index)||index<0||index>=q.length)return;
@@ -1363,12 +1535,41 @@ function renderQueuePicker(){
  $('queueLibraryCount').textContent=project.sounds.length+' sound'+(project.sounds.length===1?'':'s');
  root.innerHTML=matched.length?matched.map(s=>`<button class="queue-picker-item" type="button" data-queue-pick="${esc(s.id)}" style="--cue-accent:${categoryColor(s.category)}" title="Add ${esc(s.name)} to queue"><span class="queue-picker-icon">♫</span><span class="queue-picker-meta"><b>${esc(s.name)}</b><small>${esc(s.category||'Sound')}</small></span><span class="queue-picker-plus">＋</span></button>`).join(''):'<div class="queue-picker-empty">'+(project.sounds.length?'No matching sounds.':'No sounds yet. Use Add Audio Files below.')+'</div>';
 }
+// Student-friendly queue action: it starts when idle and advances only while a cue is loaded.
+// The + buttons in Sound Library remain the only Add to Queue action.
+function syncQueueActionButtons(){
+ const ready=!!project.nextUp?.length;
+ const current=!!(queueCurrentId&&get(queueCurrentId)&&(live.has(queueCurrentId)||queueBusy));
+ const mode=current?'next':'start';
+ const label=current?'Play Next':'Start Queue';
+ const disabled=!ready||queueBusy;
+ const main=$('nextUpPlay');
+ if(main.dataset.mode!==mode){
+  main.dataset.mode=mode;
+  main.querySelector('span').textContent=label;
+  main.firstChild.textContent=current?'⏭ ':'▶ ';
+ }
+ if(main.disabled!==disabled)main.disabled=disabled;
+ const ariaLabel=label+(disabled?(queueBusy?' — loading':' — no next sounds in queue'):'');
+ if(main.getAttribute('aria-label')!==ariaLabel)main.setAttribute('aria-label',ariaLabel);
+ const hint=ready?(current?'Play the next queued sound':'Start playing the first queued sound'):'Use + in Sound Library below to add sounds first';
+ if(main.title!==hint)main.title=hint;
+ const player=$('queuePlayerNext');
+ if(player.dataset.mode!==mode){
+  player.dataset.mode=mode;
+  player.querySelector('span').textContent=current?'Next':'Start';
+  player.querySelector('svg').innerHTML=current?'<path d="m4 5 11 7-11 7V5zm13 0h3v14h-3z"/>':'<path d="m7 4 14 8-14 8V4z"/>';
+ }
+ if(player.disabled!==disabled)player.disabled=disabled;
+ if(player.getAttribute('aria-label')!==ariaLabel)player.setAttribute('aria-label',ariaLabel);
+ if(player.title!==hint)player.title=hint;
+}
 function queueNowUpdate(){
  const s=get(queueCurrentId),x=s?live.get(s.id):null,el=x?.el;
  const active=!!(s&&el);
  $('queueNowCard').classList.toggle('is-active',active);$('queueNowCard').classList.toggle('is-playing',active&&!el.paused);$('queueNowCard').classList.toggle('is-paused',active&&el.paused);
  $('queueNowTitle').textContent=s?.name||'Ready to broadcast';
- $('queueNowHint').textContent=active?(el.paused?'Playback paused':'Playing from Audio Queue'):'Build your sequence and press Play Next.';
+ $('queueNowHint').textContent=active?(el.paused?'Playback paused':'Playing from Audio Queue'):(project.nextUp?.length?'Sounds ready. Press Start Queue.':'Use + in Sound Library to add sounds.');
  $('queueNowState').textContent=active?(el.paused?'PAUSED':'ON AIR'):'STANDBY';
  $('queuePlayerCategory').textContent=active?(s.category||'Sound').toUpperCase():'AUDIO QUEUE';
  $('queuePlayerRate').textContent=active?(Number(s.speed)||1)+'× SPEED':'READY';
@@ -1382,13 +1583,13 @@ function queueNowUpdate(){
  repeatChip.setAttribute('aria-pressed',String(repeatEnabled));
  repeatChip.setAttribute('aria-label',active?(repeatEnabled?'Repeat ON. Click to turn OFF for current sound':'Repeat OFF. Click to turn ON for current sound'):'Repeat unavailable: no current audio');
  repeatChip.title=active?(repeatEnabled?'Click to turn Repeat OFF':'Click to turn Repeat ON'):'Choose a sound to change Repeat';
- $('queuePlayerCaption').textContent=active?(el.paused?'PLAYBACK PAUSED':'LIVE QUEUE PLAYBACK'):'READY FOR YOUR NEXT CUE';
+ $('queuePlayerCaption').textContent=active?(el.paused?'PLAYBACK PAUSED':'LIVE QUEUE PLAYBACK'):(project.nextUp?.length?'READY TO START':'QUEUE EMPTY');
  $('queueCurrentPause').disabled=!active;
  const pMode=active?(el.paused?'resume':'pause'):'pause',pBtn=$('queueCurrentPause');
  if(pBtn.dataset.mode!==pMode){pBtn.dataset.mode=pMode;pBtn.innerHTML=pMode==='resume'?'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m7 4 14 8-14 8V4z"/></svg><span>Resume</span>':'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4h3v16H7zm7 0h3v16h-3z"/></svg><span>Pause</span>'}
  pBtn.setAttribute('aria-label',pMode==='resume'?'Resume current audio':'Pause current audio');
  $('queueCurrentStop').disabled=!active;
- $('queuePlayerNext').disabled=!project.nextUp?.length||queueBusy;
+ syncQueueActionButtons();
  const duration=el&&Number.isFinite(el.duration)?el.duration:0;
  const start=Math.max(0,Number(s?.start)||0),end=s?.end>0?Math.min(duration,s.end):duration;
  const length=Math.max(0,end-start),offset=el?Math.max(0,el.currentTime-start):0;
@@ -1940,7 +2141,7 @@ function djShowScratchPosition(k){const st=djScratchState[k],d=djDecks[k];if(!st
 function djEndScratch(k,e){const st=djScratchState[k],d=djDecks[k];if(!st.active||e&&st.pointer!==e.pointerId)return;st.active=false;try{st.processor?.disconnect();st.processor.onaudioprocess=null}catch(_){}st.processor=null;const disc=$('djDisc'+k);disc.classList.remove('scratching');$('djTime'+k).classList.remove('dj-scratch-time');disc.style.removeProperty('--scratch-angle');if(!d)return;try{d.source.connect(d.bass)}catch(_){}d.el.currentTime=Math.max(0,Math.min((d.el.duration||Infinity)-.01,st.position/(d.buffer?.sampleRate||44100)));if(st.wasPlaying)d.el.play().catch(err=>notify(err.message));$('djState'+k).textContent=st.wasPlaying?'Playing':'Paused'}
 for(const k of ['A','B']){const disc=$('djDisc'+k);disc.setAttribute('role','slider');disc.setAttribute('aria-label','Scratch Deck '+k+' turntable');disc.style.touchAction='none';disc.addEventListener('pointerdown',e=>djStartScratch(k,e));disc.addEventListener('pointermove',e=>djMoveScratch(k,e));disc.addEventListener('pointerup',e=>djEndScratch(k,e));disc.addEventListener('pointercancel',e=>djEndScratch(k,e))}
 
-function djTick(){for(const k of ['A','B']){const d=djDecks[k];if(!d)continue;if(djScratchState[k].active){djShowScratchPosition(k);continue;}const el=d.el,s=get(d.soundId),end=Math.min(Number.isFinite(el.duration)?el.duration:Infinity,Number(s?.end)>0?Number(s.end):Infinity);if(Number.isFinite(end)&&el.currentTime>=end-.04){djStop(k);continue}$('djTime'+k).textContent=fmt(el.currentTime)+' / '+fmt(Number.isFinite(end)?end:el.duration);if(Number.isFinite(el.duration)&&el.duration>0)$('djSeek'+k).value=Math.round(el.currentTime/el.duration*1000);$('djState'+k).textContent=el.paused?'Paused':'Playing';$('djDisc'+k).classList.toggle('spinning',!el.paused)}requestAnimationFrame(djTick)}
+function djTick(){for(const k of ['A','B']){const d=djDecks[k];djSyncDeckUI(k);if(!d)continue;if(djScratchState[k].active){djShowScratchPosition(k);continue;}const el=d.el,s=get(d.soundId),end=Math.min(Number.isFinite(el.duration)?el.duration:Infinity,Number(s?.end)>0?Number(s.end):Infinity);if(Number.isFinite(end)&&el.currentTime>=end-.04){djStop(k);continue}$('djTime'+k).textContent=fmt(el.currentTime)+' / '+fmt(Number.isFinite(end)?end:el.duration);if(Number.isFinite(el.duration)&&el.duration>0)$('djSeek'+k).value=Math.round(el.currentTime/el.duration*1000);$('djState'+k).textContent=el.paused?'Paused':'Playing';$('djDisc'+k).classList.toggle('spinning',!el.paused)}requestAnimationFrame(djTick)}
 function djWorkspace(mode){
  if(!['dj','board','queue'].includes(mode))mode='board';
  const dj=mode==='dj',queue=mode==='queue';
@@ -1962,9 +2163,48 @@ function djWorkspace(mode){
  if(dj)djRefreshChoices();if(queue){renderQueue();renderQueuePicker();queueNowUpdate()}
  try{localStorage.setItem('on-air-workspace',mode)}catch(e){}
 }
+// v72: DJ console display state, independent from the existing audio graph.
+function djSyncDeckUI(k){
+ const d=djDecks[k],hasSound=!!get($('djSelect'+k).value);
+ const playing=!!d&&!d.el.paused&&!djScratchState[k].active;
+ const paused=!!d&&d.el.paused&&!djScratchState[k].active;
+ const status=djScratchState[k].active?'scratch':playing?'playing':paused?'paused':hasSound?'ready':'empty';
+ const deck=$('djPick'+k).closest('.dj-deck');
+ if(deck.dataset.playerStatus!==status){
+  deck.dataset.playerStatus=status;
+  const play=$('djPlay'+k),pause=$('djPause'+k),reset=$('djReset'+k);
+  play.querySelector('.dj-action-glyph').textContent=d?'↺':'▶';
+  play.querySelector('.dj-action-text').textContent=d?'Restart':'Play';
+  play.setAttribute('aria-label',(d?'Restart':'Play')+' Deck '+k);
+  pause.querySelector('.dj-action-glyph').textContent=paused?'▶':'Ⅱ';
+  pause.querySelector('.dj-action-text').textContent=paused?'Resume':'Pause';
+  pause.setAttribute('aria-label',(paused?'Resume':'Pause')+' Deck '+k);
+  play.disabled=!hasSound;
+  pause.disabled=!d;
+  reset.disabled=!d;
+  if(!d)$('djState'+k).textContent=hasSound?'Ready':'No sound';
+ }
+}
+function djCrossUI(){
+ const a=Math.round((1-djCrossValue/100)*100),b=100-a;
+ $('djMixAValue').textContent=a+'%';$('djMixBValue').textContent=b+'%';
+ $('djCross').style.setProperty('--dj-cross-balance',djCrossValue+'%');
+}
+for(const k of ['A','B']){
+ const reset=document.querySelector('.dj-fx-reset[data-deck="'+k+'"]');
+ if(reset)reset.addEventListener('click',()=>{
+  for(const [name,val] of [['Bass',0],['Treble',0],['Filter',100],['Echo',0]]){
+   const input=$('dj'+name+k);input.value=String(val);input.dispatchEvent(new Event('input',{bubbles:true}));
+  }
+ });
+}
+$('djCrossCenter').addEventListener('click',()=>{
+ $('djCross').value='50';$('djCross').dispatchEvent(new Event('input',{bubbles:true}));
+});
+// Run this display layer after the original mixer setup, preserving underlying sound functions.
 $('wsDJ').onclick=()=>djWorkspace('dj');$('wsBoard').onclick=()=>djWorkspace('board');$('wsQueue').onclick=()=>djWorkspace('queue');
 for(const k of ['A','B']){$('djPlay'+k).onclick=()=>djPlay(k);$('djPause'+k).onclick=()=>{const d=djDecks[k];if(!d)return;if(d.el.paused)d.el.play().catch(e=>notify(e.message));else d.el.pause()};$('djReset'+k).onclick=()=>{const d=djDecks[k];if(d){if(djScratchState[k].active)djEndScratch(k);d.el.currentTime=0;$('djTime'+k).textContent=fmt(d.el.currentTime)+' / '+fmt(d.el.duration||0)}};$('djSelect'+k).onchange=()=>{djStop(k);djUpdatePicker(k);$('djTime'+k).textContent='0:00 / 0:00';$('djSeek'+k).value=0;$('djState'+k).textContent='Ready · starts at 0:00'};$('djPick'+k).onclick=()=>djOpenPicker(k);$('djSeek'+k).oninput=e=>{const d=djDecks[k];if(d&&Number.isFinite(d.el.duration))d.el.currentTime=d.el.duration*Number(e.target.value)/1000};$('djLevel'+k).oninput=e=>{$('djVolText'+k).textContent=e.target.value+'%';djLevels()};for(const key of ['Bass','Treble','Filter','Echo'])$('dj'+key+k).oninput=e=>{$('dj'+key+'Text'+k).textContent=key==='Filter'&&e.target.value==='100'||key==='Echo'&&e.target.value==='0'?'Off':e.target.value;djEffects(k)}}
-$('djCross').oninput=e=>{djCrossValue=Number(e.target.value);djLevels()};$('djStopAll').onclick=()=>{djStop('A');djStop('B')};
+$('djCross').oninput=e=>{djCrossValue=Number(e.target.value);djLevels();djCrossUI()};djCrossUI();$('djStopAll').onclick=()=>{djStop('A');djStop('B')};
 $('djRecordMix').onclick=async()=>{if(djMixRecorder)return;try{await initAudio();if(!window.MediaRecorder)throw Error('Recording is not available in this browser');djMixTap=ctx.createMediaStreamDestination();master.connect(djMixTap);const type=['audio/webm;codecs=opus','audio/webm','audio/mp4'].find(t=>MediaRecorder.isTypeSupported(t));djMixRecorder=new MediaRecorder(djMixTap.stream,type?{mimeType:type}:undefined);djMixChunks=[];djMixRecorder.ondataavailable=e=>{if(e.data.size)djMixChunks.push(e.data)};djMixRecorder.start(250);djMixStarted=Date.now();$('djRecordMix').disabled=true;$('djFinishMix').disabled=false;$('djMixStatus').textContent='Recording your mix…';}catch(e){notify('Could not record mix: '+e.message);if(djMixTap){try{master.disconnect(djMixTap)}catch(_){}djMixTap=null}djMixRecorder=null}};
 $('djFinishMix').onclick=()=>{if(!djMixRecorder)return;const r=djMixRecorder;r.onstop=async()=>{try{const blob=new Blob(djMixChunks,{type:r.mimeType||'audio/webm'});if(!blob.size)throw Error('Nothing was recorded');const name=prompt('Name your new sound','My DJ Mix');if(name===null){$('djMixStatus').textContent='Mix discarded';return}const sound={id:id(),name:name.trim()||'My DJ Mix',category:'Effect',volume:80,speed:1,loop:false};if(db)await put('assets',sound.id,blob);blobs.set(sound.id,blob);project.sounds.push(sound);scheduleSave();renderCards();renderLibrary();djRefreshChoices();$('djMixStatus').textContent='Saved as a sound card: '+sound.name;notify('Mix saved to your soundboard')}catch(e){notify('Could not save mix: '+e.message)}finally{if(djMixTap){try{master.disconnect(djMixTap)}catch(e){}djMixTap=null}djMixRecorder=null;$('djRecordMix').disabled=false;$('djFinishMix').disabled=true}};r.stop()};
 const originalRenderCards=renderCards;renderCards=function(){originalRenderCards();if(!$('djWorkspace').classList.contains('hidden'))djRefreshChoices()};
