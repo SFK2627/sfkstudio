@@ -1916,6 +1916,152 @@ html body :is(button, input, select, textarea):disabled:disabled * {
   #cards .soundname.is-overflowing .soundname-marquee-text{animation:none!important;will-change:auto}
 }
 </style>
+<style id="v82-mobile-audio-actions">
+/* Mobile Soundboard header: Get Audio and Add Audio always share one row. */
+@media (max-width:600px){
+  .studio-mainline{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    align-items:stretch!important;
+    gap:5px!important;
+    min-width:0;
+  }
+  .studio-mainline .studio-heading{
+    min-width:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:6px;
+  }
+  .studio-mainline .studio-heading strong{
+    min-width:0;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .studio-mainline .toolbar{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    width:100%;
+    min-width:0;
+    gap:7px!important;
+    flex-wrap:nowrap!important;
+    align-items:stretch;
+  }
+  .studio-mainline .toolbar #getAudioBtn,
+  .studio-mainline .toolbar #addBtn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    min-width:0;
+    min-height:35px;
+    padding:7px 6px!important;
+    font-size:11.5px!important;
+    line-height:1.1;
+    white-space:nowrap!important;
+    text-align:center;
+    margin:0;
+  }
+}
+@media (max-width:350px){
+  .studio-mainline .toolbar{gap:5px!important}
+  .studio-mainline .toolbar #getAudioBtn,
+  .studio-mainline .toolbar #addBtn{font-size:11px!important;padding-inline:4px!important}
+}
+</style>
+
+<style id="v83-single-row-soundboard-header">
+/* v83: The title, sound-count label, Get Audio and Add Audio stay on ONE row on phones. */
+@media (max-width:600px) {
+  .studio-mainline {
+    display:flex!important;
+    flex-direction:row!important;
+    flex-wrap:nowrap!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:4px!important;
+    min-width:0;
+    width:100%;
+  }
+  .studio-mainline .studio-heading {
+    display:flex!important;
+    flex:1 1 auto;
+    width:auto!important;
+    min-width:0!important;
+    gap:0!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    overflow:hidden;
+  }
+  .studio-mainline .studio-heading strong {
+    display:inline-flex!important;
+    align-items:baseline;
+    flex-wrap:nowrap;
+    min-width:0!important;
+    max-width:100%;
+    margin:0;
+    gap:3px;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:clip!important;
+    font-size:clamp(10.5px,2.9vw,12px)!important;
+    letter-spacing:-.38px;
+    line-height:1.1;
+  }
+  .studio-mainline #activeWorkspaceLabel {
+    flex:0 0 auto;
+    white-space:nowrap;
+  }
+  .studio-mainline #soundCount {
+    flex:0 0 auto;
+    white-space:nowrap;
+    font-size:clamp(8px,2.05vw,9.5px)!important;
+    letter-spacing:-.22px;
+    line-height:1;
+  }
+  /* Project name is already available from Projects; don't let it consume the header row. */
+  .studio-mainline .project-subtitle {display:none!important}
+  .studio-mainline .toolbar {
+    display:flex!important;
+    flex:0 0 auto;
+    grid-template-columns:none!important;
+    flex-flow:row nowrap!important;
+    width:auto!important;
+    min-width:0!important;
+    gap:4px!important;
+    margin:0;
+    align-items:center!important;
+  }
+  .studio-mainline .toolbar #getAudioBtn,
+  .studio-mainline .toolbar #addBtn {
+    display:inline-flex!important;
+    flex:0 0 auto;
+    align-items:center;
+    justify-content:center;
+    width:auto!important;
+    min-width:0!important;
+    min-height:32px!important;
+    padding:6px 6px!important;
+    font-size:clamp(9px,2.5vw,11px)!important;
+    line-height:1!important;
+    letter-spacing:-.15px;
+    border-radius:8px;
+    white-space:nowrap!important;
+    text-align:center;
+    margin:0!important;
+  }
+}
+@media (max-width:350px) {
+  .studio-mainline {gap:3px!important}
+  .studio-mainline .studio-heading strong {gap:2px;font-size:10.2px!important}
+  .studio-mainline #soundCount {font-size:7.8px!important}
+  .studio-mainline .toolbar {gap:3px!important}
+  .studio-mainline .toolbar #getAudioBtn,
+  .studio-mainline .toolbar #addBtn {font-size:9px!important;padding:5px 4px!important}
+}
+</style>
 </head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div><button id="splashSkip" type="button" class="v64-skip">Skip intro</button></div>
 </div>
