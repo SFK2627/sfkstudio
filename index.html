@@ -892,7 +892,226 @@ html[data-theme="light"] .v64-choice small,html[data-theme="light"] .v64-launche
 html[data-theme="light"] .v64-launcher-panel{background:#f7fafd;border-color:#cad9e7}html[data-theme="light"] .v64-launcher-panel label{color:#284563}html[data-theme="light"] .v64-launcher-panel input{background:#fff!important;color:#203851!important;border-color:#b6cadd!important}html[data-theme="light"] .v64-project-item{background:#fff;border-color:#cdd9e8;color:#1e3953}html[data-theme="light"] .v64-project-item-info small{color:#617991}html[data-theme="light"] .v64-project-empty{color:#516d88;border-color:#bdcde1}
 @media(max-width:450px){.v64-launcher-shell{padding:15px;gap:12px}.v64-launcher-choices{gap:8px}.v64-choice{padding:12px;min-height:120px}.v64-choice strong{font-size:13px}.v64-choice small{font-size:10px}.v64-typed{font-size:19px}.v64-launcher-actions{flex-direction:column}.v64-launcher-actions .btn{width:100%}}
 @media(prefers-reduced-motion:reduce){.v64-typed{animation:none;width:auto;border-right:0}.v64-loading-track span{animation:none;transform:scaleX(1)}.v64-splash-logo{animation:none}}
-</style></head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
+</style><style id="v65-queue-polish">
+/* One item per row makes reordering clear on laptops, tablets and phones. */
+.queue-workspace .nextup-list{display:flex;flex-direction:column;align-items:stretch;gap:7px;max-height:315px;min-height:50px;overflow-y:auto;overflow-x:hidden;scroll-snap-type:none;padding:5px 3px 8px;scrollbar-gutter:stable;overscroll-behavior:contain}
+.queue-workspace .nextup-item,.queue-workspace .nextup-item.nextup-active{flex:0 0 auto;flex-basis:auto;min-height:51px;scroll-snap-align:none;gap:10px;padding:8px 10px;transition:background-color .16s ease,border-color .16s ease,box-shadow .16s ease}
+.queue-workspace .nextup-item.nextup-active{min-height:50px}
+.queue-workspace .nextup-position{flex:none}
+.queue-workspace .nextup-drag-handle{flex:none;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;width:30px;height:33px;display:grid;place-items:center;border:1px solid #436076;border-radius:7px;background:#294257;color:#a6dace;font:900 22px/1 system-ui;padding:0}
+.queue-workspace .nextup-drag-handle:hover{color:#fff;background:#126f62;border-color:#209987}
+.queue-workspace .nextup-drag-handle:active{cursor:grabbing}
+.queue-workspace .nextup-drag-handle:focus-visible{outline:2px solid #16c3b3;outline-offset:2px}
+.queue-is-dragging,.queue-is-dragging *{cursor:grabbing!important;user-select:none!important;-webkit-user-select:none!important}
+.queue-workspace .nextup-item.queue-drag-placeholder{border-style:dashed!important;background:#168d7a1a!important;box-shadow:inset 0 0 0 1px #19bba855!important}
+.queue-workspace .nextup-item.queue-drag-placeholder>*{visibility:hidden}
+.queue-drag-ghost{position:fixed!important;z-index:1000;pointer-events:none;box-shadow:0 17px 40px #0006,0 0 0 2px #15c5ac!important;border-color:#15c5ac!important;background:#17362f!important;opacity:.96;transform:translate3d(0,0,0);will-change:transform;transition:none!important;box-sizing:border-box}
+.queue-drag-ghost .nextup-drag-handle{border-color:#0c9d8c!important;color:#b4fff2!important;background:#0e665e!important}
+html[data-theme="dark"] .queue-workspace .nextup-item:not(.nextup-active):not(.queue-drag-placeholder){background:#212121;border-color:#404040;border-left-color:var(--cue-accent,#14b8a6)}
+html[data-theme="dark"] .queue-workspace .nextup-item:not(.nextup-active):hover{background:#272727}
+html[data-theme="light"] .queue-workspace .nextup-drag-handle{background:#e9f3f6;color:#146d71;border-color:#bfd4da}
+html[data-theme="light"] .queue-drag-ghost{background:#e9fff9!important;color:#183952!important;box-shadow:0 17px 35px #233a5060,0 0 0 2px #0baf97!important}
+.queue-workspace .nextup-item-tools button{width:28px;height:29px}
+.queue-workspace .nextup-item-info b{font-size:12px}
+.queue-workspace .nextup-item-info small{font-size:10px}
+@media(max-width:600px){.queue-workspace .nextup-list{max-height:285px}.queue-workspace .nextup-item{gap:7px;padding:8px 7px}.queue-workspace .nextup-drag-handle{width:29px;height:32px}.queue-workspace .nextup-position{min-width:22px}}
+/* Audio Queue on-air visual: only moves when media is actually playing. */
+.queue-now-card{position:relative;overflow:hidden;isolation:isolate;transition:border-color .22s ease,box-shadow .22s ease,background-color .22s ease}
+.queue-now-card>*:not(.queue-now-visual){position:relative;z-index:2}
+.queue-now-card .queue-now-visual{position:absolute;z-index:0;inset:0;display:flex;align-items:flex-end;justify-content:space-around;gap:4px;padding:15px 24px 0;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;overflow:hidden}
+.queue-now-card .queue-now-visual span{flex:1 1 0;max-width:17px;height:var(--bar-height);border-radius:8px 8px 0 0;background:linear-gradient(180deg,#18c2ae74,#16a89820 45%,#16a89804);transform-origin:center bottom;animation:queueOnAirBars var(--bar-speed) ease-in-out infinite alternate;animation-delay:var(--bar-delay);animation-play-state:paused}
+.queue-now-card.is-playing .queue-now-visual{opacity:.49;visibility:visible}.queue-now-card.is-playing .queue-now-visual span{animation-play-state:running}
+html[data-theme="light"] .queue-now-card.is-playing .queue-now-visual{opacity:.22}
+.queue-now-card.is-playing{border-color:#13b99f!important;box-shadow:inset 3px 0 0 #17c5ae,0 0 19px #06b59627!important}
+.queue-now-card.is-playing::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 12% 90%,#19cfa327,transparent 52%);animation:queueOnAirGlow 4.5s ease-in-out infinite alternate}
+.queue-now-card.is-playing .queue-now-label{color:#12baa2}
+.queue-now-card.is-playing #queueNowState{color:#10a991;font-weight:900;letter-spacing:.07em}
+.queue-now-card.is-playing #queueNowState::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:1px;background:#16c99e;box-shadow:0 0 0 3px #16c99e2b;animation:queueOnAirDot 1.7s ease-in-out infinite}
+.queue-now-card.is-paused{border-color:#ad7b27!important;box-shadow:inset 3px 0 0 #dda43a!important}
+.queue-now-card.is-paused #queueNowState,.queue-now-card.is-paused .queue-now-label{color:#ce9b33!important}
+@keyframes queueOnAirBars{0%{transform:scaleY(.38)}55%{transform:scaleY(.83)}100%{transform:scaleY(1.15)}}
+@keyframes queueOnAirGlow{from{opacity:.4;transform:translateX(-4%)}to{opacity:1;transform:translateX(5%)}}
+@keyframes queueOnAirDot{0%,100%{opacity:1}50%{opacity:.45}}
+@media(prefers-reduced-motion:reduce){.queue-now-card .queue-now-visual span,.queue-now-card.is-playing::before,.queue-now-card.is-playing #queueNowState::before{animation:none!important}.queue-drag-ghost{transition:none!important}}
+
+/* v66: professional Audio Queue broadcast player. Animations reflect actual play/pause state. */
+.queue-now-card.queue-player{--player-ink:#f5faf9;--player-muted:#aabbb7;--player-accent:#43e3c4;--player-border:#3b5450;--player-surface:#111a18;--player-soft:#172420;--player-track:#34423f;position:relative;display:grid;gap:0;overflow:hidden;isolation:isolate;border:1px solid var(--player-border);border-radius:19px;padding:16px 18px;background:#111816;color:var(--player-ink);box-shadow:0 10px 28px #0003;transition:border-color .23s ease,box-shadow .23s ease;background-clip:padding-box}
+.queue-player>*:not(.queue-player-backdrop){position:relative;z-index:1}.queue-player .queue-player-backdrop{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 96% 10%,#14bda81b,transparent 53%),linear-gradient(128deg,#ffffff06,transparent 48%);opacity:.55;transition:opacity .25s}
+.queue-player .queue-player-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;min-width:0}
+.queue-player .queue-player-station{display:flex;align-items:center;gap:8px;min-width:0;color:var(--player-accent);font-weight:900;font-size:10px;letter-spacing:.12em;white-space:nowrap}
+.queue-player .queue-player-station-thin{color:var(--player-muted);font-weight:600;letter-spacing:.07em}
+.queue-player .queue-player-onair-dot{width:8px;height:8px;border-radius:50%;flex:none;background:#768380;box-shadow:0 0 0 3px #77827c20}
+.queue-player .queue-player-status{display:inline-flex;align-items:center;justify-content:center;flex:none;min-height:25px;border:1px solid #52716a66;border-radius:999px;padding:4px 9px;background:#24332c;color:#c4dbd2;font-size:10px;letter-spacing:.09em;font-weight:850}
+.queue-player .queue-player-hero{display:grid;grid-template-columns:88px minmax(0,1fr);align-items:center;gap:15px;min-width:0;margin-bottom:13px}
+.queue-player .queue-player-cover{position:relative;display:grid;place-items:center;width:88px;height:88px;border-radius:16px;overflow:hidden;border:1px solid #599d8559;background:radial-gradient(circle at 28% 18%,#377c68,#183831 48%,#0c1614 100%);box-shadow:0 8px 22px #0007,inset 0 1px #ffffff28}
+.queue-player .queue-player-cover-shine{position:absolute;inset:-50%;transform:rotate(25deg) translateX(-85%);background:linear-gradient(90deg,transparent 43%,#ffffff16 50%,transparent 57%);pointer-events:none}
+.queue-player .queue-player-disc{position:relative;width:70px;height:70px;border-radius:50%;display:grid;place-items:center;background:repeating-radial-gradient(circle at center,#111c19 0px,#111c19 3px,#253f36 4px,#0c1311 5px,#0c1311 7px);border:2px solid #8bb6a44d;box-shadow:0 3px 10px #0009,inset 0 1px 5px #91d9b52a;animation:queuePlayerSpin 9s linear infinite;animation-play-state:paused}
+.queue-player .queue-player-disc:after{content:"";position:absolute;inset:25px;border:2px solid #8be1bc70;border-radius:50%}
+.queue-player .queue-player-disc-core{width:30px;height:30px;display:grid;place-items:center;background:#235646;border:1px solid #87e5bb88;border-radius:50%;color:#c4ffe3;z-index:1}
+.queue-player .queue-player-disc-core svg{width:14px;height:14px;transform:rotate(-10deg)}
+.queue-player .queue-player-track{min-width:0;display:flex;flex-direction:column;justify-content:center;gap:5px}
+.queue-player .queue-player-eyebrow{font-size:10px;letter-spacing:.12em;font-weight:850;color:var(--player-muted)}
+.queue-now-card.queue-player #queueNowTitle{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;font-weight:850;font-size:clamp(17px,2vw,22px);letter-spacing:-.035em;line-height:1.16;color:var(--player-ink);overflow-wrap:anywhere}
+.queue-now-card.queue-player #queueNowHint{font-size:11px;line-height:1.3;color:var(--player-muted);margin:1px 0 3px}
+.queue-player .queue-player-tags{display:flex;flex-wrap:wrap;gap:6px}
+.queue-player .queue-player-tags span{display:inline-flex;align-items:center;max-width:100%;padding:4px 7px;border:1px solid #6bd4ae4a;border-radius:6px;background:#34b99a16;color:#9bdfca;font-size:9px;font-weight:750;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.queue-player .queue-player-tags span+span{border-color:#839b9570;background:#ffffff0a;color:#aebfba}
+.queue-player .queue-player-visual{position:relative;display:flex;align-items:center;gap:13px;min-width:0;min-height:56px;margin-bottom:12px;padding:7px 13px;border:1px solid #3d675963;border-radius:11px;background:linear-gradient(90deg,#14251e,#10201c 55%,#12241d);overflow:hidden}
+.queue-player .queue-player-visual-caption{flex:none;max-width:70px;font-size:9px;font-weight:850;letter-spacing:.11em;line-height:1.4;color:#75b7a5}
+.queue-player .queue-player-visual-bars{height:39px;min-width:0;flex:1;display:flex;align-items:center;justify-content:space-between;gap:2px;overflow:hidden;mask-image:linear-gradient(90deg,#000, #000 94%,transparent)}
+.queue-player .queue-player-visual-bars span{height:var(--h);flex:1 1 0;max-width:7px;min-width:1px;border-radius:4px;background:linear-gradient(180deg,#68ebcf,#1d927c 75%,#226b5f);opacity:.34;transform-origin:center;animation:queuePlayerBars calc(.62s + var(--i)*.026s) ease-in-out infinite alternate;animation-delay:var(--delay);animation-play-state:paused}
+.queue-player .queue-player-timeline{margin:0 0 12px}
+.queue-player .queue-player-timeline input{display:block;cursor:pointer;height:8px;margin:0;width:100%;accent-color:var(--player-accent);background:linear-gradient(90deg,#29ddba var(--seek-progress,0%),#34423e var(--seek-progress,0%));border-radius:99px;appearance:none;-webkit-appearance:none;outline-offset:3px}
+.queue-player .queue-player-timeline input:disabled{opacity:.48;cursor:default}
+.queue-player .queue-player-timeline input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:13px;height:13px;border-radius:50%;background:#aaffdf;border:2px solid #147f69;box-shadow:0 0 0 3px #20e2b91a}
+.queue-player .queue-player-timeline input::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:#aaffdf;border:2px solid #147f69}
+.queue-player .queue-current-time{margin-top:6px;color:var(--player-muted);font-size:11px;font-weight:650;font-variant-numeric:tabular-nums}
+.queue-player .queue-player-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;min-width:0;padding-top:12px;border-top:1px solid #74998a29}
+.queue-player .queue-player-transport-caption{display:flex;gap:7px;align-items:center;min-width:0;color:var(--player-muted);font-size:9px;letter-spacing:.08em;font-weight:800}
+.queue-player .queue-player-small-dot{flex:none;width:6px;height:6px;background:#687c74;border-radius:50%}
+.queue-player .queue-now-actions{display:flex;gap:7px;align-items:center;margin:0;min-width:0}
+.queue-player .queue-player-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 12px;min-height:38px;min-width:68px;border-radius:9px;border:1px solid #526b6259;background:#23302b;color:#e8f8f0;font:inherit;font-size:12px;font-weight:800;cursor:pointer;transition:background .16s ease,border-color .16s ease,transform .16s ease;white-space:nowrap}
+.queue-player .queue-player-btn svg{width:16px;height:16px;flex:none}
+.queue-player .queue-player-btn-primary{background:#0a9e86;color:#fff;border-color:#13ae98;box-shadow:0 4px 13px #00b99b24}
+.queue-player .queue-player-btn-stop{background:#372522;color:#ffbeb6;border-color:#86463b}
+.queue-player .queue-player-btn-next{background:#293331;color:#ddf9ee;border-color:#546e66}
+.queue-player .queue-player-btn:not(:disabled):hover{transform:translateY(-1px);filter:brightness(1.13)}
+.queue-player .queue-player-btn:focus-visible{outline:3px solid #47dbba;outline-offset:3px}
+.queue-player .queue-player-btn:disabled{opacity:.38;cursor:default;box-shadow:none;filter:none}
+.queue-now-card.queue-player.is-playing{--player-border:#22bc9f;background:linear-gradient(145deg,#112923,#101816 60%,#121b18);border-color:#25c6a6!important;box-shadow:0 8px 30px #11bd8a20,0 0 0 1px #15bca220!important}
+.queue-now-card.queue-player.is-playing .queue-player-backdrop{opacity:1;animation:queuePlayerAura 5s ease-in-out infinite alternate}
+.queue-now-card.queue-player.is-playing .queue-player-cover-shine{animation:queuePlayerSheen 4s ease-in-out infinite}
+.queue-now-card.queue-player.is-playing .queue-player-disc,.queue-now-card.queue-player.is-playing .queue-player-visual-bars span{animation-play-state:running}
+.queue-now-card.queue-player.is-playing .queue-player-visual-bars span{opacity:.84}
+.queue-now-card.queue-player.is-playing .queue-player-onair-dot,.queue-now-card.queue-player.is-playing .queue-player-small-dot{background:#36e5bf;box-shadow:0 0 0 4px #13cfac25;animation:queuePlayerDot 1.8s ease-in-out infinite}
+.queue-now-card.queue-player.is-playing .queue-player-status{background:#0a503f;color:#75f6d1;border-color:#1db996}
+.queue-now-card.queue-player.is-paused{--player-accent:#e5b868;--player-border:#816c45;border-color:#9a793e!important;box-shadow:0 8px 25px #a86d1b16!important}
+.queue-now-card.queue-player.is-paused .queue-player-status{background:#453721;color:#ffd88a;border-color:#90672c}
+.queue-now-card.queue-player.is-paused .queue-player-visual-bars span{background:linear-gradient(180deg,#e9c77e,#a47735);opacity:.4}
+.queue-now-card.queue-player.is-paused .queue-player-onair-dot{background:#d2a254}
+html[data-theme="light"] .queue-now-card.queue-player{--player-ink:#153831;--player-muted:#52746b;--player-accent:#008f79;--player-border:#bad5ca;--player-track:#c7dcd4;background:#fff!important;color:var(--player-ink);box-shadow:0 5px 22px #0b5d4d12!important}
+html[data-theme="light"] .queue-now-card.queue-player.is-playing{background:linear-gradient(135deg,#f5fffc,#e7fbf4 78%,#f5fffe)!important;box-shadow:0 7px 30px #079d7a1e!important;border-color:#12ae93!important}
+html[data-theme="light"] .queue-now-card.queue-player.is-paused{background:linear-gradient(145deg,#fffdfa,#fff5e5)!important;border-color:#b28b4d!important}
+html[data-theme="light"] .queue-player .queue-player-visual{background:linear-gradient(90deg,#eefbf5,#e4f5ef);border-color:#b6ddcf}
+html[data-theme="light"] .queue-player .queue-player-visual-caption{color:#347b69}
+html[data-theme="light"] .queue-player .queue-player-timeline input{background:linear-gradient(90deg,#0cab92 var(--seek-progress,0%),#c6dbd2 var(--seek-progress,0%))}
+html[data-theme="light"] .queue-player .queue-player-bottom{border-color:#badad0}
+html[data-theme="light"] .queue-player .queue-player-btn-next{background:#e9f6f1;color:#174f41;border-color:#aacdbd}
+html[data-theme="light"] .queue-player .queue-player-btn-stop{background:#fff0eb;color:#963b35;border-color:#dcb0a9}
+html[data-theme="light"] .queue-player .queue-player-tags span{background:#dffaf1;color:#126d54;border-color:#99d7bd}
+html[data-theme="light"] .queue-player .queue-player-tags span+span{background:#eff5f4;color:#557267;border-color:#c7d9d1}
+html[data-theme="light"] .queue-player .queue-player-status{background:#eaf3ee;color:#49685b;border-color:#bed4ca}
+html[data-theme="light"] .queue-now-card.queue-player.is-playing .queue-player-status{background:#d3f7e9;color:#037559;border-color:#77cdb4}
+html[data-theme="light"] .queue-now-card.queue-player.is-paused .queue-player-status{background:#fff0d4;color:#966a20;border-color:#e7c789}
+@media(max-width:650px){.queue-now-card.queue-player{padding:13px;border-radius:14px}.queue-player .queue-player-hero{grid-template-columns:67px minmax(0,1fr);gap:11px;margin-bottom:11px}.queue-player .queue-player-cover{width:67px;height:67px;border-radius:12px}.queue-player .queue-player-disc{width:55px;height:55px}.queue-player .queue-player-disc:after{inset:19px}.queue-player .queue-player-disc-core{width:25px;height:25px}.queue-now-card.queue-player #queueNowTitle{font-size:17px}.queue-player .queue-player-visual{min-height:47px;margin-bottom:10px}.queue-player .queue-player-visual-bars{height:32px}.queue-player .queue-player-bottom{gap:9px}.queue-player .queue-player-transport-caption{font-size:9px}.queue-player .queue-player-btn{padding:9px;min-width:59px;min-height:35px}.queue-player .queue-player-btn span{font-size:11px}}
+@media(max-width:375px){.queue-player .queue-player-bottom{flex-wrap:wrap}.queue-player .queue-player-transport-caption{width:100%}.queue-player .queue-now-actions{width:100%}.queue-player .queue-player-btn{flex:1}.queue-player .queue-player-station{font-size:9px}.queue-player .queue-player-status{font-size:9px}.queue-player .queue-player-visual-caption{max-width:57px;font-size:8px}.queue-now-card.queue-player #queueNowTitle{font-size:16px}}
+@keyframes queuePlayerSpin{to{transform:rotate(360deg)}}
+@keyframes queuePlayerBars{0%{transform:scaleY(.32)}45%{transform:scaleY(.78)}100%{transform:scaleY(1.12)}}
+@keyframes queuePlayerAura{from{transform:translateX(-3%);filter:hue-rotate(-7deg)}to{transform:translateX(3%);filter:hue-rotate(5deg)}}
+@keyframes queuePlayerSheen{0%{transform:rotate(25deg) translateX(-80%)}100%{transform:rotate(25deg) translateX(80%)}}
+@keyframes queuePlayerDot{50%{opacity:.44;box-shadow:0 0 0 7px #13cfac10}}
+@media(prefers-reduced-motion:reduce){.queue-player .queue-player-disc,.queue-player .queue-player-visual-bars span,.queue-player .queue-player-backdrop,.queue-player .queue-player-cover-shine,.queue-player .queue-player-onair-dot,.queue-player .queue-player-small-dot{animation:none!important}.queue-player .queue-player-btn{transition:none!important}}
+</style>
+<style id="v67-compact-queue-player">
+/* v67: Dense horizontal broadcast player. Keep the exact existing audio logic. */
+.queue-now-card.queue-player{
+  box-sizing:border-box;
+  width:100%;
+  max-width:780px;
+  padding:10px 12px;
+  border-radius:13px;
+  box-shadow:0 4px 14px #0002;
+}
+.queue-player .queue-player-top{gap:8px;margin-bottom:6px}
+.queue-player .queue-player-station{gap:6px;font-size:9px;letter-spacing:.075em}
+.queue-player .queue-player-station-thin{font-size:9px}
+.queue-player .queue-player-onair-dot{width:6px;height:6px}
+.queue-player .queue-player-status{min-height:20px;padding:2px 7px;font-size:9px}
+.queue-player .queue-player-hero{grid-template-columns:50px minmax(0,1fr);gap:10px;margin-bottom:6px}
+.queue-player .queue-player-cover{width:50px;height:50px;border-radius:9px;box-shadow:0 3px 12px #0004}
+.queue-player .queue-player-disc{width:42px;height:42px;border-width:1px}
+.queue-player .queue-player-disc:after{inset:14px;border-width:1px}
+.queue-player .queue-player-disc-core{width:19px;height:19px}
+.queue-player .queue-player-disc-core svg{width:11px;height:11px}
+.queue-player .queue-player-track{gap:2px}
+.queue-player .queue-player-eyebrow{display:none}
+.queue-now-card.queue-player #queueNowTitle{font-size:clamp(14px,1.6vw,16px);line-height:1.15;letter-spacing:-.02em;-webkit-line-clamp:1}
+.queue-now-card.queue-player #queueNowHint{font-size:10px;line-height:1.1;margin:0;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.queue-player .queue-player-tags{gap:4px;margin-top:2px}
+.queue-player .queue-player-tags span{padding:2px 5px;font-size:8px;border-radius:4px}
+.queue-player .queue-player-visual{height:18px;min-height:18px;padding:0 4px;gap:0;margin-bottom:6px;background:transparent!important;border:0!important;border-radius:0;opacity:.75}
+.queue-player .queue-player-visual-caption{display:none}
+.queue-player .queue-player-visual-bars{height:17px;gap:2px;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.queue-player .queue-player-visual-bars span{max-width:5px;opacity:.40}
+.queue-player .queue-player-timeline{margin:0 0 5px}
+.queue-player .queue-player-timeline input{height:5px}
+.queue-player .queue-player-timeline input::-webkit-slider-thumb{width:11px;height:11px}
+.queue-player .queue-current-time{margin-top:3px;font-size:10px;line-height:1.1}
+.queue-player .queue-player-bottom{padding-top:4px;gap:7px}
+.queue-player .queue-player-transport-caption{font-size:9px;letter-spacing:.04em}
+.queue-player .queue-now-actions{gap:5px}
+.queue-player .queue-player-btn{min-height:30px;min-width:55px;padding:6px 8px;border-radius:7px;gap:5px;font-size:10px}
+.queue-player .queue-player-btn svg{width:12px;height:12px}
+.queue-player .queue-player-btn-primary{box-shadow:none}
+html[data-theme="light"] .queue-now-card.queue-player{box-shadow:0 2px 12px #0b5d4d0d!important}
+html[data-theme="light"] .queue-now-card.queue-player.is-playing{box-shadow:0 3px 16px #079d7a16!important}
+@media (max-width:700px){
+  .queue-now-card.queue-player{max-width:100%;padding:9px 10px;border-radius:11px}
+  .queue-player .queue-player-top{margin-bottom:5px}
+  .queue-player .queue-player-hero{grid-template-columns:42px minmax(0,1fr);gap:8px;margin-bottom:5px}
+  .queue-player .queue-player-cover{width:42px;height:42px;border-radius:8px}
+  .queue-player .queue-player-disc{width:36px;height:36px}
+  .queue-player .queue-player-disc:after{inset:12px}
+  .queue-player .queue-player-disc-core{width:16px;height:16px}
+  .queue-now-card.queue-player #queueNowTitle{font-size:14px}
+  .queue-now-card.queue-player #queueNowHint{font-size:9px}
+  .queue-player .queue-player-visual{min-height:13px;height:13px;margin-bottom:5px}
+  .queue-player .queue-player-visual-bars{height:13px}
+  .queue-player .queue-player-bottom{flex-wrap:nowrap}
+  .queue-player .queue-player-transport-caption{display:none}
+  .queue-player .queue-now-actions{width:100%;justify-content:space-between}
+  .queue-player .queue-player-btn{flex:1;min-width:0;min-height:29px;padding:5px 7px;font-size:10px}
+  .queue-player .queue-player-btn span{font-size:10px}
+}
+@media (max-width:375px){
+  .queue-now-card.queue-player{padding:8px}
+  .queue-player .queue-player-station{font-size:8px}
+  .queue-player .queue-player-station-thin{display:none}
+  .queue-player .queue-player-status{font-size:8px}
+  .queue-player .queue-player-bottom{flex-wrap:nowrap}
+  .queue-player .queue-now-actions{width:100%}
+  .queue-player .queue-player-btn{min-width:0;padding:5px 6px;gap:4px}
+  .queue-player .queue-player-btn svg{width:11px;height:11px}
+}
+</style>
+<style id="queue-repeat-v68-css">
+/* v68: explicit loop state, in the same compact metadata row as category and speed. */
+.queue-player .queue-player-tags #queuePlayerRepeat{transition:background-color .18s ease,border-color .18s ease,color .18s ease;overflow:visible;text-overflow:clip}
+.queue-player .queue-player-tags #queuePlayerRepeat.is-on{background:rgba(19,161,116,.22);border-color:rgba(57,224,166,.65);color:#92f5ca}
+.queue-player .queue-player-tags #queuePlayerRepeat.is-off{background:rgba(132,146,154,.13);border-color:rgba(137,156,163,.33);color:#b2c1bf}
+.queue-player .queue-player-tags #queuePlayerRepeat.is-idle{background:transparent;border-color:rgba(137,156,163,.22);color:#81948d}
+html[data-theme="light"] .queue-player .queue-player-tags #queuePlayerRepeat.is-on{background:#d9f8e8;border-color:#58b991;color:#086c4a}
+html[data-theme="light"] .queue-player .queue-player-tags #queuePlayerRepeat.is-off{background:#f0f4f5;border-color:#c8d4d8;color:#4a6471}
+html[data-theme="light"] .queue-player .queue-player-tags #queuePlayerRepeat.is-idle{background:#f7f9f9;border-color:#d8e1e3;color:#74858a}
+@media(max-width:430px){.queue-player .queue-player-tags{gap:3px!important}.queue-player .queue-player-tags span{padding:2px 4px!important;font-size:7.5px!important;letter-spacing:0!important}}
+</style>
+<style id="queue-repeat-toggle-v69-css">
+/* v69: click the repeat metadata chip to toggle the current queued sound's saved loop setting. */
+.queue-player .queue-player-tags button#queuePlayerRepeat{
+ display:inline-flex;align-items:center;justify-content:center;max-width:100%;
+ padding:2px 5px;border:1px solid;border-radius:4px;
+ font-family:inherit;font-size:8px;font-weight:750;line-height:1.3;letter-spacing:.04em;
+ white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;
+ touch-action:manipulation;min-height:19px;
+}
+.queue-player .queue-player-tags button#queuePlayerRepeat:not(:disabled):hover{filter:brightness(1.15);box-shadow:0 0 0 2px #2dd4bf23}
+.queue-player .queue-player-tags button#queuePlayerRepeat:not(:disabled):active{transform:scale(.96)}
+.queue-player .queue-player-tags button#queuePlayerRepeat:focus-visible{outline:2px solid #20bc9e;outline-offset:3px}
+.queue-player .queue-player-tags button#queuePlayerRepeat:disabled{cursor:default;opacity:.65}
+@media(max-width:430px){.queue-player .queue-player-tags button#queuePlayerRepeat{padding:2px 4px;font-size:7.5px;letter-spacing:0}}
+@media(prefers-reduced-motion:reduce){.queue-player .queue-player-tags button#queuePlayerRepeat{transition:none!important}}
+</style>
+</head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div><button id="splashSkip" type="button" class="v64-skip">Skip intro</button></div>
 </div>
 <div id="projectLauncher" class="v64-launcher hidden" role="dialog" aria-modal="true" aria-labelledby="launcherTitle">
@@ -906,7 +1125,21 @@ html[data-theme="light"] .v64-launcher-panel{background:#f7fafd;border-color:#ca
   <div class="queue-stage">
     <div class="queue-main">
       <div class="queue-main-header"><div><span class="queue-kicker">BROADCAST AUTOMATION</span><h2>Audio Queue</h2><p>Build your sequence, then play cues one by one or automatically.</p></div><span class="queue-live-tag">NEXT UP</span></div>
-      <div class="queue-now-card" id="queueNowCard"><div class="queue-now-top"><span class="queue-now-label">● NOW PLAYING</span><span id="queueNowState">STANDBY</span></div><strong id="queueNowTitle">Ready to broadcast</strong><p id="queueNowHint">Add a sound from your library to get started.</p><div class="queue-seek-wrap"><input type="range" id="queueCurrentSeek" min="0" max="1000" value="0" disabled aria-label="Current queued track position"><div class="queue-current-time"><span id="queueNowElapsed">0:00</span><span id="queueNowDuration">0:00</span></div></div><div class="queue-now-actions"><button class="btn small" type="button" id="queueCurrentPause" disabled>Ⅱ Pause</button><button class="btn small" type="button" id="queueCurrentStop" disabled>■ Stop</button></div></div>
+
+      <div class="queue-now-card queue-player" id="queueNowCard" role="region" aria-label="Audio Queue player">
+        <div class="queue-player-backdrop" aria-hidden="true"></div>
+        <div class="queue-player-top">
+          <div class="queue-player-station"><span class="queue-player-onair-dot" aria-hidden="true"></span><span>ON AIR <span class="queue-player-station-thin">/ QUEUE PLAYER</span></span></div>
+          <span class="queue-player-status" id="queueNowState" role="status">STANDBY</span>
+        </div>
+        <div class="queue-player-hero">
+          <div class="queue-player-cover" aria-hidden="true"><div class="queue-player-disc"><div class="queue-player-disc-core"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div></div><span class="queue-player-cover-shine"></span></div>
+          <div class="queue-player-track"><div class="queue-player-eyebrow">CURRENT AUDIO</div><strong id="queueNowTitle">Ready to broadcast</strong><p id="queueNowHint">Build your sequence and press Play Next.</p><div class="queue-player-tags"><span id="queuePlayerCategory">AUDIO QUEUE</span><span id="queuePlayerRate">READY</span><button id="queuePlayerRepeat" class="queue-player-repeat is-idle" type="button" disabled aria-pressed="false" title="Choose a sound to change Repeat" aria-label="Repeat unavailable: no current audio">REPEAT —</button></div></div>
+        </div>
+        <div class="queue-player-visual" aria-hidden="true"><span class="queue-player-visual-caption">PLAYBACK VISUAL</span><div class="queue-player-visual-bars"><span style="--i:0;--h:19%;--delay:0.000s"></span><span style="--i:1;--h:37%;--delay:-0.087s"></span><span style="--i:2;--h:61%;--delay:-0.174s"></span><span style="--i:3;--h:27%;--delay:-0.261s"></span><span style="--i:4;--h:72%;--delay:-0.348s"></span><span style="--i:5;--h:48%;--delay:-0.435s"></span><span style="--i:6;--h:26%;--delay:-0.522s"></span><span style="--i:7;--h:55%;--delay:-0.609s"></span><span style="--i:8;--h:85%;--delay:-0.696s"></span><span style="--i:9;--h:37%;--delay:-0.783s"></span><span style="--i:10;--h:62%;--delay:-0.870s"></span><span style="--i:11;--h:47%;--delay:-0.957s"></span><span style="--i:12;--h:22%;--delay:-1.044s"></span><span style="--i:13;--h:76%;--delay:-1.131s"></span><span style="--i:14;--h:50%;--delay:-1.218s"></span><span style="--i:15;--h:29%;--delay:-1.305s"></span><span style="--i:16;--h:65%;--delay:-1.392s"></span><span style="--i:17;--h:44%;--delay:-1.479s"></span><span style="--i:18;--h:82%;--delay:-1.566s"></span><span style="--i:19;--h:36%;--delay:-1.653s"></span><span style="--i:20;--h:58%;--delay:-1.740s"></span><span style="--i:21;--h:27%;--delay:-1.827s"></span><span style="--i:22;--h:73%;--delay:-1.914s"></span><span style="--i:23;--h:48%;--delay:-2.001s"></span><span style="--i:24;--h:35%;--delay:-2.088s"></span><span style="--i:25;--h:63%;--delay:-2.175s"></span><span style="--i:26;--h:24%;--delay:-2.262s"></span><span style="--i:27;--h:79%;--delay:-2.349s"></span><span style="--i:28;--h:42%;--delay:-2.436s"></span><span style="--i:29;--h:60%;--delay:-2.523s"></span><span style="--i:30;--h:33%;--delay:-2.610s"></span><span style="--i:31;--h:70%;--delay:-2.697s"></span></div></div>
+        <div class="queue-seek-wrap queue-player-timeline"><input type="range" id="queueCurrentSeek" min="0" max="1000" value="0" disabled aria-label="Seek current queued sound"><div class="queue-current-time"><span id="queueNowElapsed">0:00</span><span id="queueNowDuration">0:00</span></div></div>
+        <div class="queue-player-bottom"><div class="queue-player-transport-caption"><span class="queue-player-small-dot" aria-hidden="true"></span><span id="queuePlayerCaption">READY FOR YOUR NEXT CUE</span></div><div class="queue-now-actions queue-player-controls"><button class="queue-player-btn queue-player-btn-primary" type="button" id="queueCurrentPause" disabled aria-label="Pause or resume current audio"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4h3v16H7zm7 0h3v16h-3z"/></svg><span>Pause</span></button><button class="queue-player-btn queue-player-btn-stop" type="button" id="queueCurrentStop" disabled aria-label="Stop current audio"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg><span>Stop</span></button><button class="queue-player-btn queue-player-btn-next" type="button" id="queuePlayerNext" disabled aria-label="Play next queued sound"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m4 5 11 7-11 7V5zm13 0h3v14h-3z"/></svg><span>Next</span></button></div></div>
+      </div>
       <section class="nextup-panel" id="nextUpPanel" aria-label="Next Up audio queue">
  <div class="nextup-bar">
   <div class="nextup-title"><span class="nextup-mark" aria-hidden="true">▤</span><strong>Next Up</strong><span class="nextup-count" id="nextUpCount">0</span><span class="nextup-now" id="nextUpNow">Ready for your sequence</span></div>
@@ -953,8 +1186,8 @@ function renderQueue(){
  $('nextUpClear').disabled=!queued.length;
  let html='';
  if(active){html+=`<div class="nextup-item nextup-active" title="Current queued sound"><span class="nextup-position">♫</span><div class="nextup-item-info"><b>${esc(active.name)}</b><small>${isPlaying?'NOW PLAYING':'CURRENT · PAUSED'}</small></div><span class="nextup-pulse" aria-hidden="true">▮▯▮</span></div>`}
- html+=queued.map((soundId,i)=>{const sound=get(soundId);if(!sound)return '';return `<div class="nextup-item" data-queue-index="${i}" style="--cue-accent:${categoryColor(sound.category)}"><span class="nextup-position">${i+1}</span><div class="nextup-item-info"><b title="${esc(sound.name)}">${esc(sound.name)}</b><small>${esc(sound.category||'Sound')}</small></div><div class="nextup-item-tools"><button data-queue-action="up" data-queue-index="${i}" aria-label="Move ${esc(sound.name)} earlier" title="Move earlier" ${i===0?'disabled':''}>↑</button><button data-queue-action="down" data-queue-index="${i}" aria-label="Move ${esc(sound.name)} later" title="Move later" ${i===queued.length-1?'disabled':''}>↓</button><button data-queue-action="remove" data-queue-index="${i}" aria-label="Remove ${esc(sound.name)} from queue" title="Remove">×</button></div></div>`}).join('');
- root.innerHTML=html||'<div class="nextup-empty">Choose sounds from your library below. Reorder with the arrows.</div>';
+ html+=queued.map((soundId,i)=>{const sound=get(soundId);if(!sound)return '';return `<div class="nextup-item" data-queue-index="${i}" style="--cue-accent:${categoryColor(sound.category)}"><button class="nextup-drag-handle" type="button" aria-label="Drag to reorder ${esc(sound.name)}; alternatively use the arrow keys" title="Drag to reorder · Arrow keys also work">⠿</button><span class="nextup-position">${i+1}</span><div class="nextup-item-info"><b title="${esc(sound.name)}">${esc(sound.name)}</b><small>${esc(sound.category||'Sound')}</small></div><div class="nextup-item-tools"><button type="button" data-queue-action="remove" data-queue-index="${i}" aria-label="Remove ${esc(sound.name)} from queue" title="Remove from queue">×</button></div></div>`}).join('');
+ root.innerHTML=html||'<div class="nextup-empty">Choose sounds from your library below to build your sequence.</div>';
 }
 function addToQueue(soundId){const s=get(soundId);if(!s)return;ensureQueue();project.nextUp.push(soundId);renderQueue();scheduleSave();notify('Added to Next Up: '+s.name)}
 function moveQueue(index,action){ensureQueue();const q=project.nextUp;if(!Number.isInteger(index)||index<0||index>=q.length)return;
@@ -1000,18 +1233,35 @@ function renderQueuePicker(){
 function queueNowUpdate(){
  const s=get(queueCurrentId),x=s?live.get(s.id):null,el=x?.el;
  const active=!!(s&&el);
- $('queueNowCard').classList.toggle('is-active',active);
+ $('queueNowCard').classList.toggle('is-active',active);$('queueNowCard').classList.toggle('is-playing',active&&!el.paused);$('queueNowCard').classList.toggle('is-paused',active&&el.paused);
  $('queueNowTitle').textContent=s?.name||'Ready to broadcast';
- $('queueNowHint').textContent=active?(s.category||'Sound')+' · '+(el.paused?'Paused':'Playing'):'Choose a sound below, then press Play Next.';
+ $('queueNowHint').textContent=active?(el.paused?'Playback paused':'Playing from Audio Queue'):'Build your sequence and press Play Next.';
  $('queueNowState').textContent=active?(el.paused?'PAUSED':'ON AIR'):'STANDBY';
+ $('queuePlayerCategory').textContent=active?(s.category||'Sound').toUpperCase():'AUDIO QUEUE';
+ $('queuePlayerRate').textContent=active?(Number(s.speed)||1)+'× SPEED':'READY';
+ const repeatChip=$('queuePlayerRepeat');
+ const repeatEnabled=active&&!!s.loop;
+ repeatChip.textContent=active?(repeatEnabled?'↻ REPEAT ON':'REPEAT OFF'):'REPEAT —';
+ repeatChip.classList.toggle('is-on',repeatEnabled);
+ repeatChip.classList.toggle('is-off',active&&!repeatEnabled);
+ repeatChip.classList.toggle('is-idle',!active);
+ repeatChip.disabled=!active;
+ repeatChip.setAttribute('aria-pressed',String(repeatEnabled));
+ repeatChip.setAttribute('aria-label',active?(repeatEnabled?'Repeat ON. Click to turn OFF for current sound':'Repeat OFF. Click to turn ON for current sound'):'Repeat unavailable: no current audio');
+ repeatChip.title=active?(repeatEnabled?'Click to turn Repeat OFF':'Click to turn Repeat ON'):'Choose a sound to change Repeat';
+ $('queuePlayerCaption').textContent=active?(el.paused?'PLAYBACK PAUSED':'LIVE QUEUE PLAYBACK'):'READY FOR YOUR NEXT CUE';
  $('queueCurrentPause').disabled=!active;
- $('queueCurrentPause').textContent=active&&el.paused?'▶ Resume':'Ⅱ Pause';
+ const pMode=active?(el.paused?'resume':'pause'):'pause',pBtn=$('queueCurrentPause');
+ if(pBtn.dataset.mode!==pMode){pBtn.dataset.mode=pMode;pBtn.innerHTML=pMode==='resume'?'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m7 4 14 8-14 8V4z"/></svg><span>Resume</span>':'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4h3v16H7zm7 0h3v16h-3z"/></svg><span>Pause</span>'}
+ pBtn.setAttribute('aria-label',pMode==='resume'?'Resume current audio':'Pause current audio');
  $('queueCurrentStop').disabled=!active;
+ $('queuePlayerNext').disabled=!project.nextUp?.length||queueBusy;
  const duration=el&&Number.isFinite(el.duration)?el.duration:0;
  const start=Math.max(0,Number(s?.start)||0),end=s?.end>0?Math.min(duration,s.end):duration;
  const length=Math.max(0,end-start),offset=el?Math.max(0,el.currentTime-start):0;
  const seek=$('queueCurrentSeek');seek.disabled=!active||!length;
  if(document.activeElement!==seek)seek.value=length?Math.min(1000,Math.round(offset/length*1000)):0;
+ seek.style.setProperty('--seek-progress',length?Math.min(100,offset/length*100)+'%':'0%');
  $('queueNowElapsed').textContent=fmt(offset);
  $('queueNowDuration').textContent=fmt(length);
 }
@@ -1019,9 +1269,100 @@ $('queueSearch').addEventListener('input',renderQueuePicker);
 $('queuePickerList').addEventListener('click',e=>{const b=e.target.closest('[data-queue-pick]');if(b){addToQueue(b.dataset.queuePick);renderQueuePicker()}});
 $('queueAddFiles').addEventListener('click',()=>$('files').click());
 $('queueCurrentPause').addEventListener('click',()=>{if(queueCurrentId)pause(queueCurrentId)});
+$('queuePlayerRepeat').addEventListener('click',()=>{
+ const sound=get(queueCurrentId),instance=sound?live.get(sound.id):null;
+ if(!sound||!instance)return;
+ sound.loop=!sound.loop;
+ // Live media instances reference this same sound object. The segment loop checks sound.loop.
+ // Keep the native audio element's loop off: the app controls the selected Start/End range.
+ instance.sound.loop=sound.loop;
+ instance.el.loop=false;
+ queueNowUpdate();
+ scheduleSave();
+});
+$('queuePlayerNext').addEventListener('click',()=>{void playNext()});
 $('queueCurrentStop').addEventListener('click',()=>{const i=queueCurrentId;if(i){cancelQueuedPlayback();stop(i);queueNowUpdate()}});
 $('queueCurrentSeek').addEventListener('input',e=>{const s=get(queueCurrentId),el=live.get(queueCurrentId)?.el;if(!s||!el||!Number.isFinite(el.duration))return;const start=Math.max(0,Number(s.start)||0),end=s.end>0?Math.min(el.duration,s.end):el.duration;el.currentTime=start+Math.max(0,end-start)*Number(e.target.value)/1000;queueNowUpdate()});
 $('nextUpList').addEventListener('click',e=>{const b=e.target.closest('[data-queue-action]');if(b)moveQueue(Number(b.dataset.queueIndex),b.dataset.queueAction)});
+// Accessible, touch-friendly drag sorting. Reorder only pending items, never current audio.
+let queueDrag=null;
+function queueItems(){return Array.from($('nextUpList').querySelectorAll('.nextup-item[data-queue-index]'))}
+function queueCommitOrder(newIndices){
+ ensureQueue();
+ const original=project.nextUp.slice();
+ if(newIndices.length!==original.length||newIndices.some(i=>!Number.isInteger(i)||i<0||i>=original.length))return;
+ if(new Set(newIndices).size!==newIndices.length)return;
+ if(newIndices.every((n,i)=>n===i))return;
+ project.nextUp=newIndices.map(i=>original[i]);
+ renderQueue();scheduleSave();
+}
+function queuePlaceHolder(d,clientY){
+ const root=$('nextUpList');if(!d||!d.placeholder.isConnected)return;
+ const others=queueItems().filter(item=>item!==d.placeholder);
+ let before=null;
+ for(const item of others){const r=item.getBoundingClientRect();if(clientY<r.top+r.height/2){before=item;break}}
+ if(before===d.placeholder.nextElementSibling||(!before&&d.placeholder===root.lastElementChild))return;
+ const prior=new Map(others.map(item=>[item,item.getBoundingClientRect().top]));
+ root.insertBefore(d.placeholder,before);
+ for(const item of others){const delta=prior.get(item)-item.getBoundingClientRect().top;
+  if(Math.abs(delta)>1){item.getAnimations().forEach(a=>{if(a.id==='queue-flip')a.cancel()});
+   if(item.animate){const anim=item.animate([{transform:`translateY(${delta}px)`},{transform:'translateY(0)'}],{duration:170,easing:'cubic-bezier(.22,1,.36,1)'});anim.id='queue-flip'}}
+ }
+}
+function queueMoveGhost(d){
+ const y=d.pointerY-d.offsetY;
+ d.ghost.style.transform=`translate3d(${d.left}px,${y}px,0)`;
+ queuePlaceHolder(d,d.pointerY);
+}
+function queueDragFrame(){
+ const d=queueDrag;if(!d)return;
+ const list=$('nextUpList'),r=list.getBoundingClientRect(),edge=45;
+ if(d.pointerY>r.bottom-edge&&d.pointerY<r.bottom+10)list.scrollTop+=Math.max(3,(d.pointerY-(r.bottom-edge))*.38);
+ else if(d.pointerY<r.top+edge&&d.pointerY>r.top-10)list.scrollTop-=Math.max(3,((r.top+edge)-d.pointerY)*.38);
+ else if(list.scrollHeight<=list.clientHeight+2){
+  if(d.pointerY>window.innerHeight-42)window.scrollBy(0,10);
+  else if(d.pointerY<42)window.scrollBy(0,-10);
+ }
+ queueMoveGhost(d);
+ d.frame=requestAnimationFrame(queueDragFrame);
+}
+$('nextUpList').addEventListener('pointerdown',e=>{
+ const handle=e.target.closest('.nextup-drag-handle');if(!handle||queueDrag||e.button!==0)return;
+ const item=handle.closest('.nextup-item[data-queue-index]');if(!item)return;
+ e.preventDefault();
+ const r=item.getBoundingClientRect(),ghost=item.cloneNode(true);
+ ghost.removeAttribute('data-queue-index');ghost.classList.add('queue-drag-ghost');
+ Object.assign(ghost.style,{left:'0px',top:'0px',width:r.width+'px',height:r.height+'px'});
+ document.body.appendChild(ghost);
+ queueDrag={pointerId:e.pointerId,handle,placeholder:item,ghost,left:r.left,offsetY:e.clientY-r.top,pointerY:e.clientY,frame:0};
+ item.classList.add('queue-drag-placeholder');document.body.classList.add('queue-is-dragging');
+ try{handle.setPointerCapture(e.pointerId)}catch(_){}
+ queueMoveGhost(queueDrag);queueDrag.frame=requestAnimationFrame(queueDragFrame);
+});
+window.addEventListener('pointermove',e=>{
+ const d=queueDrag;if(!d||e.pointerId!==d.pointerId)return;
+ e.preventDefault();d.pointerY=e.clientY;
+}, {passive:false});
+function finishQueueDrag(e,cancel=false){
+ const d=queueDrag;if(!d||e.pointerId!==d.pointerId)return;
+ cancelAnimationFrame(d.frame);queueDrag=null;
+ d.ghost.remove();d.placeholder.classList.remove('queue-drag-placeholder');document.body.classList.remove('queue-is-dragging');
+ try{if(d.handle.hasPointerCapture(e.pointerId))d.handle.releasePointerCapture(e.pointerId)}catch(_){}
+ if(!cancel)queueCommitOrder(queueItems().map(item=>Number(item.dataset.queueIndex)));
+ else renderQueue();
+}
+window.addEventListener('pointerup',e=>finishQueueDrag(e));
+window.addEventListener('pointercancel',e=>finishQueueDrag(e,true));
+window.addEventListener('blur',()=>{if(queueDrag){const d=queueDrag;finishQueueDrag({pointerId:d.pointerId},true)}});
+$('nextUpList').addEventListener('keydown',e=>{
+ const handle=e.target.closest('.nextup-drag-handle');if(!handle||!['ArrowUp','ArrowDown'].includes(e.key))return;
+ const i=Number(handle.closest('.nextup-item').dataset.queueIndex),j=i+(e.key==='ArrowUp'?-1:1);
+ ensureQueue();if(j<0||j>=project.nextUp.length)return;
+ e.preventDefault();
+ [project.nextUp[i],project.nextUp[j]]=[project.nextUp[j],project.nextUp[i]];
+ renderQueue();scheduleSave();
+ $('nextUpList').querySelector(`.nextup-item[data-queue-index="${j}"] .nextup-drag-handle`)?.focus();
+});
 $('nextUpPlay').addEventListener('click',()=>{void playNext()});
 $('nextUpClear').addEventListener('click',clearQueue);
 $('nextUpAuto').addEventListener('change',e=>{project.settings.autoNext=e.target.checked;renderQueue();scheduleSave()});
