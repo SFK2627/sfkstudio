@@ -10170,7 +10170,7 @@ html[data-theme=light] #djWorkspace.dj-v127-immersive .dj-v128-rec-status[data-s
  const centerButton=document.createElement('button');
  centerButton.className='dj138-mixer-launch';
  centerButton.type='button';centerButton.dataset.dj138Open='true';
- centerButton.innerHTML='<span>◫</span> BEAT STATION <small>SHARED</small>';
+ centerButton.innerHTML='<span>◫</span> BEATS <small>SHARED</small>';
  centerButton.setAttribute('aria-label','Open shared Beat Station');
  mixer.querySelector('.djpro-mixer-title').after(centerButton);
  const navButton=document.createElement('button');
@@ -13439,4 +13439,116 @@ html[data-theme="light"] #studio #cards .sound.categorized.is-paused{
   #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mix-channel {gap:1px!important;padding:2px!important;overflow-y:auto!important;scrollbar-width:thin;}
 }
 </style>
+
+<style id="dj-v142-mobile-ui-stability">
+/* v142: Mobile DJ transport uses identical 3-slot icon controls in ALL views. */
+@media (max-width:700px) {
+ #djWorkspace .dj-deck-actions{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:clamp(3px,1vw,7px)!important;flex-wrap:nowrap!important;min-width:0!important;max-width:100%!important;align-items:center!important;}
+ #djWorkspace .dj-deck-actions .btn,#djWorkspace .dj-deck-actions .btn:first-child{
+  display:inline-flex!important;grid-column:auto!important;grid-row:auto!important;flex:initial!important;
+  align-items:center!important;justify-content:center!important;min-width:0!important;width:100%!important;
+  height:clamp(31px,5.1dvh,41px)!important;min-height:31px!important;max-height:41px!important;
+  padding:3px 2px!important;margin:0!important;line-height:1!important;border-radius:9px!important;
+  overflow:visible!important;box-sizing:border-box!important;
+ }
+ #djWorkspace .dj-deck-actions .dj-action-text{display:none!important;}
+ #djWorkspace .dj-deck-actions .dj-action-glyph{display:inline-flex!important;align-items:center;justify-content:center;width:22px;height:22px;font-size:19px!important;line-height:1!important;flex-shrink:0!important;}
+ #djWorkspace .dj-deck-actions .dj-action-glyph svg{display:block;max-width:19px;max-height:19px;}
+ #djWorkspace.dj-v127-immersive .dj-deck-actions,#djWorkspace.dj-v127-immersive.djpro-complete .dj-deck .dj-deck-actions{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:4px!important;}
+ /* Complete: navigation has THREE tabs only. The single BEATS launcher is INSIDE the mixer content. */
+ #djWorkspace.dj-v127-immersive.djpro-complete .dj-decks{grid-template-rows:34px minmax(0,1fr)!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mobile-nav{
+   display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+   grid-template-rows:30px!important;height:34px!important;gap:4px!important;grid-column:1!important;grid-row:1!important;
+ }
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mobile-nav [data-djpro-focus="A"]{grid-row:1!important;grid-column:1!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mobile-nav [data-djpro-focus="MIX"]{grid-row:1!important;grid-column:2!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mobile-nav [data-djpro-focus="B"]{grid-row:1!important;grid-column:3!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mobile-nav .dj138-nav-beats{display:none!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .dj-decks>.djpro-mixer{grid-row:2!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete[data-djpro-focus="MIX"] .djpro-mixer .dj138-mixer-launch{
+   display:inline-flex!important;flex:none!important;align-self:center!important;align-items:center!important;
+   justify-content:center!important;gap:6px!important;height:28px!important;min-height:28px!important;max-height:28px!important;
+   border-radius:9px!important;padding:3px 12px!important;font-size:10px!important;
+   border:1px solid #46bcb2!important;background:linear-gradient(145deg,#196762,#164a56)!important;
+   color:#eafff9!important;cursor:pointer!important;white-space:nowrap!important;
+ }
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mixer .dj138-mixer-launch small{font-size:8px!important;opacity:.9!important;color:inherit!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mixer{gap:clamp(2px,.45dvh,6px)!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mixer-channels{min-height:0!important;}
+ html[data-theme="light"] #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mixer .dj138-mixer-launch{
+   background:linear-gradient(140deg,#d2f3ed,#bce4df)!important;color:#15594f!important;border-color:#55b4a6!important;
+ }
+}
+/* Footer is the ORIGINAL v141.9 panel. Stabilize only its layout slot to avoid Deck B time/meter reflow. */
+#djWorkspace.dj-v127-immersive{
+ grid-template-rows:auto minmax(0,1fr) clamp(68px,10dvh,101px)!important;
+}
+#djWorkspace.dj-v127-immersive>.dj-mix-panel{
+ grid-row:3!important;align-self:stretch!important;min-height:0!important;max-height:none!important;
+ height:100%!important;box-sizing:border-box!important;overflow:hidden!important;
+}
+#djWorkspace .dj-time,#djWorkspace .dj-cross-footer,#djWorkspace .dj-v128-rec-status{
+ font-variant-numeric:tabular-nums!important;
+}
+#djWorkspace .dj-v128-rec-status{white-space:nowrap!important;}
+@media(max-width:700px) and (max-height:480px) and (orientation:landscape){
+ #djWorkspace.dj-v127-immersive{grid-template-rows:auto minmax(0,1fr) 51px!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .dj-decks{grid-template-rows:26px minmax(0,1fr)!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mobile-nav{grid-template-rows:24px!important;height:26px!important;gap:2px!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mobile-nav button{height:24px!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mixer .dj138-mixer-launch{min-height:23px!important;height:23px!important;max-height:23px!important;padding:2px 8px!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mixer .dj138-mixer-launch small{display:none!important;}
+ #djWorkspace.dj-v127-immersive.djpro-complete .djpro-mixer-title small{display:none!important;}
+}
+/* One tooltip style shared by normal and fullscreen DJ transport; never takes layout space. */
+#dj142-transport-tip{position:fixed;z-index:120000;display:none;max-width:min(255px,calc(100vw - 20px));
+ pointer-events:none;background:#142432;border:1px solid #5c8398;color:#f1faff;border-radius:10px;
+ padding:9px 12px;box-shadow:0 12px 30px #0008;font:500 12px/1.4 system-ui,sans-serif;
+ text-align:left;overflow-wrap:anywhere;}
+#dj142-transport-tip[data-visible="true"]{display:block;}
+#dj142-transport-tip strong{display:block;font-size:12px;color:#83e3e6;margin-bottom:3px;}
+html[data-theme="light"] #dj142-transport-tip{background:#fff;border-color:#a9c2d2;color:#284353;box-shadow:0 9px 24px #19354a29;}
+html[data-theme="light"] #dj142-transport-tip strong{color:#08647a;}
+</style>
+<script id="dj-v142-transport-help">
+(()=>{
+ 'use strict';
+ const root=document.getElementById('djWorkspace');if(!root)return;
+ const tip=document.createElement('aside');tip.id='dj142-transport-tip';tip.setAttribute('role','tooltip');document.body.appendChild(tip);
+ const help={
+   play:['Play / Resume','Start the selected deck or continue from the paused position.'],
+   pause:['Pause','Pause this deck without losing the current position.'],
+   rewind:['Restart','Start this deck again from the beginning.']
+ };
+ let active=null,touchTimer=null,hideTimer=null;
+ function stopTimers(){clearTimeout(touchTimer);clearTimeout(hideTimer);}
+ function hide(){stopTimers();tip.dataset.visible='false';active=null;}
+ function show(button){if(!button||!root.contains(button))return;stopTimers();active=button;
+   const kind=button.classList.contains('dj-transport-rewind')?'rewind':button.classList.contains('dj-transport-pause')?'pause':'play';
+   const deck=button.closest('[data-deck]')?.getAttribute('data-deck')||'';
+   tip.replaceChildren();const h=document.createElement('strong');h.textContent=help[kind][0]+' · Deck '+deck;
+   tip.append(h,document.createTextNode(help[kind][1]));tip.dataset.visible='true';
+   const r=button.getBoundingClientRect(),tr=tip.getBoundingClientRect();
+   let x=Math.max(10,Math.min(window.innerWidth-tr.width-10,r.left+r.width/2-tr.width/2));
+   let y=r.top-tr.height-9;if(y<8)y=Math.min(window.innerHeight-tr.height-8,r.bottom+8);
+   tip.style.left=x+'px';tip.style.top=y+'px';
+ }
+ for(const btn of root.querySelectorAll('.dj-deck-actions .dj-transport')){
+   // Keep accessible button names, avoid duplicate native HTML tooltips.
+   btn.removeAttribute('title');
+   btn.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')show(btn)});
+   btn.addEventListener('pointerleave',hide);
+   btn.addEventListener('focus',()=>show(btn));
+   btn.addEventListener('blur',hide);
+   btn.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'||e.pointerType==='pen'){
+     hide();touchTimer=setTimeout(()=>{show(btn);hideTimer=setTimeout(hide,1800)},520);
+   }});
+   btn.addEventListener('pointerup',()=>{clearTimeout(touchTimer);if(active){hideTimer=setTimeout(hide,850)}});
+   btn.addEventListener('pointercancel',hide);
+ }
+ window.addEventListener('scroll',hide,{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)hide()});
+})();
+</script>
 </body></html>
