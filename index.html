@@ -2747,6 +2747,16 @@ html[data-theme="light"] .v87-studio-header #aeOpen{
  .sound-editor-open .v77-sound-editor .v122-trim-visual{margin:3px 0 7px;gap:3px}
  .sound-editor-open .v77-sound-editor .v122-trim-ticks{font-size:9px}
 }
+/* v123 — touch-friendly, accessible, seekable edit-sound waveform. */
+.sound-editor-open .v77-sound-editor #trimTimeline{cursor:crosshair;touch-action:none;user-select:none;-webkit-user-select:none;outline-offset:2px}
+.sound-editor-open .v77-sound-editor #trimTimeline:focus-visible{outline:2px solid var(--edit-accent,#49d6bc)}
+.sound-editor-open .v77-sound-editor #trimTimeline[data-scrubbing="true"]{cursor:ew-resize}
+.sound-editor-open .v77-sound-editor .v122-trim-playhead{z-index:4}
+.sound-editor-open .v77-sound-editor .v122-trim-playhead::before{border-top-width:9px;top:0}
+.sound-editor-open .v77-sound-editor .v123-trim-hint{font-size:10px;color:var(--edit-muted,#879baa);margin:0 0 3px;line-height:1.3}
+.sound-editor-open .v77-sound-editor .v123-fade-guide{position:absolute;top:4px;bottom:4px;width:1px;background:var(--edit-accent,#51ceb9);opacity:.65;pointer-events:none;z-index:2;display:none}
+.sound-editor-open .v77-sound-editor .v123-fade-guide.is-visible{display:block}
+@media(max-width:430px){.sound-editor-open .v77-sound-editor .v123-trim-hint{font-size:9px;line-height:1.25}}
 @media(prefers-reduced-motion:reduce){#projectLauncher .v110-editor-entry,#projectLauncher .v75-theme-switch{transition:none}}
 </style></head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div><button id="splashSkip" type="button" class="v64-skip">Skip intro</button></div>
@@ -3424,14 +3434,31 @@ function parseClock(value){
  if(/^\d+(?:\.\d{1,3})?$/.test(t))return Number(t);
  return NaN;
 }
-let editorAudio=null,editorPreviewFrame=null;
+let editorAudio=null,editorPreviewFrame=null,editorPreviewSeekTime=null,editorPreviewGeneration=0,editorPreviewUpdate=null;
 function moveEditorTrimPlayhead(second){
  const timeline=$('trimTimeline'),line=$('trimPlayhead'),label=$('trimCurrentTime');if(!timeline||!line)return;
  const duration=Number(timeline.dataset.duration)||0,time=Math.max(0,Number(second)||0);
  line.style.left=(duration?Math.min(100,time/duration*100):0)+'%';
  if(label)label.textContent=clockTime(time);
+ const start=parseClock($('sStart')?.value),end=parseClock($('sEnd')?.value);
+ if(Number.isFinite(start)&&Number.isFinite(end)&&end>start){
+  timeline.setAttribute('aria-valuemin',String(Math.round(start*1000)));
+  timeline.setAttribute('aria-valuemax',String(Math.round(end*1000)));
+  timeline.setAttribute('aria-valuenow',String(Math.round(clamp(time,start,end)*1000)));
+  timeline.setAttribute('aria-valuetext',clockTime(time));
+ }
 }
-function stopEditorPreview(){if(editorPreviewFrame!==null){cancelAnimationFrame(editorPreviewFrame);editorPreviewFrame=null}if(editorAudio){editorAudio.pause();editorAudio.removeAttribute('src');editorAudio.load();editorAudio=null}const stopBtn=$('rangeStop'),notice=$('previewNotice'),listenBtn=$('rangePreview');if(stopBtn)stopBtn.disabled=true;if(listenBtn)listenBtn.classList.remove('is-listening');if(notice&&$('modalBg')?.classList.contains('sound-editor-open'))notice.textContent='Preview stopped · Broadcast unaffected.';const start=$('sStart');moveEditorTrimPlayhead(start?parseClock(start.value):0)}
+function stopEditorPreview(){
+ editorPreviewGeneration++;
+ if(editorPreviewFrame!==null){cancelAnimationFrame(editorPreviewFrame);editorPreviewFrame=null}
+ if(editorAudio){const a=editorAudio;editorAudio=null;a.pause();a.onended=null;a.ontimeupdate=null;a.onerror=null;a.removeAttribute('src');a.load()}
+ editorPreviewUpdate=null;editorPreviewSeekTime=null;
+ const stopBtn=$('rangeStop'),notice=$('previewNotice'),listenBtn=$('rangePreview');
+ if(stopBtn)stopBtn.disabled=true;
+ if(listenBtn)listenBtn.classList.remove('is-listening');
+ if(notice&&$('modalBg')?.classList.contains('sound-editor-open'))notice.textContent='Preview stopped · Broadcast unaffected.';
+ const start=$('sStart');moveEditorTrimPlayhead(start?parseClock(start.value):0);
+}
 function editSound(id){const s=get(id);if(!s)return;stopEditorPreview();modal('Edit Sound',`<div class="editor-v9 v76-sound-editor v77-sound-editor">
 
 <div class="edit-editor-grid">
@@ -3443,12 +3470,15 @@ function editSound(id){const s=get(id);if(!s)return;stopEditorPreview();modal('E
 <div class="edit-range" aria-label="Select the start and end of the audio"><div class="range-line"><label for="rangeStart">START</label><input id="rangeStart" type="range" min="0" max="1000" step="1" value="0" aria-label="Trim start position, 1 millisecond increments"></div><div class="range-line"><label for="rangeEnd">END</label><input id="rangeEnd" type="range" min="0" max="1000" step="1" value="1000" aria-label="Trim end position, 1 millisecond increments"></div></div>
 <div class="edit-listen-panel" aria-label="Listen preview controls"><div class="edit-listen-header"><span class="edit-listen-indicator" aria-hidden="true">◉</span><div><strong>Listen before saving</strong></div></div>
 <div class="v122-trim-visual" aria-label="Full song timeline; the selected Start to End section is highlighted">
- <div class="v122-trim-bar" id="trimTimeline" data-duration="0" role="img" aria-label="Full song waveform with selected trim range">
+ <div class="v122-trim-bar" id="trimTimeline" data-duration="0" role="slider" tabindex="0" aria-label="Preview playhead. Tap or drag within the highlighted trim selection to seek. Use arrow keys for fine control." aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0">
   <div class="v122-trim-highlight" id="trimHighlight" aria-hidden="true"></div>
   <canvas id="trimWaveCanvas" class="v122-trim-wave" aria-hidden="true"></canvas>
+  <div class="v123-fade-guide" id="trimFadeInGuide" aria-hidden="true"></div>
+  <div class="v123-fade-guide" id="trimFadeOutGuide" aria-hidden="true"></div>
   <div id="trimPlayhead" class="v122-trim-playhead" aria-hidden="true"></div>
  </div>
  <div class="v122-trim-ticks"><span>00:00.000</span><span class="v122-trim-live"><i aria-hidden="true"></i><span id="trimCurrentTime">00:00.000</span></span><span id="trimTotalTime">--:--.---</span></div>
+ <p class="v123-trim-hint">Tap or drag the red playhead within the highlighted range to choose where to listen.</p>
 </div>
 <div class="edit-preview"><button class="btn green" id="rangePreview" type="button">▶ Listen</button><button class="btn edit-stop-preview" id="rangeStop" type="button" disabled>■ Stop Preview</button></div><p class="hint" id="previewNotice" role="status" aria-live="polite">Only the preview stops, not the broadcast.</p></div></section>
 <section class="edit-section edit-fades" aria-label="Fade effects"><div class="edit-section-top"><span class="edit-step">03</span><div><strong>Smooth fades</strong><small>Set how gently your audio starts and ends</small></div></div><div class="edit-fades-grid"><div class="fade-row"><label for="sFadeIn">Fade in</label><div class="fade-pills" data-fade="sFadeIn"><button type="button" data-val="0">Off</button><button type="button" data-val="1">1s</button><button type="button" data-val="2">2s</button><button type="button" data-val="3">3s</button></div><div class="edit-custom-fade"><input id="sFadeIn" aria-label="Custom fade in seconds" type="number" min="0" max="60" step="0.1" value="${s.fadeIn??0}"><span>s</span></div></div><div class="fade-row"><label for="sFadeOut">Fade out</label><div class="fade-pills" data-fade="sFadeOut"><button type="button" data-val="0">Off</button><button type="button" data-val="1">1s</button><button type="button" data-val="2">2s</button><button type="button" data-val="3">3s</button></div><div class="edit-custom-fade"><input id="sFadeOut" aria-label="Custom fade out seconds" type="number" min="0" max="60" step="0.1" value="${s.fadeOut??0}"><span>s</span></div></div></div></section>
@@ -3459,7 +3489,7 @@ const soundVol=$('sVol'),soundVolValue=$('sVolValue'),soundLoop=$('sLoop'),sound
 const refreshSoundVol=()=>{const vol=clamp(Number(soundVol.value),0,100);soundVolValue.textContent=vol+'%';soundVol.style.setProperty('--edit-volume-fill',vol+'%')};
 soundVol.addEventListener('input',refreshSoundVol);refreshSoundVol();
 soundLoop.addEventListener('change',()=>{soundLoopValue.textContent=soundLoop.checked?'On':'Off'});
-document.querySelectorAll('.fade-pills').forEach(group=>{const input=$(group.dataset.fade);const refresh=()=>group.querySelectorAll('button').forEach(btn=>btn.classList.toggle('selected',Number(btn.dataset.val)===Number(input.value)));group.querySelectorAll('button').forEach(btn=>btn.onclick=()=>{input.value=btn.dataset.val;refresh()});input.addEventListener('input',refresh);refresh()});
+document.querySelectorAll('.fade-pills').forEach(group=>{const input=$(group.dataset.fade);const refresh=()=>{group.querySelectorAll('button').forEach(btn=>btn.classList.toggle('selected',Number(btn.dataset.val)===Number(input.value)));updateTrimTimeline();if(editorPreviewUpdate)editorPreviewUpdate()};group.querySelectorAll('button').forEach(btn=>btn.onclick=()=>{input.value=btn.dataset.val;refresh()});input.addEventListener('input',refresh);input.addEventListener('change',refresh);group.querySelectorAll('button').forEach(btn=>btn.classList.toggle('selected',Number(btn.dataset.val)===Number(input.value)))});
 let duration=0;const st=$('sStart'),en=$('sEnd'),rs=$('rangeStart'),re=$('rangeEnd');
 const trimCanvas=$('trimWaveCanvas'),trimTimeline=$('trimTimeline');
 let trimPeaks=null;
@@ -3474,15 +3504,18 @@ const drawTrimWave=()=>{
  const count=peaks.length||Math.max(10,Math.floor(w/3));
  const gap=w/count,bar=Math.max(1,gap*.67);
  const colors=document.documentElement.dataset.theme==='light'?['#a5b8be','#087d72']:['#6c8791','#6af0cf'];
+ const span=Math.max(.001,b-a),fi=Math.min(Math.max(0,Number($('sFadeIn')?.value)||0),span/2),fo=Math.min(Math.max(0,Number($('sFadeOut')?.value)||0),span/2);
  const paint=(bright)=>{
   ctx.fillStyle=colors[bright?1:0];
   for(let i=0;i<count;i++){
    const amp=peaks.length?peaks[i]:.035;
-   const height=Math.max(2,Math.min(h-5,amp*(h-7)*.94));
+   const t=duration?duration*(i+.5)/count:0;
+   const fade=bright?clamp(Math.min(1,fi?(t-a)/fi:1,fo?(b-t)/fo:1),0,1):1;
+   const height=Math.max(bright&&fade<.01?1:2,Math.min(h-5,amp*(h-7)*.94*fade));
    ctx.fillRect(Math.round(i*gap),Math.round((h-height)/2),Math.max(1,bar),height);
   }
  };
- paint(false);ctx.save();ctx.beginPath();ctx.rect(left,0,Math.max(0,right-left),h);ctx.clip();paint(true);ctx.restore();
+ ctx.save();ctx.beginPath();ctx.rect(0,0,Math.max(0,left),h);ctx.rect(right,0,Math.max(0,w-right),h);ctx.clip();paint(false);ctx.restore();ctx.save();ctx.beginPath();ctx.rect(left,0,Math.max(0,right-left),h);ctx.clip();paint(true);ctx.restore();
 };
 const updateTrimTimeline=()=>{
  if(!trimTimeline||!trimTimeline.isConnected)return;
@@ -3491,8 +3524,13 @@ const updateTrimTimeline=()=>{
  const x=duration?start/duration*100:0,w=duration?Math.max(0,(end-start)/duration*100):100;
  const highlight=$('trimHighlight');if(highlight){highlight.style.left=x+'%';highlight.style.width=w+'%'}
  const total=$('trimTotalTime');if(total)total.textContent=duration?clockTime(duration):'--:--.---';
- trimTimeline.setAttribute('aria-label',`Full song ${clockTime(duration)}; selected range ${clockTime(start)} to ${clockTime(end)}`);
- if(!editorAudio)moveEditorTrimPlayhead(start);
+ trimTimeline.setAttribute('aria-label',`Preview playhead. Full song ${clockTime(duration)}; selected range ${clockTime(start)} to ${clockTime(end)}. Tap or drag to seek.`);
+ const span=Math.max(.001,end-start),fi=Math.min(Math.max(0,Number($('sFadeIn')?.value)||0),span/2),fo=Math.min(Math.max(0,Number($('sFadeOut')?.value)||0),span/2);
+ for(const [id,seconds,position] of [['trimFadeInGuide',fi,start+fi],['trimFadeOutGuide',fo,end-fo]]){
+  const marker=$(id);if(!marker)continue;marker.classList.toggle('is-visible',seconds>.001&&duration>0);
+  marker.style.left=(duration?position/duration*100:0)+'%';
+ }
+ if(!editorAudio)moveEditorTrimPlayhead(Number.isFinite(editorPreviewSeekTime)?clamp(editorPreviewSeekTime,start,end):start);
  drawTrimWave();
 };
 const buildTrimWaveform=async(url)=>{
@@ -3503,7 +3541,7 @@ const buildTrimWaveform=async(url)=>{
   if(bytes.byteLength>100*1024*1024)throw Error('Audio too large for waveform preview');
   const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)return;
   ctx=new AudioCtx();const buffer=await ctx.decodeAudioData(bytes);
-  const points=160,n=buffer.length,channels=[];
+  const points=320,n=buffer.length,channels=[];
   for(let ch=0;ch<Math.min(buffer.numberOfChannels,2);ch++)channels.push(buffer.getChannelData(ch));
   const peaks=new Array(points);
   for(let i=0;i<points;i++){
@@ -3529,13 +3567,17 @@ const valid=()=>{
  return {start,end,fadeIn:Math.max(0,Number($('sFadeIn').value)||0),fadeOut:Math.max(0,Number($('sFadeOut').value)||0)};
 };
 const sync=()=>{
- if(editorAudio)stopEditorPreview();
  if(!duration){updateTrimTimeline();return;}
  const a=parseClock(st.value),b=parseClock(en.value),limit=maxMs();
  rs.max=re.max=String(limit);
  if(Number.isFinite(a))rs.value=String(Math.min(limit,Math.max(0,toMs(a))));
  if(Number.isFinite(b))re.value=String(Math.min(limit,Math.max(0,toMs(b))));
+ if(Number.isFinite(a)&&Number.isFinite(b)&&b>a){
+  if(Number.isFinite(editorPreviewSeekTime))editorPreviewSeekTime=clamp(editorPreviewSeekTime,a,b);
+  if(editorAudio&&(editorAudio.currentTime<a||editorAudio.currentTime>=b))editorAudio.currentTime=a;
+ }
  updateTrimTimeline();
+ if(editorPreviewUpdate)editorPreviewUpdate();
 };
 const normalizeTime=el=>{const n=parseClock(el.value);if(Number.isFinite(n))el.value=clockTime(duration?Math.min(n,duration):n)};
 // Native range values represent milliseconds, not percentages or whole seconds.
@@ -3558,8 +3600,91 @@ st.oninput=en.oninput=sync;
 st.onblur=()=>{normalizeTime(st);sync()};
 en.onblur=()=>{normalizeTime(en);sync()};
 $('rangeReset').onclick=()=>{st.value='00:00.000';en.value=clockTime(duration||0);$('sFadeIn').value=0;$('sFadeOut').value=0;document.querySelectorAll('.fade-pills button').forEach(b=>b.classList.toggle('selected',b.dataset.val==='0'));sync()};
+// Preview scrub: position is always within the highlighted (trimmed) selection.
+const trimBounds=()=>{const v=valid();return v?{start:v.start,end:v.end}:null};
+const seekEditorPreview=(second)=>{
+ const bounds=trimBounds();if(!bounds||!duration)return;
+ const time=Math.round(clamp(second,bounds.start,bounds.end)*1000)/1000;
+ editorPreviewSeekTime=time;
+ if(editorAudio){
+  // Seeking the current audio element does not restart playback or disrupt the broadcast.
+  editorAudio.currentTime=Math.min(time,Math.max(bounds.start,bounds.end-.001));
+  if(editorPreviewUpdate)editorPreviewUpdate();
+ }
+ moveEditorTrimPlayhead(time);
+};
+let trimScrubPointer=null;
+const seekFromPointer=e=>{
+ if(!duration)return;
+ const rect=trimTimeline.getBoundingClientRect();if(!rect.width)return;
+ seekEditorPreview((e.clientX-rect.left)/rect.width*duration);
+};
+trimTimeline.addEventListener('pointerdown',e=>{
+ if(e.button!==0||!trimBounds()||!duration)return;
+ trimScrubPointer=e.pointerId;trimTimeline.dataset.scrubbing='true';
+ try{trimTimeline.setPointerCapture(e.pointerId)}catch(err){}
+ trimTimeline.focus({preventScroll:true});seekFromPointer(e);e.preventDefault();
+});
+trimTimeline.addEventListener('pointermove',e=>{if(trimScrubPointer===e.pointerId){seekFromPointer(e);e.preventDefault()}});
+const finishScrub=e=>{if(trimScrubPointer!==e.pointerId)return;seekFromPointer(e);trimScrubPointer=null;delete trimTimeline.dataset.scrubbing;try{trimTimeline.releasePointerCapture(e.pointerId)}catch(err){}};
+trimTimeline.addEventListener('pointerup',finishScrub);
+trimTimeline.addEventListener('pointercancel',e=>{if(trimScrubPointer===e.pointerId){trimScrubPointer=null;delete trimTimeline.dataset.scrubbing}});
+trimTimeline.addEventListener('keydown',e=>{
+ const bounds=trimBounds();if(!bounds||!duration)return;
+ const current=Number.isFinite(editorPreviewSeekTime)?editorPreviewSeekTime:(editorAudio?editorAudio.currentTime:bounds.start);
+ let next=current;
+ if(e.key==='ArrowLeft')next-=e.shiftKey?.1:.01;
+ else if(e.key==='ArrowRight')next+=e.shiftKey?.1:.01;
+ else if(e.key==='Home')next=bounds.start;
+ else if(e.key==='End')next=bounds.end;
+ else return;
+ e.preventDefault();seekEditorPreview(next);
+});
+$('sSpeed').addEventListener('input',()=>{if(editorAudio){applySoundSpeed(editorAudio,{speed:Number($('sSpeed').value)});if(editorPreviewUpdate)editorPreviewUpdate()}});
+$('sSpeed').addEventListener('change',()=>{if(editorAudio){applySoundSpeed(editorAudio,{speed:Number($('sSpeed').value)});if(editorPreviewUpdate)editorPreviewUpdate()}});
 $('rangeStop').onclick=stopEditorPreview;
-$('rangePreview').onclick=async()=>{try{stopEditorPreview();const v=valid();if(!v||v.end<=v.start){notify('Enter a valid Start and End time (MM:SS.mmm), e.g. 01:15.250');return}const a=new Audio(await audioURL(s));editorAudio=a;a.preload='auto';applySoundSpeed(a,{speed:Number($('sSpeed').value)});a.preservesPitch=true;a.volume=0;const end=v.end||duration;const section=Math.max(.01,end-v.start),fi=Math.min(v.fadeIn,section/2),fo=Math.min(v.fadeOut,section/2),getBase=()=>clamp(Number($('sVol').value)/100,0,1);a.currentTime=v.start;const update=()=>{if(editorAudio!==a)return;moveEditorTrimPlayhead(a.currentTime);if(a.currentTime>=end-.005){stopEditorPreview();return}const t=Math.max(0,a.currentTime-v.start),left=Math.max(0,end-a.currentTime);a.volume=clamp(getBase()*Math.min(1,fi?t/fi:1,fo?left/fo:1),0,1)};a.ontimeupdate=update;a.onended=stopEditorPreview;await a.play();if(editorAudio===a){const watch=()=>{if(editorAudio!==a){editorPreviewFrame=null;return}update();if(editorAudio===a)editorPreviewFrame=requestAnimationFrame(watch)};editorPreviewFrame=requestAnimationFrame(watch)};if(editorAudio===a){$('rangeStop').disabled=false;$('rangePreview').classList.add('is-listening');$('previewNotice').textContent='Preview playing · Broadcast unaffected.'}update();}catch(e){stopEditorPreview();notify('Preview error: '+e.message)}};
+$('rangePreview').onclick=async()=>{
+ const v=valid();if(!v||v.end<=v.start){notify('Enter a valid Start and End time (MM:SS.mmm), e.g. 01:15.250');return}
+ const requested=Number.isFinite(editorPreviewSeekTime)?clamp(editorPreviewSeekTime,v.start,v.end):v.start;
+ stopEditorPreview();editorPreviewSeekTime=requested;
+ const generation=editorPreviewGeneration;
+ const previewBtn=$('rangePreview');previewBtn.classList.add('is-listening');
+ $('previewNotice').textContent='Preparing preview · Broadcast unaffected.';
+ try{
+  const url=await audioURL(s);
+  if(generation!==editorPreviewGeneration||!trimTimeline.isConnected)return;
+  const a=new Audio();editorAudio=a;a.preload='auto';a.src=url;
+  applySoundSpeed(a,{speed:Number($('sSpeed').value)});
+  a.preservesPitch=true;a.mozPreservesPitch=true;a.webkitPreservesPitch=true;
+  a.volume=0;
+  a.currentTime=requested;
+  a.addEventListener('loadedmetadata',()=>{if(editorAudio===a&&Number.isFinite(editorPreviewSeekTime))a.currentTime=editorPreviewSeekTime},{once:true});
+  const update=()=>{
+   if(editorAudio!==a)return;
+   const selection=valid();if(!selection)return;
+   const end=selection.end,section=Math.max(.001,end-selection.start);
+   if(a.currentTime>=end-.005){stopEditorPreview();return}
+   const fi=Math.min(selection.fadeIn,section/2),fo=Math.min(selection.fadeOut,section/2);
+   const elapsed=Math.max(0,a.currentTime-selection.start),remaining=Math.max(0,end-a.currentTime);
+   const fade=clamp(Math.min(1,fi?elapsed/fi:1,fo?remaining/fo:1),0,1);
+   a.volume=clamp(Number($('sVol').value)/100*fade,0,1);
+   moveEditorTrimPlayhead(a.currentTime);
+  };
+  editorPreviewUpdate=update;
+  a.ontimeupdate=update;
+  a.onended=()=>{if(editorAudio===a)stopEditorPreview()};
+  a.onerror=()=>{if(editorAudio===a){stopEditorPreview();notify('Audio preview could not be played.')}};
+  await a.play();
+  if(editorAudio!==a||generation!==editorPreviewGeneration)return;
+  $('rangeStop').disabled=false;
+  $('previewNotice').textContent='Preview playing · Tap or drag the highlighted waveform to seek.';
+  const watch=()=>{
+   if(editorAudio!==a){editorPreviewFrame=null;return}
+   update();if(editorAudio===a)editorPreviewFrame=requestAnimationFrame(watch)
+  };
+  editorPreviewFrame=requestAnimationFrame(watch);update();
+ }catch(e){if(generation===editorPreviewGeneration){stopEditorPreview();notify('Preview error: '+e.message)}}
+};
 $('saveSound').onclick=()=>{const v=valid();if(!v||v.end<=v.start){notify('End must be after Start. Use MM:SS.mmm, e.g. 01:15.250');return}stopEditorPreview();s.name=$('sName').value.trim()||s.name;s.category=$('sCat').value;s.volume=clamp(Number($('sVol').value)||0,0,100);s.speed=Number($('sSpeed').value);s.loop=$('sLoop').checked;s.start=v.start;s.end=v.end;s.fadeIn=v.fadeIn;s.fadeOut=v.fadeOut;stop(id);stop(id,true);void save();renderCards();renderLibrary();closeModal();notify('Sound settings saved · Speed '+soundSpeed(s)+'×')};$('cancelSound').onclick=closeModal;
 audioURL(s).then(url=>{if(!$('rangeDuration'))return;const probe=new Audio();probe.preload='metadata';probe.onloadedmetadata=()=>{if(!$('rangeDuration'))return;duration=Number.isFinite(probe.duration)?probe.duration:0;$('rangeDuration').textContent=duration?clockTime(duration):'Unknown length';if(!Number.isFinite(parseClock(en.value))&&duration)en.value=clockTime(duration);sync();void buildTrimWaveform(url)};probe.src=url}).catch(e=>notify(e.message));updateTrimTimeline();}
 async function addFiles(files){if(!files.length)return;let ok=0;for(const f of files){if(!f.type.startsWith('audio/')&&!/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(f.name)){notify('Skipped unsupported file: '+f.name);continue}const s={id:id(),name:f.name.replace(/\.[^.]+$/,''),category:'Effect',volume:80,speed:1,loop:false};try{if(db)await put('assets',s.id,f);blobs.set(s.id,f);project.sounds.push(s);ok++}catch(e){notify('Storage full or unavailable for '+f.name);blobs.set(s.id,f);project.sounds.push(s);ok++}}if(ok){scheduleSave();renderCards();renderLibrary();notify(ok+' audio file(s) added. Default speed: 1× natural.')} }
@@ -5384,6 +5509,121 @@ html[data-theme="light"] .ae-overlay #aeEffectsPanel .ae-fx-stack strong{color:#
 #aeOverlay .ae-v121-volume-warning:not(.ae-hidden){display:block;color:#d99d45;font-weight:650;font-size:11px;line-height:1.35}
 #aeOverlay .ae-v119-volume.ae-v121-boosted{color:#c98c38;border-color:color-mix(in srgb,#c98c38 50%,var(--ae-border))}
 html[data-theme="dark"] #aeOverlay .ae-v121-volume-warning:not(.ae-hidden){color:#f5be63}
+</style><style id="v124-record-panel-and-single-row-mobile-header">
+/* v124: The recorder is a viewport-level floating panel. Its original timeline wrapper
+   used isolation:isolate, which allowed the timeline ruler/toolbar to cover its close
+   control when the panel extended past the available track height. */
+#aeOverlay #aeVoicePanel{
+ position:fixed!important;
+ z-index:900!important;
+ top:50%!important;
+ bottom:auto!important;
+ left:auto!important;
+ right:max(14px,env(safe-area-inset-right))!important;
+ transform:translateY(-50%)!important;
+ display:flex;
+ flex-direction:column;
+ width:min(460px,calc(100vw - 28px))!important;
+ max-width:calc(100vw - 28px)!important;
+ max-height:calc(100dvh - 28px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important;
+ min-height:0!important;
+ margin:0!important;
+ box-sizing:border-box;
+ overflow:hidden!important;
+ isolation:isolate;
+}
+#aeOverlay #aeVoicePanel.ae-hidden{display:none!important}
+#aeOverlay #aeVoicePanel .ae-voice-head{
+ display:flex;flex:0 0 auto;align-items:center;justify-content:space-between;
+ min-height:54px;min-width:0;z-index:2;position:relative;
+}
+#aeOverlay #aeVoicePanel .ae-voice-heading{flex:1 1 auto;min-width:0;overflow:hidden}
+#aeOverlay #aeVoicePanel .ae-voice-heading>div{min-width:0;overflow:hidden}
+#aeOverlay #aeVoiceClose{
+ flex:0 0 38px!important;min-width:38px!important;width:38px!important;
+ min-height:38px!important;height:38px!important;
+ padding:0!important;font-size:20px!important;line-height:1!important;
+ border-radius:9px!important;position:relative;z-index:3;opacity:1!important;
+}
+#aeOverlay #aeVoicePanel .ae-voice-body{
+ flex:1 1 auto;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;
+ overscroll-behavior:contain;
+ scrollbar-width:thin;
+}
+#aeOverlay #aeVoicePanel .ae-voice-actions{
+ flex:0 0 auto;min-width:0;max-width:100%;
+ position:relative;z-index:2;
+}
+#aeOverlay #aeVoicePanel .ae-voice-actions>.ae-button{min-width:0}
+@media(max-width:1024px){
+ #aeOverlay #aeVoicePanel{
+  top:50%!important;bottom:auto!important;left:50%!important;right:auto!important;
+  transform:translate(-50%,-50%)!important;
+  width:min(460px,calc(100vw - 20px))!important;
+  max-width:calc(100vw - 20px)!important;
+  max-height:calc(100dvh - 20px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important;
+ }
+}
+@media(max-width:580px){
+ #aeOverlay #aeVoicePanel{border-radius:14px!important}
+ #aeOverlay #aeVoicePanel .ae-voice-head{min-height:49px}
+ #aeOverlay #aeVoicePanel .ae-voice-actions{padding:8px 10px max(9px,env(safe-area-inset-bottom))!important}
+ #aeOverlay #aeVoicePanel .ae-voice-actions>.ae-button{min-height:40px!important}
+}
+/* v124: the launcher logo and two icon-only actions share ONE row on phones.
+   Desktop deliberately retains "Audio Editor" as a text label. */
+@media(max-width:620px){
+ #projectLauncher .v74-launcher-topline{
+  display:flex!important;align-items:center!important;
+  justify-content:space-between!important;flex-direction:row!important;
+  flex-wrap:nowrap!important;gap:5px!important;
+ }
+ #projectLauncher .v74-brand{
+  flex:1 1 auto!important;min-width:0!important;
+  gap:7px!important;overflow:hidden;
+ }
+ #projectLauncher .v74-brand-emblem{
+  flex:0 0 35px!important;width:35px!important;height:35px!important;
+ }
+ #projectLauncher .v74-brand-wordmark{
+  min-width:0!important;max-width:100%!important;
+  white-space:nowrap!important;font-size:clamp(10px,3.25vw,14px)!important;
+  letter-spacing:0!important;
+ }
+ #projectLauncher .v74-brand-wordmark small{font-size:9px!important;letter-spacing:.07em!important}
+ #projectLauncher .v75-hub-controls{
+  display:flex!important;align-items:center!important;flex:0 0 auto!important;
+  margin-left:0!important;gap:3px!important;
+  flex-wrap:nowrap!important;justify-content:flex-end!important;
+ }
+ #projectLauncher #launcherAudioEditor,#projectLauncher #launcherThemeSwitch{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 0 38px!important;width:38px!important;min-width:38px!important;
+  height:40px!important;min-height:40px!important;max-width:38px!important;
+  padding:0!important;gap:0!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;
+  border-radius:8px!important;
+ }
+ #projectLauncher #launcherAudioEditor>span,
+ #projectLauncher #launcherThemeSwitch .v75-theme-label{display:none!important}
+ #projectLauncher #launcherAudioEditor svg{width:20px!important;height:20px!important}
+ #projectLauncher #launcherThemeSwitch .v75-theme-icon{display:inline-flex!important;align-items:center;justify-content:center;font-size:24px!important;line-height:1!important}
+ /* Keep the actual Soundboard header compact on phones, too. */
+ .v87-studio-header #aeOpen,.v87-studio-header #aeOpen.btn.small.v87-icon-action{
+  flex:0 0 34px!important;width:34px!important;min-width:34px!important;
+  height:34px!important;min-height:34px!important;padding:4px!important;
+ }
+ .v87-studio-header #aeOpen span{display:none!important}
+ .v87-studio-header .v87-header-tools{flex-wrap:nowrap!important}
+}
+@media(max-width:360px){
+ #projectLauncher .v74-brand-emblem{flex-basis:32px!important;width:32px!important;height:32px!important}
+ #projectLauncher .v74-brand{gap:6px!important}
+ #projectLauncher #launcherAudioEditor,#projectLauncher #launcherThemeSwitch{
+  width:36px!important;min-width:36px!important;max-width:36px!important;
+  flex-basis:36px!important;
+ }
+}
 </style><script id="v90-audio-editor-script">
 /* ON AIR Studio v113: stable timeline playback during native scrollbar and manual viewport navigation. */
 (()=>{'use strict';
@@ -6210,6 +6450,10 @@ zoom=clamp(p.zoom||1,zoomMin,zoomMax);snapEnabled=p.snap!==false;$('aeSnap').che
      voiceCountdownId=0,voiceCountdownResolve=null,voiceStartAt=0,voiceProjectId=null,voiceTrackId=null,
      voiceStartedAt=0,voicePausedAt=0,voiceTotalPaused=0,voiceBacking=[],voiceBackingCache=[],voiceCaptureFailed=false;
  const voicePanel=$('aeVoicePanel'),voicePreview=$('aeVoicePreview');
+ // v124: Portal the recorder outside the isolated timeline stack so its header and
+ // close button are never painted behind the ruler or toolbars.
+ const voiceHost=overlay.querySelector('.ae-shell');
+ if(voiceHost&&voicePanel.parentElement!==voiceHost)voiceHost.appendChild(voicePanel);
  const voiceCapturing=()=>['arming','countdown','recording','paused','finalizing','saving'].includes(voiceState);
  const voiceElapsed=()=>voiceStartedAt?Math.max(0,((voicePausedAt||performance.now())-voiceStartedAt-voiceTotalPaused)/1000):0;
  function voiceSetStatus(message,state=voiceState,note=null,error=false){const status=$('aeVoiceStatus');status.textContent=message;status.dataset.state=state;if(note!==null){$('aeVoiceNote').textContent=note;$('aeVoiceNote').dataset.error=String(error)}}
