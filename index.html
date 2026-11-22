@@ -888,12 +888,12 @@ html[data-theme="light"] .queue-current-time{color:#586f85}
 @media(max-width:1000px){.queue-stage{grid-template-columns:1fr}.queue-script-dock .broadcast-script-aside{margin-top:0!important}.queue-picker-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:800px){.studio-control-row .workspace-switch{width:100%;max-width:100%;min-width:0}.studio-control-row .ws-choice{font-size:11px!important;min-width:0}.queue-picker-list{grid-template-columns:1fr}.queue-main-header h2{font-size:18px}.queue-now-card,.queue-picker{padding:11px}.queue-main{gap:9px}.queue-workspace .nextup-bar{flex-wrap:wrap}}
 @media(max-width:360px){.studio-control-row .ws-choice{font-size:10px!important;padding:7px 3px!important}.queue-main-header{gap:5px}.queue-live-tag{font-size:9px;padding:5px 6px}}
-/* Onboarding: 4-second silent typewriter introduction followed by explicit project choice. */
+/* Onboarding: 2.5-second silent typewriter introduction followed by explicit project choice. */
 .v64-splash,.v64-launcher{position:fixed;inset:0;z-index:110;display:grid;place-items:center;padding:20px;background:#050505;color:#f7f7f7;overflow-y:auto}
 .v64-splash{z-index:120;transition:opacity .4s ease,visibility .4s ease}.v64-splash.splash-leave{opacity:0;visibility:hidden;pointer-events:none}
 .v64-splash-core{width:min(520px,100%);text-align:center;display:grid;justify-items:center;gap:14px}.v64-splash-logo{font-size:65px;color:#18d2ba;text-shadow:0 0 35px #13b8a75c;animation:v64-logo-in .8s ease-out both}
-.v64-typed{display:block;width:23ch;max-width:100%;white-space:nowrap;overflow:hidden;border-right:2px solid #24e2c7;font-weight:900;font-size:clamp(19px,4vw,29px);letter-spacing:-.03em;animation:v64-type 2.75s steps(23,end) .55s both,v64-caret .65s steps(1,end) infinite}
-.v64-splash-tagline{color:#a8a8a8;font-size:13px;letter-spacing:.07em}.v64-loading-track{width:min(330px,78vw);height:4px;background:#303030;border-radius:99px;overflow:hidden;margin-top:6px}.v64-loading-track span{display:block;height:100%;width:100%;transform-origin:left;animation:v64-load 3.8s ease-in-out both;background:linear-gradient(90deg,#0c7f75,#20e0c2)}
+.v64-typed{display:block;width:23ch;max-width:100%;white-space:nowrap;overflow:hidden;border-right:2px solid #24e2c7;font-weight:900;font-size:clamp(19px,4vw,29px);letter-spacing:-.03em;animation:v64-type 1.9s steps(23,end) .35s both,v64-caret .65s steps(1,end) infinite}
+.v64-splash-tagline{color:#a8a8a8;font-size:13px;letter-spacing:.07em}.v64-loading-track{width:min(330px,78vw);height:4px;background:#303030;border-radius:99px;overflow:hidden;margin-top:6px}.v64-loading-track span{display:block;height:100%;width:100%;transform-origin:left;animation:v64-load 2.5s ease-in-out both;background:linear-gradient(90deg,#0c7f75,#20e0c2)}
 .v64-splash-foot{font-size:10px;color:#98989d;letter-spacing:.14em}.v64-skip{border:1px solid #505050;background:#202020;color:#f4f4f5;border-radius:99px;padding:7px 15px;font-size:12px;margin-top:8px}
 @keyframes v64-type{from{width:0}to{width:23ch}}@keyframes v64-caret{50%{border-color:transparent}}@keyframes v64-load{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes v64-logo-in{from{opacity:0;transform:translateY(15px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
 .v64-launcher{z-index:110;background:radial-gradient(ellipse at 50% 0%,#122922 0%,#090909 48%);padding:16px}.v64-launcher-shell{width:min(660px,100%);padding:clamp(18px,3vw,30px);border:1px solid #3a3a3a;border-radius:23px;background:#171717;box-shadow:0 24px 95px #0008;display:grid;gap:16px}
@@ -2918,7 +2918,7 @@ html[data-theme="light"] #djWorkspace.dj-v127-immersive .dj-effects[open] .dj-ef
  #djWorkspace.dj-v127-immersive .dj-deck{justify-content:space-evenly!important}
 }
 </style></head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
-  <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div><button id="splashSkip" type="button" class="v64-skip">Skip intro</button></div>
+  <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div></div>
 </div>
 <div id="projectLauncher" class="v64-launcher v74-launcher hidden" role="dialog" aria-modal="true" aria-labelledby="launcherTitle">
   <div class="v64-launcher-shell v74-shell">
@@ -2987,9 +2987,17 @@ html[data-theme="light"] #djWorkspace.dj-v127-immersive .dj-effects[open] .dj-ef
       <section class="nextup-panel" id="nextUpPanel" aria-label="Next Up audio queue">
  <div class="nextup-bar">
   <div class="nextup-title"><span class="nextup-mark" aria-hidden="true">▤</span><strong>Next Up</strong><span class="nextup-count" id="nextUpCount">0</span><span class="nextup-now" id="nextUpNow">Ready for your sequence</span></div>
-  <div class="nextup-actions"><label class="nextup-autoplay" title="Play the next queued sound automatically after the current queued sound ends"><input type="checkbox" id="nextUpAuto"><span>Auto Play</span></label><button class="nextup-next" id="nextUpPlay" type="button" title="Start the queue when sounds are added">▶ <span>Start Queue</span></button><button class="nextup-clear" id="nextUpClear" type="button" title="Clear upcoming sounds">Clear</button><button class="nextup-collapse" id="nextUpCollapse" type="button" aria-expanded="true" aria-controls="nextUpBody" title="Collapse queue">⌃</button></div>
+  <div class="nextup-actions"><label class="nextup-autoplay" title="Play the next queued sound automatically after the current queued sound ends" aria-label="Auto Play"><input type="checkbox" id="nextUpAuto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h11l-3-3m3 3-3 3M20 17H9l3-3m-3 3 3 3"/><path d="M4 12v5h5M20 12V7h-5"/></svg><span>Auto Play</span></label><button class="nextup-next" id="nextUpPlay" type="button" title="Start the queue when sounds are added">▶ <span>Start Queue</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 4 10 8-10 8V4Zm12 0v16"/></svg></button><button class="nextup-select-toggle" id="nextUpSelect" type="button" aria-label="Select Queue Songs" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m7 12 3 3 7-7"/></svg></button><button class="nextup-clear" id="nextUpClear" type="button" title="Select songs to remove" aria-label="Remove From Queue">Clear<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v5m4-5v5"/></svg></button><button class="nextup-collapse" id="nextUpCollapse" type="button" aria-expanded="true" aria-controls="nextUpBody" title="Collapse queue">⌃</button></div>
  </div>
- <div class="nextup-body" id="nextUpBody"><div class="nextup-list" id="nextUpList" aria-live="polite"><div class="nextup-empty">Use + in Sound Library below to add your first sound.</div></div></div>
+ <div class="nextup-selection-bar" id="nextUpSelectionBar" hidden>
+ <span class="queue-selected-count" id="nextUpSelectedCount">0 selected</span>
+ <button type="button" id="nextUpSelectAll">Select All</button>
+ <button type="button" id="nextUpSelectNone">Deselect All</button>
+ <button type="button" class="queue-remove-selected" id="nextUpDeleteSelected" disabled>Remove Selected</button>
+ <button type="button" id="nextUpDeleteCancel" hidden>Cancel Removal</button>
+ <button type="button" id="nextUpSelectionClose" aria-label="Close Selection">Done</button>
+</div>
+<div class="nextup-body" id="nextUpBody"><div class="nextup-list" id="nextUpList" aria-live="polite"><div class="nextup-empty">Use + in Sound Library below to add your first sound.</div></div></div>
 </section>
       <div class="queue-picker"><div class="queue-picker-heading"><div><h3>Sound Library</h3><p>Add sounds to your upcoming sequence</p></div><span id="queueLibraryCount" class="pill">0 sounds</span></div><label class="queue-search-label" for="queueSearch">Find a sound</label><input type="search" id="queueSearch" placeholder="Search by title or category…" autocomplete="off"><div id="queuePickerList" class="queue-picker-list"></div><button class="btn small queue-import" id="queueAddFiles" type="button">＋ Add Audio Files</button></div>
     </div>
@@ -3209,6 +3217,37 @@ function ensureQueue(){
  if(!project.settings)project.settings={};
  project.settings.autoNext=!!project.settings.autoNext;
 }
+// v141.1: select queue ENTRIES (indices, not sound IDs, so duplicate tracks can be selected independently).
+let queueSelectMode=false, queueSelected=new Set(), queueDeletePending=false;
+const queueSelectionCount=()=>project.nextUp?.length||0;
+function updateQueueSelectionToolbar(){
+ const panel=$('nextUpPanel'),bar=$('nextUpSelectionBar');if(!panel||!bar)return;
+ const total=queueSelectionCount();
+ for(const index of [...queueSelected])if(index<0||index>=total)queueSelected.delete(index);
+ if(queueSelectMode&&!total){queueSelectMode=false;queueSelected.clear()}
+ panel.classList.toggle('queue-selecting',queueSelectMode);
+ bar.hidden=!queueSelectMode;
+ $('nextUpSelectedCount').textContent=queueSelected.size+' selected of '+total;
+ $('nextUpSelectAll').disabled=!total||queueSelected.size===total;
+ $('nextUpSelectNone').disabled=!queueSelected.size;
+ $('nextUpDeleteSelected').disabled=!queueSelected.size;
+ $('nextUpDeleteSelected').textContent=queueDeletePending?'Confirm Remove '+queueSelected.size:'Remove Selected';
+ $('nextUpDeleteCancel').hidden=!queueDeletePending;
+ $('nextUpSelect').setAttribute('aria-pressed',String(queueSelectMode));
+ $('nextUpClear').setAttribute('aria-pressed',String(queueSelectMode));
+}
+function queueSetSelectionMode(enabled){
+ queueSelectMode=!!enabled;queueSelected.clear();queueDeletePending=false;
+ renderQueue();
+}
+function queueDeleteSelection(){
+ if(!queueSelected.size)return;
+ if(!queueDeletePending){queueDeletePending=true;updateQueueSelectionToolbar();return;}
+ const count=queueSelected.size;
+ ensureQueue();project.nextUp=project.nextUp.filter((_,i)=>!queueSelected.has(i));
+ queueSelectMode=false;queueSelected.clear();queueDeletePending=false;
+ renderQueue();scheduleSave();notify(count+' item(s) removed from queue. Sound Library is unchanged.');
+}
 function renderQueue(){
  const root=$('nextUpList');if(!root)return;
  ensureQueue();
@@ -3222,12 +3261,13 @@ function renderQueue(){
  $('nextUpClear').disabled=!queued.length;
  let html='';
  if(active){html+=`<div class="nextup-item nextup-active" title="Current queued sound"><span class="nextup-position">♫</span><div class="nextup-item-info"><b>${esc(active.name)}</b><small>${isPlaying?'NOW PLAYING':'CURRENT · PAUSED'}</small></div><span class="nextup-pulse" aria-hidden="true">▮▯▮</span></div>`}
- html+=queued.map((soundId,i)=>{const sound=get(soundId);if(!sound)return '';return `<div class="nextup-item" data-queue-index="${i}" style="--cue-accent:${categoryColor(sound.category)}"><button class="nextup-drag-handle" type="button" aria-label="Drag to reorder ${esc(sound.name)}; alternatively use the arrow keys" title="Drag to reorder · Arrow keys also work">⠿</button><span class="nextup-position">${i+1}</span><div class="nextup-item-info"><b title="${esc(sound.name)}">${esc(sound.name)}</b><small>${esc(sound.category||'Sound')}</small></div><div class="nextup-item-tools"><button type="button" data-queue-action="remove" data-queue-index="${i}" aria-label="Remove ${esc(sound.name)} from queue" title="Remove from queue">×</button></div></div>`}).join('');
+ html+=queued.map((soundId,i)=>{const sound=get(soundId);if(!sound)return '';return `<div class="nextup-item" data-queue-index="${i}" style="--cue-accent:${categoryColor(sound.category)}"><label class="nextup-select-wrap" aria-label="Select ${esc(sound.name)}"><input type="checkbox" class="nextup-select-check" data-queue-select="${i}" ${queueSelected.has(i)?'checked':''}></label><button class="nextup-drag-handle" type="button" aria-label="Drag to reorder ${esc(sound.name)}; alternatively use the arrow keys" title="Drag to reorder · Arrow keys also work">⠿</button><span class="nextup-position">${i+1}</span><div class="nextup-item-info"><b title="${esc(sound.name)}">${esc(sound.name)}</b><small>${esc(sound.category||'Sound')}</small></div><div class="nextup-item-tools"><button type="button" data-queue-action="remove" data-queue-index="${i}" aria-label="Remove ${esc(sound.name)} from queue" title="Remove from queue">×</button></div></div>`}).join('');
  root.innerHTML=html||'<div class="nextup-empty">Your queue is empty. Use the + button in Sound Library below to add sounds.</div>';
+ updateQueueSelectionToolbar();
 }
 function addToQueue(soundId){const s=get(soundId);if(!s)return;ensureQueue();project.nextUp.push(soundId);renderQueue();scheduleSave();notify('Added to Next Up: '+s.name)}
 function moveQueue(index,action){ensureQueue();const q=project.nextUp;if(!Number.isInteger(index)||index<0||index>=q.length)return;
- if(action==='remove')q.splice(index,1);
+ if(action==='remove'){q.splice(index,1);queueSelected.clear();queueDeletePending=false;}
  else if(action==='up'&&index>0)[q[index-1],q[index]]=[q[index],q[index-1]];
  else if(action==='down'&&index<q.length-1)[q[index+1],q[index]]=[q[index],q[index+1]];
  else return;
@@ -3284,7 +3324,7 @@ function syncQueueActionButtons(){
  const ariaLabel=label+(disabled?(queueBusy?' — loading':' — no next sounds in queue'):'');
  if(main.getAttribute('aria-label')!==ariaLabel)main.setAttribute('aria-label',ariaLabel);
  const hint=ready?(current?'Play the next queued sound':'Start playing the first queued sound'):'Use + in Sound Library below to add sounds first';
- if(main.title!==hint)main.title=hint;
+ if(main.dataset.queueHint!==hint)main.dataset.queueHint=hint;
  const player=$('queuePlayerNext');
  if(player.dataset.mode!==mode){
   player.dataset.mode=mode;
@@ -3429,9 +3469,16 @@ $('nextUpList').addEventListener('keydown',e=>{
  $('nextUpList').querySelector(`.nextup-item[data-queue-index="${j}"] .nextup-drag-handle`)?.focus();
 });
 $('nextUpPlay').addEventListener('click',()=>{void playNext()});
-$('nextUpClear').addEventListener('click',clearQueue);
+$('nextUpClear').addEventListener('click',()=>queueSetSelectionMode(!queueSelectMode));
+$('nextUpSelect').addEventListener('click',()=>queueSetSelectionMode(!queueSelectMode));
+$('nextUpSelectAll').addEventListener('click',()=>{queueSelected=new Set(Array.from({length:queueSelectionCount()},(_,i)=>i));queueDeletePending=false;renderQueue()});
+$('nextUpSelectNone').addEventListener('click',()=>{queueSelected.clear();queueDeletePending=false;renderQueue()});
+$('nextUpDeleteSelected').addEventListener('click',queueDeleteSelection);
+$('nextUpDeleteCancel').addEventListener('click',()=>{queueDeletePending=false;updateQueueSelectionToolbar()});
+$('nextUpSelectionClose').addEventListener('click',()=>queueSetSelectionMode(false));
+$('nextUpList').addEventListener('change',e=>{const cb=e.target.closest('[data-queue-select]');if(!cb)return;const i=Number(cb.dataset.queueSelect);if(!Number.isInteger(i))return;if(cb.checked)queueSelected.add(i);else queueSelected.delete(i);queueDeletePending=false;renderQueue()});
 $('nextUpAuto').addEventListener('change',e=>{project.settings.autoNext=e.target.checked;renderQueue();scheduleSave()});
-$('nextUpCollapse').addEventListener('click',()=>{const body=$('nextUpBody'),collapsed=body.classList.toggle('hidden');$('nextUpCollapse').textContent=collapsed?'⌄':'⌃';$('nextUpCollapse').setAttribute('aria-expanded',String(!collapsed));$('nextUpCollapse').title=collapsed?'Expand queue':'Collapse queue'});
+$('nextUpCollapse').addEventListener('click',()=>{const body=$('nextUpBody'),collapsed=body.classList.toggle('hidden');$('nextUpCollapse').textContent=collapsed?'⌄':'⌃';$('nextUpCollapse').setAttribute('aria-expanded',String(!collapsed));$('nextUpCollapse').dataset.queueHint=collapsed?'Expand the upcoming queue list':'Collapse the upcoming queue list'});
 
 // v89: Open the existing project database without forcing a version upgrade.
 // v88 requested version 2, which could remain blocked by another open ON AIR Studio tab.
@@ -3640,7 +3687,7 @@ async function play(id,isPreview=false){const s=get(id);if(!s)return;const m=isP
 function pause(id){const x=live.get(id);if(!x)return;if(x.el.paused){x.el.play().then(()=>{if(live.get(id)!==x)return;lastStartedSoundId=id;applyDucking();renderCards();renderQueue();count()}).catch(e=>notify(e.message));}else{x.el.pause();applyDucking();renderCards();renderQueue();count()}}
 function stopAll(){cancelQueuedPlayback();for(const k of [...live.keys()])stop(k);for(const k of [...preview.keys()])stop(k);for(const k of ['A','B'])if(djDecks[k])djStop(k);count()}
 function count(){$('activeCount').textContent=live.size+' live';const playing=[...live.values()].filter(x=>!x.el.paused).length+Object.values(djDecks).filter(d=>d&&!d.el.paused).length;$('footCount').textContent=playing+' playing';const fsNames=$('sbfsPlayingNames');if(fsNames){const titles=[...live.values()].filter(x=>!x.el.paused).map(x=>x.sound?.name).filter(Boolean);fsNames.textContent=titles.length?titles.slice(0,3).join(' · ')+(titles.length>3?' · +'+(titles.length-3)+' more':''):'No active audio'}}
-const categoryPalette={Intro:'#3b82f6',Background:'#10b981',Priority:'#ef4444',Effect:'#f59e0b',Transition:'#06b6d4',Advertisement:'#ec4899',Outro:'#a855f7'};
+const categoryPalette={Intro:'#6d28d9',Background:'#be185d',Priority:'#b91c1c',Effect:'#b45309',Transition:'#7c3aed',Advertisement:'#a16207',Outro:'#475569'};
 let selectedCategory='All';
 function categoryColor(cat){return categoryPalette[cat]||'#94a3b8'}
 function updateFilterRail(){
@@ -3663,7 +3710,7 @@ function renderCategoryFilters(){
  if(selectedCategory!=='All'&&!categories.includes(selectedCategory))selectedCategory='All';
  root.innerHTML=categories.map(cat=>{
   const n=cat==='All'?project.sounds.length:project.sounds.filter(s=>(s.category||'Effect')===cat).length;
-  const color=cat==='All'?'#60a5fa':categoryColor(cat);
+  const color=cat==='All'?'#64748b':categoryColor(cat);
   return `<button type="button" class="category-filter ${cat===selectedCategory?'selected':''}" data-category="${esc(cat)}" style="--category-accent:${color}" aria-pressed="${cat===selectedCategory}"><span class="filter-name">${esc(cat)}</span><span class="filter-count">${n}</span></button>`;
  }).join('');
  root.scrollLeft=left;
@@ -4021,7 +4068,8 @@ audioURL(s).then(url=>{
  // Some WebM recordings never fire useful metadata; resolve through decoded audio.
  setTimeout(()=>{if(!settled&&trimTimeline.isConnected)void dj135RepairLegacy(s).then(result=>finish(result.duration,result.url))},1250);
 }).catch(e=>notify(e.message));updateTrimTimeline();}
-async function addFiles(files){if(!files.length)return;let ok=0;for(const f of files){if(!f.type.startsWith('audio/')&&!/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(f.name)){notify('Skipped unsupported file: '+f.name);continue}const s={id:id(),name:f.name.replace(/\.[^.]+$/,''),category:'Effect',volume:80,speed:1,loop:false};try{if(db)await put('assets',s.id,f);blobs.set(s.id,f);project.sounds.push(s);ok++}catch(e){notify('Storage full or unavailable for '+f.name);blobs.set(s.id,f);project.sounds.push(s);ok++}}if(ok){scheduleSave();renderCards();renderLibrary();notify(ok+' audio file(s) added. Default speed: 1× natural.')} }
+async function addFiles(files){if(!files.length)return;let ok=0;for(const f of files){if(!f.type.startsWith('audio/')&&!/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(f.name)){notify('Skipped unsupported file: '+f.name);continue}const s={id:id(),name:f.name.replace(/\.[^.]+$/,''),category:'Effect',volume:80,speed:1,loop:false};try{if(db)await put('assets',s.id,f);blobs.set(s.id,f);project.sounds.push(s);ok++}catch(e){notify('Storage full or unavailable for '+f.name);blobs.set(s.id,f);project.sounds.push(s);ok++}}if(ok){scheduleSave();renderCards();renderLibrary();renderQueuePicker();notify(ok+' audio file(s) added. Default speed: 1× natural.')} return ok; }
+window.__onAirQueueImportShared=addFiles;
 async function removeSound(id){const s=get(id);if(!s||!confirm('Remove '+s.name+' from this project?'))return;stop(id);stop(id,true);project.sounds=project.sounds.filter(x=>x.id!==id);if(queueCurrentId===id)cancelQueuedPlayback();ensureQueue();renderQueue();if(urls.has(id)){URL.revokeObjectURL(urls.get(id));urls.delete(id)}blobs.delete(id);if(db)await del('assets',id).catch(()=>{});scheduleSave();renderCards();renderLibrary()}
 function reorder(a,b){if(!a||!b||a===b)return;const i=project.sounds.findIndex(s=>s.id===a),j=project.sounds.findIndex(s=>s.id===b);if(i<0||j<0)return;project.sounds.splice(j,0,project.sounds.splice(i,1)[0]);scheduleSave();renderCards();renderLibrary()}
 let recordingFinalizing=false,recordingStarting=false,recordingOwnerId=null,recFeedbackTimer=null;
@@ -4899,14 +4947,15 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('djSoundModal').
 
 // Explicit start: intro -> launcher -> named/saved project -> studio.
 let launcherBootReady=false,introMinimumElapsed=false,introDismissed=false;
-const splashTimer=setTimeout(()=>{introMinimumElapsed=true;revealLauncherWhenReady()},3650);
+const splashTimer=setTimeout(()=>{introMinimumElapsed=true;revealLauncherWhenReady()},2500);
 const splashSafetyTimer=setTimeout(()=>{
  if(launcherBootReady||introDismissed)return;
  const label=document.querySelector('.v64-splash-foot');
  if(label)label.textContent='STORAGE IS BUSY · CLOSE OTHER ON AIR STUDIO TABS';
  const hint=document.querySelector('.v64-splash-tagline');
  if(hint)hint.textContent='Your projects have not been deleted. Close other ON AIR Studio tabs, then retry.';
- const retry=$('splashSkip');retry.textContent='Retry loading';
+ let retry=$('splashRetry');
+ if(!retry){retry=document.createElement('button');retry.id='splashRetry';retry.className='v64-skip';retry.type='button';retry.textContent='Retry loading';document.querySelector('.v64-splash-core')?.appendChild(retry)}
  retry.onclick=()=>location.reload();
 },7000);
 function revealLauncherWhenReady(){
@@ -4918,7 +4967,7 @@ function revealLauncherWhenReady(){
  void populateLauncherProjects();
  setTimeout(()=>$('splashScreen').classList.add('hidden'),420);
 }
-$('splashSkip').addEventListener('click',()=>{clearTimeout(splashTimer);introMinimumElapsed=true;revealLauncherWhenReady()});
+
 function chooseLauncherPane(which){
  $('launcherNewForm').classList.toggle('hidden',which!=='new');
  $('launcherOpenForm').classList.toggle('hidden',which!=='open');
@@ -5015,7 +5064,9 @@ boot().catch(err=>{
  if(foot)foot.textContent='STARTUP ERROR · RELOAD TO TRY AGAIN';
  const hint=document.querySelector('.v64-splash-tagline');
  if(hint)hint.textContent='Your saved projects were not deleted. Close other ON AIR Studio tabs and retry.';
- const retry=$('splashSkip');retry.textContent='Retry loading';retry.onclick=()=>location.reload();
+ let retry=$('splashRetry');
+ if(!retry){retry=document.createElement('button');retry.id='splashRetry';retry.className='v64-skip';retry.type='button';retry.textContent='Retry loading';document.querySelector('.v64-splash-core')?.appendChild(retry)}
+ retry.onclick=()=>location.reload();
 });
 })();
 </script><script id="studio-v12-theme-js">
@@ -11037,7 +11088,7 @@ body.sbfs-active .footer-playing-details{min-width:0;max-width:min(32vw,340px)}
  const scriptPanel=dashboard?.querySelector('.broadcast-script-aside');
  const toolbar=studio?.querySelector('.studio-mainline .toolbar');
  if(!studio||!dashboard||!workspace||!root||!scriptPanel||!toolbar)return;
- const canDesktop=()=>matchMedia('(min-width:1000px)').matches; // Desktop-width capability; hybrid laptops must not lose the launcher
+ const canDesktop=()=>matchMedia('(min-width:1000px)').matches || matchMedia('(min-width:800px) and (pointer:fine)').matches; // Wider touch laptops and zoomed desktop windows are supported; phones remain excluded
  const fsButton=document.createElement('button');
  fsButton.id='sbfsToggle';fsButton.type='button';fsButton.className='btn small';
  fsButton.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg>';fsButton.setAttribute('aria-label','Enter Soundboard fullscreen');fsButton.title='Soundboard fullscreen · Desktop only';
@@ -11165,7 +11216,7 @@ body.sbfs-active .footer-playing-details{min-width:0;max-width:min(32vw,340px)}
  const position=(p)=>({row:Math.max(1,Math.floor(Number(p?.row)||1)),col:Math.max(1,Math.floor(Number(p?.col)||1))});
  const pointKey=(p)=>p.row+':'+p.col;
  const cardsIn=zone=>[...zone.querySelectorAll(':scope > .sound')];
- const columnsIn=zone=>zone.classList.contains('sbfs-zone')?Math.max(1,Number(root.style.getPropertyValue('--sbfs-side-cols'))||3):(innerWidth>=1330?8:6);
+ const columnsIn=zone=>zone.classList.contains('sbfs-zone')?Math.max(1,Number(root.style.getPropertyValue('--sbfs-side-cols'))||3):(innerWidth>=1330?8:innerWidth>=1000?6:4);
  function hydrate(zone,cards,rawMap,cols){
   const stored=rawMap||{};
   const taken=new Set();const placement=new Map();let seq=0;
@@ -11519,7 +11570,7 @@ html[data-theme="light"] #studio .studio-mainline>.toolbar .studio-v1399-btn:not
  const stop=make('v1399StopBoth','Stop Both',stopIcon,'stop','Stop playback on Deck A and Deck B.');
  const queue=make('v1399QueueFullscreen','Fullscreen',fullscreenIcon,'queue','Audio Queue Fullscreen will be available in a future update.');
  queue.disabled=true;queue.setAttribute('aria-disabled','true');queue.removeAttribute('title');
- const group=document.createElement('div');group.className='studio-v1399-actions';group.setAttribute('role','group');group.setAttribute('aria-label','DJ Mixer controls');group.append(beat,fullscreen,stop);
+ const group=document.createElement('div');group.className='studio-v1399-actions';group.setAttribute('role','group');group.setAttribute('aria-label','DJ Mixer controls');group.append(beat,stop,fullscreen);
  toolbar.append(group,queue);
  beat.addEventListener('click',()=>window.__onAirSharedBeat?.open?.());
  fullscreen.addEventListener('click',()=>document.getElementById('djFullscreenToggle')?.click());
@@ -11687,9 +11738,8 @@ html[data-theme="light"] #studio.sbfs-fullscreen .sbfs-script-zone #scriptText::
 html[data-theme="light"] #studio.sbfs-fullscreen .sbfs-script-zone .sbfs-font-tools button{background:#eaf2f9!important;color:#263d51!important;border:1px solid #bbccda!important}
 html[data-theme="light"] #studio.sbfs-fullscreen .sbfs-script-zone .sbfs-font-tools output{color:#2d4f65!important}
 html[data-theme="light"] #studio.sbfs-fullscreen .sbfs-zone{background:#ecf3f9!important}
-html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound{background:#fff!important;color:#1c3046!important;border-color:#c2d6e5!important;box-shadow:0 2px 7px #203a5519!important}
+/* v141.4: removed fullscreen card paint override; category and playback styles remain authoritative. */
 html[data-theme="light"] #studio.sbfs-fullscreen #cards .soundname{color:#182b41!important}
-html[data-theme="light"] #studio.sbfs-fullscreen #cards .cat,
 html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound-timing .times,
 html[data-theme="light"] #studio.sbfs-fullscreen #cards .volume{color:#4a647a!important}
 html[data-theme="light"] #studio.sbfs-fullscreen .sbfs-slot{border-color:#c2d3de!important;background:#f4f8fc!important;opacity:.72!important}
@@ -12196,5 +12246,838 @@ html[data-theme="light"] #djWorkspace .dj138-overlay #djSharedBeatStation>.djpro
   color:#316176!important;
 }
 html[data-theme="light"] #djWorkspace .dj138-overlay .dj138-station-footer>span{color:#516879!important;}
+</style>
+
+<style id="onair-v1409-queue-fullscreen-style">
+/* Audio Queue fullscreen — all CSS is scoped; normal Soundboard, DJ and Queue stay unchanged. */
+#studio.aqfs-active{
+ --aq-bg:#0b141f;--aq-surface:#172735;--aq-panel:#1c3040;--aq-outline:#365365;
+ --aq-text:#eaf5fe;--aq-sub:#aac2d2;--aq-accent:#48ddc6;--aq-soft:#213b45;
+ position:fixed!important;inset:0!important;z-index:10010!important;display:flex!important;
+ flex-direction:column!important;box-sizing:border-box!important;width:100vw!important;height:100dvh!important;
+ max-width:none!important;margin:0!important;padding:0!important;gap:0!important;
+ background:var(--aq-bg)!important;color:var(--aq-text)!important;overflow:hidden!important;
+ isolation:isolate;color-scheme:dark
+}
+html[data-theme=light] #studio.aqfs-active{
+ --aq-bg:#eef3f8;--aq-surface:#fff;--aq-panel:#f6fafc;--aq-outline:#c3d7e4;
+ --aq-text:#1c3547;--aq-sub:#547286;--aq-accent:#067e75;--aq-soft:#e5f4f1;
+ color-scheme:light
+}
+html.aqfs-screenlock,html.aqfs-screenlock body{overflow:hidden!important}
+#studio.aqfs-active>.studio-compact,#studio.aqfs-active>#djWorkspace,
+#studio.aqfs-active>.dashboard,#studio.aqfs-active #queueWorkspace .queue-main-header{display:none!important}
+#studio.aqfs-active>#queueWorkspace{display:flex!important;flex-direction:column!important;
+ min-height:0!important;min-width:0!important;flex:1 1 auto!important;
+ margin:0!important;padding:12px clamp(10px,1.3vw,20px)!important;overflow:hidden!important}
+#studio.aqfs-active #queueWorkspace .queue-stage{
+ display:grid!important;grid-template-columns:minmax(245px,1fr) minmax(285px,1.12fr) var(--aqfs-script-px,305px)!important;
+ grid-template-rows:minmax(255px,55fr) minmax(165px,45fr)!important;
+ align-items:stretch!important;gap:12px!important;width:100%!important;height:100%!important;
+ flex:1 1 auto!important;min-height:0!important;overflow:hidden!important
+}
+#studio.aqfs-active #queueWorkspace .queue-main{display:contents!important}
+#studio.aqfs-active #queueWorkspace :is(#queueNowCard,#nextUpPanel,.queue-picker,.queue-script-dock){
+ min-width:0!important;min-height:0!important;max-height:100%!important;box-sizing:border-box!important;overflow:hidden!important;
+ border:1px solid var(--aq-outline)!important;background:var(--aq-surface)!important;
+ border-radius:17px!important;box-shadow:0 7px 24px #00000014!important;color:var(--aq-text)!important}
+#studio.aqfs-active #queueWorkspace #queueNowCard{grid-column:1!important;grid-row:1!important;display:flex!important;
+ flex-direction:column!important;gap:0!important;padding:clamp(11px,1.1vw,18px)!important}
+#studio.aqfs-active #queueWorkspace .queue-picker{grid-column:1!important;grid-row:2!important;
+ display:flex!important;flex-direction:column!important;padding:12px!important}
+#studio.aqfs-active #queueWorkspace #nextUpPanel{grid-column:2!important;grid-row:1 / span 2!important;
+ display:flex!important;flex-direction:column!important;padding:0!important;margin:0!important}
+#studio.aqfs-active #queueWorkspace .queue-script-dock{grid-column:3!important;grid-row:1 / span 2!important;
+ display:flex!important;flex-direction:column!important;position:relative!important;padding:10px!important;overflow:visible!important}
+#studio.aqfs-active #queueWorkspace .queue-now-card.queue-player .queue-player-top{margin:0 0 clamp(9px,1.2vh,15px)!important}
+#studio.aqfs-active #queueWorkspace .queue-now-card.queue-player .queue-player-hero{
+ display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;
+ gap:clamp(7px,1vh,14px)!important;margin:0 0 clamp(8px,1.4vh,16px)!important;min-height:0!important}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-player-cover{
+ width:clamp(98px, min(17vh, 11vw), 164px)!important;height:clamp(98px, min(17vh, 11vw), 164px)!important;
+ flex:0 0 auto!important;border-radius:20px!important}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-player-disc{
+ width:82%!important;height:82%!important;aspect-ratio:1!important;border-radius:50%!important}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-player-disc:after{inset:28%!important}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-player-disc-core{
+ width:40%!important;height:40%!important;border-radius:50%!important}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-player-track{align-items:center!important;min-width:0!important;width:100%!important}
+#studio.aqfs-active #queueWorkspace .queue-now-card.queue-player #queueNowTitle{
+ font-size:clamp(17px,1.8vw,26px)!important;line-height:1.13!important;-webkit-line-clamp:2!important;
+ color:var(--aq-text)!important;text-overflow:ellipsis!important}
+#studio.aqfs-active #queueWorkspace .queue-now-card.queue-player #queueNowHint{color:var(--aq-sub)!important;font-size:11px!important;max-width:100%}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-player-visual{
+ display:flex!important;min-height:35px!important;height:clamp(35px,6vh,53px)!important;
+ padding:5px 10px!important;margin:0 0 7px!important;background:var(--aq-soft)!important;
+ border-color:var(--aq-outline)!important;opacity:1!important}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-player-visual-bars{height:100%!important}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-player-timeline{margin:0 0 7px!important}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-player-bottom{
+ margin-top:auto!important;padding-top:7px!important;gap:8px!important;flex-direction:column!important;align-items:stretch!important}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-now-actions{width:100%!important;justify-content:space-between!important;gap:6px!important}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-player-btn{
+ flex:1 1 0!important;min-width:0!important;min-height:37px!important;font-size:11px!important;padding:7px 8px!important}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-player-btn svg{width:15px!important;height:15px!important}
+#studio.aqfs-active #queueWorkspace .queue-player .queue-player-transport-caption{font-size:9px!important}
+#studio.aqfs-active #queueWorkspace .queue-picker-heading{flex:0 0 auto!important}
+#studio.aqfs-active #queueWorkspace .queue-picker-heading h3,
+#studio.aqfs-active #queueWorkspace .nextup-title strong{color:var(--aq-text)!important;font-size:15px!important}
+#studio.aqfs-active #queueWorkspace .queue-picker-heading p,
+#studio.aqfs-active #queueWorkspace .nextup-now{color:var(--aq-sub)!important;font-size:10px!important}
+#studio.aqfs-active #queueWorkspace .queue-picker .queue-search-label{font-size:10px!important;margin:8px 0 4px!important}
+#studio.aqfs-active #queueWorkspace .queue-picker #queueSearch{
+ display:block!important;flex:0 0 auto!important;width:100%!important;min-height:34px!important;
+ border:1px solid var(--aq-outline)!important;background:var(--aq-panel)!important;color:var(--aq-text)!important}
+#studio.aqfs-active #queueWorkspace #queuePickerList{
+ display:grid!important;grid-template-columns:1fr!important;align-content:start!important;
+ min-height:0!important;max-height:none!important;flex:1 1 auto!important;overflow-y:auto!important;
+ overscroll-behavior:contain!important;margin:8px 0!important;padding-right:3px!important}
+#studio.aqfs-active #queueWorkspace .queue-picker-item{background:var(--aq-panel)!important;color:var(--aq-text)!important;
+ border-color:var(--aq-outline)!important;min-height:38px!important}
+#studio.aqfs-active #queueWorkspace #queueAddFiles{flex:0 0 auto!important;min-height:31px!important;}
+#studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-bar{
+ flex:0 0 auto!important;display:flex!important;flex-wrap:wrap!important;gap:10px!important;
+ padding:12px!important;border-bottom:1px solid var(--aq-outline)!important}
+#studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-actions{flex-wrap:wrap!important;gap:7px!important}
+#studio.aqfs-active #queueWorkspace #nextUpBody{
+ display:flex!important;flex-direction:column!important;flex:1 1 auto!important;min-height:0!important;
+ max-height:none!important;overflow:hidden!important;padding:8px!important}
+#studio.aqfs-active #queueWorkspace #nextUpList{
+ display:flex!important;flex-direction:column!important;flex:1 1 auto!important;
+ min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;
+ overscroll-behavior:contain!important;gap:6px!important;padding-right:3px!important}
+#studio.aqfs-active #queueWorkspace #nextUpList>*{flex:0 0 auto!important}
+#studio.aqfs-active #queueWorkspace #queueScriptDock>.broadcast-script-aside{
+ position:static!important;inset:auto!important;display:flex!important;flex-direction:column!important;
+ width:100%!important;height:100%!important;max-height:none!important;min-height:0!important;
+ margin:0!important;padding:0!important;overflow:hidden!important;
+ border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;color:var(--aq-text)!important}
+#studio.aqfs-active #queueWorkspace #queueScriptDock>.broadcast-script-aside>.spread{
+ height:38px!important;min-height:38px!important;max-height:38px!important;flex:0 0 38px!important;
+ align-items:center!important;display:flex!important;gap:4px!important;overflow:hidden!important;flex-wrap:nowrap!important}
+#studio.aqfs-active #queueWorkspace #queueScriptDock>.broadcast-script-aside>.spread .title{
+ color:var(--aq-text)!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important;
+ min-width:0!important;font-size:clamp(11px,1vw,14px)!important}
+#studio.aqfs-active #queueWorkspace #queueScriptDock>.broadcast-script-aside>.spread #scriptFull{display:none!important}
+#studio.aqfs-active #queueWorkspace #queueScriptDock>.broadcast-script-aside>.hint{display:none!important}
+#studio.aqfs-active #queueWorkspace #queueScriptDock #scriptSlot{
+ flex:1 1 auto!important;display:flex!important;flex-direction:column!important;min-height:0!important;
+ overflow:hidden!important;padding-top:7px!important}
+#studio.aqfs-active #queueWorkspace #queueScriptDock #scriptText{
+ display:block!important;box-sizing:border-box!important;resize:none!important;
+ width:100%!important;min-height:0!important;height:100%!important;flex:1 1 auto!important;
+ border:1px solid var(--aq-outline)!important;border-radius:11px!important;
+ background:var(--aq-panel)!important;color:var(--aq-text)!important;caret-color:var(--aq-accent)!important;
+ overflow-y:auto!important;overflow-x:hidden!important;line-height:1.62!important;padding:13px!important}
+#studio.aqfs-active #queueWorkspace #queueScriptDock #scriptText::placeholder{color:var(--aq-sub)!important}
+#studio.aqfs-active .aqfs-script-tools{display:flex;flex:0 0 30px;min-height:30px;gap:7px;
+ align-items:center;justify-content:flex-end;color:var(--aq-sub);font-size:10px;padding-bottom:4px}
+#studio.aqfs-active .aqfs-script-tools button{min-width:26px;height:26px;border:1px solid var(--aq-outline);
+ border-radius:7px;background:var(--aq-panel);color:var(--aq-text);cursor:pointer}
+#studio.aqfs-active .aqfs-resize{position:absolute;top:38px;bottom:14px;width:14px;
+ z-index:10;display:grid;place-items:center;cursor:ew-resize;touch-action:none;
+ color:var(--aq-accent);outline-offset:2px}
+#studio.aqfs-active .aqfs-resize-left{left:-8px}
+#studio.aqfs-active .aqfs-resize-right{right:-8px}
+#studio.aqfs-active .aqfs-resize::after{content:'↔';position:absolute;top:49%;width:23px;height:32px;
+ display:grid;place-items:center;border-radius:7px;border:1px solid var(--aq-outline);
+ background:var(--aq-surface);box-shadow:0 4px 12px #0002;font-size:16px;
+ opacity:0;transform:translateY(-50%) scale(.9);transition:opacity .14s,transform .14s}
+#studio.aqfs-active .aqfs-resize:hover::after,#studio.aqfs-active .aqfs-resize:focus-visible::after,
+#studio.aqfs-active .aqfs-resize.is-dragging::after{opacity:1;transform:translateY(-50%) scale(1)}
+#studio.aqfs-active.aqfs-script-hidden #queueWorkspace .queue-stage{
+ grid-template-columns:minmax(270px,40%) minmax(280px,1fr)!important;
+ grid-template-rows:minmax(255px,55fr) minmax(165px,45fr)!important}
+#studio.aqfs-active.aqfs-script-hidden #queueWorkspace .queue-script-dock{display:none!important}
+#studio.aqfs-active #queueWorkspace .queue-script-dock .aqfs-resize:focus-visible{outline:2px solid var(--aq-accent)}
+#studio.aqfs-active>.aqfs-header{
+ flex:0 0 58px!important;min-height:58px!important;height:58px!important;box-sizing:border-box!important;
+ display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px;
+ border-bottom:1px solid var(--aq-outline);padding:5px clamp(10px,1.5vw,22px);
+ background:var(--aq-surface);color:var(--aq-text);position:relative;z-index:3}
+#studio.aqfs-active .aqfs-head-title{display:flex;flex-direction:column;gap:3px;min-width:110px;flex:0 1 210px}
+#studio.aqfs-active .aqfs-head-title strong{font-size:15px;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+#studio.aqfs-active .aqfs-head-title small{font-size:9px;font-weight:750;letter-spacing:.12em;color:var(--aq-accent);white-space:nowrap}
+#studio.aqfs-active .aqfs-record-slot{flex:1 1 auto;min-width:0;display:flex;justify-content:flex-end}
+#studio.aqfs-active .aqfs-record-slot>.studio-recbar{display:flex!important;align-items:center!important;
+ justify-content:flex-end!important;flex-wrap:nowrap!important;gap:8px!important;max-width:100%!important;
+ margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;min-width:0!important}
+#studio.aqfs-active .aqfs-record-slot .rec-label{display:none!important}
+#studio.aqfs-active .aqfs-record-slot .rec-timer{font-size:16px!important;font-weight:850!important;color:var(--aq-text)!important;white-space:nowrap}
+#studio.aqfs-active .aqfs-record-slot .rec-state{font-size:9px!important;white-space:nowrap}
+#studio.aqfs-active .aqfs-record-slot .rec-actions{display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:5px!important}
+#studio.aqfs-active .aqfs-record-slot .rec-actions button{min-height:32px!important;padding:6px 9px!important;font-size:11px!important;white-space:nowrap!important}
+#studio.aqfs-active .aqfs-record-slot .mic-compact{display:flex!important;font-size:10px!important;white-space:nowrap!important}
+#studio.aqfs-active .aqfs-actions{display:flex;gap:4px;align-items:center;flex:0 0 auto}
+#studio.aqfs-active .aqfs-tool{position:relative;display:grid;place-items:center;width:36px;height:36px;
+ border:0!important;border-radius:8px!important;background:transparent!important;color:var(--aq-text)!important;
+ box-shadow:none!important;cursor:pointer;flex:0 0 auto;transition:background .13s}
+#studio.aqfs-active .aqfs-tool:hover{background:var(--aq-soft)!important}
+#studio.aqfs-active .aqfs-tool:focus-visible{outline:2px solid var(--aq-accent)!important;outline-offset:2px}
+#studio.aqfs-active .aqfs-tool svg{width:19px;height:19px;stroke:currentColor;fill:none;
+ stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}
+#studio.aqfs-active .aqfs-tool:where(:hover,:focus-visible)::after{
+ content:attr(data-tip);pointer-events:none;position:absolute;right:0;top:calc(100% + 10px);z-index:900;
+ padding:9px 12px;border:1px solid var(--aq-outline);border-radius:9px;
+ background:var(--aq-surface);box-shadow:0 8px 28px #0004;color:var(--aq-text);
+ font-size:11px;font-weight:800;letter-spacing:0;white-space:nowrap}
+#studio.aqfs-active>.footer{position:relative!important;inset:auto!important;flex:0 0 64px!important;
+ height:64px!important;min-height:64px!important;margin:0!important;border:0!important;
+ border-top:1px solid var(--aq-outline)!important;background:var(--aq-surface)!important;
+ box-shadow:none!important;z-index:2!important;padding:0 12px!important;color:var(--aq-text)!important}
+#studio.aqfs-active>.footer .footinner{height:100%!important;min-height:0!important;max-width:none!important;
+ display:flex!important;align-items:center!important;justify-content:space-between!important;gap:15px!important;margin:0!important;padding:0!important}
+#studio.aqfs-active>.footer .footer-playing{flex:1 1 auto;min-width:0!important}
+#studio.aqfs-active>.footer .footer-master{flex:0 1 350px!important;min-width:170px!important}
+#studio.aqfs-active>.footer .footer-master :is(label,output),
+#studio.aqfs-active>.footer .footer-playing strong{color:var(--aq-text)!important}
+#studio.aqfs-active>.footer #sbfsPlayingNames{color:var(--aq-sub)!important}
+#studio.aqfs-active>.footer .footer-stop{flex:0 0 auto!important;margin:0!important;min-height:39px!important}
+#studio.aqfs-active .queue-picker-list::-webkit-scrollbar,
+#studio.aqfs-active #nextUpList::-webkit-scrollbar,
+#studio.aqfs-active #scriptText::-webkit-scrollbar{width:7px}
+#studio.aqfs-active .queue-picker-list::-webkit-scrollbar-thumb,
+#studio.aqfs-active #nextUpList::-webkit-scrollbar-thumb,
+#studio.aqfs-active #scriptText::-webkit-scrollbar-thumb{
+ background:color-mix(in srgb,var(--aq-accent) 35%,var(--aq-outline));border-radius:99px}
+#studio.aqfs-active #queueWorkspace .nextup-panel :is(.nextup-list,.nextup-body){scrollbar-width:thin;scrollbar-color:var(--aq-outline) transparent}
+/* Light theme: every major surface has an actual light palette. */
+html[data-theme=light] #studio.aqfs-active #queueWorkspace .queue-now-card.queue-player{
+ background:linear-gradient(160deg,#fff,#f2fbf8)!important;border-color:#b2d8d1!important;
+ --player-ink:#143c3c;--player-muted:#506f77;--player-accent:#068c79;color:#143c3c!important}
+html[data-theme=light] #studio.aqfs-active #queueWorkspace .queue-player-visual-bars span{background:linear-gradient(#10ac9d,#07766d)!important}
+html[data-theme=light] #studio.aqfs-active #queueWorkspace .queue-player .queue-player-cover{background:linear-gradient(135deg,#c9f1e9,#6ebdb1)!important}
+html[data-theme=light] #studio.aqfs-active #queueWorkspace :is(.nextup-panel,.queue-picker,.queue-picker-item){color:#1c3547!important}
+html[data-theme=light] #studio.aqfs-active .aqfs-script-tools button{background:#fff!important;color:#254258!important;border-color:#b5ccd9!important}
+html[data-theme=light] #studio.aqfs-active #queueWorkspace #scriptText{background:#fff!important}
+/* Short desktop screens: compact player and controls, never scroll the page. */
+@media(max-height:720px) and (min-width:1000px){
+ #studio.aqfs-active>#queueWorkspace{padding:8px 11px!important}
+ #studio.aqfs-active #queueWorkspace .queue-stage{gap:8px!important;grid-template-rows:minmax(230px,57fr) minmax(125px,43fr)!important}
+ #studio.aqfs-active #queueWorkspace .queue-now-card.queue-player .queue-player-cover{width:clamp(72px,12vh,98px)!important;height:clamp(72px,12vh,98px)!important}
+ #studio.aqfs-active #queueWorkspace .queue-now-card.queue-player .queue-player-hero{gap:5px!important;margin-bottom:6px!important}
+ #studio.aqfs-active #queueWorkspace .queue-player .queue-player-visual{min-height:19px!important;height:22px!important}
+ #studio.aqfs-active #queueWorkspace .queue-player .queue-player-transport-caption{display:none!important}
+ #studio.aqfs-active .aqfs-header{height:51px!important;min-height:51px!important;flex-basis:51px!important}
+ #studio.aqfs-active>.footer{height:54px!important;min-height:54px!important;flex-basis:54px!important}
+}
+@media(min-width:1000px) and (max-width:1199px){
+ #studio.aqfs-active .aqfs-head-title{flex-basis:138px!important}
+ #studio.aqfs-active .aqfs-record-slot .rec-state{display:none!important}
+ #studio.aqfs-active .aqfs-record-slot .mic-word{font-size:0!important}
+ #studio.aqfs-active .aqfs-record-slot .mic-word::before{content:'Mic';font-size:10px}
+ #studio.aqfs-active #queueWorkspace .queue-stage{gap:9px!important}
+}
+@media(max-width:999px){#studio>.aqfs-header{display:none!important}}
+</style>
+
+<style id="onair-v1409-final-player-density">
+/* Keep player title and seek fully visible on laptop-height displays. */
+@media(min-width:1000px) and (max-height:800px){
+ #studio.aqfs-active #queueWorkspace .queue-now-card.queue-player .queue-player-hero{
+  display:grid!important;grid-template-columns:clamp(70px,8.5vw,112px) minmax(0,1fr)!important;
+  align-items:center!important;text-align:left!important;column-gap:11px!important;
+  flex:0 0 auto!important;margin-bottom:9px!important;max-height:115px!important}
+ #studio.aqfs-active #queueWorkspace .queue-player .queue-player-cover{
+  width:clamp(70px,8.5vw,112px)!important;height:clamp(70px,8.5vw,112px)!important;min-width:0!important}
+ #studio.aqfs-active #queueWorkspace .queue-player .queue-player-track{align-items:flex-start!important;text-align:left!important}
+ #studio.aqfs-active #queueWorkspace .queue-player .queue-player-visual{flex:0 0 auto!important}
+ #studio.aqfs-active #queueWorkspace .queue-player .queue-player-timeline{flex:0 0 auto!important}
+ #studio.aqfs-active #queueWorkspace #queueNowTitle{font-size:clamp(15px,1.7vw,21px)!important}
+}
+@media(min-width:1000px) and (max-width:1199px){
+ #studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-bar{
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:6px!important;min-height:75px!important}
+ #studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-title{width:100%!important;white-space:nowrap!important;min-width:0!important}
+ #studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-actions{width:100%!important;gap:4px!important;justify-content:space-between!important;white-space:nowrap!important}
+ #studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-actions>*{font-size:10px!important}
+}
+</style>
+
+<style id="onair-v1409-resize-hitarea-fix">#studio.aqfs-active #queueWorkspace #queueScriptDock{overflow:visible!important}</style>
+
+<style id="onair-v1409-normal-view-safety">#studio:not(.aqfs-active)>.aqfs-header,#studio:not(.aqfs-active) :is(.aqfs-script-tools,.aqfs-resize){display:none!important}@media(max-width:999px){#studio[data-active-workspace=queue]:not(.aqfs-active) .studio-mainline>.toolbar #v1399QueueFullscreen{display:none!important}}</style>
+
+
+<style id="onair-v141-queue-density">
+/* Scoped to desktop Audio Queue fullscreen. Normal view and other workspaces stay intact. */
+@media(min-width:1000px){
+ #studio.aqfs-active #queueWorkspace .queue-stage{
+  grid-template-rows:minmax(245px,53fr) minmax(185px,47fr)!important;
+ }
+ #studio.aqfs-active #queueWorkspace .queue-picker{padding:8px 10px!important;gap:0!important}
+ #studio.aqfs-active #queueWorkspace .queue-picker-heading{min-height:23px!important;gap:5px!important}
+ #studio.aqfs-active #queueWorkspace .queue-picker-heading h3{font-size:13px!important;line-height:19px!important}
+ #studio.aqfs-active #queueWorkspace .queue-picker-heading p{display:none!important}
+ #studio.aqfs-active #queueWorkspace .queue-picker .queue-search-label{
+  margin:2px 0 2px!important;font-size:9px!important;line-height:12px!important
+ }
+ #studio.aqfs-active #queueWorkspace .queue-picker #queueSearch{
+  min-height:29px!important;height:29px!important;max-height:29px!important;
+  padding:4px 8px!important;font-size:11px!important;border-radius:8px!important
+ }
+ #studio.aqfs-active #queueWorkspace #queuePickerList{
+  margin:4px 0!important;row-gap:5px!important;padding-right:3px!important;
+  flex:1 1 auto!important;overflow-y:auto!important;min-height:0!important
+ }
+ #studio.aqfs-active #queueWorkspace .queue-picker-item{
+  height:36px!important;min-height:36px!important;max-height:36px!important;
+  box-sizing:border-box!important;padding:3px 7px!important;gap:7px!important;border-radius:8px!important
+ }
+ #studio.aqfs-active #queueWorkspace .queue-picker-item .queue-picker-icon{font-size:15px!important}
+ #studio.aqfs-active #queueWorkspace .queue-picker-item .queue-picker-meta{gap:0!important}
+ #studio.aqfs-active #queueWorkspace .queue-picker-item .queue-picker-meta b{font-size:11px!important;line-height:14px!important}
+ #studio.aqfs-active #queueWorkspace .queue-picker-item .queue-picker-meta small{font-size:9px!important;line-height:12px!important}
+ #studio.aqfs-active #queueWorkspace #queueAddFiles{
+  height:26px!important;min-height:26px!important;max-height:26px!important;
+  padding:3px 8px!important;font-size:11px!important;border-radius:8px!important
+ }
+ #studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-bar{
+  flex-wrap:nowrap!important;flex-direction:row!important;align-items:center!important;gap:7px!important;
+  min-height:48px!important;padding:7px 9px!important
+ }
+ #studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-title{flex:1 1 auto!important;min-width:0!important;width:auto!important;white-space:nowrap!important}
+ #studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-now{display:none!important}
+ #studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-actions{
+  flex:0 0 auto!important;width:auto!important;display:flex!important;flex-wrap:nowrap!important;
+  align-items:center!important;justify-content:flex-end!important;gap:4px!important;white-space:nowrap!important
+ }
+ #studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-actions :is(button,.nextup-autoplay){
+  position:relative!important;box-sizing:border-box!important;display:flex!important;
+  align-items:center!important;justify-content:center!important;flex:0 0 33px!important;
+  width:33px!important;min-width:33px!important;height:32px!important;min-height:32px!important;
+  padding:0!important;font-size:0!important;line-height:0!important;border-radius:8px!important
+ }
+ #studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-actions :is(button,.nextup-autoplay) svg{
+  display:block!important;flex:0 0 auto!important;width:17px!important;height:17px!important;
+  font-size:initial!important;opacity:1!important
+ }
+ #studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-actions :is(button,.nextup-autoplay) :is(span){
+  display:none!important
+ }
+ #studio.aqfs-active #queueWorkspace #nextUpAuto{
+  position:absolute!important;opacity:0!important;width:100%!important;height:100%!important;
+  inset:0!important;margin:0!important;cursor:pointer!important
+ }
+ #studio.aqfs-active #queueWorkspace .nextup-autoplay:has(#nextUpAuto:checked){
+  background:var(--aq-accent)!important;color:#073e37!important;
+  border-color:var(--aq-accent)!important
+ }
+ #studio.aqfs-active #queueWorkspace .nextup-autoplay:has(#nextUpAuto:focus-visible){outline:2px solid var(--aq-accent);outline-offset:2px}
+ #studio.aqfs-active #queueWorkspace .nextup-actions :is(button,.nextup-autoplay):not(:disabled):hover{
+  filter:brightness(1.06);transform:translateY(-1px)
+ }
+ #studio.aqfs-active #queueWorkspace #nextUpClear svg{color:inherit!important}
+ #studio.aqfs-active #queueWorkspace #nextUpCollapse{
+  position:relative!important;font-size:0!important;overflow:hidden!important
+ }
+ #studio.aqfs-active #queueWorkspace #nextUpCollapse::before{
+  content:'⌃';position:absolute;inset:0;display:grid;place-items:center;
+  font-size:18px!important;line-height:1!important;color:var(--aq-text)!important
+ }
+ #studio.aqfs-active #queueWorkspace #nextUpCollapse[aria-expanded="false"]::before{content:'⌄'}
+}
+@media(min-width:1000px) and (max-height:720px){
+ #studio.aqfs-active #queueWorkspace .queue-stage{grid-template-rows:minmax(235px,53fr) minmax(185px,47fr)!important}
+ #studio.aqfs-active #queueWorkspace .queue-player .queue-player-visual{min-height:19px!important;height:22px!important}
+ #studio.aqfs-active #queueWorkspace .queue-picker-item{height:34px!important;min-height:34px!important;max-height:34px!important}
+}
+/* One premium tooltip per queue action; positioned outside the scrolling panel. */
+#aqfsActionTooltip{
+ position:fixed;z-index:20000;pointer-events:none;max-width:260px;
+ background:#122b39;color:#ecfcff;border:1px solid #52768a;border-radius:10px;
+ padding:9px 11px;box-shadow:0 12px 28px #0005;font-size:11px;line-height:1.4
+}
+#aqfsActionTooltip strong{display:block;font-size:11px;font-weight:800;margin-bottom:3px}
+#aqfsActionTooltip small{display:block;font-size:10px;opacity:.84;line-height:1.4}
+html[data-theme=light] #aqfsActionTooltip{background:#fff;color:#233b4b;border-color:#b4cad7;box-shadow:0 8px 20px #1c35512b}
+</style>
+<script id="onair-v1409-queue-fullscreen-controller">
+(()=>{
+ 'use strict';
+ const studio=document.getElementById('studio');
+ const queue=document.getElementById('queueWorkspace');
+ const launcher=document.getElementById('v1399QueueFullscreen');
+ const rec=studio?.querySelector('.studio-recbar');
+ const footer=document.querySelector('footer.footer');
+ const theme=document.getElementById('themeSwitch');
+ const scriptDock=document.getElementById('queueScriptDock');
+ const script=document.getElementById('scriptText');
+ if(!studio||!queue||!launcher||!rec||!footer||!theme||!scriptDock||!script)return;
+ launcher.disabled=false;
+ launcher.removeAttribute('aria-disabled');
+ launcher.dataset.contextHelp='Open a dedicated broadcast queue console with a resizable script and fixed recording controls.';
+ launcher.dataset.contextTip='Audio Queue Fullscreen';
+ launcher.setAttribute('aria-label','Audio Queue Fullscreen');
+ const icon={
+  eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+  eyeoff:'<path d="m3 3 18 18M9.8 5.1c.7-.1 1.4-.1 2.2-.1 6 0 10 7 10 7s-1.2 2.1-3.4 4M6.1 6.2C3.5 8 2 12 2 12s4 7 10 7c1.7 0 3.2-.5 4.6-1.3"/>',
+  moon:'<path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.7 8.7 0 1 0 20.2 15.2Z"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  shrink:'<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/>'
+ };
+ const svg=p=>`<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
+ const header=document.createElement('header');header.className='aqfs-header';
+ header.innerHTML=`<div class="aqfs-head-title"><strong>☷ AUDIO QUEUE</strong><small>LIVE BROADCAST CONSOLE</small></div><div class="aqfs-record-slot"></div><div class="aqfs-actions"><button type="button" class="aqfs-tool" id="aqfsScript" aria-label="Hide Broadcast Script"></button><button type="button" class="aqfs-tool" id="aqfsTheme" aria-label="Change Theme"></button><button type="button" class="aqfs-tool" id="aqfsExit" aria-label="Exit Audio Queue Fullscreen">${svg(icon.shrink)}</button></div>`;
+ studio.insertBefore(header,queue);
+ const recordSlot=header.querySelector('.aqfs-record-slot');
+ const scriptButton=header.querySelector('#aqfsScript');
+ const themeButton=header.querySelector('#aqfsTheme');
+ const exitButton=header.querySelector('#aqfsExit');
+ exitButton.dataset.tip='Exit Audio Queue Fullscreen';
+ const tools=document.createElement('div');tools.className='aqfs-script-tools';
+ tools.innerHTML='<span>TEXT SIZE</span><button type="button" aria-label="Decrease script font size" data-aqfs-font="-1">−</button><output id="aqfsFontValue">100%</output><button type="button" aria-label="Increase script font size" data-aqfs-font="1">+</button>';
+ const left=document.createElement('div'),right=document.createElement('div');
+ for(const [el,side] of [[left,'left'],[right,'right']]){
+  el.className='aqfs-resize aqfs-resize-'+side;
+  el.setAttribute('role','separator');el.setAttribute('tabindex','0');
+  el.setAttribute('aria-label','Resize Broadcast Script');
+  el.setAttribute('aria-orientation','vertical');
+  el.setAttribute('aria-valuemin','18');el.setAttribute('aria-valuemax','48');
+  scriptDock.appendChild(el);
+ }
+ scriptDock.insertBefore(tools,scriptDock.firstChild);
+ let active=false, scriptVisible=true, recHome=null, footHome=null, normalQueueCollapsed=false;
+ const clamp=(n,min,max)=>Math.min(max,Math.max(min,n));
+ const widthKey='onair-queue-fullscreen-script-pct';
+ const fontKey='onair-queue-fullscreen-script-font';
+ const read=(key,d)=>{try{return Number(localStorage.getItem(key))||d}catch{return d}};
+ let widthPct=clamp(read(widthKey,28),22,42);
+ let fontSize=clamp(read(fontKey,16),12,26);
+ const save=(key,val)=>{try{localStorage.setItem(key,String(val))}catch{}};
+ const setWidth=(pct,persist=true)=>{
+  widthPct=clamp(pct,22,42);
+  const available=queue.querySelector('.queue-stage')?.clientWidth||window.innerWidth-28;
+  const maxPx=Math.max(220,available-550);
+  const px=clamp(available*widthPct/100,220,Math.min(available*.42,maxPx));
+  studio.style.setProperty('--aqfs-script-px',Math.round(px)+'px');
+  for(const el of [left,right]){el.setAttribute('aria-valuenow',String(Math.round(widthPct)));}
+  if(persist)save(widthKey,widthPct);
+ };
+ const setFont=(n)=>{
+  fontSize=clamp(n,12,26);script.style.fontSize=fontSize+'px';
+  tools.querySelector('output').textContent=Math.round(fontSize/16*100)+'%';save(fontKey,fontSize);
+ };
+ tools.addEventListener('click',e=>{
+  const btn=e.target.closest('[data-aqfs-font]');if(btn)setFont(fontSize+Number(btn.dataset.aqfsFont));
+ });
+ const syncTheme=()=>{
+  const light=document.documentElement.dataset.theme==='light';
+  themeButton.innerHTML=svg(icon[light?'sun':'moon']);
+  themeButton.dataset.tip=light?'Switch to Dark Mode':'Switch to Light Mode';
+  themeButton.setAttribute('aria-label',themeButton.dataset.tip);
+  themeButton.setAttribute('aria-pressed',String(light));
+ };
+ new MutationObserver(syncTheme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});syncTheme();
+ themeButton.addEventListener('click',()=>theme.click());
+ const syncScript=()=>{
+  studio.classList.toggle('aqfs-script-hidden',!scriptVisible);
+  scriptButton.innerHTML=svg(icon[scriptVisible?'eyeoff':'eye']);
+  scriptButton.dataset.tip=scriptVisible?'Hide Broadcast Script':'Show Broadcast Script';
+  scriptButton.setAttribute('aria-label',scriptButton.dataset.tip);
+  scriptButton.setAttribute('aria-pressed',String(scriptVisible));
+  if(scriptVisible)requestAnimationFrame(()=>setWidth(widthPct,false));
+ };
+ scriptButton.addEventListener('click',()=>{scriptVisible=!scriptVisible;syncScript()});
+ syncScript();
+ let drag=null;
+ const move=e=>{
+  if(!drag)return;
+  const w=queue.querySelector('.queue-stage')?.clientWidth||window.innerWidth-28;
+  setWidth(drag.pct+(drag.x-e.clientX)/w*100,false);
+ };
+ const end=()=>{
+  if(!drag)return;
+  drag.el.classList.remove('is-dragging');drag=null;save(widthKey,widthPct);
+  window.removeEventListener('pointermove',move);window.removeEventListener('pointerup',end);window.removeEventListener('pointercancel',end);
+ };
+ for(const handle of [left,right]){
+  handle.addEventListener('pointerdown',e=>{
+   if(!active||!scriptVisible||e.button!==0)return;
+   e.preventDefault();drag={x:e.clientX,pct:widthPct,el:handle};
+   handle.classList.add('is-dragging');
+   window.addEventListener('pointermove',move);window.addEventListener('pointerup',end);window.addEventListener('pointercancel',end);
+  });
+  handle.addEventListener('keydown',e=>{
+   if(!active||!scriptVisible||!['ArrowLeft','ArrowRight'].includes(e.key))return;
+   e.preventDefault();setWidth(widthPct+(e.key==='ArrowLeft'?1:-1));
+  });
+  handle.addEventListener('dblclick',()=>setWidth(28));
+ }
+ const restore=()=>{
+  if(!active)return;
+  end();active=false;
+  studio.classList.remove('aqfs-active','aqfs-script-hidden');
+  const qbody=document.getElementById('nextUpBody'),collapse=document.getElementById('nextUpCollapse');
+  qbody?.classList.toggle('hidden',normalQueueCollapsed);
+  collapse?.setAttribute('aria-expanded',String(!normalQueueCollapsed));
+  if(collapse)collapse.textContent=normalQueueCollapsed?'⌄':'⌃';
+  document.documentElement.classList.remove('aqfs-screenlock');
+  studio.style.removeProperty('--aqfs-script-px');
+  if(recHome?.parentNode)recHome.replaceWith(rec);
+  if(footHome?.parentNode)footHome.replaceWith(footer);
+  recHome=footHome=null;
+  launcher.setAttribute('aria-pressed','false');
+ };
+ const close=async()=>{
+  if(document.fullscreenElement===studio){try{await document.exitFullscreen()}catch{}}
+  restore();
+ };
+ const open=async()=>{
+  if(active)return;
+  if(window.innerWidth<1000 || window.innerHeight<420)return;
+  if(queue.classList.contains('hidden'))return;
+  if(document.fullscreenElement&&document.fullscreenElement!==studio)return;
+  // Request native fullscreen BEFORE changing layout. No mutation observer / loop.
+  if(studio.requestFullscreen){try{await studio.requestFullscreen()}catch(e){/* CSS fullscreen remains available */}}
+  recHome=document.createComment('Queue recording bar return slot');rec.before(recHome);
+  footHome=document.createComment('Queue master footer return slot');footer.before(footHome);
+  recordSlot.appendChild(rec);studio.appendChild(footer);
+  normalQueueCollapsed=document.getElementById('nextUpBody')?.classList.contains('hidden')||false;
+  document.getElementById('nextUpBody')?.classList.remove('hidden');
+  const collapse=document.getElementById('nextUpCollapse');
+  collapse?.setAttribute('aria-expanded','true');if(collapse)collapse.textContent='⌃';
+  studio.classList.add('aqfs-active');document.documentElement.classList.add('aqfs-screenlock');
+  active=true;
+  scriptVisible=true;syncScript();setFont(fontSize);setWidth(widthPct,false);
+  launcher.setAttribute('aria-pressed','true');
+ };
+ launcher.addEventListener('click',()=>{if(active)close();else open()});
+ exitButton.addEventListener('click',close);
+ document.addEventListener('fullscreenchange',()=>{
+  if(active&&document.fullscreenElement!==studio&&!window.__aqfsImportPickerActive)restore();
+ });
+ document.addEventListener('keydown',e=>{
+  if(active&&e.key==='Escape'&&!document.fullscreenElement)restore();
+ });
+ window.addEventListener('resize',()=>{if(active){if(window.innerWidth<1000)close();else setWidth(widthPct,false)}});
+ for(const id of ['wsBoard','wsDJ'])document.getElementById(id)?.addEventListener('click',()=>{if(active)close()});
+ window.__onAirQueueFullscreen={open,close,isOpen:()=>active,setWidth,setFont};
+})();
+</script>
+
+
+<style id="onair-v1411-queue-unified">
+/* Same thin, stable Next Up toolbar in normal and fullscreen. */
+#studio #nextUpPanel .nextup-bar{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;flex-wrap:nowrap!important;min-height:45px!important;height:45px!important;box-sizing:border-box!important;padding:5px 9px!important;gap:6px!important}
+#studio #nextUpPanel .nextup-title{display:flex!important;align-items:center!important;flex:1 1 auto!important;width:auto!important;min-width:0!important;flex-basis:auto!important;gap:6px!important;white-space:nowrap!important}
+#studio #nextUpPanel .nextup-title strong{white-space:nowrap!important}
+#studio #nextUpPanel .nextup-now{display:none!important}
+#studio #nextUpPanel .nextup-actions{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;flex:0 0 auto!important;width:auto!important;min-width:0!important;gap:4px!important;white-space:nowrap!important;flex-wrap:nowrap!important}
+#studio #nextUpPanel .nextup-actions :is(button,.nextup-autoplay){position:relative!important;box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 32px!important;width:32px!important;min-width:32px!important;max-width:32px!important;height:32px!important;min-height:32px!important;max-height:32px!important;padding:0!important;margin:0!important;font-size:0!important;line-height:0!important;border-radius:8px!important;overflow:visible!important}
+#studio #nextUpPanel .nextup-actions :is(button,.nextup-autoplay)>svg{display:block!important;flex:0 0 17px!important;width:17px!important;height:17px!important;max-width:17px!important;max-height:17px!important;opacity:1!important}
+#studio #nextUpPanel .nextup-actions :is(button,.nextup-autoplay)>span{display:none!important}
+#studio #nextUpPanel .nextup-actions .nextup-autoplay input{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;opacity:0!important;margin:0!important;cursor:pointer!important;z-index:1}
+#studio #nextUpPanel .nextup-autoplay:has(input:checked),#studio #nextUpPanel #nextUpSelect[aria-pressed="true"],#studio #nextUpPanel #nextUpClear[aria-pressed="true"]{background:#087e74!important;color:white!important;border-color:#1fc8ad!important}
+#studio #nextUpPanel .nextup-autoplay:has(input:focus-visible){outline:2px solid #22d3bb!important;outline-offset:2px}
+#studio #nextUpPanel .nextup-actions button:hover:not(:disabled),#studio #nextUpPanel .nextup-autoplay:hover{filter:brightness(1.12)!important}
+#studio #nextUpPanel .nextup-actions .nextup-select-toggle{background:transparent;color:inherit;border-color:var(--aq-outline,#526479)}
+#studio #nextUpPanel #nextUpCollapse{font-size:16px!important;line-height:1!important;text-align:center!important}
+#studio.aqfs-active #queueWorkspace #nextUpPanel .nextup-actions #nextUpCollapse{display:none!important}
+#studio.aqfs-active #nextUpBody{display:block!important;min-height:0!important}
+#studio .nextup-select-wrap{display:none;flex:none;align-items:center;justify-content:center;width:21px;height:24px;cursor:pointer}
+#studio .queue-selecting .nextup-select-wrap{display:inline-flex}
+#studio .nextup-select-check{width:16px;height:16px;accent-color:#0aa995;cursor:pointer}
+#studio .queue-selecting .nextup-drag-handle,#studio .queue-selecting .nextup-item-tools{display:none!important}
+#studio .nextup-selection-bar[hidden]{display:none!important}
+#studio .nextup-selection-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-height:37px;padding:5px 9px;color:inherit;border-top:1px solid var(--aq-outline,#526479);border-bottom:1px solid var(--aq-outline,#526479)}
+#studio .queue-selected-count{font-size:11px;white-space:nowrap;font-weight:800;margin-right:auto}
+#studio .nextup-selection-bar button{border:1px solid var(--aq-outline,#526479);background:var(--aq-panel,#22384b);color:var(--aq-text,#e8f3ff);border-radius:7px;min-height:28px;padding:4px 8px;font:750 10px system-ui;cursor:pointer}
+#studio .nextup-selection-bar button:disabled{opacity:.4;cursor:not-allowed}
+#studio .nextup-selection-bar .queue-remove-selected{background:#963f4a;color:white;border-color:#ad5765}
+#studio .nextup-selection-bar #nextUpDeleteCancel{background:transparent}
+#studio .nextup-selection-bar #nextUpDeleteCancel[hidden]{display:none!important}
+#studio .nextup-selection-bar button:hover:not(:disabled){filter:brightness(1.08)}
+html[data-theme="light"] #studio .nextup-selection-bar button:not(.queue-remove-selected){background:#f4f9fc;color:#233f53;border-color:#c3d5df}
+@media(max-width:650px){#studio #nextUpPanel .nextup-bar{padding:4px 6px!important;gap:3px!important}#studio #nextUpPanel .nextup-actions{gap:3px!important}#studio #nextUpPanel .nextup-actions :is(button,.nextup-autoplay){flex-basis:29px!important;width:29px!important;min-width:29px!important;max-width:29px!important;height:29px!important;min-height:29px!important}#studio .nextup-selection-bar{gap:4px}}
+/* In-fullscreen audio import panel. Kept INSIDE #studio for native fullscreen rendering. */
+#studio #aqfsImportOverlay[hidden]{display:none!important}
+#studio #aqfsImportOverlay{position:fixed;inset:0;z-index:100001;display:flex;align-items:center;justify-content:center;padding:16px;background:#020e18b9;backdrop-filter:blur(7px)}
+#studio .aqfs-import-panel{width:min(480px,100%);max-height:calc(100vh - 34px);overflow:auto;box-sizing:border-box;border:1px solid var(--aq-outline,#668095);background:var(--aq-surface,#17293a);color:var(--aq-text,#ecf6ff);border-radius:17px;padding:19px;box-shadow:0 20px 75px #0006;display:flex;flex-direction:column;gap:12px}
+#studio .aqfs-import-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#studio .aqfs-import-head strong{font-size:16px;font-weight:850}
+#studio .aqfs-import-close,#studio .aqfs-import-browse{border:1px solid var(--aq-outline,#668095);border-radius:9px;background:var(--aq-soft,#254056);color:var(--aq-text,#edf9ff);min-height:35px;padding:6px 12px;font-weight:750;cursor:pointer}
+#studio .aqfs-import-drop{min-height:133px;border:2px dashed var(--aq-outline,#668095);border-radius:12px;background:var(--aq-soft,#1c374a);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:9px;text-align:center;padding:12px;cursor:pointer}
+#studio .aqfs-import-drop.drag-over{border-color:#28cbb3;background:#0d80731a}
+#studio .aqfs-import-drop strong{font-size:13px}
+#studio .aqfs-import-drop small,.aqfs-import-panel p{color:var(--aq-sub,#bad1d9);font-size:11px;line-height:1.5;margin:0}
+#studio .aqfs-import-browse{background:#087e74;color:#fff;border-color:#16b7a6}
+#studio .aqfs-import-status{font-size:11px;color:var(--aq-text,#eef);min-height:17px}
+#studio:not(.aqfs-active) #aqfsImportOverlay{display:none!important}
+/* One unified tooltip for normal/fullscreen, including queue list/library buttons. */
+#onair1411Tip[hidden]{display:none!important}
+#onair1411Tip{position:fixed;z-index:2147483000;pointer-events:none;max-width:min(270px,calc(100vw - 18px));padding:10px 12px;border:1px solid #60879d;background:#132b3a;color:#eaf7ff;border-radius:11px;box-shadow:0 12px 34px #0007;font:11px/1.45 system-ui}
+#onair1411Tip strong{display:block;font-size:11px;font-weight:850;margin-bottom:3px}
+#onair1411Tip small{display:block;font-size:10px;opacity:.85;line-height:1.45}
+html[data-theme="light"] #onair1411Tip{background:#fff;border-color:#bbccd8;color:#1c374a;box-shadow:0 9px 27px #203f5529}
+</style>
+
+<script id="onair-v1411-queue-fixes">
+(()=>{
+ 'use strict';
+ const byId=id=>document.getElementById(id);
+ const studio=byId('studio'),queue=byId('queueWorkspace');if(!studio||!queue)return;
+ const overlay=document.createElement('div');overlay.id='aqfsImportOverlay';overlay.hidden=true;
+ overlay.innerHTML=`<div class="aqfs-import-panel" role="dialog" aria-modal="true" aria-label="Add Audio Files"><div class="aqfs-import-head"><strong>＋ Add Audio Files</strong><button class="aqfs-import-close" type="button">✕ Close</button></div><p>Import here without leaving the Audio Queue. Files are saved to the shared Sound Library, also available in Soundboard.</p><div class="aqfs-import-drop" role="button" tabindex="0"><strong>Drop your audio files here</strong><small>MP3, WAV, OGG, M4A, AAC or FLAC</small><button class="aqfs-import-browse" type="button">Browse Files</button></div><input id="aqfsImportFiles" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac" multiple hidden><div class="aqfs-import-status" aria-live="polite">Ready to import.</div></div>`;
+ studio.appendChild(overlay);
+ const browse=overlay.querySelector('.aqfs-import-browse'),input=byId('aqfsImportFiles'),drop=overlay.querySelector('.aqfs-import-drop'),status=overlay.querySelector('.aqfs-import-status');
+ const isFull=()=>studio.classList.contains('aqfs-active');
+ const close=()=>{if(status.dataset.busy==='true')return;overlay.hidden=true;window.__aqfsImportPickerActive=false};
+ const open=()=>{if(!isFull())return;overlay.hidden=false;status.textContent='Ready to import.';drop.focus()};
+ overlay.querySelector('.aqfs-import-close').addEventListener('click',close);
+ overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
+ const pick=()=>{window.__aqfsImportPickerActive=true;input.click()};
+ browse.addEventListener('click',e=>{e.stopPropagation();pick()});
+ drop.addEventListener('click',e=>{if(!e.target.closest('button'))pick()});
+ drop.addEventListener('keydown',e=>{if(e.target!==drop)return;if(e.key==='Enter'||e.key===' '){e.preventDefault();pick()}});
+ const importFiles=async(files)=>{
+  if(!isFull())return;
+  const accepted=[...files].filter(f=>f.type?.startsWith('audio/')||/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(f.name));
+  if(!accepted.length){status.textContent='No supported audio files selected.';return}
+  status.dataset.busy='true';status.textContent='Adding '+accepted.length+' audio file(s) to the shared Sound Library…';
+  try{
+   if(typeof window.__onAirQueueImportShared!=='function')throw Error('Shared audio importer is unavailable');
+   const count=await window.__onAirQueueImportShared(accepted);
+   status.textContent=count+' audio file(s) added. Available in Audio Queue and Soundboard.';
+   // Allow success to remain visible; panel stays in fullscreen until user chooses Close.
+  }catch(e){status.textContent='Import failed: '+(e?.message||'Unknown error')}
+  finally{status.dataset.busy='false';window.__aqfsImportPickerActive=false;input.value=''}
+ };
+ input.addEventListener('change',()=>{window.__aqfsImportPickerActive=false;void importFiles(input.files)});
+ for(const name of ['dragenter','dragover'])drop.addEventListener(name,e=>{e.preventDefault();e.stopPropagation();drop.classList.add('drag-over')});
+ for(const name of ['dragleave','dragend'])drop.addEventListener(name,e=>{e.preventDefault();e.stopPropagation();drop.classList.remove('drag-over')});
+ drop.addEventListener('drop',e=>{e.preventDefault();e.stopPropagation();drop.classList.remove('drag-over');void importFiles(e.dataTransfer?.files||[])});
+ // Stop the old queueAddFiles handler (it calls the global file input, which caused fullscreen to exit).
+ byId('queueAddFiles')?.addEventListener('click',e=>{if(!isFull())return;e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();open()},true);
+ studio.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden){e.stopPropagation();e.preventDefault();close()}},true);
+ // If picker made the browser leave native fullscreen, retain the immersive CSS console and import state.
+ window.addEventListener('focus',()=>{if(window.__aqfsImportPickerActive){setTimeout(()=>{window.__aqfsImportPickerActive=false},1400)}});
+ const tip=document.createElement('div');tip.id='onair1411Tip';tip.hidden=true;studio.appendChild(tip);
+ const escapeHtml=str=>String(str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ let activeTipTarget=null;
+ const info=el=>{
+   if(!el||!queue.contains(el))return null;
+   if(el.id==='nextUpAuto'||el.classList.contains('nextup-autoplay'))return ['Auto Play','Play the next queued track automatically when the current one finishes.'];
+   if(el.id==='nextUpPlay')return [el.dataset.mode==='next'?'Play Next':'Start Queue',el.dataset.queueHint||'Start or advance the audio queue.'];
+   if(el.id==='nextUpSelect')return ['Select Songs','Choose individual songs or use Select All before removing them from the queue.'];
+   if(el.id==='nextUpClear')return ['Remove From Queue','Open selection mode. No songs are deleted until you confirm Remove Selected.'];
+   if(el.id==='nextUpCollapse')return ['Collapse / Expand Queue','Toggle the queue list in normal view. Fullscreen always keeps it visible.'];
+   if(el.id==='queueAddFiles')return ['Add Audio Files','Import audio into your shared Sound Library. Available in Audio Queue and Soundboard.'];
+   if(el.id==='nextUpSelectAll')return ['Select All','Select every upcoming queue entry, including repeated tracks.'];
+   if(el.id==='nextUpSelectNone')return ['Deselect All','Uncheck every selected queue entry.'];
+   if(el.id==='nextUpDeleteSelected')return ['Remove Selected','Remove only the selected entries from Next Up. A second click confirms.'];
+   if(el.id==='nextUpDeleteCancel')return ['Cancel Removal','Return to selection without removing anything.'];
+   if(el.id==='nextUpSelectionClose')return ['Finish Selection','Close selection mode and keep the queue unchanged.'];
+   if(el.dataset.queueAction==='remove')return ['Remove One Song','Remove only this item from Next Up. The sound remains in the library.'];
+   if(el.classList.contains('nextup-drag-handle'))return ['Reorder Song','Drag this handle to change queue order.'];
+   if(el.hasAttribute('data-queue-pick'))return ['Add to Queue','Add this sound from the library to Next Up.'];
+   return null;
+ };
+ const targetFor=e=>e.target?.closest?.('#nextUpPanel button,#nextUpPanel .nextup-autoplay,#nextUpPanel input,#queuePickerList button,#queueAddFiles');
+ const hide=()=>{tip.hidden=true;activeTipTarget=null};
+ const show=el=>{
+  const data=info(el);if(!data)return hide();activeTipTarget=el;
+  if(el.hasAttribute('title')){el.dataset.queueLegacyTitle=el.getAttribute('title');el.removeAttribute('title')}
+  // Parent label can also carry a native title; remove it once.
+  if(el.closest('.nextup-autoplay'))el.closest('.nextup-autoplay').removeAttribute('title');
+  tip.innerHTML='<strong>'+escapeHtml(data[0])+'</strong><small>'+escapeHtml(data[1])+'</small>';tip.hidden=false;
+  const r=el.getBoundingClientRect(),width=tip.getBoundingClientRect().width,height=tip.getBoundingClientRect().height;
+  let left=Math.max(8,Math.min(innerWidth-width-8,r.left+r.width/2-width/2));
+  let top=r.bottom+9;if(top+height>innerHeight-8)top=r.top-height-9;
+  tip.style.left=left+'px';tip.style.top=Math.max(8,top)+'px';
+ };
+ queue.addEventListener('pointerover',e=>{const el=targetFor(e);if(el&&el!==activeTipTarget)show(el)});
+ queue.addEventListener('pointerout',e=>{if(!activeTipTarget)return;if(activeTipTarget.contains(e.relatedTarget))return;hide()});
+ queue.addEventListener('focusin',e=>{const el=targetFor(e);if(el)show(el)});
+ queue.addEventListener('focusout',hide);
+ queue.addEventListener('click',hide,true);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});
+})();
+</script>
+
+<style id="onair-v1413-fullscreen-repair">
+/* v141.3: Restore the five-track Soundboard fullscreen grid. No 3-track overrides.
+   The Soundboard fullscreen engine itself creates five direct children. */
+/* Keep the workspace launchers available in normal mode without modifying fullscreen card geometry. */
+#studio:not(.sbfs-fullscreen) .studio-mainline>.toolbar{align-items:center!important;flex-wrap:nowrap!important;overflow:visible!important}
+#studio[data-active-workspace="board"]:not(.sbfs-fullscreen) .studio-mainline>.toolbar>#sbfsToggle:not(:disabled){visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+#studio[data-active-workspace="dj"]:not(.sbfs-fullscreen) .studio-mainline>.toolbar .studio-v1399-actions{display:flex!important;align-items:center!important;gap:7px!important}
+#studio[data-active-workspace="dj"]:not(.sbfs-fullscreen) #v1399Beats{order:1!important}
+#studio[data-active-workspace="dj"]:not(.sbfs-fullscreen) #v1399StopBoth{order:2!important}
+#studio[data-active-workspace="dj"]:not(.sbfs-fullscreen) #v1399DJFullscreen{order:3!important}
+@media (min-width:1000px){
+  html body #studio[data-active-workspace="board"]:not(.sbfs-fullscreen) .studio-mainline>.toolbar>#sbfsToggle:not(:disabled){display:inline-flex!important}
+}
+/* At 800–999px, only desktop devices with a fine pointer get fullscreen. Correct 5-column grid is essential. */
+@media (min-width:800px) and (max-width:999px) and (pointer:fine){
+  html body #studio[data-active-workspace="board"]:not(.sbfs-fullscreen) .studio-mainline>.toolbar>#sbfsToggle:not(:disabled){display:inline-flex!important}
+  html body #studio.sbfs-fullscreen{display:flex!important}
+  #studio.sbfs-fullscreen #cards.sbfs-has-script{
+    grid-template-columns:minmax(0,1fr) 9px minmax(250px,var(--sbfs-script-width,31%)) 9px minmax(0,1fr)!important;
+    gap:3px!important;
+  }
+  #studio.sbfs-fullscreen .sbfs-zone{grid-template-columns:repeat(var(--sbfs-side-cols,1),minmax(0,1fr))!important}
+  #studio.sbfs-fullscreen #cards.sbfs-no-script{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+@media(max-width:799px){
+  #studio:not(.sbfs-fullscreen) .studio-mainline>.toolbar>#sbfsToggle{display:none!important}
+}
+</style>
+
+
+<style id="onair-v1414-soundboard-light-colors">
+/* v141.4: Restore colored card borders/surfaces, category labels, playback statuses and equalizer in LIGHT fullscreen only.
+   Uses the exact per-card --category-accent already used by the working normal Soundboard. */
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.categorized:not(.is-playing):not(.is-paused){
+  border:2px solid var(--category-accent,#6087ab)!important;
+  background-color:#ffffff!important;
+  background-image:linear-gradient(142deg,color-mix(in srgb,var(--category-accent,#6087ab) 13%,white) 0%,#fff 82%)!important;
+  box-shadow:0 3px 11px rgba(31,55,76,.13),inset 3px 0 0 color-mix(in srgb,var(--category-accent,#6087ab) 60%,transparent)!important;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.categorized .cat,
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.categorized .category-label{
+  color:color-mix(in srgb,var(--category-accent,#6087ab) 69%,#172d40 31%)!important;
+  font-weight:850!important;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound .sound-status.status-ready{
+  background:color-mix(in srgb,var(--category-accent,#6087ab) 9%,#f7f9fb)!important;
+  border:1px solid color-mix(in srgb,var(--category-accent,#6087ab) 27%,#cfdae4)!important;
+  color:#254155!important;
+  padding:2px 4px!important;
+  font-weight:850!important;
+  letter-spacing:.03em;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.is-playing{
+  background-color:#dff8ec!important;
+  background-image:linear-gradient(140deg,#c9f4e0,#ecfff7 78%)!important;
+  border:2px solid #078b65!important;
+  box-shadow:0 0 0 2px rgba(6,133,93,.26),0 5px 17px rgba(7,130,92,.24),inset 3px 0 0 #037957!important;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.is-playing.is-recent{
+  box-shadow:0 0 0 2px rgba(2,118,79,.58),0 5px 22px rgba(8,128,82,.29),inset 3px 0 0 #037957!important;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.is-paused{
+  background-color:#fff1d6!important;
+  background-image:linear-gradient(140deg,#ffe9bd,#fff9ea 83%)!important;
+  border:2px solid #b87514!important;
+  box-shadow:0 3px 11px rgba(143,99,24,.17),inset 3px 0 0 #a4650a!important;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound .sound-status.status-playing{
+  color:#fff!important;background:#086e50!important;border:1px solid #04664b!important;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound .sound-status.status-paused{
+  color:#fff!important;background:#a5660e!important;border:1px solid #8b4f0a!important;
+}
+/* Visual meter was practically invisible in fullscreen Light (opacity .135); boost only in this mode.
+   It remains behind the card text and never intercepts clicks. */
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.is-playing>.card-bg-equalizer{
+  opacity:.40!important;
+  z-index:0!important;
+  pointer-events:none!important;
+  filter:saturate(1.2);
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.is-playing>.card-bg-equalizer>i{
+  background:linear-gradient(180deg,#006b55,#0d9a72 55%,#4aca9d)!important;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.is-playing .eq-meter i{
+  background:#daffef!important;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.is-playing .sound-timing .progress{
+  background:#adddcb!important;
+  box-shadow:inset 0 0 0 1px #58b89c!important;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.is-playing .sound-timing [data-progress]{
+  background:linear-gradient(90deg,#087e5d,#24c394)!important;
+  box-shadow:0 0 5px rgba(3,123,84,.28)!important;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound .soundname{color:#172d41!important}
+</style>
+
+
+<style id="onair-v1415-unified-playback-color-system">
+/* v141.5 — category accents never use green or blue, which are reserved for playback. 
+   Apply across normal/fullscreen Soundboard, both light/dark. Prior fullscreen layout untouched. */
+:root {--sb-playing-green:#16b883;--sb-paused-blue:#60a5fa;}
+/* All READY cards: categories remain independently colored through --category-accent. */
+#cards .sound.categorized:not(.is-playing):not(.is-paused){
+  border-color:var(--category-accent,#64748b)!important;
+}
+#cards .sound.categorized:not(.is-playing):not(.is-paused) .category-label{
+  color:var(--category-accent,#64748b)!important;
+}
+/* PAUSED: blue — never orange, even for an Effect category. */
+#cards .sound.is-paused{
+  background-color:#172c4b!important;
+  background-image:linear-gradient(143deg,rgba(52,105,196,.30),rgba(15,29,50,.08) 82%)!important;
+  border:2px solid #60a5fa!important;
+  box-shadow:0 0 0 1px rgba(78,145,242,.28),inset 3px 0 0 #3b82f6!important;
+}
+#cards .sound .sound-status.status-paused{
+  background:#1d4b8b!important;
+  color:#f5f9ff!important;
+  border:1px solid #82b8ff!important;
+}
+#cards .sound.is-paused .sound-timing [data-progress]{background:#60a5fa!important;box-shadow:0 0 0 1px #3b82f644!important}
+/* PLAYING remains reserved green. */
+#cards .sound.is-playing{border:2px solid #27dda6!important}
+#cards .sound .sound-status.status-playing{background:#065b44!important;color:#e9fff5!important;border-color:#48dfa9!important}
+/* In dark, category label on an active card stays visible without overriding the playback state. */
+#cards .sound.is-playing .category-label,#cards .sound.is-paused .category-label{filter:brightness(1.18)}
+/* Light palette: clear, readable state tints and distinct status borders. */
+html[data-theme="light"] #cards .sound.is-paused{
+  background-color:#e5efff!important;
+  background-image:linear-gradient(142deg,#d7e7ff,#f6f9ff 84%)!important;
+  border:2px solid #2563eb!important;
+  box-shadow:0 2px 12px rgba(37,99,235,.15),inset 3px 0 0 #1d4ed8!important;
+}
+html[data-theme="light"] #cards .sound .sound-status.status-paused{
+  background:#1d4ed8!important;
+  color:#ffffff!important;
+  border:1px solid #1e40af!important;
+}
+html[data-theme="light"] #cards .sound.is-paused .sound-timing [data-progress]{background:#2563eb!important;box-shadow:none!important}
+html[data-theme="light"] #cards .sound.is-playing{border:2px solid #078b65!important}
+html[data-theme="light"] #cards .sound .sound-status.status-playing{background:#086e50!important;color:#fff!important;border:1px solid #04664b!important}
+/* Fullscreen-specific v1414 Light Mode rules have higher specificity. Override the
+   paused-only paint there; all layout and category presentation remain unchanged. */
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.is-paused{
+  background-color:#e5efff!important;
+  background-image:linear-gradient(142deg,#d7e7ff,#f6f9ff 84%)!important;
+  border:2px solid #2563eb!important;
+  box-shadow:0 2px 12px rgba(37,99,235,.15),inset 3px 0 0 #1d4ed8!important;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound .sound-status.status-paused{
+  color:#fff!important;background:#1d4ed8!important;border:1px solid #1e40af!important;
+}
+/* Keep all seven category labels readable in Light Mode, including yellow/orange. */
+html[data-theme="light"] #cards .sound.categorized .category-label{
+  color:color-mix(in srgb,var(--category-accent,#64748b) 79%,#172d40 21%)!important;
+  font-weight:850!important;
+}
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound.categorized .category-label{
+  color:color-mix(in srgb,var(--category-accent,#64748b) 79%,#172d40 21%)!important;
+}
+</style>
+
+<style id="onair-v1415-label-contrast">
+/* Consistent neutral READY state, preserving category color solely for category identity. */
+#cards .sound .sound-status.status-ready{
+  background:#233247!important;
+  border:1px solid #536980!important;
+  color:#e2eaf4!important;
+  padding:2px 4px!important;
+  font-weight:850!important;
+}
+html[data-theme="light"] #cards .sound .sound-status.status-ready,
+html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound .sound-status.status-ready{
+  background:#f1f5f9!important;
+  border:1px solid #afbecd!important;
+  color:#33485b!important;
+  padding:2px 4px!important;
+}
+/* Dark theme category labels stay readable even when their accent is deep violet/red. */
+html[data-theme="dark"] #cards .sound.categorized .category-label{
+  color:color-mix(in srgb,var(--category-accent,#64748b) 64%,#f3f7fd 36%)!important;
+}
 </style>
 </body></html>
