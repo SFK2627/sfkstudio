@@ -13621,4 +13621,18 @@ html[data-theme="light"] #dj142-transport-tip strong{color:#08647a;}
  document.addEventListener('visibilitychange',()=>{if(document.hidden)hide()});
 })();
 </script>
+
+<!-- v142.3: mobile DJ platter overflow containment; no footer redesign. -->
+<style id="dj-v1423-mobile-footer-stability">
+/* A rotating Deck A/B platter can paint outside the normal DJ workspace,
+   creating horizontal document overflow. Mobile browsers may then re-layout
+   viewport-fixed footer content on every animation frame. Clip the paint
+   overflow at the DJ workspace boundary (not the global page/footer).
+   Immersive/fullscreen already owns its overflow geometry; leave it alone. */
+@media (max-width:800px) {
+  #djWorkspace:not(.dj-v127-immersive) {
+    overflow-x:clip !important;
+  }
+}
+</style>
 </body></html>
