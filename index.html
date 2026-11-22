@@ -2659,6 +2659,95 @@ html body .ae-v114-global-tool[data-help]::after{
  #aeOverlay .ae-track-color-preset{height:16px;min-height:16px;border-radius:3px}
  #aeOverlay .ae-track-custom-color{height:18px!important;min-height:18px!important;border-radius:3px}
 }
+</style><style id="v122-mobile-trim-and-header">
+/* Mobile-first project launcher: contain intrinsic grid/flex sizing instead of hiding content offscreen. */
+#projectLauncher.v74-launcher{box-sizing:border-box;width:100%;max-width:100vw;overflow-x:clip;min-width:0}
+#projectLauncher .v74-shell{box-sizing:border-box;width:min(820px,100%);min-width:0;max-width:100%;overflow-x:clip}
+#projectLauncher .v74-shell>*{min-width:0;max-width:100%;box-sizing:border-box}
+#projectLauncher .v74-launcher-topline,#projectLauncher .v74-choice-grid,#projectLauncher .v74-action-panel,#projectLauncher .v74-project-list{min-width:0;max-width:100%}
+#projectLauncher .v75-hub-controls{min-width:0;flex:0 1 auto}
+#projectLauncher .v74-brand-wordmark{min-width:0;white-space:nowrap}
+#projectLauncher .v74-project-row .v64-project-item{min-width:0;max-width:100%;overflow:hidden}
+#projectLauncher .v74-project-row .v64-project-item-info{min-width:0;overflow:hidden}
+#projectLauncher .v74-project-row .v64-project-item-info small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#projectLauncher .v74-project-row .project-delete-btn{flex-shrink:0}
+#projectLauncher .v74-panel-heading>span:nth-child(2) small{overflow-wrap:anywhere}
+#projectLauncher .v74-intro h1{overflow-wrap:break-word}
+/* Minimal icon + label links; keep full accessible hit-target. */
+#projectLauncher .v110-editor-entry,#projectLauncher .v75-theme-switch,
+html[data-theme="light"] #projectLauncher .v110-editor-entry,
+html[data-theme="light"] #projectLauncher .v75-theme-switch{
+ background:transparent!important;border:0!important;box-shadow:none!important;border-radius:8px!important;
+ min-height:40px;padding:7px 4px!important;color:var(--hub-ink)!important;
+}
+#projectLauncher .v75-theme-track{display:none!important}
+#projectLauncher .v110-editor-entry:hover,#projectLauncher .v75-theme-switch:hover{background:transparent!important;border:0!important;color:#4eeac3!important;box-shadow:none!important}
+html[data-theme="light"] #projectLauncher .v110-editor-entry,html[data-theme="light"] #projectLauncher .v75-theme-switch{color:#315c51!important}
+html[data-theme="light"] #projectLauncher .v110-editor-entry:hover,html[data-theme="light"] #projectLauncher .v75-theme-switch:hover{color:#008c70!important;background:transparent!important}
+/* Soundboard header: Audio Editor navigation with icon + text, no visual box. */
+.v87-studio-header #aeOpen,.v87-studio-header #aeOpen.btn.small.v87-icon-action,
+html[data-theme="light"] .v87-studio-header #aeOpen{
+ display:inline-flex!important;align-items:center!important;gap:5px!important;width:auto!important;min-width:0!important;
+ flex:0 0 auto!important;padding:4px 6px!important;min-height:34px!important;height:34px!important;
+ border:0!important;border-radius:8px!important;box-shadow:none!important;background:transparent!important;
+ font-size:11px!important;font-weight:750!important;color:inherit!important;white-space:nowrap!important;
+}
+.v87-studio-header #aeOpen:hover,.v87-studio-header #aeOpen:focus-visible{color:#19c1a2!important;background:transparent!important}
+.v87-studio-header #aeOpen span{display:inline!important;font:inherit!important;white-space:nowrap}
+/* Theme switch is its own icon-only header action in the Audio Editor, even on mobile. */
+#aeOverlay #aeTheme,#aeOverlay #aeTheme.ae-button,html[data-theme="light"] #aeOverlay #aeTheme{
+ background:transparent!important;border:0!important;box-shadow:none!important;color:var(--ae-ink)!important;
+ padding:5px!important;min-width:32px!important;width:32px!important;max-width:32px!important;height:34px!important;
+ display:inline-grid!important;place-items:center!important;flex:0 0 32px!important;border-radius:7px!important;
+}
+#aeOverlay #aeTheme:hover{color:var(--ae-teal)!important;background:transparent!important}
+#aeOverlay #aeTheme svg{width:19px!important;height:19px!important}
+@media(max-width:620px){
+ #projectLauncher.v74-launcher{padding:12px!important}
+ #projectLauncher .v74-shell{width:100%;max-width:100%;padding:clamp(12px,4vw,20px)!important}
+ #projectLauncher .v74-launcher-topline{flex-wrap:wrap;row-gap:5px}
+ #projectLauncher .v75-hub-controls{margin-left:auto;flex-wrap:wrap;justify-content:flex-end;gap:8px}
+ #projectLauncher .v74-launcher-footer{overflow-wrap:anywhere}
+ #projectLauncher .v74-choice{width:100%;min-width:0}
+ #projectLauncher .v74-launcher-actions{min-width:0;max-width:100%;flex-wrap:wrap}
+ #projectLauncher .v74-launcher-actions .btn{min-width:0!important;max-width:100%;white-space:normal}
+ #projectLauncher .v74-panel-heading{flex-wrap:wrap}
+ #projectLauncher .v74-project-heading .v74-count{margin-left:auto}
+ .v87-studio-header #aeOpen,.v87-studio-header #aeOpen.btn.small.v87-icon-action{width:auto!important;min-width:0!important;flex-basis:auto!important;padding:5px 4px!important;font-size:10px!important;gap:4px!important}
+ header.top.v87-studio-header{min-width:0;flex-wrap:wrap;row-gap:4px}
+ .v87-studio-header .v87-header-tools{min-width:0;max-width:100%;margin-left:auto}
+}
+@media(max-width:375px){
+ #projectLauncher.v74-launcher{padding:8px!important}
+ #projectLauncher .v74-shell{padding:12px!important}
+ #projectLauncher .v74-brand-emblem{width:32px!important;height:32px!important}
+ #projectLauncher .v74-brand{gap:6px}
+ #projectLauncher .v74-brand-wordmark{font-size:11px!important}
+ #projectLauncher .v110-editor-entry,#projectLauncher .v75-theme-switch{font-size:11px!important;gap:4px!important}
+ #projectLauncher .v74-choice-arrow{width:23px;height:23px}
+ #projectLauncher .v74-project-row{gap:4px}
+ #projectLauncher .v74-project-row .v64-project-item{padding:7px 6px!important;gap:5px!important}
+ #projectLauncher .v74-project-icon{width:30px!important;height:30px!important}
+ #projectLauncher .v74-project-row .project-delete-btn{min-width:34px!important;flex-basis:34px!important}
+ .v87-studio-header #aeOpen span{font-size:10px!important}
+}
+/* Compact full-song waveform preview: complete duration remains visible. */
+.sound-editor-open .v77-sound-editor .v122-trim-visual{display:grid;gap:5px;min-width:0;width:100%;margin:4px 0 10px}
+.sound-editor-open .v77-sound-editor .v122-trim-bar{position:relative;height:56px;width:100%;min-width:0;max-width:100%;overflow:hidden;border-radius:8px;background:color-mix(in srgb,var(--edit-panel,#1b2a33) 87%,var(--edit-muted,#607e8b));border:1px solid var(--edit-line,#34535b)}
+.sound-editor-open .v77-sound-editor .v122-trim-highlight{position:absolute;inset:0 auto 0 0;width:100%;background:color-mix(in srgb,var(--edit-accent,#35cfb4) 26%,transparent);border-left:2px solid var(--edit-accent,#35cfb4);border-right:2px solid var(--edit-accent,#35cfb4);pointer-events:none}
+.sound-editor-open .v77-sound-editor .v122-trim-wave{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.sound-editor-open .v77-sound-editor .v122-trim-playhead{position:absolute;top:0;bottom:0;left:0;width:2px;background:#fa607e;box-shadow:0 0 5px #fb627c99;pointer-events:none;z-index:3;transform:translateX(-1px)}
+.sound-editor-open .v77-sound-editor .v122-trim-playhead::before{content:"";position:absolute;top:0;left:-4px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #fa607e}
+.sound-editor-open .v77-sound-editor .v122-trim-ticks{display:flex;justify-content:space-between;align-items:center;gap:4px;font-size:10px;font-weight:650;font-variant-numeric:tabular-nums;color:var(--edit-muted,#8ea2b1);min-width:0}
+.sound-editor-open .v77-sound-editor .v122-trim-ticks>span{min-width:0;white-space:nowrap}
+.sound-editor-open .v77-sound-editor .v122-trim-live{display:flex;align-items:center;gap:5px;color:#fa738c;font-weight:850}
+.sound-editor-open .v77-sound-editor .v122-trim-live i{width:5px;height:5px;border-radius:100%;background:#f36b81}
+@media(max-width:430px){
+ .sound-editor-open .v77-sound-editor .v122-trim-bar{height:49px}
+ .sound-editor-open .v77-sound-editor .v122-trim-visual{margin:3px 0 7px;gap:3px}
+ .sound-editor-open .v77-sound-editor .v122-trim-ticks{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){#projectLauncher .v110-editor-entry,#projectLauncher .v75-theme-switch{transition:none}}
 </style></head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div><button id="splashSkip" type="button" class="v64-skip">Skip intro</button></div>
 </div>
@@ -3318,7 +3407,9 @@ if(typeof ResizeObserver!=='undefined'){
 
 function renderCards(){const root=$('cards');renderQueuePicker();renderCategoryFilters();const visible=selectedCategory==='All'?project.sounds:project.sounds.filter(s=>(s.category||'Effect')===selectedCategory);root.innerHTML=visible.map(cardHTML).join('');scheduleSoundboardMarquee();$('empty').classList.toggle('hidden',project.sounds.length>0);updateWorkspaceCount();$('projectTitle').textContent=project.name;count()}
 function renderLibrary(){$('libraryList').innerHTML=project.sounds.length?project.sounds.map(s=>`<div class="listrow"><span>♫</span><span class="grow"><b>${esc(s.name)}</b><div class="hint">${esc(s.category)} · ${s.speed}× · ${s.volume}%</div></span><button class="btn small" data-edit="${s.id}">Edit</button><button class="btn danger small" data-remove="${s.id}">Remove</button></div>`).join(''):'<div class="empty">No sounds yet. Select Add Audio in Studio to get started.</div>'}
-function modal(title,html){getAudioCleanup();$('modalBg').classList.remove('sound-editor-open');$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modalBg').classList.remove('hidden')}function closeModal(){getAudioCleanup();stopEditorPreview();$('modalBg').classList.remove('sound-editor-open');$('modalBg').classList.add('hidden')}
+let editorTrimResizeObserver=null,editorTrimThemeObserver=null;
+function cleanupEditorTrimObservers(){if(editorTrimResizeObserver){editorTrimResizeObserver.disconnect();editorTrimResizeObserver=null}if(editorTrimThemeObserver){editorTrimThemeObserver.disconnect();editorTrimThemeObserver=null}}
+function modal(title,html){getAudioCleanup();cleanupEditorTrimObservers();$('modalBg').classList.remove('sound-editor-open');$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modalBg').classList.remove('hidden')}function closeModal(){getAudioCleanup();stopEditorPreview();cleanupEditorTrimObservers();$('modalBg').classList.remove('sound-editor-open');$('modalBg').classList.add('hidden')}
 // v91: Trim fields use MM:SS.mmm. All computations retain 1-millisecond precision.
 function clockTime(seconds){
  const totalMs=Math.max(0,Math.round((Number(seconds)||0)*1000));
@@ -3334,7 +3425,13 @@ function parseClock(value){
  return NaN;
 }
 let editorAudio=null,editorPreviewFrame=null;
-function stopEditorPreview(){if(editorPreviewFrame!==null){cancelAnimationFrame(editorPreviewFrame);editorPreviewFrame=null}if(editorAudio){editorAudio.pause();editorAudio.removeAttribute('src');editorAudio.load();editorAudio=null}const stopBtn=$('rangeStop'),notice=$('previewNotice'),listenBtn=$('rangePreview');if(stopBtn)stopBtn.disabled=true;if(listenBtn)listenBtn.classList.remove('is-listening');if(notice&&$('modalBg')?.classList.contains('sound-editor-open'))notice.textContent='Preview stopped · Broadcast unaffected.'}
+function moveEditorTrimPlayhead(second){
+ const timeline=$('trimTimeline'),line=$('trimPlayhead'),label=$('trimCurrentTime');if(!timeline||!line)return;
+ const duration=Number(timeline.dataset.duration)||0,time=Math.max(0,Number(second)||0);
+ line.style.left=(duration?Math.min(100,time/duration*100):0)+'%';
+ if(label)label.textContent=clockTime(time);
+}
+function stopEditorPreview(){if(editorPreviewFrame!==null){cancelAnimationFrame(editorPreviewFrame);editorPreviewFrame=null}if(editorAudio){editorAudio.pause();editorAudio.removeAttribute('src');editorAudio.load();editorAudio=null}const stopBtn=$('rangeStop'),notice=$('previewNotice'),listenBtn=$('rangePreview');if(stopBtn)stopBtn.disabled=true;if(listenBtn)listenBtn.classList.remove('is-listening');if(notice&&$('modalBg')?.classList.contains('sound-editor-open'))notice.textContent='Preview stopped · Broadcast unaffected.';const start=$('sStart');moveEditorTrimPlayhead(start?parseClock(start.value):0)}
 function editSound(id){const s=get(id);if(!s)return;stopEditorPreview();modal('Edit Sound',`<div class="editor-v9 v76-sound-editor v77-sound-editor">
 
 <div class="edit-editor-grid">
@@ -3344,7 +3441,16 @@ function editSound(id){const s=get(id);if(!s)return;stopEditorPreview();modal('E
 <section class="edit-section edit-trim" aria-label="Trim audio and preview"><div class="edit-section-top"><span class="edit-step">02</span><div><strong>Trim audio</strong><small>Play only the part you need</small></div><div class="edit-trim-meta"><span class="edit-duration" id="rangeDuration">Loading…</span><button class="btn small edit-reset" id="rangeReset" type="button">↺ Full song</button></div></div>
 <div class="edit-times"><div class="field"><label for="sStart">Start <span>MM:SS.mmm</span></label><input id="sStart" type="text" inputmode="decimal" spellcheck="false" placeholder="00:00.000" maxlength="13" value="${clockTime(s.start??0)}"></div><div class="field"><label for="sEnd">End <span>MM:SS.mmm</span></label><input id="sEnd" type="text" inputmode="decimal" spellcheck="false" placeholder="00:00.000" maxlength="13" value="${s.end>0?clockTime(s.end):''}"></div></div>
 <div class="edit-range" aria-label="Select the start and end of the audio"><div class="range-line"><label for="rangeStart">START</label><input id="rangeStart" type="range" min="0" max="1000" step="1" value="0" aria-label="Trim start position, 1 millisecond increments"></div><div class="range-line"><label for="rangeEnd">END</label><input id="rangeEnd" type="range" min="0" max="1000" step="1" value="1000" aria-label="Trim end position, 1 millisecond increments"></div></div>
-<div class="edit-listen-panel" aria-label="Listen preview controls"><div class="edit-listen-header"><span class="edit-listen-indicator" aria-hidden="true">◉</span><div><strong>Listen before saving</strong></div></div><div class="edit-preview"><button class="btn green" id="rangePreview" type="button">▶ Listen</button><button class="btn edit-stop-preview" id="rangeStop" type="button" disabled>■ Stop Preview</button></div><p class="hint" id="previewNotice" role="status" aria-live="polite">Only the preview stops, not the broadcast.</p></div></section>
+<div class="edit-listen-panel" aria-label="Listen preview controls"><div class="edit-listen-header"><span class="edit-listen-indicator" aria-hidden="true">◉</span><div><strong>Listen before saving</strong></div></div>
+<div class="v122-trim-visual" aria-label="Full song timeline; the selected Start to End section is highlighted">
+ <div class="v122-trim-bar" id="trimTimeline" data-duration="0" role="img" aria-label="Full song waveform with selected trim range">
+  <div class="v122-trim-highlight" id="trimHighlight" aria-hidden="true"></div>
+  <canvas id="trimWaveCanvas" class="v122-trim-wave" aria-hidden="true"></canvas>
+  <div id="trimPlayhead" class="v122-trim-playhead" aria-hidden="true"></div>
+ </div>
+ <div class="v122-trim-ticks"><span>00:00.000</span><span class="v122-trim-live"><i aria-hidden="true"></i><span id="trimCurrentTime">00:00.000</span></span><span id="trimTotalTime">--:--.---</span></div>
+</div>
+<div class="edit-preview"><button class="btn green" id="rangePreview" type="button">▶ Listen</button><button class="btn edit-stop-preview" id="rangeStop" type="button" disabled>■ Stop Preview</button></div><p class="hint" id="previewNotice" role="status" aria-live="polite">Only the preview stops, not the broadcast.</p></div></section>
 <section class="edit-section edit-fades" aria-label="Fade effects"><div class="edit-section-top"><span class="edit-step">03</span><div><strong>Smooth fades</strong><small>Set how gently your audio starts and ends</small></div></div><div class="edit-fades-grid"><div class="fade-row"><label for="sFadeIn">Fade in</label><div class="fade-pills" data-fade="sFadeIn"><button type="button" data-val="0">Off</button><button type="button" data-val="1">1s</button><button type="button" data-val="2">2s</button><button type="button" data-val="3">3s</button></div><div class="edit-custom-fade"><input id="sFadeIn" aria-label="Custom fade in seconds" type="number" min="0" max="60" step="0.1" value="${s.fadeIn??0}"><span>s</span></div></div><div class="fade-row"><label for="sFadeOut">Fade out</label><div class="fade-pills" data-fade="sFadeOut"><button type="button" data-val="0">Off</button><button type="button" data-val="1">1s</button><button type="button" data-val="2">2s</button><button type="button" data-val="3">3s</button></div><div class="edit-custom-fade"><input id="sFadeOut" aria-label="Custom fade out seconds" type="number" min="0" max="60" step="0.1" value="${s.fadeOut??0}"><span>s</span></div></div></div></section>
 </div>
 <div class="edit-bottom"><span class="edit-save-note">Changes apply after saving.</span><div class="edit-save"><button class="btn" id="cancelSound" type="button">Cancel</button><button class="btn primary" id="saveSound" type="button">✓ Save Changes</button></div></div>
@@ -3355,6 +3461,63 @@ soundVol.addEventListener('input',refreshSoundVol);refreshSoundVol();
 soundLoop.addEventListener('change',()=>{soundLoopValue.textContent=soundLoop.checked?'On':'Off'});
 document.querySelectorAll('.fade-pills').forEach(group=>{const input=$(group.dataset.fade);const refresh=()=>group.querySelectorAll('button').forEach(btn=>btn.classList.toggle('selected',Number(btn.dataset.val)===Number(input.value)));group.querySelectorAll('button').forEach(btn=>btn.onclick=()=>{input.value=btn.dataset.val;refresh()});input.addEventListener('input',refresh);refresh()});
 let duration=0;const st=$('sStart'),en=$('sEnd'),rs=$('rangeStart'),re=$('rangeEnd');
+const trimCanvas=$('trimWaveCanvas'),trimTimeline=$('trimTimeline');
+let trimPeaks=null;
+const drawTrimWave=()=>{
+ if(!trimCanvas||!trimCanvas.isConnected)return;
+ const rect=trimCanvas.getBoundingClientRect(),w=Math.max(1,rect.width),h=Math.max(1,rect.height),dpr=Math.min(2,window.devicePixelRatio||1);
+ trimCanvas.width=Math.round(w*dpr);trimCanvas.height=Math.round(h*dpr);
+ const ctx=trimCanvas.getContext('2d');if(!ctx)return;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);
+ const a=Math.max(0,Math.min(duration,parseClock(st.value)||0)),b=Math.max(a,Math.min(duration,parseClock(en.value)||duration));
+ const left=duration?a/duration*w:0,right=duration?b/duration*w:w;
+ const peaks=trimPeaks||[];
+ const count=peaks.length||Math.max(10,Math.floor(w/3));
+ const gap=w/count,bar=Math.max(1,gap*.67);
+ const colors=document.documentElement.dataset.theme==='light'?['#a5b8be','#087d72']:['#6c8791','#6af0cf'];
+ const paint=(bright)=>{
+  ctx.fillStyle=colors[bright?1:0];
+  for(let i=0;i<count;i++){
+   const amp=peaks.length?peaks[i]:.035;
+   const height=Math.max(2,Math.min(h-5,amp*(h-7)*.94));
+   ctx.fillRect(Math.round(i*gap),Math.round((h-height)/2),Math.max(1,bar),height);
+  }
+ };
+ paint(false);ctx.save();ctx.beginPath();ctx.rect(left,0,Math.max(0,right-left),h);ctx.clip();paint(true);ctx.restore();
+};
+const updateTrimTimeline=()=>{
+ if(!trimTimeline||!trimTimeline.isConnected)return;
+ trimTimeline.dataset.duration=String(duration);
+ const start=Math.max(0,Math.min(duration,parseClock(st.value)||0)),end=Math.max(start,Math.min(duration,parseClock(en.value)||duration));
+ const x=duration?start/duration*100:0,w=duration?Math.max(0,(end-start)/duration*100):100;
+ const highlight=$('trimHighlight');if(highlight){highlight.style.left=x+'%';highlight.style.width=w+'%'}
+ const total=$('trimTotalTime');if(total)total.textContent=duration?clockTime(duration):'--:--.---';
+ trimTimeline.setAttribute('aria-label',`Full song ${clockTime(duration)}; selected range ${clockTime(start)} to ${clockTime(end)}`);
+ if(!editorAudio)moveEditorTrimPlayhead(start);
+ drawTrimWave();
+};
+const buildTrimWaveform=async(url)=>{
+ let ctx=null;
+ try{
+  const response=await fetch(url);if(!response.ok)throw Error('Cannot load waveform data');
+  const bytes=await response.arrayBuffer();
+  if(bytes.byteLength>100*1024*1024)throw Error('Audio too large for waveform preview');
+  const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)return;
+  ctx=new AudioCtx();const buffer=await ctx.decodeAudioData(bytes);
+  const points=160,n=buffer.length,channels=[];
+  for(let ch=0;ch<Math.min(buffer.numberOfChannels,2);ch++)channels.push(buffer.getChannelData(ch));
+  const peaks=new Array(points);
+  for(let i=0;i<points;i++){
+   const start=Math.floor(i*n/points),stop=Math.max(start+1,Math.floor((i+1)*n/points));
+   const stride=Math.max(1,Math.floor((stop-start)/160));let peak=0;
+   for(let x=start;x<stop;x+=stride)for(const arr of channels)peak=Math.max(peak,Math.abs(arr[x]||0));
+   peaks[i]=peak;
+  }
+  if(trimCanvas?.isConnected){trimPeaks=peaks;drawTrimWave()}
+ }catch(err){/* Trim range and preview still work if audio waveform cannot be decoded. */}
+ finally{if(ctx)try{await ctx.close()}catch(e){}}
+};
+if(typeof ResizeObserver!=='undefined'){editorTrimResizeObserver=new ResizeObserver(()=>drawTrimWave());editorTrimResizeObserver.observe(trimTimeline)}
+editorTrimThemeObserver=new MutationObserver(()=>{if(trimCanvas?.isConnected)drawTrimWave()});editorTrimThemeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 const toMs=seconds=>Math.round(Math.max(0,seconds)*1000);
 const maxMs=()=>Math.max(1,toMs(duration));
 const valid=()=>{
@@ -3366,11 +3529,13 @@ const valid=()=>{
  return {start,end,fadeIn:Math.max(0,Number($('sFadeIn').value)||0),fadeOut:Math.max(0,Number($('sFadeOut').value)||0)};
 };
 const sync=()=>{
- if(!duration)return;
+ if(editorAudio)stopEditorPreview();
+ if(!duration){updateTrimTimeline();return;}
  const a=parseClock(st.value),b=parseClock(en.value),limit=maxMs();
  rs.max=re.max=String(limit);
  if(Number.isFinite(a))rs.value=String(Math.min(limit,Math.max(0,toMs(a))));
  if(Number.isFinite(b))re.value=String(Math.min(limit,Math.max(0,toMs(b))));
+ updateTrimTimeline();
 };
 const normalizeTime=el=>{const n=parseClock(el.value);if(Number.isFinite(n))el.value=clockTime(duration?Math.min(n,duration):n)};
 // Native range values represent milliseconds, not percentages or whole seconds.
@@ -3394,9 +3559,9 @@ st.onblur=()=>{normalizeTime(st);sync()};
 en.onblur=()=>{normalizeTime(en);sync()};
 $('rangeReset').onclick=()=>{st.value='00:00.000';en.value=clockTime(duration||0);$('sFadeIn').value=0;$('sFadeOut').value=0;document.querySelectorAll('.fade-pills button').forEach(b=>b.classList.toggle('selected',b.dataset.val==='0'));sync()};
 $('rangeStop').onclick=stopEditorPreview;
-$('rangePreview').onclick=async()=>{try{stopEditorPreview();const v=valid();if(!v||v.end<=v.start){notify('Enter a valid Start and End time (MM:SS.mmm), e.g. 01:15.250');return}const a=new Audio(await audioURL(s));editorAudio=a;a.preload='auto';applySoundSpeed(a,{speed:Number($('sSpeed').value)});a.preservesPitch=true;a.volume=0;const end=v.end||duration;const section=Math.max(.01,end-v.start),fi=Math.min(v.fadeIn,section/2),fo=Math.min(v.fadeOut,section/2),getBase=()=>clamp(Number($('sVol').value)/100,0,1);a.currentTime=v.start;const update=()=>{if(editorAudio!==a)return;if(a.currentTime>=end-.005){stopEditorPreview();return}const t=Math.max(0,a.currentTime-v.start),left=Math.max(0,end-a.currentTime);a.volume=clamp(getBase()*Math.min(1,fi?t/fi:1,fo?left/fo:1),0,1)};a.ontimeupdate=update;a.onended=stopEditorPreview;await a.play();if(editorAudio===a){const watch=()=>{if(editorAudio!==a){editorPreviewFrame=null;return}update();if(editorAudio===a)editorPreviewFrame=requestAnimationFrame(watch)};editorPreviewFrame=requestAnimationFrame(watch)};if(editorAudio===a){$('rangeStop').disabled=false;$('rangePreview').classList.add('is-listening');$('previewNotice').textContent='Preview playing · Broadcast unaffected.'}update();}catch(e){stopEditorPreview();notify('Preview error: '+e.message)}};
+$('rangePreview').onclick=async()=>{try{stopEditorPreview();const v=valid();if(!v||v.end<=v.start){notify('Enter a valid Start and End time (MM:SS.mmm), e.g. 01:15.250');return}const a=new Audio(await audioURL(s));editorAudio=a;a.preload='auto';applySoundSpeed(a,{speed:Number($('sSpeed').value)});a.preservesPitch=true;a.volume=0;const end=v.end||duration;const section=Math.max(.01,end-v.start),fi=Math.min(v.fadeIn,section/2),fo=Math.min(v.fadeOut,section/2),getBase=()=>clamp(Number($('sVol').value)/100,0,1);a.currentTime=v.start;const update=()=>{if(editorAudio!==a)return;moveEditorTrimPlayhead(a.currentTime);if(a.currentTime>=end-.005){stopEditorPreview();return}const t=Math.max(0,a.currentTime-v.start),left=Math.max(0,end-a.currentTime);a.volume=clamp(getBase()*Math.min(1,fi?t/fi:1,fo?left/fo:1),0,1)};a.ontimeupdate=update;a.onended=stopEditorPreview;await a.play();if(editorAudio===a){const watch=()=>{if(editorAudio!==a){editorPreviewFrame=null;return}update();if(editorAudio===a)editorPreviewFrame=requestAnimationFrame(watch)};editorPreviewFrame=requestAnimationFrame(watch)};if(editorAudio===a){$('rangeStop').disabled=false;$('rangePreview').classList.add('is-listening');$('previewNotice').textContent='Preview playing · Broadcast unaffected.'}update();}catch(e){stopEditorPreview();notify('Preview error: '+e.message)}};
 $('saveSound').onclick=()=>{const v=valid();if(!v||v.end<=v.start){notify('End must be after Start. Use MM:SS.mmm, e.g. 01:15.250');return}stopEditorPreview();s.name=$('sName').value.trim()||s.name;s.category=$('sCat').value;s.volume=clamp(Number($('sVol').value)||0,0,100);s.speed=Number($('sSpeed').value);s.loop=$('sLoop').checked;s.start=v.start;s.end=v.end;s.fadeIn=v.fadeIn;s.fadeOut=v.fadeOut;stop(id);stop(id,true);void save();renderCards();renderLibrary();closeModal();notify('Sound settings saved · Speed '+soundSpeed(s)+'×')};$('cancelSound').onclick=closeModal;
-audioURL(s).then(url=>{if(!$('rangeDuration'))return;const probe=new Audio();probe.preload='metadata';probe.onloadedmetadata=()=>{if(!$('rangeDuration'))return;duration=Number.isFinite(probe.duration)?probe.duration:0;$('rangeDuration').textContent=duration?clockTime(duration):'Unknown length';if(!Number.isFinite(parseClock(en.value))&&duration)en.value=clockTime(duration);sync()};probe.src=url}).catch(e=>notify(e.message));}
+audioURL(s).then(url=>{if(!$('rangeDuration'))return;const probe=new Audio();probe.preload='metadata';probe.onloadedmetadata=()=>{if(!$('rangeDuration'))return;duration=Number.isFinite(probe.duration)?probe.duration:0;$('rangeDuration').textContent=duration?clockTime(duration):'Unknown length';if(!Number.isFinite(parseClock(en.value))&&duration)en.value=clockTime(duration);sync();void buildTrimWaveform(url)};probe.src=url}).catch(e=>notify(e.message));updateTrimTimeline();}
 async function addFiles(files){if(!files.length)return;let ok=0;for(const f of files){if(!f.type.startsWith('audio/')&&!/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(f.name)){notify('Skipped unsupported file: '+f.name);continue}const s={id:id(),name:f.name.replace(/\.[^.]+$/,''),category:'Effect',volume:80,speed:1,loop:false};try{if(db)await put('assets',s.id,f);blobs.set(s.id,f);project.sounds.push(s);ok++}catch(e){notify('Storage full or unavailable for '+f.name);blobs.set(s.id,f);project.sounds.push(s);ok++}}if(ok){scheduleSave();renderCards();renderLibrary();notify(ok+' audio file(s) added. Default speed: 1× natural.')} }
 async function removeSound(id){const s=get(id);if(!s||!confirm('Remove '+s.name+' from this project?'))return;stop(id);stop(id,true);project.sounds=project.sounds.filter(x=>x.id!==id);if(queueCurrentId===id)cancelQueuedPlayback();ensureQueue();renderQueue();if(urls.has(id)){URL.revokeObjectURL(urls.get(id));urls.delete(id)}blobs.delete(id);if(db)await del('assets',id).catch(()=>{});scheduleSave();renderCards();renderLibrary()}
 function reorder(a,b){if(!a||!b||a===b)return;const i=project.sounds.findIndex(s=>s.id===a),j=project.sounds.findIndex(s=>s.id===b);if(i<0||j<0)return;project.sounds.splice(j,0,project.sounds.splice(i,1)[0]);scheduleSave();renderCards();renderLibrary()}
@@ -4798,10 +4963,11 @@ html[data-theme="light"] #aeStage .ae-track-row>.ae-track-resizer::after{
         <div class="ae-project-options" id="aeProjectOptions">
           <button class="ae-v114-tool ae-button ae-ghost" type="button" id="aeNewBtn" title="New Mix — Start a new editable audio project" aria-label="New Mix" data-tip="New Mix" data-help="Start a new editable audio project"><svg class="ae-v114-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4h11l5 5v11H4Z"/><path d="M15 4v5h5M8 14h8m-4-4v8"/></svg><span class="ae-v114-sr">New Mix</span></button>
           <button class="ae-v114-tool ae-button ae-ghost" type="button" id="aeOpenBtn" title="Saved Mixes — Open a saved audio editing project" aria-label="Saved Mixes" data-tip="Saved Mixes" data-help="Open a saved audio editing project"><svg class="ae-v114-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19V6a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v11H3Z"/><path d="M3 10h18"/></svg><span class="ae-v114-sr">Saved Mixes</span></button>
-          <button class="ae-v114-tool ae-button ae-ghost ae-icon" type="button" id="aeTheme" title="Switch Theme — Change between light and dark appearance" aria-label="Switch Theme" data-tip="Switch Theme" data-help="Change between light and dark appearance"><svg class="ae-v114-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.7 8.7 0 1 0 20.2 15.2Z"/></svg><span class="ae-v114-sr">Switch Theme</span></button>
+          
         </div>
         <button class="ae-v114-tool ae-button ae-ghost" type="button" id="aeSaveBtn" title="Save Mix — Save audio project to this device" aria-label="Save Mix" data-tip="Save Mix" data-help="Save audio project to this device"><svg class="ae-v114-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h14l3 3v15H3V3h1Z"/><path d="M7 3v7h10V3M7 21v-8h10v8"/></svg><span class="ae-v114-sr">Save Mix</span></button>
         <button class="ae-v114-tool ae-button ae-primary" type="button" id="aeExportBtn" title="Export Mix — Render and download finished audio" aria-label="Export Mix" data-tip="Export Mix" data-help="Render and download finished audio"><svg class="ae-v114-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg><span class="ae-v114-sr">Export Mix</span></button>
+        <button class="ae-v114-tool ae-button ae-ghost ae-icon" type="button" id="aeTheme" title="Switch Theme — Change between light and dark appearance" aria-label="Switch Theme" data-tip="Switch Theme" data-help="Change between light and dark appearance"><svg class="ae-v114-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.7 8.7 0 1 0 20.2 15.2Z"/></svg></button>
         <button class="ae-v114-tool ae-button ae-ghost ae-project-toggle" type="button" id="aeProjectMore" aria-expanded="false" aria-controls="aeProjectOptions" title="Project Options — Show project and theme controls" aria-label="Project Options" data-tip="Project Options" data-help="Show project and theme controls"><svg class="ae-v114-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="19" cy="12" r="1" fill="currentColor"/></svg><span class="ae-v114-sr">Project Options</span></button>
         <button class="ae-v114-tool ae-button ae-ghost ae-icon" type="button" id="aeClose" title="Close Editor — Return to ON AIR Studio" aria-label="Close Editor" data-tip="Close Editor" data-help="Return to ON AIR Studio"><svg class="ae-v114-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5 19 19M19 5 5 19"/></svg><span class="ae-v114-sr">Close Editor</span></button>
       </div>
@@ -6242,7 +6408,7 @@ zoom=clamp(p.zoom||1,zoomMin,zoomMax);snapEnabled=p.snap!==false;$('aeSnap').che
  $('aeVoiceDownload').addEventListener('click',voiceDownload);
  voiceSetControls();
  // Start interface bindings.
- const mainButton=document.createElement('button');mainButton.type='button';mainButton.id='aeOpen';mainButton.className='btn small v87-icon-action';mainButton.title='Open Multitrack Audio Editor';mainButton.setAttribute('aria-label','Open Audio Editor');mainButton.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10v4M6 6v12M10 3v18M14 7v10M18 4v16M22 9v6"/></svg>';
+ const mainButton=document.createElement('button');mainButton.type='button';mainButton.id='aeOpen';mainButton.className='btn small v87-icon-action';mainButton.title='Open Multitrack Audio Editor';mainButton.setAttribute('aria-label','Open Audio Editor');mainButton.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10v4M6 6v12M10 3v18M14 7v10M18 4v16M22 9v6"/></svg><span>Audio Editor</span>';
  const topTools=document.querySelector('.v87-header-tools');if(topTools)topTools.insertBefore(mainButton,$('themeSwitch')||$('projectBtn'));mainButton.addEventListener('click',()=>{launchedFromHub=false;void openEditor()});const launcherEditorBtn=document.getElementById('launcherAudioEditor');if(launcherEditorBtn)launcherEditorBtn.addEventListener('click',()=>{launchedFromHub=true;void openEditor(true)});
  const projectMore=$('aeProjectMore'),editMore=$('aeEditMore'),inspectorToggle=$('aeInspectorToggle'),rangeToggle=$('aeTouchRange');
  const isCompactEditor=()=>matchMedia('(max-width:1024px)').matches;
