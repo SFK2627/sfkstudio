@@ -2917,7 +2917,15 @@ html[data-theme="light"] #djWorkspace.dj-v127-immersive .dj-effects[open] .dj-ef
 @media(max-width:690px) and (min-height:760px){
  #djWorkspace.dj-v127-immersive .dj-deck{justify-content:space-evenly!important}
 }
-</style></head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
+</style>
+<style id="onair-v1416-grouped-style">
+/* GROUPED is an additional filter; every existing category filter stays intact. */
+#studio .category-filter.grouped-filter{white-space:nowrap}
+#studio .category-filter.grouped-filter .filter-name{max-width:none}
+#studio .category-filter.grouped-filter.selected{box-shadow:0 0 0 1px color-mix(in srgb,var(--category-accent) 45%,transparent),inset 0 0 0 1px color-mix(in srgb,var(--category-accent) 42%,transparent)}
+html[data-theme="light"] #studio .category-filter.grouped-filter.selected{color:#402d61;background:#f0eaf9;border-color:#8c6ab6}
+</style>
+</head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div></div>
 </div>
 <div id="projectLauncher" class="v64-launcher v74-launcher hidden" role="dialog" aria-modal="true" aria-labelledby="launcherTitle">
@@ -3687,7 +3695,7 @@ async function play(id,isPreview=false){const s=get(id);if(!s)return;const m=isP
 function pause(id){const x=live.get(id);if(!x)return;if(x.el.paused){x.el.play().then(()=>{if(live.get(id)!==x)return;lastStartedSoundId=id;applyDucking();renderCards();renderQueue();count()}).catch(e=>notify(e.message));}else{x.el.pause();applyDucking();renderCards();renderQueue();count()}}
 function stopAll(){cancelQueuedPlayback();for(const k of [...live.keys()])stop(k);for(const k of [...preview.keys()])stop(k);for(const k of ['A','B'])if(djDecks[k])djStop(k);count()}
 function count(){$('activeCount').textContent=live.size+' live';const playing=[...live.values()].filter(x=>!x.el.paused).length+Object.values(djDecks).filter(d=>d&&!d.el.paused).length;$('footCount').textContent=playing+' playing';const fsNames=$('sbfsPlayingNames');if(fsNames){const titles=[...live.values()].filter(x=>!x.el.paused).map(x=>x.sound?.name).filter(Boolean);fsNames.textContent=titles.length?titles.slice(0,3).join(' · ')+(titles.length>3?' · +'+(titles.length-3)+' more':''):'No active audio'}}
-const categoryPalette={Intro:'#6d28d9',Background:'#be185d',Priority:'#b91c1c',Effect:'#b45309',Transition:'#7c3aed',Advertisement:'#a16207',Outro:'#475569'};
+const categoryPalette={Intro:'#A69B18',Background:'#526677',Priority:'#C62336',Effect:'#E88714',Transition:'#D84A93',Advertisement:'#733BC0',Outro:'#8B5A38'};
 let selectedCategory='All';
 function categoryColor(cat){return categoryPalette[cat]||'#94a3b8'}
 function updateFilterRail(){
@@ -3706,19 +3714,21 @@ function updateFilterRail(){
 function renderCategoryFilters(){
  const root=$('categoryFilters');if(!root)return;
  const left=root.scrollLeft;
- const categories=['All',...new Set(project.sounds.map(s=>s.category||'Effect'))];
+ const categories=['All','Grouped',...new Set(project.sounds.map(s=>s.category||'Effect'))];
  if(selectedCategory!=='All'&&!categories.includes(selectedCategory))selectedCategory='All';
  root.innerHTML=categories.map(cat=>{
-  const n=cat==='All'?project.sounds.length:project.sounds.filter(s=>(s.category||'Effect')===cat).length;
-  const color=cat==='All'?'#64748b':categoryColor(cat);
-  return `<button type="button" class="category-filter ${cat===selectedCategory?'selected':''}" data-category="${esc(cat)}" style="--category-accent:${color}" aria-pressed="${cat===selectedCategory}"><span class="filter-name">${esc(cat)}</span><span class="filter-count">${n}</span></button>`;
+  const n=cat==='All'||cat==='Grouped'?project.sounds.length:project.sounds.filter(s=>(s.category||'Effect')===cat).length;
+  const color=cat==='All'?'#64748b':cat==='Grouped'?'#7c65a8':categoryColor(cat);
+  const display=cat==='Grouped'?'▦ Grouped':cat;
+  const help=cat==='Grouped'?'Show every sound, organized into neighboring category groups. Click again for ALL.':cat==='All'?'Show all sounds in your saved order.':'Show only '+cat+' sounds.';
+  return `<button type="button" class="category-filter ${cat===selectedCategory?'selected':''} ${cat==='Grouped'?'grouped-filter':''}" data-category="${esc(cat)}" style="--category-accent:${color}" aria-pressed="${cat===selectedCategory}" aria-label="${esc(help)}" title="${esc(help)}"><span class="filter-name">${esc(display)}</span><span class="filter-count">${n}</span></button>`;
  }).join('');
  root.scrollLeft=left;
  requestAnimationFrame(updateFilterRail);
 }
 $('categoryFilters').addEventListener('click',e=>{
  const button=e.target.closest('button[data-category]');if(!button)return;
- selectedCategory=button.dataset.category;
+ selectedCategory=button.dataset.category==='Grouped'&&selectedCategory==='Grouped'?'All':button.dataset.category;
  const viaKeyboard=e.detail===0;
  renderCards();
  if(viaKeyboard)requestAnimationFrame(()=>[...$('categoryFilters').querySelectorAll('button')].find(el=>el.dataset.category===selectedCategory)?.focus({preventScroll:true}));
@@ -3771,9 +3781,20 @@ if(typeof ResizeObserver!=='undefined'){
   window.addEventListener('resize',scheduleSoundboardMarquee,{passive:true});
 }
 
-function renderCards(){const root=$('cards');renderQueuePicker();renderCategoryFilters();const visible=selectedCategory==='All'?project.sounds:project.sounds.filter(s=>(s.category||'Effect')===selectedCategory);root.innerHTML=visible.map(cardHTML).join('');scheduleSoundboardMarquee();$('empty').classList.toggle('hidden',project.sounds.length>0);updateWorkspaceCount();$('projectTitle').textContent=project.name;count();window.__onAirSoundboardFS?.layoutCards(project.sbfsLayout)}
+function visibleSoundboardCards(){
+ if(selectedCategory==='All')return project.sounds;
+ if(selectedCategory!=='Grouped')return project.sounds.filter(s=>(s.category||'Effect')===selectedCategory);
+ const categoryFirstSeen=new Map();
+ for(const s of project.sounds){const c=s.category||'Effect';if(!categoryFirstSeen.has(c))categoryFirstSeen.set(c,categoryFirstSeen.size)}
+ return project.sounds.map((sound,index)=>({sound,index})).sort((a,b)=>
+  categoryFirstSeen.get(a.sound.category||'Effect')-categoryFirstSeen.get(b.sound.category||'Effect')||a.index-b.index
+ ).map(x=>x.sound);
+}
+function renderCards(){const root=$('cards');renderQueuePicker();renderCategoryFilters();const visible=visibleSoundboardCards();root.innerHTML=visible.map(cardHTML).join('');root.dataset.soundboardView=selectedCategory;scheduleSoundboardMarquee();$('empty').classList.toggle('hidden',project.sounds.length>0);updateWorkspaceCount();$('projectTitle').textContent=project.name;count();window.__onAirSoundboardFS?.layoutCards(project.sbfsLayout)}
 window.__onAirSoundboardSource={
  getLayout:()=>project.sbfsLayout,
+ getFilterMode:()=>selectedCategory,
+ getOrderedIds:()=>visibleSoundboardCards().map(s=>s.id),
  getPositions:()=>project.sbfsPositions,
  setPositions:(value)=>{project.sbfsPositions=value},
  savePositions:()=>scheduleSave()
@@ -4361,6 +4382,15 @@ function dragMove(e){
   d.ghost.style.pointerEvents='none';
   document.body.appendChild(d.ghost);
   d.card.style.visibility='hidden';document.body.style.userSelect='none';
+  // GROUPED is a temporary view: returning to ALL before the actual drop
+  // preserves unrelated saved Soundboard positions, including free slots.
+  if(selectedCategory==='Grouped'){
+   const draggedId=d.card.dataset.id;
+   selectedCategory='All';
+   renderCards();
+   const updated=[...grid.querySelectorAll('.sound')].find(c=>c.dataset.id===draggedId);
+   if(updated){d.card=updated;d.card.style.visibility='hidden'}
+  }
  }
  e.preventDefault();
  d.ghost.style.transform=`translate3d(${e.clientX-d.startX}px,${e.clientY-d.startY}px,0) scale(1.035)`;
@@ -5898,10 +5928,14 @@ html[data-theme="light"] #aeStage .ae-track-row>.ae-track-resizer::after{
   </div>
 </section>
       <div class="ae-inspector" id="aeInspector">
-        <div class="ae-inspector-info"><div class="ae-inspector-description"><strong id="aeSelectedName">Select a clip</strong><small id="aeSelectedHint">Move, trim or split clips on the timeline</small></div><button class="ae-v114-tool ae-button ae-inspector-toggle" id="aeInspectorToggle" aria-controls="aeInspectorFields" aria-expanded="false" title="Clip Properties — Expand selected clip position, volume and fades" aria-label="Clip Properties" data-tip="Clip Properties" data-help="Expand selected clip position, volume and fades"><svg class="ae-v114-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="m5 15 7-7 7 7"/></svg><span aria-hidden="true" class="ae-v114-inspector-caret">▴</span></button></div>
+        <div class="ae-inspector-info"><div class="ae-inspector-description"><strong id="aeSelectedName">Select a clip</strong><small id="aeSelectedHint">Move, trim or split clips on the timeline</small></div><button class="ae-v114-tool ae-button ae-inspector-toggle" id="aeInspectorToggle" aria-controls="aeInspectorFields" aria-expanded="false" title="Clip Properties — Expand selected clip position, volume, speed and fades" aria-label="Clip Properties" data-tip="Clip Properties" data-help="Expand selected clip position, volume, speed and fades"><svg class="ae-v114-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="m5 15 7-7 7 7"/></svg><span aria-hidden="true" class="ae-v114-inspector-caret">▴</span></button></div>
         <div class="ae-inspector-fields" id="aeInspectorFields">
           <label class="ae-field ae-position-field">Position <span class="ae-position-hint">MIN:SEC.MS</span><input id="aePos" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="12" value="00:00.000" placeholder="00:00.000" disabled title="Set clip start time using minutes, seconds and milliseconds (e.g. 01:25.375)" aria-label="Selected clip position in minutes colon seconds dot milliseconds"></label>
           <label class="ae-field">Volume <input id="aeClipVolume" type="range" min="0" max="200" value="100" disabled aria-label="Selected clip volume"><span id="aeClipVolLabel">100%</span></label>
+          <div class="ae-clip-speed-control" role="group" aria-label="Selected clip playback speed">
+            <div class="ae-clip-speed-header"><label for="aeClipSpeed">Clip Speed</label><output id="aeClipSpeedLabel" for="aeClipSpeed">1.00×</output></div>
+            <div class="ae-clip-speed-inputs"><input id="aeClipSpeed" type="range" min="0.1" max="5" step="0.01" value="1" disabled aria-label="Selected clip speed" title="Adjust only the selected clip (0.10× to 5.00×)"><input id="aeClipSpeedExact" type="number" min="0.1" max="5" step="0.01" value="1.00" disabled aria-label="Precise clip speed" title="Precise clip speed 0.10×–5.00×"><button class="ae-button ae-clip-speed-reset" id="aeClipSpeedReset" type="button" disabled title="Reset selected clip speed to 1.00×" aria-label="Reset selected clip speed">1×</button></div>
+          </div>
           <div class="ae-fade-control" role="group" aria-label="Fade in controls">
             <label class="ae-fade-title" for="aeFadeIn">Fade In <span id="aeFadeInText">0.000s</span></label>
             <div class="ae-fade-inputs"><input id="aeFadeIn" type="range" min="0" max="1" step="0.001" value="0" disabled aria-label="Fade in duration slider"><input id="aeFadeInExact" type="number" min="0" max="1" step="0.001" value="0" disabled title="Precise fade in seconds" aria-label="Precise fade in seconds"></div>
@@ -6456,10 +6490,13 @@ html[data-theme="dark"] #aeOverlay .ae-v121-volume-warning:not(.ae-hidden){color
  const activeClip=()=>project?.clips.find(c=>c.id===selected),activeTrack=id=>project?.tracks.find(t=>t.id===id);
  const duration=c=>Math.max(.001,c.out-c.in);
  const trackSpeed=t=>clamp(Number(t?.speed)||1,.1,5);
+ // v141.8: each clip has its own non-destructive playback speed, independent of track and master.
+ const clipSpeed=c=>clamp(Number(c?.speed)||1,.1,5);
+ const clipRate=c=>trackSpeed(activeTrack(c.trackId))*clipSpeed(c);
  const projectSpeed=()=>clamp(Number(project?.masterSpeed)||1,.1,5);
  const projectVolume=()=>clamp(Number(project?.masterVolume??100),0,200);
- // Timeline seconds are project musical time; clip audio spans are stretched by each track speed.
- const span=c=>duration(c)/trackSpeed(activeTrack(c.trackId));
+ // Timeline seconds are project time; clip duration responds to both track and clip speeds.
+ const span=c=>duration(c)/clipRate(c);
  const endTime=()=>Math.max(0,...(project?.clips||[]).map(c=>c.at+span(c)));
  const playbackPosition=()=>playing?clamp(playhead+(performance.now()-started)/1000*projectSpeed(),0,endTime()):playhead;
  let playbackGeneration=0;
@@ -6580,7 +6617,7 @@ html[data-theme="dark"] #aeOverlay .ae-v121-volume-warning:not(.ae-hidden){color
   let chosen=null;
   for(const old of touched){
    const localStart=Math.max(old.at,a),localEnd=Math.min(old.at+span(old),b);
-   const rate=trackSpeed(activeTrack(old.trackId));const leftLength=precise((localStart-old.at)*rate),rightLength=precise((old.at+span(old)-localEnd)*rate);
+   const rate=clipRate(old);const leftLength=precise((localStart-old.at)*rate),rightLength=precise((old.at+span(old)-localEnd)*rate);
    if(leftLength>=.001){
     const left=structuredClone(old);left.out=precise(old.in+leftLength);
     left.fadeIn=Math.min(left.fadeIn,duration(left));left.fadeOut=0;
@@ -6614,8 +6651,8 @@ html[data-theme="dark"] #aeOverlay .ae-v121-volume-warning:not(.ae-hidden){color
      const start=precise(Math.max(range.start,c.at));
      const end=precise(Math.min(range.end,c.at+span(c)));
      const copy=structuredClone(c);
-     copy.in=precise(c.in+(start-c.at)*trackSpeed(activeTrack(c.trackId)));
-     copy.out=precise(c.in+(end-c.at)*trackSpeed(activeTrack(c.trackId)));
+     copy.in=precise(c.in+(start-c.at)*clipRate(c));
+     copy.out=precise(c.in+(end-c.at)*clipRate(c));
      copy.fadeIn=start>c.at+collisionEpsilon?0:Math.min(c.fadeIn,duration(copy));
      copy.fadeOut=end<c.at+span(c)-collisionEpsilon?0:Math.min(c.fadeOut,duration(copy));
      return {clip:copy,offset:precise(start-range.start)};
@@ -6899,7 +6936,7 @@ html[data-theme="dark"] #aeOverlay .ae-v121-volume-warning:not(.ae-hidden){color
     const replacedIds=new Set(targets.map(c=>c.id));project.clips=project.clips.filter(c=>!replacedIds.has(c.id));
     for(const old of targets){
      const start=Math.max(range.start,old.at),finish=Math.min(range.end,old.at+span(old));
-     const rate=trackSpeed(activeTrack(old.trackId)),before=precise((start-old.at)*rate),inside=precise((finish-start)*rate),after=precise((old.at+span(old)-finish)*rate);
+     const rate=clipRate(old),before=precise((start-old.at)*rate),inside=precise((finish-start)*rate),after=precise((old.at+span(old)-finish)*rate);
      if(before>=.001){const left=structuredClone(old);left.out=precise(old.in+before);left.fadeOut=0;project.clips.push(left)}
      const mid=structuredClone(old);mid.id=uid();mid.at=precise(start);mid.in=precise(old.in+before);mid.out=precise(mid.in+inside);mid.fadeIn=before>.001?0:Math.min(old.fadeIn||0,inside);mid.fadeOut=after>.001?0:Math.min(old.fadeOut||0,inside);project.clips.push(mid);applied.push([mid,configs.get(old.id)]);
      if(after>=.001){const right=structuredClone(old);right.id=uid();right.at=precise(finish);right.in=precise(old.out-after);right.fadeIn=0;project.clips.push(right)}
@@ -6956,9 +6993,8 @@ html[data-theme="dark"] #aeOverlay .ae-v121-volume-warning:not(.ae-hidden){color
   }
  }
  function scheduleClip(ac,buffer,track,clip,when,position,send){
-  // Project time stays stable while master and per-track speeds control source rates.
-  // Audio offset uses track speed only; real-world schedule divides by master speed.
-  const m=projectSpeed(),t=trackSpeed(track),begin=Math.max(position,clip.at),clipEnd=clip.at+span(clip);
+  // Master speed changes wall clock; track + clip speeds change the source rate and clip span.
+  const m=projectSpeed(),t=trackSpeed(track)*clipSpeed(clip),begin=Math.max(position,clip.at),clipEnd=clip.at+span(clip);
   if(begin>=clipEnd-.0005)return;
   const startOffset=clip.in+(begin-clip.at)*t,remain=Math.max(0,clip.out-startOffset);
   if(remain<.0005)return;
@@ -7005,7 +7041,7 @@ html[data-theme="dark"] #aeOverlay .ae-v121-volume-warning:not(.ae-hidden){color
   const now=ctx.currentTime,p=n.gain.gain;
   if(now<n.at){p.cancelScheduledValues(n.at);p.setValueAtTime(fadeFactor(c,n.localAt),n.at);for(const knot of fadeKnots(c)){if(knot>n.localAt+.000001)p.linearRampToValueAtTime(fadeFactor(c,knot),n.at+(knot-n.localAt)/n.speed)}}
   else{const when=Math.min(n.end,now+.016),local=clamp(n.localAt+(when-n.at)*n.speed,0,duration(c));const oldLevel=p.value;p.cancelScheduledValues(now);p.setValueAtTime(oldLevel,now);p.linearRampToValueAtTime(fadeFactor(c,local),when);
-   for(const knot of fadeKnots(c)){if(knot>local+.000001)p.linearRampToValueAtTime(fadeFactor(c,knot),n.at+knot-n.localAt)}}
+   for(const knot of fadeKnots(c)){if(knot>local+.000001)p.linearRampToValueAtTime(fadeFactor(c,knot),n.at+(knot-n.localAt)/n.speed)}}
  } }
  // v119: project-level speed/volume and individual track playback speed.
  const masterSpeedBtn=$('aeMasterSpeedButton'),masterVolumeBtn=$('aeMasterVolumeButton');
@@ -7027,7 +7063,7 @@ html[data-theme="dark"] #aeOverlay .ae-v121-volume-warning:not(.ae-hidden){color
  function changeMasterSpeed(value,commit=true){if(!project)return;const next=clamp(Math.round(Number(value)*100)/100,.1,5);if(!Number.isFinite(next))return;
   if(Math.abs(projectSpeed()-next)<.0001)return;
   if(commit&&!masterGesture){commitHistory();masterGesture=true}
-  const now=playbackPosition();project.masterSpeed=next;if(playing){playhead=now;started=performance.now();if(ctx)for(const n of nodes){const t=activeTrack(n.trackId);n.src.playbackRate.setTargetAtTime(next*trackSpeed(t),ctx.currentTime,.007)}}
+  const now=playbackPosition();project.masterSpeed=next;if(playing){playhead=now;started=performance.now();if(ctx)for(const n of nodes){const t=activeTrack(n.trackId);n.src.playbackRate.setTargetAtTime(next*trackSpeed(t)*clipSpeed(project.clips.find(c=>c.id===n.clipId)),ctx.currentTime,.007)}}
   updateMasterUI();markChanged();updateTime(playbackPosition());
  }
  function changeMasterVolume(value,commit=true){if(!project)return;const next=clamp(Math.round(Number(value)),0,200);if(!Number.isFinite(next)||next===projectVolume())return;
@@ -7055,7 +7091,7 @@ html[data-theme="dark"] #aeOverlay .ae-v121-volume-warning:not(.ae-hidden){color
   const wasPlaying=playing,current=playbackPosition();tr.speed=speed;
   // Keep active audio sources running while dragging: adjust their playbackRate
   // without tearing down the audio graph at every 0.01-step update.
-  if(wasPlaying&&ctx){for(const n of nodes.filter(n=>n.trackId===trackId))n.src.playbackRate.setTargetAtTime(projectSpeed()*speed,ctx.currentTime,.007)}
+  if(wasPlaying&&ctx){for(const n of nodes.filter(n=>n.trackId===trackId))n.src.playbackRate.setTargetAtTime(projectSpeed()*speed*clipSpeed(project.clips.find(c=>c.id===n.clipId)),ctx.currentTime,.007)}
   markChanged();
   const row=$('aeStage').querySelector('[data-track-row="'+CSS.escape(trackId)+'"]');
   if(row){const out=row.querySelector('[data-track-speed-text]');if(out)out.textContent=speed.toFixed(2)+'×';
@@ -7079,7 +7115,7 @@ html[data-theme="dark"] #aeOverlay .ae-v121-volume-warning:not(.ae-hidden){color
   }updateTime(pos);updatePlaybackMeter();const stage=$('aeStage');const line=stage.querySelector('.ae-playhead');const x=labelWidth()+pos*px();if(line)line.style.left=x+'px';if(followPlayhead){const margin=Math.min(65,stage.clientWidth*.14);if(x<stage.scrollLeft+margin||x>stage.scrollLeft+stage.clientWidth-margin)stageScrollTo(x-stage.clientWidth*.43)}ticker=requestAnimationFrame(tick)}
  function updateTime(current=playhead){$('aeTime').textContent=time(current);$('aeDuration').textContent=time(endTime());$('aeClipCount').textContent=project?project.clips.length+' clip'+(project.clips.length===1?'':'s'):'0 clips';const line=$('aeStage').querySelector('.ae-playhead');if(line)line.style.left=(labelWidth()+current*px())+'px'}
  function seek(seconds){const was=playing;pause();playhead=precise(clamp(seconds,0,timelineMaximum()));updateTime();if(was)void startPlayback()}
- function setProject(p){pause();stopSources();project=p;project.masterSpeed=projectSpeed();project.masterVolume=projectVolume();for(const tr of project.tracks)tr.speed=trackSpeed(tr);updateMasterUI();selectedTrackId=null;selected=null;selectionRange=null;
+ function setProject(p){pause();stopSources();project=p;project.masterSpeed=projectSpeed();project.masterVolume=projectVolume();for(const tr of project.tracks)tr.speed=trackSpeed(tr);for(const c of project.clips)c.speed=clipSpeed(c);updateMasterUI();selectedTrackId=null;selected=null;selectionRange=null;
   let corrected=0;for(const tr of project.tracks){let cursor=0;for(const c of project.clips.filter(x=>x.trackId===tr.id).sort((a,b)=>a.at-b.at)){if(c.at<cursor-.0005){c.at=ceilMs(cursor);corrected++}cursor=c.at+span(c)}}
   if(corrected)showMessage(`${corrected} overlapping clip(s) were moved into free timeline space.`);
 if(editorClipboard?.projectId!==p.id)editorClipboard=null;activePasteTrackId=p.tracks[0]?.id||null;
@@ -7187,7 +7223,7 @@ zoom=clamp(p.zoom||1,zoomMin,zoomMax);snapEnabled=p.snap!==false;$('aeSnap').che
   }
  }
 
- function updateInspector(){const c=activeClip();overlay.classList.toggle('ae-has-selection',Boolean(c||selectedTrackId||selectionRange));$('aeSelectedName').textContent=selectedTrackId?`▣ ${activeTrack(selectedTrackId)?.name||'Track'} · ${groupClips().length} clips`:c?'✓ '+c.name:'Select a clip';$('aeSelectedHint').textContent=selectedTrackId?'Entire track selected · Drag together · Ctrl+C/X/V · Delete removes all clips':selectionRange?(selectionRange.end==null?`Start ${time(selectionRange.start)} · Hold Shift + click the end point`:`Range ${time(Math.min(selectionRange.start,selectionRange.end))} – ${time(Math.max(selectionRange.start,selectionRange.end))} · Backspace to delete`):c?'Selected sound · Drag to move, adjust Fade or Shift+Click to select range':'Click an audio clip to mark a start point';for(const id of ['aePos','aeClipVolume','aeFadeIn','aeFadeOut','aeFadeInExact','aeFadeOutExact'])$(id).disabled=!c;if(c){$('aePos').value=clipPositionTime(c.at);$('aeClipVolume').value=Math.round(c.gain*100)}for(const [id,key] of [['aeFadeIn','fadeIn'],['aeFadeOut','fadeOut']]){const seconds=c?clamp(precise(c[key]||0),0,duration(c)):0,slider=$(id),exact=$(id+'Exact');const length=c?precise(duration(c)):1;slider.max=length;exact.max=length;slider.value=seconds.toFixed(3);exact.value=seconds.toFixed(3);$(id+'Text').textContent=seconds.toFixed(3)+'s';slider.setAttribute('aria-valuetext',seconds.toFixed(3)+' seconds')}$('aeClipVolLabel').textContent=c?Math.round(c.gain*100)+'%':'100%';$('aeSplit').disabled=!c;$('aeDuplicate').disabled=!c&&!groupClips().length;$('aeDeleteClip').disabled=!c&&!groupClips().length;$('aeDeleteClip').title=selectedTrackId?'Delete all clips on this track':'Delete selected clip';$('aeDeleteClip').setAttribute('aria-label',selectedTrackId?'Delete all selected track clips':'Delete selected clip');$('aeDeleteClip').querySelector('.ae-hide-phone').textContent=selectedTrackId?'Delete All':'Delete';clipboardButtons();fxUpdateTarget()}
+ function updateInspector(){const c=activeClip();overlay.classList.toggle('ae-has-selection',Boolean(c||selectedTrackId||selectionRange));$('aeSelectedName').textContent=selectedTrackId?`▣ ${activeTrack(selectedTrackId)?.name||'Track'} · ${groupClips().length} clips`:c?'✓ '+c.name:'Select a clip';$('aeSelectedHint').textContent=selectedTrackId?'Entire track selected · Drag together · Ctrl+C/X/V · Delete removes all clips':selectionRange?(selectionRange.end==null?`Start ${time(selectionRange.start)} · Hold Shift + click the end point`:`Range ${time(Math.min(selectionRange.start,selectionRange.end))} – ${time(Math.max(selectionRange.start,selectionRange.end))} · Backspace to delete`):c?'Selected sound · Drag to move, adjust Fade or Shift+Click to select range':'Click an audio clip to mark a start point';for(const id of ['aePos','aeClipVolume','aeClipSpeed','aeClipSpeedExact','aeClipSpeedReset','aeFadeIn','aeFadeOut','aeFadeInExact','aeFadeOutExact'])$(id).disabled=!c;if(c){$('aePos').value=clipPositionTime(c.at);$('aeClipVolume').value=Math.round(c.gain*100)}const speed=c?clipSpeed(c):1;$('aeClipSpeed').value=speed.toFixed(2);$('aeClipSpeedExact').value=speed.toFixed(2);$('aeClipSpeedLabel').textContent=speed.toFixed(2)+'×';$('aeClipSpeed').setAttribute('aria-valuetext',speed.toFixed(2)+' times');for(const [id,key] of [['aeFadeIn','fadeIn'],['aeFadeOut','fadeOut']]){const seconds=c?clamp(precise(c[key]||0),0,duration(c)):0,slider=$(id),exact=$(id+'Exact');const length=c?precise(duration(c)):1;slider.max=length;exact.max=length;slider.value=seconds.toFixed(3);exact.value=seconds.toFixed(3);$(id+'Text').textContent=seconds.toFixed(3)+'s';slider.setAttribute('aria-valuetext',seconds.toFixed(3)+' seconds')}$('aeClipVolLabel').textContent=c?Math.round(c.gain*100)+'%':'100%';$('aeSplit').disabled=!c;$('aeDuplicate').disabled=!c&&!groupClips().length;$('aeDeleteClip').disabled=!c&&!groupClips().length;$('aeDeleteClip').title=selectedTrackId?'Delete all clips on this track':'Delete selected clip';$('aeDeleteClip').setAttribute('aria-label',selectedTrackId?'Delete all selected track clips':'Delete selected clip');$('aeDeleteClip').querySelector('.ae-hide-phone').textContent=selectedTrackId?'Delete All':'Delete';clipboardButtons();fxUpdateTarget()}
  async function importFiles(fileList,trackId=null,atTime=playhead){if(!project){showMessage('Create or open a mix first.',true);return}if(importing)return;const files=[...fileList].filter(Boolean);if(!files.length)return;importing=true;textStatus('Importing audio…','saving');try{
   const ac=await audioContext();let added=0;let cursor=atTime;
   for(let i=0;i<files.length;i++){
@@ -7199,11 +7235,11 @@ zoom=clamp(p.zoom||1,zoomMin,zoomMax);snapEnabled=p.snap!==false;$('aeSnap').che
    let track=trackId?activeTrack(trackId):null;
    if(!track&&i===0&&project.clips.length===0)track=project.tracks[0];
    if(!track){if(project.tracks.length>=18){showMessage('18-track limit reached',true);break}track={id:uid(),name:f.name.replace(/\.[^.]+$/,'').slice(0,26)||'Audio '+(project.tracks.length+1),color:colors[project.tracks.length%colors.length],volume:100,balance:0,mute:false,solo:false,height:102};project.tracks.push(track)}
-   const at=nextFree(track.id,cursor,decoded.duration/trackSpeed(track),null);project.clips.push({id:uid(),name:f.name,assetId:id,trackId:track.id,at,in:0,out:decoded.duration,gain:1,fadeIn:0,fadeOut:0});added++;if(trackId)cursor=at+decoded.duration/trackSpeed(track);
+   const at=nextFree(track.id,cursor,decoded.duration/trackSpeed(track),null);project.clips.push({id:uid(),name:f.name,assetId:id,trackId:track.id,at,in:0,out:decoded.duration,gain:1,speed:1,fadeIn:0,fadeOut:0});added++;if(trackId)cursor=at+decoded.duration/trackSpeed(track);
   }if(added){markChanged();render();showMessage(`Imported ${added} audio file${added===1?'':'s'} · saved to editor project`)}else textStatus('No files imported','error');
  }catch(e){showMessage('Import failed: '+e.message+' · Check available storage.',true);textStatus('Import failed','error')}finally{importing=false}}
  function clipUpdate(k,v){const c=activeClip();if(!c)return;commitHistory();if(k==='at'){const target=clamp(precise(v),0,3600);c.at=fitInGap(c.trackId,target,span(c),c.id);if(Math.abs(c.at-target)>.001)showMessage('Position adjusted: space is occupied by another clip.');}if(k==='gain')c.gain=clamp(v,0,2);if(k==='fadeIn')c.fadeIn=clamp(v,0,duration(c));if(k==='fadeOut')c.fadeOut=clamp(v,0,duration(c));markChanged();if(k==='gain'){updateLiveGains();render();return}if(k==='fadeIn'||k==='fadeOut'){updateLiveFades(c.id);refreshClipFadePreview(c);updateInspector();return}if(playing){pause();void startPlayback()}render()}
- function split(){const c=activeClip();if(!c)return;const cut=(playhead-c.at)*trackSpeed(activeTrack(c.trackId));if(cut<.001||cut>duration(c)-.001){showMessage('Place playhead inside the selected clip to split it.');return}commitHistory();const right=structuredClone(c);right.id=uid();right.in=c.in+cut;right.at=playhead;right.fadeIn=0;c.out=c.in+cut;c.fadeOut=0;project.clips.push(right);selected=right.id;markChanged();pause();render()}
+ function split(){const c=activeClip();if(!c)return;const cut=(playhead-c.at)*clipRate(c);if(cut<.001||cut>duration(c)-.001){showMessage('Place playhead inside the selected clip to split it.');return}commitHistory();const right=structuredClone(c);right.id=uid();right.in=c.in+cut;right.at=playhead;right.fadeIn=0;c.out=c.in+cut;c.fadeOut=0;project.clips.push(right);selected=right.id;markChanged();pause();render()}
  function duplicate(){
   if(selectedTrackId){if(copyAudio(false)){const source=editorClipboard;seek(nextFree(source.trackId,Math.max(...groupClips().map(c=>c.at+span(c))),source.width,null));pasteAudio()}return}
   const c=activeClip();if(!c)return;commitHistory();const d=structuredClone(c);d.id=uid();d.at=nextFree(c.trackId,c.at+span(c),span(c),null);project.clips.push(d);selected=d.id;markChanged();render()}
@@ -7467,6 +7503,56 @@ zoom=clamp(p.zoom||1,zoomMin,zoomMax);snapEnabled=p.snap!==false;$('aeSnap').che
   // Reformat to standard timecode after the change, including collision adjustment.
   element.value=activeClip()?clipPositionTime(activeClip().at):'00:00.000';
  });if(k==='gain')element.addEventListener('input',()=>{const c=activeClip();if(c){if(!element.dataset.gesture){commitHistory();element.dataset.gesture='1'}c.gain=Number(element.value)/100;updateLiveGains();markChanged()}$('aeClipVolLabel').textContent=element.value+'%'});if(k==='gain')element.addEventListener('change',()=>{element.dataset.gesture='';render()})}
+
+ // v141.8: per-clip speed in the inspector; keep each clip at its original position.
+ // If a slower speed would overlap the next clip on the same track, clamp to the
+ // slowest rate that still fits rather than silently moving or trimming other clips.
+ const clipSpeedSlider=$('aeClipSpeed'),clipSpeedExact=$('aeClipSpeedExact'),clipSpeedReset=$('aeClipSpeedReset');
+ let clipSpeedGestureId=null;
+ function changeClipSpeed(raw,commit=true){
+  const c=activeClip();if(!c||!project)return;
+  let desired=Number(raw);if(!Number.isFinite(desired))return;
+  desired=clamp(Math.round(desired*100)/100,.1,5);
+  const nextStart=Math.min(Infinity,...project.clips.filter(x=>x.trackId===c.trackId&&x.id!==c.id&&x.at>c.at+collisionEpsilon).map(x=>x.at));
+  if(Number.isFinite(nextStart)){
+   const room=nextStart-c.at;
+   const minimum=duration(c)/(room*trackSpeed(activeTrack(c.trackId)));
+   if(minimum>desired+1e-7){
+    if(minimum>5.000001){showMessage('Not enough space after this clip. Move the next clip first.',true);updateInspector();return}
+    desired=clamp(Math.ceil(minimum*100-1e-8)/100,.1,5);
+    if(desired>5)desired=5;
+    showMessage('Clip speed limited to '+desired.toFixed(2)+'× to avoid overlapping the next clip.');
+   }
+  }
+  if(Math.abs(clipSpeed(c)-desired)<.00001){
+   clipSpeedSlider.value=desired.toFixed(2);clipSpeedExact.value=desired.toFixed(2);
+   $('aeClipSpeedLabel').textContent=desired.toFixed(2)+'×';return;
+  }
+  if(commit&&clipSpeedGestureId!==c.id){commitHistory();clipSpeedGestureId=c.id}
+  const current=playing?playbackPosition():playhead;
+  c.speed=desired;
+  if(playing&&ctx){for(const n of nodes.filter(n=>n.clipId===c.id)){
+   n.speed=projectSpeed()*trackSpeed(activeTrack(c.trackId))*desired;
+   n.src.playbackRate.setTargetAtTime(n.speed,ctx.currentTime,.008);
+  }}
+  // Immediate responsive timeline-width feedback without rebuilding the editor controls.
+  const node=$('aeStage').querySelector('[data-clip="'+CSS.escape(c.id)+'"]');
+  if(node){node.style.width=Math.max(2,span(c)*px())+'px';const canvas=node.querySelector('canvas.ae-wave');if(canvas)drawWave(canvas,true)}
+  for(const edge of $('aeStage').querySelectorAll('[data-ae-edge-trim="'+CSS.escape(c.id)+'"][data-side="right"]'))edge.style.left=((c.at+span(c))*px())+'px';
+  $('aeClipSpeedLabel').textContent=desired.toFixed(2)+'×';clipSpeedSlider.value=desired.toFixed(2);clipSpeedExact.value=desired.toFixed(2);
+  clipSpeedSlider.setAttribute('aria-valuetext',desired.toFixed(2)+' times');
+  if(playing){playhead=current;started=performance.now()}
+  markChanged();updateTime(playbackPosition());
+ }
+ function finishClipSpeedEdit(){
+  clipSpeedGestureId=null;
+  if(playing)void resyncPlaybackFromCurrent();
+  render();
+ }
+ clipSpeedSlider.addEventListener('input',()=>changeClipSpeed(clipSpeedSlider.value));
+ clipSpeedSlider.addEventListener('change',finishClipSpeedEdit);
+ clipSpeedExact.addEventListener('change',()=>{const c=activeClip();if(!c)return;changeClipSpeed(clipSpeedExact.value);finishClipSpeedEdit()});
+ clipSpeedReset.addEventListener('click',()=>{const c=activeClip();if(!c)return;changeClipSpeed(1);finishClipSpeedEdit()});
  // One Undo snapshot per slider gesture. Update waveform and playing fade nodes on every input event.
  for(const [id,key] of [['aeFadeIn','fadeIn'],['aeFadeOut','fadeOut']]){
   const slider=$(id),exact=$(id+'Exact'),label=$(id+'Text');
@@ -7745,25 +7831,25 @@ zoom=clamp(p.zoom||1,zoomMin,zoomMax);snapEnabled=p.snap!==false;$('aeSnap').che
   const dx=e.clientX-d.startX,dy=e.clientY-d.startY;
   if(Math.abs(dx)<2&&Math.abs(dy)<3&&!d.moved)return;
   if(!d.committed){commitHistory();d.committed=true;if(playing)pause()}
-  d.moved=true;const delta=dx/px(),rate=trackSpeed(activeTrack(d.initialTrack)),oldEnd=d.initialAt+(d.initialOut-d.initialIn)/rate;
+  d.moved=true;const delta=dx/px(),rate=trackSpeed(activeTrack(d.initialTrack))*clipSpeed(c),oldEnd=d.initialAt+(d.initialOut-d.initialIn)/rate;
   if(d.mode==='move'){
     const under=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-track-row]');const target=under&&activeTrack(under.dataset.trackRow)?under.dataset.trackRow:d.initialTrack;
     const requested=Math.max(0,d.initialAt+delta),len=(d.initialOut-d.initialIn)/rate;
     // Same-track moves are physically limited by nearest neighbors. Cross-track moves seek nearest valid free slot.
     if(target===d.initialTrack){const [lo,hi]=gapFor(target,d.initialAt,c.id);const lower=ceilMs(lo),upper=Number.isFinite(hi)?floorMs(hi-len):Infinity;c.at=precise(clamp(nearbySnap(requested,[lower,upper]),lower,Math.max(lower,upper)))}
-    else c.at=fitInGap(target,requested,len,c.id);
+    else c.at=fitInGap(target,requested,(d.initialOut-d.initialIn)/(trackSpeed(activeTrack(target))*clipSpeed(c)),c.id);
     c.trackId=target;
     const lane=stage.querySelector('[data-track-lane="'+CSS.escape(target)+'"]');if(lane&&d.node.parentElement!==lane)lane.appendChild(d.node);
   }else if(d.mode==='left'){
     const [leftWall]=gapFor(d.initialTrack,d.initialAt,c.id);
     let newAt=clamp(d.initialAt+delta,Math.max(0,d.initialAt-d.initialIn/rate,leftWall),oldEnd-.001);
-    newAt=clamp(nearbySnap(newAt,[leftWall,0]),Math.max(0,d.initialAt-d.initialIn,leftWall),oldEnd-.001);
+    newAt=clamp(nearbySnap(newAt,[leftWall,0]),Math.max(0,d.initialAt-d.initialIn/rate,leftWall),oldEnd-.001);
     c.at=clamp(precise(newAt),ceilMs(Math.max(0,d.initialAt-d.initialIn,leftWall)),floorMs(oldEnd-.001));c.in=precise(d.initialIn+(c.at-d.initialAt)*rate);
   }else{
     const [_,rightWall]=gapFor(d.initialTrack,oldEnd,c.id);
     const stored=buffers.get(c.assetId),limit=stored&&typeof stored.then!=='function'?stored.duration:Math.max(d.initialOut,d.initialOut+delta);
     let newEnd=clamp(oldEnd+delta,d.initialAt+.001,Math.min(rightWall,d.initialAt+(limit-d.initialIn)/rate));
-    newEnd=clamp(nearbySnap(newEnd,[rightWall]),d.initialAt+.001,Math.min(rightWall,d.initialAt+limit-d.initialIn));
+    newEnd=clamp(nearbySnap(newEnd,[rightWall]),d.initialAt+.001,Math.min(rightWall,d.initialAt+(limit-d.initialIn)/rate));
     c.out=clamp(precise(d.initialIn+(newEnd-d.initialAt)*rate),ceilMs(c.in+.001),floorMs(Math.min(limit,d.initialIn+(rightWall-d.initialAt)*rate)));
   }
   // Only change inexpensive DOM properties during the gesture. No full timeline render per pointer event.
@@ -11266,15 +11352,20 @@ body.sbfs-active .footer-playing-details{min-width:0;max-width:min(32vw,340px)}
  function redrawSlots(){
   if(!active)return;
   const saved=posCopy();
+  const grouped=source?.getFilterMode?.()==='Grouped';
   if(scriptVisible){
    const left=root.querySelector('.sbfs-left'),right=root.querySelector('.sbfs-right');if(!left||!right)return;
-   hydrate(left,cardsIn(left),saved.show?.left||{},columnsIn(left));
-   hydrate(right,cardsIn(right),saved.show?.right||{},columnsIn(right));
-  }else if(root.classList.contains('sbfs-no-script'))hydrate(root,cardsIn(root),saved.hide||{},columnsIn(root));
+   hydrate(left,cardsIn(left),grouped?{}:(saved.show?.left||{}),columnsIn(left));
+   hydrate(right,cardsIn(right),grouped?{}:(saved.show?.right||{}),columnsIn(right));
+  }else if(root.classList.contains('sbfs-no-script'))hydrate(root,cardsIn(root),grouped?{}:(saved.hide||{}),columnsIn(root));
  }
  function layoutCards(passedLayout){
   if(!active)return;
   const cards=[...root.querySelectorAll('.sound')];
+  if(source?.getFilterMode?.()==='Grouped'){
+   const ranks=new Map((source.getOrderedIds?.()||[]).map((id,i)=>[id,i]));
+   cards.sort((a,b)=>(ranks.get(a.dataset.id)??99999)-(ranks.get(b.dataset.id)??99999));
+  }
   if(scriptVisible){
    const priorLeft=new Set([...root.querySelectorAll(':scope > .sbfs-left > .sound')].map(x=>x.dataset.id));
    const priorRight=new Set([...root.querySelectorAll(':scope > .sbfs-right > .sound')].map(x=>x.dataset.id));
@@ -11283,15 +11374,30 @@ body.sbfs-active .footer-playing-details{min-width:0;max-width:min(32vw,340px)}
    const legacyLeft=new Set(legacy?.left||[]),legacyRight=new Set(legacy?.right||[]);
    const leftIds=new Set(Object.keys(show.left||{})),rightIds=new Set(Object.keys(show.right||{}));
    const {left,center,right,handleLeft,handleRight}=zones();
-   let unassigned=0;const half=Math.ceil(cards.length/2);
-   for(const card of cards){const id=card.dataset.id;
-    if(leftIds.has(id))left.appendChild(card);
-    else if(rightIds.has(id))right.appendChild(card);
-    else if(priorLeft.has(id))left.appendChild(card);
-    else if(priorRight.has(id))right.appendChild(card);
-    else if(legacyLeft.has(id))left.appendChild(card);
-    else if(legacyRight.has(id))right.appendChild(card);
-    else (unassigned++<half?left:right).appendChild(card);
+   const grouped=source?.getFilterMode?.()==='Grouped';
+   if(grouped){
+    // Keep each whole category on one side instead of scattering it over both.
+    // Category order comes from the already stable GROUPED sort.
+    const sections=new Map();
+    for(const card of cards){const category=card.querySelector('.category-label')?.textContent||'Effect';
+     if(!sections.has(category))sections.set(category,[]);sections.get(category).push(card)}
+    let leftCount=0,rightCount=0;
+    for(const section of sections.values()){
+     const destination=leftCount<=rightCount?left:right;
+     for(const card of section)destination.appendChild(card);
+     if(destination===left)leftCount+=section.length;else rightCount+=section.length;
+    }
+   }else{
+    let unassigned=0;const half=Math.ceil(cards.length/2);
+    for(const card of cards){const id=card.dataset.id;
+     if(leftIds.has(id))left.appendChild(card);
+     else if(rightIds.has(id))right.appendChild(card);
+     else if(priorLeft.has(id))left.appendChild(card);
+     else if(priorRight.has(id))right.appendChild(card);
+     else if(legacyLeft.has(id))left.appendChild(card);
+     else if(legacyRight.has(id))right.appendChild(card);
+     else (unassigned++<half?left:right).appendChild(card);
+    }
    }
    root.replaceChildren(left,handleLeft,center,handleRight,right);
    center.appendChild(scriptPanel);
@@ -13078,6 +13184,98 @@ html[data-theme="light"] #studio.sbfs-fullscreen #cards .sound .sound-status.sta
 /* Dark theme category labels stay readable even when their accent is deep violet/red. */
 html[data-theme="dark"] #cards .sound.categorized .category-label{
   color:color-mix(in srgb,var(--category-accent,#64748b) 64%,#f3f7fd 36%)!important;
+}
+</style>
+
+<style id="onair-v1417-distinct-category-color-families">
+/* v141.7: Category identity is a separate visual channel from PLAYING (green), PAUSED (blue).
+   All selectors are restricted to the Soundboard and only READY/idle card visuals are tinted. */
+#studio .category-filter:not([data-category="All"]):not([data-category="Grouped"]){
+ border-width:2px;
+ background:color-mix(in srgb,var(--category-accent) 13%,transparent);
+}
+#studio .category-filter:not([data-category="All"]):not([data-category="Grouped"]).selected{
+ background:color-mix(in srgb,var(--category-accent) 24%,transparent);
+ box-shadow:inset 0 0 0 1px var(--category-accent),0 0 0 1px color-mix(in srgb,var(--category-accent) 30%,transparent);
+}
+/* Category identity is always present, even while PLAYING/PAUSED is highlighted. */
+#cards .sound.categorized .category-label{
+ font-weight:900!important;
+ letter-spacing:.025em;
+ color:color-mix(in srgb,var(--category-accent,#64748b) 72%,#ffffff 28%)!important;
+}
+/* Default idle/READY surface carries a stronger yet unobtrusive category tint. */
+#cards .sound.categorized:not(.is-playing):not(.is-paused){
+ border-color:var(--category-accent,#64748b)!important;
+ background-image:linear-gradient(145deg,color-mix(in srgb,var(--category-accent,#64748b) 21%,transparent),transparent 78%)!important;
+}
+html[data-theme="light"] #studio .category-filter:not([data-category="All"]):not([data-category="Grouped"]){
+ background:color-mix(in srgb,var(--category-accent) 9%,#ffffff 91%);
+}
+html[data-theme="light"] #studio .category-filter:not([data-category="All"]):not([data-category="Grouped"]).selected{
+ background:color-mix(in srgb,var(--category-accent) 17%,#ffffff 83%);
+}
+html[data-theme="light"] #cards .sound.categorized:not(.is-playing):not(.is-paused){
+ background-color:#fff!important;
+ background-image:linear-gradient(143deg,color-mix(in srgb,var(--category-accent,#64748b) 14%,#ffffff 86%),#ffffff 87%)!important;
+ border-color:var(--category-accent,#64748b)!important;
+}
+html[data-theme="light"] #cards .sound.categorized .category-label{
+ color:color-mix(in srgb,var(--category-accent,#64748b) 78%,#102133 22%)!important;
+}
+/* High-specificity status borders: playback must always outrank category colors,
+   including the fullscreen-specific painted cards. Audio/status logic unchanged. */
+html #studio #cards .sound.categorized.is-playing{
+ border:2px solid #27dda6!important;
+ background-color:#123e37!important;
+ background-image:linear-gradient(120deg,rgba(23,171,133,.25),rgba(14,63,65,.07) 80%)!important;
+}
+html #studio #cards .sound.categorized.is-paused{
+ border:2px solid #60a5fa!important;
+ background-color:#172c4b!important;
+ background-image:linear-gradient(143deg,rgba(52,105,196,.3),rgba(15,29,50,.08) 82%)!important;
+}
+html[data-theme="light"] #studio #cards .sound.categorized.is-playing{
+ border:2px solid #078b65!important;
+ background-color:#e2faf0!important;
+ background-image:linear-gradient(120deg,rgba(25,181,126,.19),rgba(242,255,249,.55) 80%)!important;
+}
+html[data-theme="light"] #studio #cards .sound.categorized.is-paused{
+ border:2px solid #2563eb!important;
+ background-color:#e5efff!important;
+ background-image:linear-gradient(142deg,#d7e7ff,#f6f9ff 84%)!important;
+}
+</style>
+
+<style id="ae-v1418-clip-speed-styles">
+/* v141.8: Clip Speed shares the compact Audio Editor property strip on desktop. */
+.ae-overlay #aeInspectorFields .ae-clip-speed-control{display:flex;flex-direction:column;gap:4px;min-width:0;width:100%;padding:6px 8px;margin:0;border:1px solid var(--ae-border);border-radius:9px;background:color-mix(in srgb,var(--ae-teal) 4%,var(--ae-panel));box-sizing:border-box}
+.ae-overlay #aeInspectorFields .ae-clip-speed-header{display:flex;align-items:center;justify-content:space-between;gap:4px;white-space:nowrap;color:var(--ae-ink);font-size:11px;font-weight:750}
+.ae-overlay #aeInspectorFields #aeClipSpeedLabel{color:var(--ae-teal);font-size:11px;font-weight:800;font-variant-numeric:tabular-nums}
+.ae-overlay #aeInspectorFields .ae-clip-speed-inputs{display:grid;grid-template-columns:minmax(25px,1fr) 53px 29px;align-items:center;gap:4px;min-width:0}
+.ae-overlay #aeInspectorFields #aeClipSpeed{width:100%;min-width:0;min-height:28px!important;height:28px;padding:0!important;cursor:pointer}
+.ae-overlay #aeInspectorFields #aeClipSpeedExact{box-sizing:border-box;min-width:0;width:100%;max-width:none;padding:3px!important;height:29px;min-height:29px;font-size:11px;text-align:center;font-variant-numeric:tabular-nums}
+.ae-overlay #aeInspectorFields .ae-clip-speed-reset{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;padding:2px!important;height:29px!important;min-height:29px!important;min-width:29px!important;width:29px!important;font-size:10px!important;border-radius:6px}
+@media(min-width:1025px){
+ .ae-overlay #aeInspectorFields{grid-template-columns:minmax(120px,1.00fr) minmax(105px,.8fr) minmax(154px,1.12fr) minmax(135px,1fr) minmax(135px,1fr)!important;gap:7px!important}
+ .ae-overlay .ae-inspector-info{flex:0 1 165px!important;width:165px!important;max-width:175px!important;min-width:115px!important}
+ .ae-overlay .ae-inspector{gap:8px!important;max-height:116px!important}
+}
+@media(min-width:1025px) and (max-width:1190px){
+ .ae-overlay #aeInspectorFields{grid-template-columns:minmax(99px,.95fr) minmax(92px,.75fr) minmax(138px,1.22fr) minmax(122px,1fr) minmax(122px,1fr)!important;gap:5px!important}
+ .ae-overlay .ae-inspector-info{flex:0 0 118px!important;width:118px!important;min-width:110px!important}
+ .ae-overlay #aeInspectorFields .ae-clip-speed-control{padding:5px!important}
+}
+@media(max-width:1024px){
+ .ae-overlay.ae-inspector-open #aeInspectorFields{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+ .ae-overlay #aeInspectorFields .ae-clip-speed-control{grid-column:span 2;max-width:none;min-height:65px}
+ .ae-overlay #aeInspectorFields .ae-clip-speed-inputs{grid-template-columns:minmax(36px,1fr) 64px 33px;gap:7px}
+ .ae-overlay #aeInspectorFields .ae-clip-speed-reset{width:33px!important;min-width:33px!important}
+}
+@media(max-width:480px){
+ .ae-overlay #aeInspectorFields .ae-clip-speed-control{padding:7px 9px;grid-column:1 / -1;min-height:0}
+ .ae-overlay #aeInspectorFields .ae-clip-speed-inputs{grid-template-columns:minmax(35px,1fr) 64px 33px}
+ .ae-overlay.ae-inspector-open .ae-inspector{max-height:62dvh!important;overflow-y:auto!important}
 }
 </style>
 </body></html>
