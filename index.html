@@ -2925,6 +2925,62 @@ html[data-theme="light"] #djWorkspace.dj-v127-immersive .dj-effects[open] .dj-ef
 #studio .category-filter.grouped-filter.selected{box-shadow:0 0 0 1px color-mix(in srgb,var(--category-accent) 45%,transparent),inset 0 0 0 1px color-mix(in srgb,var(--category-accent) 42%,transparent)}
 html[data-theme="light"] #studio .category-filter.grouped-filter.selected{color:#402d61;background:#f0eaf9;border-color:#8c6ab6}
 </style>
+
+<style id="onair-v1421-dynamic-floating-script">
+/* v142.1: The writing area must grow/shrink with the ENTIRE floating window.
+   Header remains fixed; no independent pixel/percentage textarea height.
+   Applies to mobile, tablet and desktop, without modifying docked scripts. */
+#floatScript:not(.mini):not(.hidden) {
+  display:flex!important;
+  flex-direction:column!important;
+}
+#floatScript:not(.mini) > #floatBody {
+  display:flex!important;
+  flex-direction:column!important;
+  flex:1 1 0%!important;
+  min-height:0!important;
+  min-width:0!important;
+  max-height:none!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  padding:6px!important;
+}
+#floatScript:not(.mini) > #floatBody > #scriptText {
+  display:block!important;
+  flex:1 1 0%!important;
+  align-self:stretch!important;
+  width:100%!important;
+  height:auto!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-height:none!important;
+  box-sizing:border-box!important;
+  resize:none!important;
+  overflow:auto!important;
+  overscroll-behavior:contain;
+  margin:0!important;
+}
+/* Keep the resize grip tappable, without reserving a blank block below the editor. */
+#floatScript:not(.mini) > #floatResizeHandle { z-index:6; }
+</style>
+
+<style id="onair-v1422-floating-controls">
+/* Closing takes precedence over the v142.1 expanded flex display rule. */
+#floatScript.hidden {display:none!important;}
+/* Compact floating bar remains movable via its header (JS allows move, not resize). */
+#floatScript.mini {width:170px!important;height:40px!important;min-width:0!important;min-height:0!important;}
+#floatScript.mini .float-head {height:100%!important;max-height:100%!important;gap:4px!important;padding:4px 6px!important;}
+#floatScript.mini .float-head > strong {min-width:0;flex:1;overflow:hidden;text-overflow:clip;white-space:nowrap;}
+#floatScript.mini .float-tools {display:flex!important;flex:0 0 auto;align-items:center;gap:3px!important;}
+#floatScript.mini .float-tools > :not(#miniScript):not(#dockScript) {display:none!important;}
+#floatScript.mini #miniScript,#floatScript.mini #dockScript {
+ display:inline-flex!important;align-items:center;justify-content:center;
+ flex:0 0 28px;min-width:28px;width:28px;min-height:28px;height:28px;
+ padding:2px!important;font-size:16px!important;line-height:1;
+}
+#floatScript.mini #dockScript {font-size:20px!important;}
+#floatScript.mini .float-body,#floatScript.mini .float-resize-handle{display:none!important;}
+</style>
 </head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div></div>
 </div>
@@ -4499,8 +4555,22 @@ function clampFloat(){
  f.style.left=clamp(Number.parseFloat(f.style.left)||margin,margin,Math.max(margin,innerWidth-w-margin))+'px';
  f.style.top=clamp(Number.parseFloat(f.style.top)||margin,margin,Math.max(margin,innerHeight-bottomReserved-h))+'px';
 }
-function scriptFloat(on){scriptFloating=on;$('floatScript').classList.toggle('hidden',!on);$('scriptFull').textContent=on?'↙ Dock':'↗ Float';(on?$('floatBody'):$('scriptSlot')).appendChild($('scriptText'));$('scriptText').style.minHeight=on?'0':'135px';$('scriptText').style.fontSize=on?Math.max(1,16*scriptZoom/100)+'px':'14px';if(on){if(!floatPositionSet){$('floatScript').style.left=(innerWidth<=800?8:16)+'px';$('floatScript').style.top=(innerWidth<=800?72:90)+'px';floatPositionSet=true}clampFloat()}}
-$('miniScript').onclick=()=>{const f=$('floatScript');const mini=f.classList.toggle('mini');$('miniScript').textContent=mini?'□':'▁';$('miniScript').title=mini?'Expand script':'Minimize script';$('miniScript').setAttribute('aria-label',mini?'Expand script':'Minimize script');clampFloat()};
+function scriptFloat(on){
+ const f=$('floatScript');
+ // A dock/close always restores the normal state for the next floating open.
+ if(!on&&f.classList.contains('mini')){
+  f.classList.remove('mini');
+  const miniBtn=$('miniScript');miniBtn.textContent='▁';miniBtn.title='Minimize floating script';miniBtn.setAttribute('aria-label','Minimize script');miniBtn.setAttribute('aria-expanded','true');
+ }
+ scriptFloating=on;
+ f.classList.toggle('hidden',!on);
+ $('scriptFull').textContent=on?'↙ Dock':'↗ Float';
+ (on?$('floatBody'):$('scriptSlot')).appendChild($('scriptText'));
+ $('scriptText').style.minHeight=on?'0':'135px';
+ $('scriptText').style.fontSize=on?Math.max(1,16*scriptZoom/100)+'px':'14px';
+ if(on){if(!floatPositionSet){f.style.left=(innerWidth<=800?8:16)+'px';f.style.top=(innerWidth<=800?72:90)+'px';floatPositionSet=true}clampFloat()}
+}
+$('miniScript').onclick=()=>{const f=$('floatScript');const mini=f.classList.toggle('mini');$('miniScript').textContent=mini?'□':'▁';$('miniScript').title=mini?'Expand script':'Minimize script';$('miniScript').setAttribute('aria-label',mini?'Expand script':'Minimize script');$('miniScript').setAttribute('aria-expanded',String(!mini));clampFloat()};
 window.addEventListener('resize',clampFloat);
 $('scriptFull').onclick=()=>scriptFloat(!scriptFloating);$('dockScript').onclick=()=>scriptFloat(false);
 function setScriptZoom(v){scriptZoom=clamp(Math.round(v),0,1000);$('zoomRange').value=scriptZoom;$('zoomValue').textContent=scriptZoom+'%';$('scriptText').style.fontSize=Math.max(1,16*scriptZoom/100)+'px';$('scriptText').style.lineHeight='1.5'}
@@ -4532,7 +4602,7 @@ function applyFloatMove(){
  }
 }
 function startFloatGesture(e,kind){
- if(!scriptFloating||floatWindow.classList.contains('mini')||floatGesture)return;
+ if(!scriptFloating||floatWindow.classList.contains('hidden')||floatGesture||(kind==='resize'&&floatWindow.classList.contains('mini')))return;
  if(e.pointerType==='mouse'&&e.button!==0)return;
  if(kind==='move'&&e.target.closest('.float-tools,button,input,select,textarea'))return;
  const r=floatWindow.getBoundingClientRect();
