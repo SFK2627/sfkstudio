@@ -6055,6 +6055,7 @@ window.addEventListener('on-air-v90-import-sound', async event=>{
  const TOKEN=/\[\[ONAIR-AUDIO:([^|\]\r\n]+)(?:\|([^\]\r\n]*))?\]\]/g;
  const PLACEHOLDER='[inserted audio]';
  let editing=false,workspace='board',lastEditorScript=null,lastEditRange=null,liveInsertAt=null,filter='All',returnFocus=null,renderSignature='',tipTimeout=null,hoveredCue=null;
+ let keepEditForPicker=false,insertPointerPending=false;
  let holdTimer=null,holdPoint=null,suppressCue=null,suppressUntil=0;
  const goodSound=()=>Array.isArray(project?.sounds)?project.sounds:[];
  const findSound=(id)=>goodSound().find(s=>String(s.id)===String(id));
@@ -6176,15 +6177,21 @@ window.addEventListener('on-air-v90-import-sound', async event=>{
    return;
   }
   if(editor.contains(target))return;
-  if(target.closest('#bs1431DockInsert,#bs1431FloatInsert'))liveInsertAt=editCursorOffset();
+  if(target.closest('#bs1431DockInsert,#bs1431FloatInsert')){
+   // Insert Audio is part of editing. Retain the actual contenteditable and caret.
+   rememberRange();insertPointerPending=true;
+   setTimeout(()=>{insertPointerPending=false},450);
+   return;
+  }
   completeEdit();
  },true);
  // A pencil click can blur contenteditable *before* its click fires.
  // Do not let focusout commit and then let the click toggle back into Edit.
  editor.addEventListener('focusout',e=>{
-  if(editTogglePointerPending||e.relatedTarget?.closest?.('#bs1431DockEdit,#bs1431FloatEdit'))return;
+  if(editTogglePointerPending||insertPointerPending||
+     e.relatedTarget?.closest?.('#bs1431DockEdit,#bs1431FloatEdit,#bs1431DockInsert,#bs1431FloatInsert'))return;
   queueMicrotask(()=>{
-   if(editing&&!editTogglePointerPending&&picker.hidden&&!editor.contains(document.activeElement))completeEdit();
+   if(editing&&!editTogglePointerPending&&!insertPointerPending&&picker.hidden&&!editor.contains(document.activeElement))completeEdit();
   });
  });
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&editing&&picker.hidden){e.preventDefault();completeEdit({focusLive:true})}},true);
@@ -6261,9 +6268,23 @@ window.addEventListener('on-air-v90-import-sound', async event=>{
  view.addEventListener('contextmenu',e=>{if(e.target.closest('.bs1432-cue'))e.preventDefault()});
  window.addEventListener('scroll',()=>{if(!tip.hidden)hideTip()},true);
  function showPicker(from){if(workspace!=='board')return;
-  if(editing)rememberRange();returnFocus=from||document.activeElement;filter='All';search.value='';renderPicker();picker.hidden=false;picker.querySelector('.bs1431-close').focus({preventScroll:true});
+  keepEditForPicker=editing;
+  if(editing)rememberRange();
+  returnFocus=from||document.activeElement;filter='All';search.value='';renderPicker();picker.hidden=false;
+  picker.querySelector('.bs1431-close').focus({preventScroll:true});
  }
- function closePicker(){picker.hidden=true;returnFocus?.focus?.({preventScroll:true})}
+ function closePicker(){
+  picker.hidden=true;
+  if(keepEditForPicker&&editing){
+   // Return to the SAME editor/caret, not the toolbar or another modal.
+   editor.focus({preventScroll:true});
+   if(lastEditRange&&editor.contains(lastEditRange.commonAncestorContainer)){
+    const selection=window.getSelection();selection?.removeAllRanges();selection?.addRange(lastEditRange.cloneRange());
+   }
+   requestAnimationFrame(()=>window.__bs1437KeyboardSync?.());
+  }else returnFocus?.focus?.({preventScroll:true});
+  keepEditForPicker=false;
+ }
  di.addEventListener('click',()=>showPicker(di));fi.addEventListener('click',()=>showPicker(fi));
  picker.querySelector('.bs1431-close').addEventListener('click',closePicker);
  picker.addEventListener('pointerdown',e=>{if(e.target===picker)closePicker()});
@@ -6291,7 +6312,12 @@ window.addEventListener('on-air-v90-import-sound', async event=>{
   if(after.length&&!/^\s|^[,.!?;:)}\]]/.test(after))right=' ';
   write(before+left+token+right+after);liveInsertAt=null;view.focus({preventScroll:true});
  }
- results.addEventListener('click',e=>{const b=e.target.closest('[data-insert-id]');if(!b)return;const sound=findSound(b.dataset.insertId);if(!sound){renderPicker();return}closePicker();insertAudio(sound)});
+ results.addEventListener('click',e=>{
+  const b=e.target.closest('[data-insert-id]');if(!b)return;
+  const sound=findSound(b.dataset.insertId);if(!sound){renderPicker();return}
+  // Insert first while the caret range is still available. Keep Edit Mode open.
+  insertAudio(sound);closePicker();
+ });
  let boardFontPercent=100;
  function applyFontSize(){
   const isFloat=input.parentElement===document.getElementById('floatBody');
@@ -6339,7 +6365,117 @@ boot().catch(err=>{
  retry.onclick=()=>location.reload();
 });
 })();
-</script><script id="studio-v12-theme-js">
+</script>
+<script id="onair-v1437-existing-editor-keyboard">
+/* v143.7: Roll back v143.6's separate mobile focus panel.
+   This only adjusts the ORIGINAL editor and scrolling when a soft keyboard is visible. */
+(()=>{
+ 'use strict';
+ const editor=document.getElementById('bs1432Editor');
+ const studio=document.getElementById('studio');
+ const float=document.getElementById('floatScript');
+ const picker=document.getElementById('bs1431Picker');
+ if(!editor||!studio||!float)return;
+ const touchPhone= /Android|iPhone|iPod/i.test(navigator.userAgent||'') &&
+                  (window.matchMedia?.('(pointer: coarse)').matches??true);
+ if(!touchPhone)return;
+ const vv=window.visualViewport;
+ let baseline=Math.max(window.innerHeight,vv?.height||0),floatHomeTop=null,floatHomeMaxHeight=null,frame=0;
+ const visibleHeight=()=>vv?.height||window.innerHeight;
+ function safeCaret(){
+  const s=window.getSelection();
+  if(!s||!s.rangeCount)return editor.getBoundingClientRect();
+  const r=s.getRangeAt(0);
+  if(!editor.contains(r.commonAncestorContainer))return editor.getBoundingClientRect();
+  const box=r.getBoundingClientRect();
+  return box.width||box.height?box:editor.getBoundingClientRect();
+ }
+ function clear(){
+  studio.classList.remove('bs1437-soft-keyboard');
+  document.body.classList.remove('bs1437-keyboard-dock');
+  document.body.style.removeProperty('--bs1437-keyboard-pad');
+  studio.style.removeProperty('--bs1437-visible-height');
+  editor.style.removeProperty('--bs1437-editor-max');
+  editor.classList.remove('bs1437-keyboard-editor');
+  if(floatHomeTop!==null){float.style.top=floatHomeTop;floatHomeTop=null}
+  if(floatHomeMaxHeight!==null){float.style.maxHeight=floatHomeMaxHeight;floatHomeMaxHeight=null}
+ }
+ function sync(){
+  frame=0;
+  if(!window.__onAirBoardScript?.isEditing?.() ||
+     !picker.hidden || !editor.isConnected || document.activeElement!==editor){
+   clear();
+   if(!window.__onAirBoardScript?.isEditing?.())baseline=Math.max(window.innerHeight,visibleHeight());
+   return;
+  }
+  const visible=visibleHeight(),offset=vv?.offsetTop||0;
+  const loss=baseline-(visible+offset);
+  if(loss<115){clear();baseline=Math.max(baseline,window.innerHeight,visible);return}
+  const top=offset,bottom=offset+visible;
+  studio.classList.add('bs1437-soft-keyboard');
+  studio.style.setProperty('--bs1437-visible-height',Math.floor(visible)+'px');
+  editor.style.setProperty('--bs1437-editor-max',Math.max(94,Math.floor(visible-116))+'px');
+  editor.classList.add('bs1437-keyboard-editor');
+  const inFloat=!float.classList.contains('hidden')&&!float.classList.contains('mini')&&float.contains(editor);
+  if(!inFloat&&!studio.classList.contains('sbfs-fullscreen')){
+   // Add real scroll room to the SAME page while an overlay keyboard is visible.
+   // Otherwise a short page cannot scroll far enough to reveal the docked editor.
+   document.body.classList.add('bs1437-keyboard-dock');
+   document.body.style.setProperty('--bs1437-keyboard-pad',Math.ceil(loss+20)+'px');
+  }else{document.body.classList.remove('bs1437-keyboard-dock');document.body.style.removeProperty('--bs1437-keyboard-pad')}
+  if(inFloat){
+   if(floatHomeMaxHeight===null)floatHomeMaxHeight=float.style.maxHeight||'';
+   float.style.maxHeight=Math.max(110,Math.floor(visible-8))+'px';
+   if(floatHomeTop===null)floatHomeTop=float.style.top||'';
+   const r=float.getBoundingClientRect(),up=Math.max(0,r.bottom-(bottom-8));
+   const currentTop=parseFloat(floatHomeTop)||r.top;
+   float.style.top=Math.max(top+4,currentTop-up)+'px';
+  }else{
+   if(floatHomeTop!==null){float.style.top=floatHomeTop;floatHomeTop=null}
+   if(floatHomeMaxHeight!==null){float.style.maxHeight=floatHomeMaxHeight;floatHomeMaxHeight=null}
+  }
+  const caret=safeCaret(),rect=editor.getBoundingClientRect();
+  if(caret.bottom>Math.min(bottom-12,rect.bottom-12)){
+   editor.scrollTop+=caret.bottom-Math.min(bottom-12,rect.bottom-12);
+  }
+  if(!studio.classList.contains('sbfs-fullscreen')){
+   const newRect=editor.getBoundingClientRect();
+   const correction=newRect.bottom>bottom-10?newRect.bottom-(bottom-10):
+      newRect.top<top+8?newRect.top-(top+8):0;
+   if(Math.abs(correction)>2&&!float.contains(editor))window.scrollBy({top:correction,behavior:'instant'});
+  }
+ }
+ function schedule(){if(!frame)frame=requestAnimationFrame(sync)}
+ vv?.addEventListener('resize',schedule);
+ vv?.addEventListener('scroll',schedule);
+ window.addEventListener('resize',schedule);
+ editor.addEventListener('focus',schedule);
+ editor.addEventListener('input',schedule);
+ editor.addEventListener('keyup',schedule);
+ editor.addEventListener('click',schedule);
+ editor.addEventListener('blur',()=>requestAnimationFrame(sync));
+ window.__bs1437KeyboardSync=schedule;
+})();
+</script>
+<style id="onair-v1437-keyboard-style">
+/* This is the ORIGINAL editable surface: no replacement, portal, or new fullscreen editor. */
+body.bs1437-keyboard-dock{padding-bottom:var(--bs1437-keyboard-pad,0px)!important}
+#bs1432Editor.bs1437-keyboard-editor{
+  max-height:var(--bs1437-editor-max)!important;
+  min-height:90px!important;
+  overflow-y:auto!important;
+  overscroll-behavior:contain;
+  scroll-margin-block:12px;
+}
+/* Resize the existing fullscreen workspace only; do not launch a second one. */
+#studio.sbfs-fullscreen.bs1437-soft-keyboard{
+  height:var(--bs1437-visible-height)!important;
+  max-height:var(--bs1437-visible-height)!important;
+  padding-bottom:8px!important;
+}
+body:has(#studio.sbfs-fullscreen.bs1437-soft-keyboard) .footer{display:none!important}
+</style>
+<script id="studio-v12-theme-js">
 (()=>{
  const root=document.documentElement;
  const key='on-air-studio-theme';
@@ -14947,7 +15083,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
    if(total>LIMIT)throw Error('This backup is larger than '+sizeText(LIMIT)+'. Split it into smaller project exports.');
    manifest.optimization.duplicateBytesSaved=zip.__onAirSavedBytes||0;
    zip.file('manifest.json',JSON.stringify(manifest),{compression:'DEFLATE'});
-   zip.file('README.txt','ON AIR Studio v143.5 · Lossless Compact Project Backup\n\nOpen ON AIR Studio, choose Import Project, and select this .onair.zip file.\nSoundboard, DJ deck selections, queue, recordings, and editable editor projects are included as described in manifest.json.\nImported projects receive new IDs and do not overwrite saved local projects.\nPortable project backups do not include the application itself.\nDo not edit manifest.json or the included sound files.\n');
+   zip.file('README.txt','ON AIR Studio v143.7 · Lossless Compact Project Backup\n\nOpen ON AIR Studio, choose Import Project, and select this .onair.zip file.\nSoundboard, DJ deck selections, queue, recordings, and editable editor projects are included as described in manifest.json.\nImported projects receive new IDs and do not overwrite saved local projects.\nPortable project backups do not include the application itself.\nDo not edit manifest.json or the included sound files.\n');
    setStatus('Optimizing backup · '+sizeText(zip.__onAirSavedBytes||0)+' of identical audio merged…');
    const output=await zip.generateAsync({type:'blob',compression:'DEFLATE',compressionOptions:{level:6},streamFiles:true},meta=>{if(meta.percent)setStatus('Creating archive · '+Math.round(meta.percent)+'%')});
    return {output,manifest,total};
