@@ -3962,7 +3962,7 @@ html[data-theme="light"] .get-audio-v58 .ga-source-tab.active{color:#fff;backgro
     <div id="queueScriptDock" class="queue-script-dock"></div>
   </div>
 </section>
-<div class="dashboard workspace"><div class="sound-workspace"><div class="soundlist-head soundlist-inline"><h2 class="title">Sounds</h2><div class="sound-filter-rail" id="soundFilterRail"><div id="categoryFilters" class="category-filters" role="group" aria-label="Filter sounds by category"></div><button class="sound-filter-scroll" id="categoryScroll" type="button" aria-label="More sound categories" title="Scroll sound categories" hidden>›</button></div></div><div id="cards" class="grid"></div><div id="empty" class="empty">Add your first audio files to start broadcasting.<div style="margin-top:12px"><button class="btn primary" id="emptyAdd">＋ Add Sounds</button></div></div></div><aside class="panel broadcast-script-aside" style="align-self:start;margin-top:10px"><div class="spread"><h2 class="title">📄 Broadcast Script</h2><button class="btn small" id="scriptFull">↗ Float</button></div><div class="hint" style="margin-bottom:8px">Paste your sequence, cues, lines, and timing. Autosaved with the project.</div><div id="scriptSlot"><textarea id="scriptText" class="script" placeholder="00:00 — PLAY News Intro&#10;ANCHOR: Good morning, everyone…&#10;00:15 — FADE Background Music&#10;TECH: PLAY Breaking News…"></textarea></div><div class="hint" style="margin-top:7px">Tip: Tap a line, then use ♫ Insert Audio to add a clickable cue.</div></aside></div></section>
+<div class="dashboard workspace"><div class="sound-workspace"><div class="soundlist-head soundlist-inline"><h2 class="title">Sounds</h2><button id="soundQualityCheckBtn" type="button" class="sound-quality-open" title="Audio Check: compare original sound and Soundboard playback" aria-label="Open Audio Quality Check">🔊</button><div class="sound-filter-rail" id="soundFilterRail"><div id="categoryFilters" class="category-filters" role="group" aria-label="Filter sounds by category"></div><button class="sound-filter-scroll" id="categoryScroll" type="button" aria-label="More sound categories" title="Scroll sound categories" hidden>›</button></div></div><div id="cards" class="grid"></div><div id="empty" class="empty">Add your first audio files to start broadcasting.<div style="margin-top:12px"><button class="btn primary" id="emptyAdd">＋ Add Sounds</button></div></div></div><aside class="panel broadcast-script-aside" style="align-self:start;margin-top:10px"><div class="spread"><h2 class="title">📄 Broadcast Script</h2><button class="btn small" id="scriptFull">↗ Float</button></div><div class="hint" style="margin-bottom:8px">Paste your sequence, cues, lines, and timing. Autosaved with the project.</div><div id="scriptSlot"><textarea id="scriptText" class="script" placeholder="00:00 — PLAY News Intro&#10;ANCHOR: Good morning, everyone…&#10;00:15 — FADE Background Music&#10;TECH: PLAY Breaking News…"></textarea></div><div class="hint" style="margin-top:7px">Tip: Tap a line, then use ♫ Insert Audio to add a clickable cue.</div></aside></div></section>
 <section id="library" class="hidden"><div class="panel"><div class="spread"><h2 class="title">Audio Library</h2><button class="btn primary small" id="libraryAdd">＋ Import</button></div><p class="hint">Edit sounds and playback settings here. Arrange their order in Soundboard.</p><div id="libraryList"></div></div></section>
 <section id="recordings" class="hidden"><div class="panel"><h2 class="title">Recordings</h2><p class="hint recordings-intro">Recordings are saved to this browser for the current project. You can play, download, or delete them. Download a copy before clearing browser data or switching devices.</p><div id="recordingList" class="recordings-grid"></div></div></section>
 
@@ -4165,7 +4165,7 @@ window.ONAirHiFi=(()=>{
 (()=>{'use strict';
 const PAUSE_SVG='<svg class="oas-media-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="currentColor"><rect x="5" y="3.5" width="5.5" height="17" rx="1.8"/><rect x="13.5" y="3.5" width="5.5" height="17" rx="1.8"/></svg>'; const PLAY_SVG='<svg class="oas-media-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="currentColor"><path d="M8 4.5c0-.8.9-1.3 1.6-.9l11.2 7.5c.7.4.7 1.4 0 1.8L9.6 20.4c-.7.4-1.6-.1-1.6-.9z"/></svg>';
 const $=id=>document.getElementById(id), esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),id=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+Math.random().toString(36).slice(2),clamp=(n,a,b)=>Math.min(b,Math.max(a,n)),fmt=n=>Number.isFinite(n)?`${Math.floor(n/60)}:${String(Math.floor(n%60)).padStart(2,'0')}`:'--:--';
-let db=null,project={id:id(),name:'Untitled Broadcast',sounds:[],script:'',settings:{aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35}},blobs=new Map(),urls=new Map(),live=new Map(),preview=new Map(),recordings=[],ctx=null,audBus=null,djBus=null,master=null,recordDest=null,mediaRecorder=null,recStart=0,recTimer=null,micStream=null,micSource=null,recChunks=[],saveTimer=null,dragId=null,pressTimer=null,audioCache=new Map(),scriptFloating=false,scriptZoom=100;
+let db=null,project={id:id(),name:'Untitled Broadcast',sounds:[],script:'',settings:{aud:100,dj:60,master:100,duck:true,duckVol:25,fade:.35}},blobs=new Map(),urls=new Map(),live=new Map(),preview=new Map(),recordings=[],ctx=null,audBus=null,djBus=null,master=null,recordDest=null,mediaRecorder=null,recStart=0,recTimer=null,micStream=null,micSource=null,recChunks=[],saveTimer=null,dragId=null,pressTimer=null,audioCache=new Map(),scriptFloating=false,scriptZoom=100;
 const get=id=>project.sounds.find(s=>s.id===id),notify=msg=>{$('notice').innerHTML=`<div class="notice">${esc(msg)}</div>`;clearTimeout(notify.t);notify.t=setTimeout(()=>$('notice').innerHTML='',6500)};
 // Next Up: the pending sequence is saved in the project; the currently playing cue is transient.
 let queueCurrentId=null,queueCurrentInstance=null,queueBusy=false,queueGeneration=0;
@@ -4512,7 +4512,7 @@ async function deleteSavedProject(projectId){
    for(const url of urls.values())URL.revokeObjectURL(url);
    urls.clear();blobs.clear();audioCache.clear();
    const emptyId=id();swapRecordingProject(emptyId);releaseRecordingCache(projectId);
-   project={id:emptyId,name:'Untitled Broadcast',sounds:[],script:'',nextUp:[],djDeckSelections:{A:'',B:''},settings:{aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,autoNext:false}};
+   project={id:emptyId,name:'Untitled Broadcast',sounds:[],script:'',nextUp:[],djDeckSelections:{A:'',B:''},settings:{aud:100,dj:60,master:100,duck:true,duckVol:25,fade:.35,autoNext:false}};
    $('scriptText').value='';window.__onAirBoardScript?.refresh(true);setSettings();ensureQueue();renderQueue();renderCards();renderLibrary();renderRecordings();
    $('saveStatus').textContent='Select a project to continue';
    closeModal();showProjectLauncher('open');
@@ -4631,7 +4631,7 @@ async function initAudio(){
  master.connect(ctx.destination);
  master.connect(recordDest);
  master.gain.value=project.settings.master/100;
- audBus.gain.value=project.settings.aud/100;
+ audBus.gain.value=1; // P0: transparent unity Soundboard bus; no hidden attenuation.
  djBus.gain.value=project.settings.dj/100;
  await ctx.resume();
 }
@@ -4639,9 +4639,38 @@ async function initAudio(){
 // HTMLMediaElement.load() can reset playbackRate to defaultPlaybackRate.
 function soundSpeed(s){const rate=Number(s?.speed);return Number.isFinite(rate)&&rate>0?clamp(rate,.5,2):1}
 function applySoundSpeed(el,s){const rate=soundSpeed(s);el.defaultPlaybackRate=rate;el.playbackRate=rate;return rate}
+// Reliability pass: never start a cue before its first audible data is ready.
+// In particular, loading metadata and seeking a trimmed clip must finish before play().
+async function cueReady(el,start=0){
+ const wait=(ready,events,timeoutMs,reason)=>new Promise((resolve,reject)=>{
+  if(el.error)return reject(Error('Audio cannot be decoded'));
+  if(ready())return resolve();
+  let settled=false,timer=null;
+  const clean=()=>{clearTimeout(timer);for(const name of events)el.removeEventListener(name,check);el.removeEventListener('error',fail)};
+  const finish=(err)=>{if(settled)return;settled=true;clean();err?reject(err):resolve()};
+  const check=()=>{if(el.error)return finish(Error('Audio cannot be decoded'));if(ready())finish()};
+  const fail=()=>finish(Error('Audio cannot be decoded'));
+  for(const name of events)el.addEventListener(name,check);
+  el.addEventListener('error',fail);
+  timer=setTimeout(()=>finish(Error(reason)),timeoutMs);
+  check();
+ });
+ // Explicit load only once; do not call load() again after setting the trim offset.
+ if(el.networkState===el.NETWORK_EMPTY)el.load();
+ await wait(()=>el.readyState>=1,['loadedmetadata','durationchange','loadeddata'],12000,'Audio metadata did not become ready');
+ const offset=Math.max(0,Number(start)||0);
+ if(offset>0){
+  const safe=Number.isFinite(el.duration)?Math.min(offset,Math.max(0,el.duration-.001)):offset;
+  el.currentTime=safe;
+  await wait(()=>!el.seeking&&Math.abs(el.currentTime-safe)<.08,['seeked','loadeddata','canplay','timeupdate'],12000,'Could not seek to the saved trim start');
+ }
+ // HAVE_CURRENT_DATA is the minimum for the requested start position. Do not
+ // turn an expired timer into an unready play() as the previous code did.
+ await wait(()=>!el.seeking&&el.readyState>=2,['loadeddata','canplay','canplaythrough','seeked'],12000,'Audio is not ready at the start position');
+}
 function applyDucking(){if(!ctx)return;const priority=[...live.values()].some(x=>x.sound.category==='Priority'&&!x.el.paused);for(const x of live.values()){const goal=x.sound.category==='Background'&&project.settings.duck&&priority?project.settings.duckVol/100:1;const t=ctx.currentTime;x.duck.gain.cancelScheduledValues(t);x.duck.gain.setTargetAtTime(goal,t,Math.max(.015,project.settings.fade/3))}}
 function stop(id,isPreview=false){audioCache.delete((isPreview?'p:':'l:')+id);const m=isPreview?preview:live,x=m.get(id);if(!x)return;x.el.pause();x.el.removeAttribute('src');x.el.load();try{x.source.disconnect();x.gain.disconnect();x.duck.disconnect()}catch(e){}m.delete(id);if(!isPreview&&lastStartedSoundId===id)lastStartedSoundId=null;applyDucking();refreshSoundboardPlayback();count()}
-async function play(id,isPreview=false){const s=get(id);if(!s)return;const m=isPreview?preview:live;stop(id,isPreview);const token={};audioCache.set((isPreview?'p:':'l:')+id,token);try{await initAudio();if(audioCache.get((isPreview?'p:':'l:')+id)!==token)return;if(isPreview){notify('Private cue output was removed.');return}const el=new Audio();el.preload='auto';el.src=await audioURL(s);applySoundSpeed(el,s);el.preservesPitch=true;el.mozPreservesPitch=true;el.webkitPreservesPitch=true;el.loop=false;if(audioCache.get((isPreview?'p:':'l:')+id)!==token)return;const source=ctx.createMediaElementSource(el),gain=ctx.createGain(),duck=ctx.createGain();gain.gain.value=(s.volume??80)/100;source.connect(gain);gain.connect(duck);duck.connect(s.djMix&&!isPreview?ctx.destination:(isPreview?djBus:audBus));const x={el,source,gain,duck,sound:s};(isPreview?preview:live).set(id,x);el.onended=()=>{if(s.loop){el.currentTime=Number(s.start)||0;el.play().catch(()=>stop(id,isPreview))}else{stop(id,isPreview);if(!isPreview)finishQueuedTrack(id,x)}};el.onerror=()=>{notify('Could not decode '+s.name);stop(id,isPreview)};await new Promise((resolve,reject)=>{if(el.readyState>=3)return resolve();const timeout=setTimeout(()=>{cleanup();resolve()},1800);const ok=()=>{clearTimeout(timeout);cleanup();resolve()},bad=()=>{clearTimeout(timeout);cleanup();reject(Error('Audio file cannot be decoded'))},cleanup=()=>{el.removeEventListener('canplay',ok);el.removeEventListener('error',bad)};el.addEventListener('canplay',ok,{once:true});el.addEventListener('error',bad,{once:true});el.load()});if((isPreview?preview:live).get(id)!==x)return;el.currentTime=Math.max(0,Number(s.start)||0);applySoundSpeed(el,s);await el.play();applySoundSpeed(el,s);if(live.get(id)===x){lastStartedSoundId=id;if(queueCurrentId===id)queueCurrentInstance=x}applyDucking();refreshSoundboardPlayback();renderQueue();count()}catch(e){if(audioCache.get((isPreview?'p:':'l:')+id)===token){stop(id,isPreview);notify('Playback failed: '+e.message)}}}
+async function play(id,isPreview=false){const s=get(id);if(!s)return;const m=isPreview?preview:live;stop(id,isPreview);const token={};audioCache.set((isPreview?'p:':'l:')+id,token);try{await initAudio();if(audioCache.get((isPreview?'p:':'l:')+id)!==token)return;if(isPreview){notify('Private cue output was removed.');return}const el=new Audio();el.preload='auto';el.src=await audioURL(s);applySoundSpeed(el,s);el.preservesPitch=true;el.mozPreservesPitch=true;el.webkitPreservesPitch=true;el.loop=false;if(audioCache.get((isPreview?'p:':'l:')+id)!==token)return;const source=ctx.createMediaElementSource(el),gain=ctx.createGain(),duck=ctx.createGain();gain.gain.value=(s.volume??100)/100;source.connect(gain);gain.connect(duck);duck.connect(isPreview?djBus:audBus); /* Saved mixes now reach the broadcast recording bus. */const x={el,source,gain,duck,sound:s};(isPreview?preview:live).set(id,x);el.onended=()=>{if(s.loop){el.currentTime=Number(s.start)||0;el.play().catch(()=>stop(id,isPreview))}else{stop(id,isPreview);if(!isPreview)finishQueuedTrack(id,x)}};el.onerror=()=>{notify('Could not decode '+s.name);stop(id,isPreview)};await cueReady(el,s.start);if((isPreview?preview:live).get(id)!==x)return;applySoundSpeed(el,s);await el.play();applySoundSpeed(el,s);if(live.get(id)===x){lastStartedSoundId=id;if(queueCurrentId===id)queueCurrentInstance=x}applyDucking();refreshSoundboardPlayback();renderQueue();count()}catch(e){if(audioCache.get((isPreview?'p:':'l:')+id)===token){stop(id,isPreview);notify('Playback failed: '+e.message)}}}
 function pause(id){const x=live.get(id);if(!x)return;if(x.el.paused){x.el.play().then(()=>{if(live.get(id)!==x)return;lastStartedSoundId=id;applyDucking();refreshSoundboardPlayback();renderQueue();count()}).catch(e=>notify(e.message));}else{x.el.pause();applyDucking();refreshSoundboardPlayback();renderQueue();count()}}
 function stopAll(){cancelQueuedPlayback();for(const k of [...live.keys()])stop(k);for(const k of [...preview.keys()])stop(k);for(const k of ['A','B'])if(djDecks[k])djStop(k);count()}
 function count(){$('activeCount').textContent=live.size+' live';const playing=[...live.values()].filter(x=>!x.el.paused).length+Object.values(djDecks).filter(d=>d&&!d.el.paused).length;$('footCount').textContent=playing+' playing';const fsNames=$('sbfsPlayingNames');if(fsNames){const titles=[...live.values()].filter(x=>!x.el.paused).map(x=>x.sound?.name).filter(Boolean);fsNames.textContent=titles.length?titles.slice(0,3).join(' · ')+(titles.length>3?' · +'+(titles.length-3)+' more':''):'No active audio'}}
@@ -5077,7 +5106,7 @@ audioURL(s).then(url=>{
  // Some WebM recordings never fire useful metadata; resolve through decoded audio.
  setTimeout(()=>{if(!settled&&trimTimeline.isConnected)void dj135RepairLegacy(s).then(result=>finish(result.duration,result.url))},1250);
 }).catch(e=>notify(e.message));updateTrimTimeline();}
-async function addFiles(files){if(!files.length)return;let ok=0;for(const f of files){if(!f.type.startsWith('audio/')&&!/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(f.name)){notify('Skipped unsupported file: '+f.name);continue}const s={id:id(),name:f.name.replace(/\.[^.]+$/,''),category:'Effect',volume:80,speed:1,loop:false};try{if(db)await put('assets',s.id,f);blobs.set(s.id,f);project.sounds.push(s);ok++}catch(e){notify('Storage full or unavailable for '+f.name);blobs.set(s.id,f);project.sounds.push(s);ok++}}if(ok){scheduleSave();renderCards();renderLibrary();renderQueuePicker();notify(ok+' audio file(s) added. Default speed: 1× natural.')} return ok; }
+async function addFiles(files){if(!files.length)return;let ok=0;for(const f of files){if(!f.type.startsWith('audio/')&&!/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(f.name)){notify('Skipped unsupported file: '+f.name);continue}const s={id:id(),name:f.name.replace(/\.[^.]+$/,''),category:'Effect',volume:100,speed:1,loop:false};try{if(db)await put('assets',s.id,f);blobs.set(s.id,f);project.sounds.push(s);ok++}catch(e){notify('Storage full or unavailable for '+f.name);blobs.set(s.id,f);project.sounds.push(s);ok++}}if(ok){scheduleSave();renderCards();renderLibrary();renderQueuePicker();notify(ok+' audio file(s) added. Default speed: 1× natural.')} return ok; }
 window.__onAirQueueImportShared=addFiles;
 async function removeSound(id){const s=get(id);if(!s||!confirm('Remove '+s.name+' from this project?'))return;stop(id);stop(id,true);project.sounds=project.sounds.filter(x=>x.id!==id);if(queueCurrentId===id)cancelQueuedPlayback();ensureQueue();renderQueue();if(urls.has(id)){URL.revokeObjectURL(urls.get(id));urls.delete(id)}blobs.delete(id);if(db)await del('assets',id).catch(()=>{});scheduleSave();renderCards();renderLibrary()}
 function reorder(a,b){if(!a||!b||a===b)return;const i=project.sounds.findIndex(s=>s.id===a),j=project.sounds.findIndex(s=>s.id===b);if(i<0||j<0)return;project.sounds.splice(j,0,project.sounds.splice(i,1)[0]);scheduleSave();renderCards();renderLibrary()}
@@ -5135,7 +5164,7 @@ async function record(){
   mediaRecorder=capture.recorder;recChunks=[];recordingOwnerId=project.id;
   if(capture.fallback)recordingFeedback('WAV unsupported here: switched to HQ compressed recording','info');
   mediaRecorder.ondataavailable=e=>{if(e.data.size)recChunks.push(e.data)};
-  mediaRecorder.onerror=e=>{window.__onAirRecordingMeter?.stop();recordingFeedback('Recording error: '+(e.error?.message||'Capture failed'),'error')};
+  mediaRecorder.onerror=e=>{window.__onAirRecordingMeter?.stop();releaseMic();clearInterval(recTimer);recordingFeedback('Recording error: '+(e.error?.message||'Capture failed'),'error')};
   mediaRecorder.onstop=async()=>{
    const source=mediaRecorder,ownerId=recordingOwnerId,finalDuration=Math.max(0,(Date.now()-recStart)/1000);
    recordingFinalizing=true;$('recState').textContent='SAVING…';recordingFeedback('Saving recording…','saving');
@@ -5168,10 +5197,12 @@ async function record(){
 function releaseMic(){try{micSource?.disconnect()}catch(e){}micSource=null;micStream?.getTracks().forEach(t=>t.stop());micStream=null}
 // Best-effort browser confirmation if a student closes or refreshes mid-recording.
 window.addEventListener('beforeunload',event=>{if(mediaRecorder?.state==='recording'||recordingStarting||recordingFinalizing){event.preventDefault();event.returnValue=''}});
+// Navigating away has been confirmed: release any live mic even if saving is interrupted.
+window.addEventListener('pagehide',releaseMic);
 function stopRecord(){
  if(mediaRecorder?.state!=='recording'||recordingFinalizing)return;
  recordingFinalizing=true;$('recState').textContent='FINISHING…';recordingFeedback('Finishing recording…','saving');
- try{window.__onAirRecordingMeter?.stop();mediaRecorder.stop()}catch(e){recordingFinalizing=false;recordingFeedback('Could not stop recording: '+e.message,'error')}
+ try{window.__onAirRecordingMeter?.stop();mediaRecorder.stop();releaseMic()}catch(e){releaseMic();recordingFinalizing=false;recordingFeedback('Could not stop recording: '+e.message,'error')}
 }
 
 function recFormatTime(value){
@@ -5294,7 +5325,7 @@ async function deleteRecording(idx){
   }catch(e){$('recordingDeleteStatus').textContent='Could not delete: '+e.message;btn.disabled=false}
  };
 }
-async function loadProject(p,files){if(mediaRecorder?.state==='recording'||recordingFinalizing||recordingStarting)throw Error('Finish saving the recording before opening another project.');swapRecordingProject(p.id);stopAll();for(const u of urls.values())URL.revokeObjectURL(u);urls.clear();blobs.clear();project=p;project.settings={aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,...(p.settings||{})};for(const f of files||[]){const r=await fetch(f.data),b=await r.blob();blobs.set(f.id,b);if(db)await put('assets',f.id,b)}setSettings();$('scriptText').value=project.script||'';window.__onAirBoardScript?.refresh(true);ensureQueue();renderQueue();renderCards();renderLibrary();djRefreshChoices();scheduleSave()}
+async function loadProject(p,files){if(mediaRecorder?.state==='recording'||recordingFinalizing||recordingStarting)throw Error('Finish saving the recording before opening another project.');swapRecordingProject(p.id);stopAll();for(const u of urls.values())URL.revokeObjectURL(u);urls.clear();blobs.clear();project=p;project.settings={aud:100,dj:60,master:100,duck:true,duckVol:25,fade:.35,...(p.settings||{})};for(const f of files||[]){const r=await fetch(f.data),b=await r.blob();blobs.set(f.id,b);if(db)await put('assets',f.id,b)}setSettings();$('scriptText').value=project.script||'';window.__onAirBoardScript?.refresh(true);ensureQueue();renderQueue();renderCards();renderLibrary();djRefreshChoices();scheduleSave()}
 function projectDialog(){
  modal('My Projects',`<div class="pm pm-v1427" id="pmPanelV1427">
   <div class="pm-current"><div class="pm-eyebrow">CURRENT PROJECT</div><label for="projName" class="pm-label">Project name</label><div class="pm-namebox"><svg viewBox="0 0 24 24" aria-hidden="true" class="pm-v1427-icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5 4 4M4 20l4.4-1 10.8-10.8a2.2 2.2 0 0 0-3.1-3.1L5.3 15.9 4 20Z"/></svg><input id="projName" type="text" maxlength="80" autocomplete="off" spellcheck="false" placeholder="Name your broadcast" aria-label="Project name" value="${esc(project.name)}"></div><div class="pm-actions"><button class="btn primary" id="renameProj" type="button">✓ Save Project</button><button class="btn" id="newProj" type="button">＋ New Project</button></div><div class="pm-feedback" id="pmFeedback" role="status" aria-live="polite">Your sounds and script are saved automatically.</div></div>
@@ -5317,7 +5348,8 @@ function setSettings(){
  const s=project.settings;
  $('master').value=s.master;
  updateLabels();
- if(ctx){audBus.gain.value=s.aud/100;djBus.gain.value=s.dj/100;master.gain.value=s.master/100;applyDucking()}
+ s.aud=100; // P0: legacy projects also use unity Soundboard output; keep individual saved levels.
+ if(ctx){audBus.gain.value=1;djBus.gain.value=s.dj/100;master.gain.value=s.master/100;applyDucking()}
 }
 function updateLabels(){
  $('masterValue').textContent=project.settings.master+'%';
@@ -5674,7 +5706,7 @@ $('modalBody').addEventListener('click',e=>{const btn=e.target.closest('[data-de
 $('modalBody').addEventListener('click',async e=>{const b=e.target.closest('[data-open]');if(!b)return;try{const ok=await save();if(!ok&&!confirm('Current project could not be saved. Open another project anyway?'))return;const p=await read('projects',b.dataset.open);if(!p)throw Error('Project not found');await loadProject(p);closeModal();notify('Loaded '+p.name+' with '+p.sounds.length+' sounds.')}catch(err){notify('Could not open project: '+err.message)}});
 for(const t of document.querySelectorAll('.tab'))t.onclick=()=>{document.querySelectorAll('.tabs .tab').forEach(x=>{const current=x===t;x.classList.toggle('active',current);x.setAttribute('aria-current',current?'page':'false')});for(const n of ['studio','library','recordings'])$(n).classList.toggle('hidden',n!==t.dataset.tab);if(t.dataset.tab==='library')renderLibrary()};
 $('master').oninput=e=>{project.settings.master=Number(e.target.value);setSettings();scheduleSave()};
-function tick(){for(const [map,isPreview] of [[live,false],[preview,true]])for(const [id,x] of map){const card=[...document.querySelectorAll('.sound')].find(c=>c.dataset.id===id);if(isPreview)continue;const dur=Number.isFinite(x.el.duration)?x.el.duration:(Number(x.sound.duration)||Infinity),now=x.el.currentTime,start=Math.max(0,Number(x.sound.start)||0),end=Math.min(dur,Number(x.sound.end)>0?Number(x.sound.end):Infinity),range=Math.max(.01,end-start);if(Number.isFinite(end)&&now>=end-.005){if(x.sound.loop){x.el.currentTime=start;if(x.el.paused)x.el.play().catch(()=>stop(id,isPreview))}else{stop(id,isPreview);finishQueuedTrack(id,x);continue}}const t=Math.max(0,now-start),left=Math.max(0,end-now),fi=Math.min(Math.max(0,Number(x.sound.fadeIn)||0),range/2),fo=Math.min(Math.max(0,Number(x.sound.fadeOut)||0),range/2),fade=Math.min(1,fi?t/fi:1,fo?left/fo:1);x.gain.gain.setTargetAtTime((x.sound.volume??80)/100*clamp(fade,0,1),ctx.currentTime,.012);if(card){card.querySelector('[data-progress]').style.width=(Number.isFinite(end)?clamp(t/range*100,0,100):0)+'%';card.querySelector('[data-elapsed]').textContent=fmt(t);card.querySelector('[data-total]').textContent=fmt(range)}}if(!$('queueWorkspace').classList.contains('hidden'))queueNowUpdate();requestAnimationFrame(tick)}
+function tick(){for(const [map,isPreview] of [[live,false],[preview,true]])for(const [id,x] of map){const card=[...document.querySelectorAll('.sound')].find(c=>c.dataset.id===id);if(isPreview)continue;const dur=Number.isFinite(x.el.duration)?x.el.duration:(Number(x.sound.duration)||Infinity),now=x.el.currentTime,start=Math.max(0,Number(x.sound.start)||0),end=Math.min(dur,Number(x.sound.end)>0?Number(x.sound.end):Infinity),range=Math.max(.01,end-start);if(Number.isFinite(end)&&now>=end-.005){if(x.sound.loop){x.el.currentTime=start;if(x.el.paused)x.el.play().catch(()=>stop(id,isPreview))}else{stop(id,isPreview);finishQueuedTrack(id,x);continue}}const t=Math.max(0,now-start),left=Math.max(0,end-now),fi=Math.min(Math.max(0,Number(x.sound.fadeIn)||0),range/2),fo=Math.min(Math.max(0,Number(x.sound.fadeOut)||0),range/2),fade=Math.min(1,fi?t/fi:1,fo?left/fo:1);x.gain.gain.setTargetAtTime((x.sound.volume??100)/100*clamp(fade,0,1),ctx.currentTime,.012);if(card){card.querySelector('[data-progress]').style.width=(Number.isFinite(end)?clamp(t/range*100,0,100):0)+'%';card.querySelector('[data-elapsed]').textContent=fmt(t);card.querySelector('[data-total]').textContent=fmt(range)}}if(!$('queueWorkspace').classList.contains('hidden'))queueNowUpdate();requestAnimationFrame(tick)}
 async function boot(){try{db=await openDB();const last=await read('projects','__last');if(last){const p=await read('projects',last);if(p&&Array.isArray(p.sounds)){project=p;projectSelectionRequired=false;let missing=0;for(const sound of p.sounds){const stored=await read('assets',sound.id);if(!stored)missing++}if(missing)notify(missing+' audio file(s) missing from browser storage. Remove and re-add those sounds.');$('saveStatus').textContent='✓ Restored: '+p.name}else{$('saveStatus').textContent='✓ Local storage ready'}}else{$('saveStatus').textContent='✓ New workspace'}if(navigator.storage?.persist)navigator.storage.persist().catch(()=>{})}catch(e){$('saveStatus').textContent='Export backups to save';notify('Browser local storage unavailable. You can still export a project backup.')}setSettings();$('scriptText').value=project.script||'';window.__onAirBoardScript?.refresh(true);ensureQueue();renderQueue();renderCards();renderLibrary();djRefreshChoices();renderRecordings();void restoreRecordingsForProject(project.id);bootComplete=true;launcherBootReady=true;revealLauncherWhenReady();tick()}
 
 
@@ -5695,7 +5727,7 @@ function djRefreshChoices(){for(const k of ['A','B']){const sel=$('djSelect'+k);
 function djStop(k){const d=djDecks[k];if(!d)return;if(djScratchState[k]?.active)djEndScratch(k,null,false);d.el.pause();d.el.removeAttribute('src');d.el.load();try{d.source.disconnect();d.mediaGain?.disconnect();d.bass.disconnect();d.treble.disconnect();d.filter.disconnect();d.dry.disconnect();d.delay.disconnect();d.feedback.disconnect();d.wet.disconnect();d.gain.disconnect()}catch(e){}djDecks[k]=null;count();$('djState'+k).textContent='Ready';$('djDisc'+k).classList.remove('spinning');$('djTime'+k).textContent='0:00 / 0:00';$('djSeek'+k).value=0}
 function djLevels(){for(const k of ['A','B']){const d=djDecks[k];if(!d||!ctx)continue;const vol=Number($('djLevel'+k).value)/100;const factor=k==='A'?Math.cos(djCrossValue*Math.PI/200):Math.sin(djCrossValue*Math.PI/200);d.gain.gain.setTargetAtTime(vol*factor,ctx.currentTime,.025)}}
 function djEffects(k){const d=djDecks[k];if(!d||!ctx)return;d.bass.gain.value=Number($('djBass'+k).value);d.treble.gain.value=Number($('djTreble'+k).value);const f=Number($('djFilter'+k).value);d.filter.frequency.setTargetAtTime(f>=99?20000:300*Math.pow(20000/300,f/100),ctx.currentTime,.03);d.wet.gain.value=Number($('djEcho'+k).value)/100*.5;d.feedback.gain.value=Math.min(.4,Number($('djEcho'+k).value)/100*.4)}
-async function djPlay(k){const sound=get($('djSelect'+k).value);if(!sound){notify('Choose a sound for Deck '+k);return}const existing=djDecks[k];if(existing&&existing.soundId===sound.id){if(djScratchState[k].active)djEndScratch(k,null,false);existing.el.pause();existing.el.currentTime=0;djOriginalSpeed(existing.el);await existing.el.play();$('djDisc'+k).classList.add('spinning');return}djStop(k);try{await initAudio();const el=new Audio();el.preload='auto';el.src=await audioURL(sound);djOriginalSpeed(el);el.preservesPitch=true;const source=ctx.createMediaElementSource(el),bass=ctx.createBiquadFilter(),treble=ctx.createBiquadFilter(),filter=ctx.createBiquadFilter(),dry=ctx.createGain(),delay=ctx.createDelay(1),feedback=ctx.createGain(),wet=ctx.createGain(),gain=ctx.createGain(),mediaGain=ctx.createGain();bass.type='lowshelf';bass.frequency.value=220;treble.type='highshelf';treble.frequency.value=3200;filter.type='lowpass';delay.delayTime.value=.27;source.connect(mediaGain);mediaGain.connect(bass);bass.connect(treble);treble.connect(filter);filter.connect(dry);dry.connect(gain);filter.connect(delay);delay.connect(wet);wet.connect(gain);delay.connect(feedback);feedback.connect(delay);gain.connect(audBus);const d={el,source,mediaGain,bass,treble,filter,dry,delay,feedback,wet,gain,soundId:sound.id};djDecks[k]=d;el.addEventListener('play',count);el.addEventListener('pause',count);void djPrepareScratch(k,d);void djPrimeScratchWorklet();djEffects(k);djLevels();el.onended=()=>{if(djDecks[k]===d)djStop(k)};el.onerror=()=>{notify('Could not play this sound');if(djDecks[k]===d)djStop(k)};el.addEventListener('loadedmetadata',()=>{if(djDecks[k]===d)el.currentTime=0},{once:true});if(el.readyState<1)await new Promise((resolve,reject)=>{el.addEventListener('loadedmetadata',resolve,{once:true});el.addEventListener('error',()=>reject(new Error('Audio could not load')),{once:true})});el.currentTime=0;djOriginalSpeed(el);await el.play();djOriginalSpeed(el);$('djState'+k).textContent='Playing';$('djDisc'+k).classList.add('spinning')}catch(e){djStop(k);notify('Deck '+k+': '+e.message)}}
+async function djPlay(k){const sound=get($('djSelect'+k).value);if(!sound){notify('Choose a sound for Deck '+k);return}const existing=djDecks[k];if(existing&&existing.soundId===sound.id){if(djScratchState[k].active)djEndScratch(k,null,false);existing.el.pause();existing.el.currentTime=0;djOriginalSpeed(existing.el);await cueReady(existing.el,0);if(djDecks[k]!==existing)return;await existing.el.play();$('djDisc'+k).classList.add('spinning');return}djStop(k);try{await initAudio();const el=new Audio();el.preload='auto';el.src=await audioURL(sound);djOriginalSpeed(el);el.preservesPitch=true;const source=ctx.createMediaElementSource(el),bass=ctx.createBiquadFilter(),treble=ctx.createBiquadFilter(),filter=ctx.createBiquadFilter(),dry=ctx.createGain(),delay=ctx.createDelay(1),feedback=ctx.createGain(),wet=ctx.createGain(),gain=ctx.createGain(),mediaGain=ctx.createGain();bass.type='lowshelf';bass.frequency.value=220;treble.type='highshelf';treble.frequency.value=3200;filter.type='lowpass';delay.delayTime.value=.27;source.connect(mediaGain);mediaGain.connect(bass);bass.connect(treble);treble.connect(filter);filter.connect(dry);dry.connect(gain);filter.connect(delay);delay.connect(wet);wet.connect(gain);delay.connect(feedback);feedback.connect(delay);gain.connect(audBus);const d={el,source,mediaGain,bass,treble,filter,dry,delay,feedback,wet,gain,soundId:sound.id};djDecks[k]=d;el.addEventListener('play',count);el.addEventListener('pause',count);void djPrepareScratch(k,d);void djPrimeScratchWorklet();djEffects(k);djLevels();el.onended=()=>{if(djDecks[k]===d)djStop(k)};el.onerror=()=>{notify('Could not play this sound');if(djDecks[k]===d)djStop(k)};await cueReady(el,0);if(djDecks[k]!==d)return;djOriginalSpeed(el);await el.play();djOriginalSpeed(el);$('djState'+k).textContent='Playing';$('djDisc'+k).classList.add('spinning')}catch(e){djStop(k);notify('Deck '+k+': '+e.message)}}
 
 // v130: one vinyl scratching engine for normal and immersive/fullscreen DJ Mixer.
 // Hand motion controls a single absolute sample target. The audio engine plays
@@ -6162,7 +6194,7 @@ $('launcherCreate').onclick=async()=>{
   if(!db)throw Error('Local saving is unavailable in this browser. Enable site storage before creating a project.');
   stopAll();for(const url of urls.values())URL.revokeObjectURL(url);urls.clear();blobs.clear();
   const newProjectId=id();swapRecordingProject(newProjectId);
-  project={id:newProjectId,name,sounds:[],script:'',nextUp:[],djDeckSelections:{A:'',B:''},settings:{aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,autoNext:false}};
+  project={id:newProjectId,name,sounds:[],script:'',nextUp:[],djDeckSelections:{A:'',B:''},settings:{aud:100,dj:60,master:100,duck:true,duckVol:25,fade:.35,autoNext:false}};
   $('scriptText').value='';window.__onAirBoardScript?.refresh(true);selectedCategory='All';
   setSettings();ensureQueue();renderQueue();renderCards();renderLibrary();
   projectSelectionRequired=false;
@@ -6543,6 +6575,26 @@ window.addEventListener('on-air-v90-import-sound', async event=>{
  window.__onAirBoardScript={setWorkspace,syncLocation,refresh,updateZoom,isEditing:()=>editing,openPicker:()=>showPicker(di),finishEditing:()=>completeEdit(),getZoom:()=>boardFontPercent};
  setInterval(updateCuePlayback,400);
 })();
+
+
+// P0 read/write bridge for the optional Audio Quality Check. Other app state remains private.
+window.__onAirSoundQuality={
+ sounds:()=>project.sounds,
+ sound:(id)=>get(id),
+ master:()=>Number(project.settings.master??100),
+ context:()=>ctx,
+ busy:()=>recordingStarting||recordingFinalizing||mediaRecorder?.state==='recording',
+ stopAll:()=>stopAll(),
+ stopSound:id=>stop(id),
+ soundURL:s=>audioURL(s),
+ cueReady:(el,offset)=>cueReady(el,offset),
+ boardPlay:async(id)=>{await play(id);return live.has(id)},
+ resetAllVolumes:()=>{
+  for(const s of project.sounds)s.volume=100;
+  for(const x of live.values())x.gain.gain.value=1;
+  renderCards();scheduleSave();
+ }
+};
 
 // Press Escape within launcher: remain until project is explicitly selected.
 boot().catch(err=>{
@@ -15510,5 +15562,98 @@ https://github.com/nodeca/pako/blob/main/LICENSE
    }catch(error){stop();console.warn('Recording level meter unavailable; recording continues unchanged.',error)}
  }
  window.__onAirRecordingMeter={start,stop,get active(){return active},get level(){return smooth}};
+})();
+</script><style id="sound-quality-p0-css">
+.sound-quality-open{flex:0 0 auto;display:grid;place-items:center;min-width:29px;width:29px;height:29px;padding:0;font-size:16px;line-height:1;background:transparent;border:1px solid #456a89;color:inherit;border-radius:9px;cursor:pointer}
+.sound-quality-open:hover,.sound-quality-open:focus-visible{background:#244b66;border-color:#58ace4;outline-offset:2px}
+.sound-quality-modal{width:min(530px,100%);max-height:min(88dvh,720px);overflow:auto}
+.sound-quality-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px}
+.sound-quality-head h2{font-size:17px;margin:0 0 4px}.sound-quality-head p{font-size:11px;color:#abc0d8;line-height:1.5;margin:0}
+.sound-quality-close{flex:0 0 auto;background:transparent;color:inherit;border:1px solid #5b718b;border-radius:8px;min-height:32px;min-width:32px}
+.sound-quality-section{background:#102035;border:1px solid #344f6e;border-radius:12px;padding:12px;margin:10px 0;display:grid;gap:10px}
+.sound-quality-section label{margin:0;font-weight:700}.sound-quality-readout{font-size:12px;line-height:1.6;color:#c7d7ed}.sound-quality-readout strong{color:#8be6bf}
+.sound-quality-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.sound-quality-actions button{min-width:0;white-space:normal;font-size:12px}
+.sound-quality-note{font-size:11px;color:#b6c9df;line-height:1.55;margin:0}
+.sound-quality-status{font-size:12px;line-height:1.5;min-height:18px;color:#8be6bf}
+html[data-theme="light"] .sound-quality-section{background:#f1f5fb;border-color:#cfdae8}
+html[data-theme="light"] .sound-quality-head p,html[data-theme="light"] .sound-quality-note,html[data-theme="light"] .sound-quality-readout{color:#435570}
+html[data-theme="light"] .sound-quality-readout strong{color:#086e54}
+html[data-theme="light"] .sound-quality-status{color:#07694f}
+@media(max-width:370px){.sound-quality-open{width:26px;height:27px;min-width:26px;font-size:14px}.sound-quality-section{padding:9px}}
+</style><div class="modalbg hidden" id="soundQualityModal" role="dialog" aria-modal="true" aria-label="Audio Quality Check">
+  <section class="modal sound-quality-modal">
+    <div class="sound-quality-head"><div><h2>🔊 Audio Quality Check</h2><p>Compare the original file with Soundboard playback. Only test when not recording.</p></div><button type="button" class="sound-quality-close" id="soundQualityClose" aria-label="Close Audio Quality Check">✕</button></div>
+    <div class="sound-quality-section">
+      <label for="soundQualitySelect">Select a sound</label>
+      <select id="soundQualitySelect" aria-label="Sound to test"></select>
+      <div id="soundQualityLevels" class="sound-quality-readout" aria-live="polite"></div>
+      <div class="sound-quality-actions"><button type="button" class="btn" id="soundQualityOriginal">▶ Original file</button><button type="button" class="btn primary" id="soundQualityBoard">▶ Soundboard</button></div>
+      <button type="button" class="btn small" id="soundQualityStop">■ Stop comparison</button>
+      <p class="sound-quality-note">Original file playback bypasses the app's Soundboard gains and is NOT recorded. Soundboard playback uses clip volume, master volume, trims, and ducking. Comparison stops other audio.</p>
+    </div>
+    <div class="sound-quality-section"><strong>Restore source-level loudness</strong><p class="sound-quality-note">New uploads default to 100%. Existing clips keep your saved levels (for example 80%) until you choose to change them.</p><button type="button" id="soundQualityReset" class="btn green">Set all clip volumes to 100%</button><p class="sound-quality-note">Your music files are never modified. This changes only clip volume settings; individual fades and automatic ducking still work.</p></div>
+    <div class="sound-quality-section"><strong>Device output check</strong><div id="soundQualityDevice" class="sound-quality-readout"></div><p class="sound-quality-note">Android/Bluetooth can switch to voice or hands-free output while a mic is active. Browser code cannot guarantee the same hardware output mode. Compare again after disconnecting or changing the output device if you hear tinny sound.</p></div>
+    <p id="soundQualityStatus" class="sound-quality-status" role="status"></p>
+  </section>
+</div><script id="sound-quality-p0-js">
+/* P0 volume audit: compare original file and broadcast bus without altering source assets. */
+(()=>{
+ const $q=id=>document.getElementById(id),dialog=$q('soundQualityModal'),api=window.__onAirSoundQuality;
+ if(!dialog||!$q('soundQualityCheckBtn')||!api)return;
+ let direct=null,opening=false,boardPlayingId=null;
+ const message=text=>{$q('soundQualityStatus').textContent=text};
+ const selected=()=>api.sound($q('soundQualitySelect').value);
+ const busy=()=>api.busy();
+ function stopDirect(){if(!direct)return;try{direct.pause();direct.removeAttribute('src');direct.load()}catch(e){}direct=null}
+ function stopComparison(){stopDirect();opening=false;if(boardPlayingId){api.stopSound(boardPlayingId);boardPlayingId=null}}
+ function details(){
+  const s=selected(),v=$q('soundQualityLevels'),device=$q('soundQualityDevice');
+  const masterLevel=Math.max(0,Math.min(100,api.master()));
+  if(!s){v.textContent='No sounds in this project. Add a sound first.'}
+  else{
+   const clipLevel=Math.max(0,Math.min(200,Number(s.volume??100)));
+   const pct=Math.round(clipLevel*masterLevel/100);
+   const db=pct>0?(20*Math.log10(pct/100)).toFixed(1)+' dB':'silent';
+   v.innerHTML='Saved clip volume: <strong>'+clipLevel+'%</strong> · Master: <strong>'+masterLevel+'%</strong><br>Soundboard amplitude before fades/ducking: <strong>'+pct+'% ('+db+')</strong>'+
+   (s.speed&&Number(s.speed)!==1?'<br>Note: Clip speed is '+Number(s.speed).toFixed(2)+'×; for fair fidelity comparison, use 1.00×.':'');
+  }
+  const c=api.context(),rate=c?.sampleRate?c.sampleRate.toLocaleString()+' Hz':'Inactive until first playback';
+  const latency=typeof c?.baseLatency==='number'?Math.round(c.baseLatency*1000)+' ms':'browser-managed';
+  device.textContent='Web Audio context: '+rate+' · Base latency: '+latency+'. Physical output route and Bluetooth profile are managed by the device.';
+  const noSound=!s;for(const id of ['soundQualityOriginal','soundQualityBoard','soundQualityStop'])$q(id).disabled=noSound;
+  $q('soundQualityReset').disabled=!api.sounds().length;
+ }
+ function open(){if(busy()){message('Finish recording before running Audio Quality Check.');return}stopDirect();const list=$q('soundQualitySelect'),previous=list.value;list.innerHTML='';for(const s of api.sounds()){const o=document.createElement('option');o.value=s.id;o.textContent=s.name;list.appendChild(o)}if(api.sounds().some(s=>s.id===previous))list.value=previous;details();message('Ready. Choose the same sound for an original vs Soundboard comparison.');dialog.classList.remove('hidden')}
+ function close(){stopComparison();dialog.classList.add('hidden')}
+ async function compare(mode){
+  if(opening||busy()){message('Stop recording or wait for playback to finish preparing.');return}
+  const s=selected();if(!s)return;
+  opening=true;stopDirect();api.stopAll();boardPlayingId=null;
+  message('Preparing '+(mode==='original'?'original file':'Soundboard')+'…');
+  try{
+   if(mode==='original'){
+    const a=new Audio();direct=a;a.preload='auto';a.src=await api.soundURL(s);a.volume=1;a.playbackRate=1;
+    await api.cueReady(a,Number(s.start)||0);
+    if(direct!==a)return;
+    await a.play();a.onended=()=>{if(direct===a){stopDirect();message('Original file playback finished.')}};
+    message('Playing ORIGINAL file directly at 100%. This output is NOT part of the broadcast recording.');
+   }else{const success=await api.boardPlay(s.id);if(success)boardPlayingId=s.id;details();message(success?'Playing through Soundboard gain and master bus.':'Soundboard playback could not start. Check for an error notification.')}
+  }catch(e){message('Audio comparison failed: '+e.message);stopDirect()}
+  finally{opening=false}
+ }
+ $q('soundQualityCheckBtn').addEventListener('click',open);
+ $q('soundQualityClose').addEventListener('click',close);
+ dialog.addEventListener('click',e=>{if(e.target===dialog)close()});
+ $q('soundQualitySelect').addEventListener('change',()=>{stopComparison();details();message('Select a comparison mode.')});
+ $q('soundQualityOriginal').addEventListener('click',()=>void compare('original'));
+ $q('soundQualityBoard').addEventListener('click',()=>void compare('board'));
+ $q('soundQualityStop').addEventListener('click',()=>{stopComparison();message('Comparison stopped.')});
+ $q('soundQualityReset').addEventListener('click',()=>{
+  if(busy()){message('Finish recording before changing clip levels.');return}
+  if(!api.sounds().length)return;
+  if(!confirm('Set ALL Soundboard clip volumes to 100%? This changes saved volume settings but leaves audio files, trims, speeds, and fades untouched.'))return;
+  api.resetAllVolumes();details();message('All clip volumes set to 100%. Source files were not changed.');
+ });
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!dialog.classList.contains('hidden')){e.stopPropagation();close()}},true);
 })();
 </script></body></html>
