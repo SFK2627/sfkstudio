@@ -672,6 +672,10 @@ html[data-theme="light"] .get-audio-v58 .ga-open[aria-disabled="true"]{color:#60
 html[data-theme="light"] .get-audio-v58 .ga-notice{background:#f7f9fd;color:#52627a;border-color:#d8e2ef}
 html[data-theme="light"] .get-audio-v58 .ga-notice strong{color:#283e5b}
 @media(max-width:410px){.get-audio-v58 .ga-head{padding:10px}.get-audio-v58 .ga-head strong{font-size:14px}.get-audio-v58 .ga-logo{height:37px;flex-basis:37px}}
+
+.get-audio-v58 .ga-copy-only{width:100%;min-height:36px;border:1px solid #426380;background:#1c304a;color:#e8f1fd;border-radius:9px;font-size:12px;font-weight:700}
+.get-audio-v58 .ga-copy-only:disabled{opacity:.5;cursor:not-allowed}
+html[data-theme="light"] .get-audio-v58 .ga-copy-only{background:#eef3fa;border-color:#bdcde0;color:#263f5c}
 </style><style id="sound-playback-visibility-v61">
 /* v61: True playback-state visuals (built on the requested v58 version). */
 #cards .sound{position:relative;isolation:isolate}
@@ -5380,8 +5384,9 @@ $('libraryList').onclick=e=>{const a=e.target.closest('[data-edit],[data-remove]
 $('recordingList').addEventListener('input',e=>{
  const slider=e.target.closest('[data-rec-seek]');if(slider)seekRecordingPlayback(Number(slider.dataset.recSeek),slider)
 });
-// External Get Audio hand-off. ON AIR Studio does not extract media itself.
-// ytmp3.gl documents the #VIDEOID/mp3 deep-link format on its bookmarklet page.
+// External Get Audio hand-off (v143.8 downloader-only update).
+// Copy the entered YouTube URL and open YTMP3.gg. An external site cannot be autofilled from here.
+const GET_AUDIO_DOWNLOADER_URL='https://media.ytmp3.gg/tools/youtube-video-downloader/mxmrgj';
 function getAudioCleanup(){}
 function getYouTubeID(text){
  try{
@@ -5397,24 +5402,44 @@ function getYouTubeID(text){
 }
 function getAudioDialog(){
  modal('Get Audio',`<div class="get-audio-v58">
-   <div class="ga-head"><span class="ga-logo" aria-hidden="true">▶</span><div><strong>YouTube to MP3</strong><p>Paste a YouTube link, then continue on YTMP3.</p></div></div>
+   <div class="ga-head"><span class="ga-logo" aria-hidden="true">▶</span><div><strong>YouTube Audio / Video Downloader</strong><p>Copy your YouTube link, then open YTMP3.gg (MP3 or MP4).</p></div></div>
    <div><label class="ga-input-label" for="gaYouTubeLink">YouTube video link</label><div class="ga-link-row"><input class="ga-youtube-link" id="gaYouTubeLink" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://www.youtube.com/watch?v=..." aria-describedby="gaLinkStatus"><button type="button" class="ga-clear" id="gaClearLink" title="Clear link" aria-label="Clear YouTube link">✕</button></div></div>
    <p id="gaLinkStatus" class="ga-status" role="status" aria-live="polite">Enter a YouTube link to continue.</p>
-   <a class="ga-open" id="gaOpenConverter" href="https://ytmp3.gl/" target="_blank" rel="noopener noreferrer" aria-disabled="true">↗ Convert on YTMP3</a>
-   <div class="ga-notice"><strong>External website:</strong> Conversion and downloads happen on <strong>ytmp3.gl</strong>, not in ON AIR Studio. It opens in a new tab and may display its own content. Only download videos you own or are permitted to save.</div>
+   <a class="ga-open" id="gaOpenConverter" href="${GET_AUDIO_DOWNLOADER_URL}" target="_blank" rel="noopener noreferrer" aria-disabled="true">↗ Copy Link &amp; Open YTMP3.gg</a>
+   <button type="button" class="ga-copy-only" id="gaCopyLink" disabled>⧉ Copy Link Only</button>
+   <div class="ga-notice"><strong>External website:</strong> Conversion and downloads happen on <strong>YTMP3.gg</strong>, not in ON AIR Studio. Paste your copied link into the downloader page. Only save content you own or have permission to download.</div>
  </div>`);
- const field=$('gaYouTubeLink'),go=$('gaOpenConverter'),status=$('gaLinkStatus');
+ const field=$('gaYouTubeLink'),go=$('gaOpenConverter'),copyBtn=$('gaCopyLink'),status=$('gaLinkStatus');
  function refresh(){
   const value=field.value.trim(),id=getYouTubeID(value);
   go.setAttribute('aria-disabled',String(!id));
-  go.href=id?'https://ytmp3.gl/#'+encodeURIComponent(id)+'/mp3':'https://ytmp3.gl/';
-  status.textContent=!value?'Enter a YouTube link to continue.':id?'Ready. Convert opens the link on YTMP3 in a new tab.':'Please enter a valid YouTube video link.';
+  go.href=GET_AUDIO_DOWNLOADER_URL;
+  copyBtn.disabled=!id;
+  status.textContent=!value?'Enter a YouTube link to continue.':id?'Ready. Copy the link and paste it on YTMP3.gg.':'Please enter a valid YouTube video link.';
   status.classList.toggle('error',!!value&&!id);
+ }
+ function fallbackCopy(value){
+  let temp;
+  try{
+   temp=document.createElement('textarea');temp.value=value;temp.setAttribute('readonly','');
+   temp.style.cssText='position:fixed;left:-9999px;top:0;opacity:0';document.body.appendChild(temp);
+   temp.focus();temp.select();return !!document.execCommand?.('copy');
+  }catch(e){return false}
+  finally{if(temp)temp.remove()}
+ }
+ function copyLink(){
+  const value=field.value.trim();if(!getYouTubeID(value))return;
+  function feedback(ok){status.textContent=ok?'YouTube link copied. Paste it into YTMP3.gg.':'Automatic copy was blocked. Select and copy the YouTube link manually.';status.classList.toggle('error',!ok)}
+  if(navigator.clipboard && typeof navigator.clipboard.writeText==='function'){
+   try{navigator.clipboard.writeText(value).then(()=>feedback(true),()=>feedback(fallbackCopy(value)));return}catch(e){}
+  }
+  feedback(fallbackCopy(value));
  }
  field.addEventListener('input',refresh);
  field.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();if(go.getAttribute('aria-disabled')!=='true')go.click()}});
  $('gaClearLink').onclick=()=>{field.value='';refresh();field.focus()};
- go.addEventListener('click',e=>{if(go.getAttribute('aria-disabled')==='true'){e.preventDefault();field.focus()}});
+ go.addEventListener('click',e=>{if(go.getAttribute('aria-disabled')==='true'){e.preventDefault();field.focus();return}copyLink()});
+ copyBtn.addEventListener('click',copyLink);
  refresh();field.focus();
 }
 $('getAudioBtn').onclick=getAudioDialog;
