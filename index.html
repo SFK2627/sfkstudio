@@ -3827,7 +3827,24 @@ html[data-theme="light"] .studio-recbar .v1438-rec-indicator[data-active="true"]
 }
 @media (max-width:355px){.footer .studio-recbar .v1438-rec-indicator{width:53px!important;min-width:53px!important;max-width:53px!important;flex-basis:53px!important}.footer .studio-recbar .v1438-rec-indicator .rec-timer{font-size:9px!important}}
 @media(prefers-reduced-motion:reduce){.studio-recbar .v1438-rec-canvas{transition:none}}
-</style></head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
+</style>
+<style id="onair-v1438-dual-get-audio">
+/* Two compact accessible source tabs, scoped exclusively to the Get Audio modal. */
+.get-audio-v58.ga-dual{gap:11px}
+.get-audio-v58 .ga-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:4px;background:#111e31;border:1px solid #3a516c;border-radius:12px}
+.get-audio-v58 .ga-source-tab{min-width:0;min-height:41px;border:1px solid transparent;border-radius:9px;padding:8px 6px;background:transparent;color:#b9cae0;font-size:13px;font-weight:800;cursor:pointer}
+.get-audio-v58 .ga-source-tab.active{background:#245baf;color:#fff;border-color:#63a2f0;box-shadow:0 2px 9px #0003}
+.get-audio-v58 .ga-source-tab:focus-visible{outline:2px solid #fbbf24;outline-offset:1px}
+.get-audio-v58 .ga-source-tab span{display:inline-flex;align-items:center;justify-content:center;margin-right:5px;font-weight:900}
+.get-audio-v58 .ga-source-panel{display:grid;gap:12px;min-width:0}
+.get-audio-v58 .ga-source-panel[hidden]{display:none!important}
+.get-audio-v58 .ga-tiktok-head .ga-logo{background:#0e1016;color:#fff;box-shadow:inset 2px 0 #64f6e6,inset -2px 0 #f17bae}
+html[data-theme="light"] .get-audio-v58 .ga-tabs{background:#e7eef8;border-color:#cad7e8}
+html[data-theme="light"] .get-audio-v58 .ga-source-tab{color:#445e7b}
+html[data-theme="light"] .get-audio-v58 .ga-source-tab.active{color:#fff;background:#205fcb}
+@media(max-width:380px){.get-audio-v58 .ga-source-tab{font-size:12px;min-height:39px}.get-audio-v58 .ga-source-panel{gap:9px}}
+</style>
+</head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div></div>
 </div>
 <div id="projectLauncher" class="v64-launcher v74-launcher hidden" role="dialog" aria-modal="true" aria-labelledby="launcherTitle">
@@ -5384,9 +5401,10 @@ $('libraryList').onclick=e=>{const a=e.target.closest('[data-edit],[data-remove]
 $('recordingList').addEventListener('input',e=>{
  const slider=e.target.closest('[data-rec-seek]');if(slider)seekRecordingPlayback(Number(slider.dataset.recSeek),slider)
 });
-// External Get Audio hand-off (v143.8 downloader-only update).
-// Copy the entered YouTube URL and open MP3Juices. An external site cannot be autofilled from here.
+// External Get Audio hand-off: YouTube + TikTok tabs (original v143.8 engine untouched).
+// The browser copies the link before navigating; external websites cannot be auto-filled.
 const GET_AUDIO_DOWNLOADER_URL='https://mp3juices.co/';
+const GET_AUDIO_TIKTOK_URL='https://audiotranscriber.io/tiktok-to-mp3/';
 function getAudioCleanup(){}
 function getYouTubeID(text){
  try{
@@ -5400,23 +5418,66 @@ function getYouTubeID(text){
   return /^[\w-]{11}$/.test(id||'')?id:null;
  }catch(e){return null}
 }
+function getTikTokLink(text){
+ try{
+  const u=new URL(text.trim());
+  if(u.protocol!=='https:'||u.username||u.password)return false;
+  const host=u.hostname.toLowerCase();
+  if(host!=='tiktok.com'&&!host.endsWith('.tiktok.com'))return false;
+  // Both long /@creator/video/ID links and short vt.tiktok.com / vm.tiktok.com shares.
+  return u.pathname.length>1&&u.pathname!=='/';
+ }catch(e){return false}
+}
 function getAudioDialog(){
- modal('Get Audio',`<div class="get-audio-v58">
-   <div class="ga-head"><span class="ga-logo" aria-hidden="true">▶</span><div><strong>YouTube Audio / Video Downloader</strong><p>Copy your YouTube link, then open MP3Juices (MP3 or MP4).</p></div></div>
-   <div><label class="ga-input-label" for="gaYouTubeLink">YouTube video link</label><div class="ga-link-row"><input class="ga-youtube-link" id="gaYouTubeLink" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://www.youtube.com/watch?v=..." aria-describedby="gaLinkStatus"><button type="button" class="ga-clear" id="gaClearLink" title="Clear link" aria-label="Clear YouTube link">✕</button></div></div>
+ modal('Get Audio',`<div class="get-audio-v58 ga-dual">
+   <div class="ga-tabs" role="tablist" aria-label="Audio source">
+     <button type="button" class="ga-source-tab active" id="gaTabYouTube" role="tab" aria-selected="true" aria-controls="gaPanelYouTube" tabindex="0"><span aria-hidden="true">▶</span> YouTube</button>
+     <button type="button" class="ga-source-tab" id="gaTabTikTok" role="tab" aria-selected="false" aria-controls="gaPanelTikTok" tabindex="-1"><span aria-hidden="true">♪</span> TikTok</button>
+   </div>
+   <section class="ga-source-panel" id="gaPanelYouTube" role="tabpanel" aria-labelledby="gaTabYouTube">
+     <div class="ga-head"><span class="ga-logo" aria-hidden="true">▶</span><div><strong>YouTube Audio / Video Downloader</strong><p>Copy your YouTube link, then open MP3Juices (MP3 or MP4).</p></div></div>
+     <div><label class="ga-input-label" for="gaYouTubeLink">YouTube video link</label><div class="ga-link-row"><input class="ga-youtube-link" id="gaYouTubeLink" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://www.youtube.com/watch?v=..." aria-describedby="gaLinkStatus"><button type="button" class="ga-clear" id="gaClearYouTube" title="Clear link" aria-label="Clear YouTube link">✕</button></div></div>
+   </section>
+   <section class="ga-source-panel" id="gaPanelTikTok" role="tabpanel" aria-labelledby="gaTabTikTok" hidden>
+     <div class="ga-head ga-tiktok-head"><span class="ga-logo" aria-hidden="true">♪</span><div><strong>TikTok to MP3</strong><p>Copy your TikTok video link, then open Audio Transcriber.</p></div></div>
+     <div><label class="ga-input-label" for="gaTikTokLink">TikTok video link</label><div class="ga-link-row"><input class="ga-youtube-link" id="gaTikTokLink" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://www.tiktok.com/@creator/video/..." aria-describedby="gaLinkStatus"><button type="button" class="ga-clear" id="gaClearTikTok" title="Clear link" aria-label="Clear TikTok link">✕</button></div></div>
+   </section>
    <p id="gaLinkStatus" class="ga-status" role="status" aria-live="polite">Enter a YouTube link to continue.</p>
    <a class="ga-open" id="gaOpenConverter" href="${GET_AUDIO_DOWNLOADER_URL}" target="_blank" rel="noopener noreferrer" aria-disabled="true">↗ Copy Link &amp; Open MP3Juices</a>
    <button type="button" class="ga-copy-only" id="gaCopyLink" disabled>⧉ Copy Link Only</button>
-   <div class="ga-notice"><strong>External website:</strong> Conversion and downloads happen on <strong>MP3Juices</strong>, not in ON AIR Studio. Paste your copied link into the downloader page. Only save content you own or have permission to download.</div>
+   <div class="ga-notice" id="gaExternalNotice"><strong>External website:</strong> Conversion and downloads happen on <strong>MP3Juices</strong>, not in ON AIR Studio. Paste your copied link into the downloader page. Only save content you own or have permission to download.</div>
  </div>`);
- const field=$('gaYouTubeLink'),go=$('gaOpenConverter'),copyBtn=$('gaCopyLink'),status=$('gaLinkStatus');
+ const youtubeField=$('gaYouTubeLink'),tiktokField=$('gaTikTokLink');
+ const go=$('gaOpenConverter'),copyBtn=$('gaCopyLink'),status=$('gaLinkStatus'),notice=$('gaExternalNotice');
+ const youtubeTab=$('gaTabYouTube'),tiktokTab=$('gaTabTikTok');
+ let source='youtube';
+ const currentField=()=>source==='youtube'?youtubeField:tiktokField;
+ const currentName=()=>source==='youtube'?'YouTube':'TikTok';
+ const currentSite=()=>source==='youtube'?'MP3Juices':'Audio Transcriber';
+ const currentUrl=()=>source==='youtube'?GET_AUDIO_DOWNLOADER_URL:GET_AUDIO_TIKTOK_URL;
+ const validLink=value=>source==='youtube'?!!getYouTubeID(value):getTikTokLink(value);
  function refresh(){
-  const value=field.value.trim(),id=getYouTubeID(value);
-  go.setAttribute('aria-disabled',String(!id));
-  go.href=GET_AUDIO_DOWNLOADER_URL;
-  copyBtn.disabled=!id;
-  status.textContent=!value?'Enter a YouTube link to continue.':id?'Ready. Copy the link and paste it on MP3Juices.':'Please enter a valid YouTube video link.';
-  status.classList.toggle('error',!!value&&!id);
+  const value=currentField().value.trim(),valid=validLink(value),name=currentName(),site=currentSite();
+  go.setAttribute('aria-disabled',String(!valid));
+  go.href=currentUrl();
+  go.textContent='↗ Copy Link & Open '+site;
+  copyBtn.disabled=!valid;
+  status.textContent=!value?'Enter a '+name+' link to continue.':valid?'Ready. Copy the link and paste it on '+site+'.':'Please enter a valid '+name+' video link.';
+  status.classList.toggle('error',!!value&&!valid);
+ }
+ function selectTab(next){
+  if(next===source)return;
+  source=next;
+  const yt=source==='youtube';
+  youtubeTab.classList.toggle('active',yt);
+  tiktokTab.classList.toggle('active',!yt);
+  youtubeTab.setAttribute('aria-selected',String(yt));
+  tiktokTab.setAttribute('aria-selected',String(!yt));
+  youtubeTab.tabIndex=yt?0:-1;tiktokTab.tabIndex=yt?-1:0;
+  $('gaPanelYouTube').hidden=!yt;
+  $('gaPanelTikTok').hidden=yt;
+  notice.innerHTML=yt?'<strong>External website:</strong> Conversion and downloads happen on <strong>MP3Juices</strong>, not in ON AIR Studio. Paste your copied link into the downloader page. Only save content you own or have permission to download.':'<strong>External website:</strong> TikTok to MP3 conversion happens on <strong>Audio Transcriber</strong>, not in ON AIR Studio. Paste your copied link into the converter page. Only save content you own or have permission to download.';
+  refresh();
  }
  function fallbackCopy(value){
   let temp;
@@ -5428,14 +5489,12 @@ function getAudioDialog(){
   finally{if(temp)temp.remove()}
  }
  function copyFeedback(ok){
-  status.textContent=ok?'YouTube link copied automatically. Paste it into MP3Juices.':'Clipboard access was blocked. Please select and copy the link manually.';
+  status.textContent=ok?currentName()+' link copied automatically. Paste it into '+currentSite()+'.':'Clipboard access was blocked. Please select and copy the link manually.';
   status.classList.toggle('error',!ok);
  }
- // Copy before opening the external tab: changing browser focus too early can block clipboard writes on phones.
- // Use the synchronous, user-gesture copy first (works on many file:// and content:// pages),
- // then the modern async clipboard API if legacy copying is blocked.
+ // Finish clipboard copying first; external navigation can revoke clipboard permission on phones.
  function copyLinkOnly(){
-  const value=field.value.trim();if(!getYouTubeID(value))return;
+  const value=currentField().value.trim();if(!validLink(value))return;
   if(fallbackCopy(value)){copyFeedback(true);return}
   if(navigator.clipboard && typeof navigator.clipboard.writeText==='function'){
    try{navigator.clipboard.writeText(value).then(()=>copyFeedback(true),()=>copyFeedback(false));return}catch(e){}
@@ -5443,31 +5502,38 @@ function getAudioDialog(){
   copyFeedback(false);
  }
  function copyLinkAndOpen(e){
-  if(go.getAttribute('aria-disabled')==='true'){e.preventDefault();field.focus();return}
-  const value=field.value.trim();
-  // Successful synchronous copy lets the browser open the actual anchor normally, with no popup-blocker race.
+  if(go.getAttribute('aria-disabled')==='true'){e.preventDefault();currentField().focus();return}
+  const value=currentField().value.trim(),destination=currentUrl();
+  // Synchronous copy keeps the user's original click available for opening the anchor.
   if(fallbackCopy(value)){copyFeedback(true);return}
-  // Do not open a new tab until copying succeeds: async writes can fail when the page loses focus.
   e.preventDefault();
   if(navigator.clipboard && typeof navigator.clipboard.writeText==='function'){
    try{
     navigator.clipboard.writeText(value).then(()=>{
      copyFeedback(true);
-     const popup=window.open(GET_AUDIO_DOWNLOADER_URL,'_blank');
+     const popup=window.open(destination,'_blank');
      if(popup){try{popup.opener=null}catch(e){}}
-     else window.location.assign(GET_AUDIO_DOWNLOADER_URL);
+     else window.location.assign(destination);
     },()=>copyFeedback(false));
     return;
    }catch(e){}
   }
   copyFeedback(false);
  }
- field.addEventListener('input',refresh);
- field.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();if(go.getAttribute('aria-disabled')!=='true')go.click()}});
- $('gaClearLink').onclick=()=>{field.value='';refresh();field.focus()};
+ youtubeTab.addEventListener('click',()=>selectTab('youtube'));
+ tiktokTab.addEventListener('click',()=>selectTab('tiktok'));
+ for(const [tab,next] of [[youtubeTab,'tiktok'],[tiktokTab,'youtube']]){
+  tab.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();selectTab(next);(next==='youtube'?youtubeTab:tiktokTab).focus()}});
+ }
+ for(const field of [youtubeField,tiktokField]){
+  field.addEventListener('input',refresh);
+  field.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();if(go.getAttribute('aria-disabled')!=='true')go.click()}});
+ }
+ $('gaClearYouTube').onclick=()=>{youtubeField.value='';refresh();youtubeField.focus()};
+ $('gaClearTikTok').onclick=()=>{tiktokField.value='';refresh();tiktokField.focus()};
  go.addEventListener('click',copyLinkAndOpen);
  copyBtn.addEventListener('click',copyLinkOnly);
- refresh();field.focus();
+ refresh();youtubeField.focus();
 }
 $('getAudioBtn').onclick=getAudioDialog;
 for(const x of ['addBtn','emptyAdd','libraryAdd'])$(x).onclick=()=>$('files').click();$('files').onchange=async e=>{await addFiles([...e.target.files]);e.target.value=''};$('stopAll').onclick=stopAll;
