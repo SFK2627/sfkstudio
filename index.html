@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080808"><title>ON AIR Studio for SFK · v143.0</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080808"><title>ON AIR Studio for SFK · v143.5</title><style>
 :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#e9f1ff;background:#0b1220;font-size:14px}*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.app{max-width:1440px;margin:auto;padding:14px 16px 92px}.top,.row,.spread{display:flex;align-items:center;gap:9px}.spread{justify-content:space-between}.top{justify-content:space-between;flex-wrap:wrap}.brand{font-size:23px;font-weight:900;letter-spacing:-.8px}.brand b{color:#fbbf24}.muted,.hint{color:#a1b1c9}.hint{font-size:12px;line-height:1.5}.tiny{font-size:11px}.btn,.tab{border:1px solid #344764;background:#1b2b43;color:#edf4ff;border-radius:9px;padding:9px 12px;font-weight:650;min-height:38px}.btn.primary,.tab.active{background:#2563eb;border-color:#4c88ff}.btn.danger{background:#9b2530;border-color:#c53a47}.btn.green{background:#146c54;border-color:#2da77d}.btn.small{font-size:12px;padding:6px 9px;min-height:32px}.btn:focus-visible,.trigger:focus-visible{outline:3px solid #fbbf24;outline-offset:2px}.tabs{display:flex;gap:6px;margin:13px 0;overflow:auto}.tab{white-space:nowrap;flex:1}.panel{background:#131f32;border:1px solid #293c57;border-radius:13px;padding:13px;min-width:0}.dashboard{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:11px}.title{font-size:15px;font-weight:800;margin:0 0 9px}.pill{border:1px solid #344763;border-radius:30px;padding:5px 9px;font-size:11px;color:#bbcae0}.toolbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:9px;margin-top:11px}.sound{background:#1a2a41;border:1px solid #38506c;border-radius:12px;padding:10px;min-width:0;touch-action:pan-y;display:flex;flex-direction:column;min-height:196px;height:196px;overflow:hidden}.soundhead{min-height:40px}.sound .trigger{flex-shrink:0}.sound .volume{margin-top:auto}.sound .cat{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sound.live{border-color:#37c998;background:#193c3c}.sound.preview{box-shadow:inset 0 0 0 1px #fbbf24}.sound.dragging{opacity:.48}.sound.drop-target{outline:2px dashed #fbbf24}.soundhead{display:flex;align-items:flex-start;gap:7px}.soundname{font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.25;flex:1;min-width:0}.cat{font-size:10px;color:#c0d1e7;margin-top:4px}.handle{background:transparent;color:#b3c5dd;border:0;padding:4px;font-size:17px;cursor:grab;touch-action:none}.trigger{display:block;width:100%;min-height:49px;border:1px solid #4777b3;background:#264c7d;color:white;border-radius:9px;font-weight:850;margin:9px 0 7px}.sound.live .trigger{background:#13765d}.progress{height:5px;border-radius:9px;background:#3b4d66;overflow:hidden}.progress>div{height:100%;width:0;background:#64b6ff}.times{display:flex;justify-content:space-between;color:#b7c8dc;font-size:10px;margin-top:4px}.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:8px}.actions button{padding:6px 1px;font-size:11px;min-height:30px}.volume{display:flex;align-items:center;gap:5px;margin-top:8px}.volume input{min-width:0;width:100%}.volume span{font-size:10px;min-width:30px;text-align:right}.script{width:100%;min-height:135px;resize:vertical;background:#0b1627;color:#e9f1ff;border:1px solid #354966;border-radius:9px;padding:10px;line-height:1.65}.script:focus{outline:2px solid #4486f3}.floating-script{position:fixed;z-index:15;left:16px;top:95px;width:min(440px,calc(100vw - 24px));height:min(520px,70dvh);background:#15243a;border:1px solid #5a7ca6;border-radius:14px;box-shadow:0 20px 70px #000a;display:flex;flex-direction:column;overflow:hidden;resize:both;min-width:230px;min-height:180px;max-width:100vw;max-height:95dvh}.float-head{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#253d5c;padding:7px 9px;cursor:grab;touch-action:none;user-select:none}.float-head:active{cursor:grabbing}.float-body{flex:1;overflow:auto;min-height:0;padding:10px;touch-action:pan-x pan-y}.float-body .script{height:100%;min-height:0;resize:none;font-size:16px;line-height:1.5}.float-tools{display:flex;align-items:center;gap:5px}.float-tools .btn{min-height:28px;padding:3px 7px}.float-zoom{width:80px!important}.float-placeholder{font-size:12px;color:#b5c9e4;padding:12px;border:1px dashed #425b7a;border-radius:9px}.script-inline-hidden{display:none!important}.field{margin:10px 0}label{display:block;color:#c2cfe1;font-size:12px;margin-bottom:5px}input[type=text],input[type=number],select{background:#0c1728;color:#f1f6ff;border:1px solid #3a506d;border-radius:8px;padding:9px;max-width:100%;width:100%}input[type=range]{accent-color:#55a4ff}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.hidden{display:none!important}.empty{border:1px dashed #3d5472;border-radius:12px;padding:25px;text-align:center;color:#b1c2db;margin-top:12px}.listrow{display:flex;align-items:center;gap:8px;padding:9px;background:#1a2b42;border-radius:9px;margin:7px 0;flex-wrap:wrap}.listrow .grow{flex:1;min-width:110px;overflow-wrap:anywhere}.footer{position:fixed;bottom:0;left:0;right:0;background:#0b1425f5;border-top:1px solid #2b3e57;padding:8px 16px;z-index:5}.footinner{max-width:1408px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:8px}.modalbg{position:fixed;inset:0;background:#02060dd9;display:flex;align-items:center;justify-content:center;z-index:20;padding:12px}.modal{width:min(540px,100%);max-height:90dvh;overflow:auto;background:#17253b;border:1px solid #466080;border-radius:15px;padding:17px}.notice{padding:9px 12px;background:#30291b;border:1px solid #66542d;border-radius:9px;color:#ffe0a2;margin:9px 0;font-size:12px}.recording{width:100%;max-width:300px}.status{font-size:11px;color:#8de4bd}.live-dot{color:#f87171}.rec-timer{font-size:23px;font-weight:850;font-variant-numeric:tabular-nums}.divider{border:0;border-top:1px solid #30425d;margin:13px 0}.gripnote{font-size:11px;color:#9fb4d0}.toggle{display:flex;align-items:center;gap:7px}.toggle input{accent-color:#4b98f8}.toggle label{margin:0}.nowrap{white-space:nowrap}@media(max-width:800px){.dashboard{grid-template-columns:1fr}.app{padding:10px 10px 90px}.brand{font-size:20px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.sound{padding:8px;height:190px;min-height:190px}.soundname{font-size:12px}.panel{padding:10px}.tab{padding:8px 9px;font-size:12px}.footer{padding:8px 10px}.hint{font-size:11px}.rec-timer{font-size:20px}}@media(max-width:360px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.brand{font-size:18px}}
 .drag-ghost{position:fixed!important;z-index:9999!important;margin:0!important;opacity:.96!important;box-shadow:0 20px 55px #000b,0 0 0 2px #60a5fa!important;will-change:transform;overflow:hidden;transition:none!important}.handle{user-select:none;-webkit-user-select:none;touch-action:none!important}.sound{contain:layout style}.soundname{max-width:100%}
 /* Mobile mini-teleprompter: never cover the persistent broadcast controls. */
@@ -3504,6 +3504,268 @@ html[data-theme="light"] #projectLauncher .v1429-pane-back .v74-back-button:focu
   }
 }
 </style>
+<style id="onair-v1432-interactive-boardscript">
+/* ON AIR v143.2 – Compact inline BoardScript audio and edit chips */
+.bs1431-actions{display:inline-flex;flex:0 0 auto;align-items:center;gap:4px;margin-left:auto}
+.bs1431-tool{display:inline-flex!important;align-items:center;justify-content:center;gap:4px;flex:none!important;width:31px;min-width:31px;height:29px;min-height:29px;padding:3px!important;border:1px solid #56738b!important;background:#21364b!important;color:#eef9ff!important;border-radius:8px!important;cursor:pointer!important;line-height:1}
+.bs1431-tool svg{width:16px;height:16px;display:block;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.bs1431-tool:hover,.bs1431-tool:focus-visible{border-color:#22c9bb!important;background:#254e59!important;outline:2px solid #1ccbb977;outline-offset:1px}
+.bs1431-tool[aria-pressed="true"]{background:#087d73!important;border-color:#24e4ce!important;color:#fff!important}
+html[data-theme="light"] .bs1431-tool{background:#eff5fb!important;color:#19394e!important;border-color:#a8c4d7!important}
+html[data-theme="light"] .bs1431-tool:hover,html[data-theme="light"] .bs1431-tool:focus-visible{background:#def7f3!important;border-color:#009b91!important}
+html[data-theme="light"] .bs1431-tool[aria-pressed="true"]{background:#b4ece2!important;border-color:#087d73!important;color:#064e48!important}
+/* v143.2: the canonical textarea remains hidden on Soundboard only. */
+#studio.bs1431-board #scriptText,#floatScript.bs1431-board #scriptText{display:none!important}
+#studio:not(.bs1431-board) #bs1431Live,#studio:not(.bs1431-board) #bs1432Editor,
+#floatScript:not(.bs1431-board) #bs1431Live,#floatScript:not(.bs1431-board) #bs1432Editor{display:none!important}
+#studio.bs1431-board #bs1431Live.bs1431-in-edit,#floatScript.bs1431-board #bs1431Live.bs1431-in-edit{display:none!important}
+#studio.bs1431-board #bs1432Editor:not(.bs1432-active),#floatScript.bs1431-board #bs1432Editor:not(.bs1432-active){display:none!important}
+#bs1431Live,#bs1432Editor{flex:1 1 0%!important;align-self:stretch;display:block;width:100%;min-width:0;min-height:135px;overflow-y:auto;overscroll-behavior:contain;box-sizing:border-box;background:#0e1b2a;color:#edf4fc;border:1px solid #435a74;border-radius:10px;padding:12px 11px;font-family:inherit;font-size:14px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;user-select:text!important;-webkit-user-select:text!important}
+#bs1432Editor{outline:none;cursor:text;caret-color:#3de0cb}
+#bs1432Editor:focus-visible{border-color:#2fc8b5;box-shadow:0 0 0 1px #2fc8b559}
+#bs1432Editor:empty::before{content:attr(data-placeholder);color:#93a9bf;pointer-events:none}
+#bs1432Editor .bs1432-placeholder-chip{display:inline!important;white-space:nowrap;color:#69e0d4;background:color-mix(in srgb,#138b82 18%,transparent);border:1px solid #278a82;border-radius:4px;padding:0px 3px;margin:0 1px;font-size:.87em;user-select:all;-webkit-user-select:all}
+#bs1432Editor .bs1432-placeholder-chip::selection{background:#5ccab8;color:#042621}
+#bs1431Live .bs1432-flow{display:block;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
+#bs1431Live .bs1431-placeholder{font-size:12px;line-height:1.65;color:#9bb1c9}
+#bs1431Live .bs1432-cue{--bs-cue:#60a5fa;appearance:none;-webkit-appearance:none;display:inline-flex!important;align-items:center;justify-content:center;position:relative;vertical-align:-0.26em;width:23px!important;min-width:23px!important;max-width:23px!important;height:23px!important;min-height:23px!important;max-height:23px!important;padding:0!important;margin:0 2px!important;border:1.5px solid var(--bs-cue)!important;border-radius:6px!important;background:color-mix(in srgb,var(--bs-cue) 21%,#132335)!important;color:var(--bs-cue)!important;font-family:inherit;font-size:12px;line-height:1!important;cursor:pointer!important;white-space:nowrap;box-shadow:inset 0 1px 0 #ffffff16;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+#bs1431Live .bs1432-cue svg{width:11px!important;height:11px!important;fill:currentColor;display:block;pointer-events:none}
+#bs1431Live .bs1432-cue:hover,#bs1431Live .bs1432-cue:focus-visible{outline:2px solid color-mix(in srgb,var(--bs-cue) 50%,transparent);outline-offset:2px}
+#bs1431Live .bs1432-cue.is-playing{background:color-mix(in srgb,var(--bs-cue) 40%,#122536)!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--bs-cue) 22%,transparent),0 0 8px color-mix(in srgb,var(--bs-cue) 30%,transparent);animation:bs1432Pulse 1.8s ease-in-out infinite}
+#bs1431Live .bs1432-cue.is-paused{opacity:.72}
+#bs1431Live .bs1432-cue.is-missing{opacity:.57;border-style:dashed!important;color:#a9b3c4!important}
+@keyframes bs1432Pulse{50%{filter:brightness(1.25)}}
+#bs1432Tooltip{position:fixed;z-index:350000;max-width:min(260px,calc(100vw - 12px));width:max-content;background:#1c3043;color:#f5fbff;border:1px solid #70a5bc;border-radius:9px;padding:7px 10px;box-shadow:0 8px 26px #0008;line-height:1.35;font-size:12px;font-weight:600;white-space:normal;overflow-wrap:anywhere;pointer-events:none;text-align:center}
+#bs1432Tooltip[hidden]{display:none!important}
+html[data-theme="light"] #bs1431Live,html[data-theme="light"] #bs1432Editor{background:#fff;color:#172e43;border-color:#b6cada}
+html[data-theme="light"] #bs1432Editor .bs1432-placeholder-chip{color:#075c56;background:#dbf4f0;border-color:#66b9b1}
+html[data-theme="light"] #bs1431Live .bs1431-placeholder,html[data-theme="light"] #bs1432Editor:empty::before{color:#57758e}
+html[data-theme="light"] #bs1431Live .bs1432-cue{background:color-mix(in srgb,var(--bs-cue) 14%,#fff)!important;color:color-mix(in srgb,var(--bs-cue) 80%,#0c273a)!important}
+html[data-theme="light"] #bs1432Tooltip{background:#f6fafc;color:#162f42;border-color:#8eafc0}
+#floatBody>#bs1431Live,#floatBody>#bs1432Editor{min-height:0!important;height:auto!important;flex:1 1 0%!important;margin:0!important;overflow:auto!important}
+#studio.sbfs-fullscreen .sbfs-script-zone #bs1431Live,#studio.sbfs-fullscreen .sbfs-script-zone #bs1432Editor{height:100%!important;flex:1 1 0%!important;min-height:0!important;max-height:none!important;width:100%!important;resize:none!important;overflow-y:auto!important;padding:11px!important;font-size:var(--sbfs-font-size,16px)!important;line-height:1.55!important}
+#studio.bs1431-board .broadcast-script-aside>.spread{gap:4px!important}
+#studio.bs1431-board .broadcast-script-aside .bs1431-actions{order:1}
+#studio.bs1431-board .broadcast-script-aside #scriptFull{order:2}
+#floatScript .bs1431-actions{margin-left:0;order:0;gap:3px}
+#floatScript .bs1431-tool{width:28px!important;min-width:28px!important;height:27px;min-height:27px!important;padding:3px!important}
+#studio.sbfs-fullscreen .broadcast-script-aside .spread .bs1431-actions{order:1;margin-left:0}
+#studio.sbfs-fullscreen .broadcast-script-aside .spread #scriptFull{order:2}
+#studio.sbfs-fullscreen .broadcast-script-aside .spread .sbfs-font-tools{order:3}
+@media(max-width:600px){#studio.bs1431-board .broadcast-script-aside .spread .title{font-size:12px!important}#studio.bs1431-board .broadcast-script-aside .spread #scriptFull{font-size:10px!important;padding:4px 5px!important;min-height:27px!important}#bs1431Live,#bs1432Editor{padding:9px 8px!important;font-size:13px!important}#bs1431Live .bs1432-cue{width:24px!important;min-width:24px!important;max-width:24px!important;height:24px!important;min-height:24px!important;max-height:24px!important}}
+@media(max-width:340px){#floatScript .float-tools{gap:2px!important}#floatScript .bs1431-tool{width:25px!important;min-width:25px!important}}
+/* Picker uses a true modal, independent of floating/fullscreen script stacking. */
+#bs1431Picker{position:fixed;inset:0;z-index:250000;display:flex;align-items:center;justify-content:center;background:#020918c9;padding:max(10px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom));backdrop-filter:blur(6px)}
+#bs1431Picker[hidden]{display:none!important}
+#bs1431Picker .bs1431-sheet{display:flex;flex-direction:column;gap:10px;width:min(100%,520px);max-height:min(90dvh,740px);min-height:0;padding:16px;border-radius:17px;border:1px solid #4a647d;background:#142334;color:#f1f8ff;box-shadow:0 20px 65px #0009}
+#bs1431Picker .bs1431-pick-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+#bs1431Picker h3{font-size:17px;line-height:1.2;margin:2px 0 4px}
+#bs1431Picker .bs1431-pick-sub{font-size:11px;color:#b5c8d8}
+#bs1431Picker .bs1431-close{font-size:18px;min-width:35px;min-height:35px;color:inherit;border:1px solid #536e86;border-radius:10px;background:#23374b;cursor:pointer}
+#bs1431Picker .bs1431-search{width:100%;min-height:42px;background:#0e1b2c;color:#fff;border:1px solid #526c82;border-radius:9px;padding:10px 12px;outline-offset:2px}
+#bs1431Picker .bs1431-cats{display:flex;gap:6px;flex-wrap:nowrap;overflow:auto;flex:none;scrollbar-width:thin;padding:1px 0 5px}
+#bs1431Picker .bs1431-cat{flex:none;border:1px solid #60768c;border-radius:999px;background:#24374a;color:#d5e5f1;font-weight:700;font-size:11px;padding:6px 10px;cursor:pointer}
+#bs1431Picker .bs1431-cat[aria-pressed="true"]{background:#11766f;border-color:#2be0ce;color:white}
+#bs1431Picker .bs1431-results{overflow:auto;min-height:48px;max-height:58dvh;flex:1;display:grid;grid-auto-rows:min-content;gap:7px;overscroll-behavior:contain}
+#bs1431Picker .bs1431-option{display:flex;align-items:center;gap:10px;width:100%;min-width:0;border:1px solid #415f78;background:#1c3046;color:#ecf8ff;border-radius:11px;padding:10px;text-align:left;cursor:pointer}
+#bs1431Picker .bs1431-option:hover,#bs1431Picker .bs1431-option:focus-visible{border-color:var(--bs-cue);background:#27465b}
+#bs1431Picker .bs1431-opt-icon{display:grid;place-items:center;background:color-mix(in srgb,var(--bs-cue) 22%,#142a3c);border:1px solid var(--bs-cue);color:var(--bs-cue);width:33px;height:33px;border-radius:9px;flex:none;font-size:17px}
+#bs1431Picker .bs1431-option strong{display:block;font-size:12px;overflow-wrap:anywhere}
+#bs1431Picker .bs1431-option small{display:block;font-size:10px;color:#abbfd0;margin-top:2px}
+#bs1431Picker .bs1431-option .bs1431-plus{margin-left:auto;color:#41ddcb;font-size:20px;flex:none}
+#bs1431Picker .bs1431-empty{padding:24px 12px;font-size:12px;color:#b6cad8;text-align:center}
+#bs1431Picker .bs1431-pick-foot{font-size:11px;line-height:1.35;color:#aebdce}
+html[data-theme="light"] #bs1431Picker .bs1431-sheet{background:#fff;color:#1a334b;border-color:#b9cbda}
+html[data-theme="light"] #bs1431Picker .bs1431-pick-sub,html[data-theme="light"] #bs1431Picker .bs1431-pick-foot{color:#5d7486}
+html[data-theme="light"] #bs1431Picker .bs1431-close,html[data-theme="light"] #bs1431Picker .bs1431-cat{background:#eef4f9;color:#263b50;border-color:#b7cadb}
+html[data-theme="light"] #bs1431Picker .bs1431-cat[aria-pressed="true"]{background:#c4f2e8;border-color:#0e9184;color:#075a52}
+html[data-theme="light"] #bs1431Picker .bs1431-search{background:#fff;color:#17314a;border-color:#b8cbd9}
+html[data-theme="light"] #bs1431Picker .bs1431-option{background:#f6f9fc;color:#153249;border-color:#c3d2e0}
+html[data-theme="light"] #bs1431Picker .bs1431-option small,html[data-theme="light"] #bs1431Picker .bs1431-empty{color:#61788c}
+@media(max-width:600px){#bs1431Picker{padding:8px}#bs1431Picker .bs1431-sheet{max-height:calc(100dvh - 16px);padding:12px}#bs1431Picker .bs1431-results{max-height:none}}
+@media(prefers-reduced-motion:reduce){#bs1431Live .bs1432-cue.is-playing{animation:none}}
+
+/* ON AIR v143.5 — compact non-scrolling header, no-flash editor layers, all-view font scaling */
+#studio.bs1431-board .broadcast-script-aside>.spread{
+ display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;
+ gap:4px!important;align-items:center!important;min-width:0!important;width:100%!important;
+ overflow:visible!important;flex-wrap:nowrap!important;
+}
+#studio.bs1431-board .broadcast-script-aside>.spread>.title{
+ min-width:0!important;white-space:nowrap!important;overflow:hidden!important;
+ text-overflow:ellipsis!important;font-size:12px!important;letter-spacing:-.25px!important;
+}
+#studio.bs1431-board .broadcast-script-aside .bs1431-actions{
+ display:inline-flex!important;gap:3px!important;min-width:0!important;max-width:none!important;
+ margin:0!important;order:initial!important;
+}
+#studio.bs1431-board .broadcast-script-aside .bs1431-tool{
+ width:28px!important;min-width:28px!important;height:28px!important;min-height:28px!important;
+ padding:3px!important;
+}
+#studio.bs1431-board .broadcast-script-aside #scriptFull{
+ order:initial!important;min-width:44px!important;max-width:58px!important;
+ padding:4px!important;white-space:nowrap!important;font-size:10px!important;
+}
+.bs1433-type-wrap{position:relative;display:inline-flex;flex:0 0 auto}
+.bs1433-type-button{font-size:12px!important;font-weight:750!important}
+.bs1433-type-menu{position:absolute;z-index:270010;top:calc(100% + 7px);right:0;
+ display:flex;align-items:center;gap:6px;padding:6px;border:1px solid #6c8ba4;
+ border-radius:10px;background:#22374a;color:#f5fbff;box-shadow:0 9px 30px #0007;white-space:nowrap}
+.bs1433-type-menu[hidden]{display:none!important}
+.bs1433-type-menu button{display:grid;place-items:center;min-width:30px;min-height:30px;
+ border:1px solid #5a7c94;border-radius:6px;background:#13293b;color:inherit;cursor:pointer}
+.bs1433-type-menu output{min-width:37px;text-align:center;font-size:11px;font-weight:700}
+html[data-theme="light"] .bs1433-type-menu{background:#fff;color:#12344a;border-color:#b6ccdb}
+html[data-theme="light"] .bs1433-type-menu button{background:#e9f4fa;border-color:#b1c9d8}
+/* Stable overlapping edit/live layers prevent a blank repaint when leaving edit mode. */
+#studio.bs1431-board .broadcast-script-aside #scriptSlot,
+#floatScript.bs1431-board #floatBody{position:relative!important;min-width:0!important;overflow:hidden!important}
+#studio.bs1431-board .broadcast-script-aside #scriptSlot{min-height:165px!important}
+#studio.bs1431-board #scriptSlot>#bs1431Live,
+#studio.bs1431-board #scriptSlot>#bs1432Editor,
+#floatScript.bs1431-board #floatBody>#bs1431Live,
+#floatScript.bs1431-board #floatBody>#bs1432Editor{
+ display:block!important;position:absolute!important;inset:0!important;
+ width:100%!important;height:100%!important;max-height:none!important;
+ min-height:0!important;box-sizing:border-box!important;margin:0!important;
+ overflow-x:hidden!important;overflow-y:auto!important;
+}
+#studio.bs1431-board #scriptSlot>#bs1432Editor:not(.bs1432-active),
+#floatScript.bs1431-board #floatBody>#bs1432Editor:not(.bs1432-active),
+#studio.bs1431-board #scriptSlot>#bs1431Live.bs1431-in-edit,
+#floatScript.bs1431-board #floatBody>#bs1431Live.bs1431-in-edit{
+ display:block!important;visibility:hidden!important;pointer-events:none!important;
+}
+#studio.bs1431-board #scriptSlot>#bs1432Editor.bs1432-active,
+#floatScript.bs1431-board #floatBody>#bs1432Editor.bs1432-active,
+#studio.bs1431-board #scriptSlot>#bs1431Live:not(.bs1431-in-edit),
+#floatScript.bs1431-board #floatBody>#bs1431Live:not(.bs1431-in-edit){
+ display:block!important;visibility:visible!important;pointer-events:auto!important;
+}
+/* v143.5 floating BoardScript: truly inline header at every supported width. */
+#floatScript{container-type:inline-size;container-name:bs1434float}
+#floatScript:not(.mini) #floatHead{
+ display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;
+ align-items:center!important;justify-content:space-between!important;
+ position:relative!important;gap:2px!important;box-sizing:border-box!important;
+ padding:3px 5px!important;margin:0!important;height:36px!important;
+ min-height:36px!important;max-height:36px!important;flex:0 0 36px!important;
+ width:100%!important;min-width:0!important;overflow:visible!important;
+}
+#floatScript:not(.mini) #floatHead>strong{
+ display:inline-flex!important;align-items:center!important;gap:3px!important;
+ position:static!important;inset:auto!important;
+ width:auto!important;max-width:none!important;height:auto!important;
+ flex:0 1 auto!important;min-width:14px!important;
+ font-size:11px!important;font-weight:750!important;line-height:1!important;
+ white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+#floatScript .float-title-icon{display:inline!important;flex:0 0 auto!important;line-height:1!important;font-size:12px!important}
+#floatScript .float-title-label{display:inline!important;min-width:0!important;white-space:nowrap!important}
+#floatScript:not(.mini) #floatHead .float-tools{
+ display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;
+ flex:0 0 auto!important;align-items:center!important;justify-content:flex-end!important;
+ position:static!important;inset:auto!important;
+ width:auto!important;min-width:0!important;max-width:none!important;
+ gap:2px!important;margin:0!important;padding:0!important;overflow:visible!important;
+}
+#floatScript:not(.mini) #floatHead .float-tools>.bs1431-actions{display:contents!important}
+#floatScript:not(.mini) #floatHead .float-tools>.btn,
+#floatScript:not(.mini) #floatHead .float-tools>.bs1431-actions>.bs1431-tool{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ box-sizing:border-box!important;flex:0 0 25px!important;
+ width:25px!important;min-width:25px!important;max-width:25px!important;
+ height:27px!important;min-height:27px!important;max-height:27px!important;
+ padding:0!important;margin:0!important;font-size:12px!important;line-height:1!important;
+ border-radius:6px!important;
+}
+#floatScript:not(.mini) #floatHead #dockScript{font-size:17px!important}
+#floatScript .float-zoom-popover{max-width:min(290px,95vw)!important}
+/* Allow readable title on wider floating panels; show only the page icon on narrow panels.
+   The full title remains accessible via aria-label/title. */
+@container bs1434float (max-width:220px){
+ #floatScript:not(.mini) #floatHead .float-title-label{display:none!important}
+}
+/* Minimized: show ONE title. Disable the historic :after label that caused Script Script. */
+#floatScript.mini #floatHead{
+ display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;
+ align-items:center!important;justify-content:space-between!important;
+ position:relative!important;gap:4px!important;
+ padding:4px 6px!important;width:100%!important;
+ height:100%!important;min-height:0!important;max-height:100%!important;
+ overflow:hidden!important;
+}
+#floatScript.mini #floatHead>strong{
+ position:static!important;inset:auto!important;display:inline-flex!important;
+ align-items:center!important;gap:3px!important;flex:1 1 auto!important;
+ font-size:12px!important;line-height:1!important;min-width:0!important;
+ width:auto!important;max-width:none!important;white-space:nowrap!important;
+ overflow:hidden!important;
+}
+#floatScript.mini #floatHead>strong:after,
+#floatScript.mini #floatHead>strong::after{display:none!important;content:none!important}
+#floatScript.mini #floatHead .float-title-label{display:inline!important}
+#floatScript.mini #floatHead .float-tools{
+ display:flex!important;flex:0 0 auto!important;align-items:center!important;
+ justify-content:flex-end!important;flex-wrap:nowrap!important;
+ position:static!important;inset:auto!important;
+ width:auto!important;min-width:0!important;max-width:none!important;
+ gap:3px!important;margin:0!important;padding:0!important;
+}
+#floatScript.mini #floatHead .float-tools>.bs1431-actions,
+#floatScript.mini #floatHead #zoomMenu,
+#floatScript.mini #floatHead #zoomOptions{display:none!important}
+#floatScript.mini #floatHead #miniScript,
+#floatScript.mini #floatHead #dockScript{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ position:static!important;flex:0 0 28px!important;
+ width:28px!important;min-width:28px!important;max-width:28px!important;
+ height:28px!important;min-height:28px!important;max-height:28px!important;
+ padding:0!important;margin:0!important;line-height:1!important;
+}
+/* Fullscreen keeps dedicated A-/A+ controls, avoids duplicating Aa, and allows sane wrapping. */
+#studio.sbfs-fullscreen.bs1431-board .broadcast-script-aside>.spread{
+ display:flex!important;flex-wrap:wrap!important;gap:5px!important;align-content:flex-start!important;
+}
+#studio.sbfs-fullscreen.bs1431-board .broadcast-script-aside>.spread>.title{flex:1 1 65px!important}
+#studio.sbfs-fullscreen.bs1431-board .bs1433-type-wrap{display:none!important}
+#studio.sbfs-fullscreen.bs1431-board .broadcast-script-aside .sbfs-font-tools{order:3;margin-left:0!important;flex-wrap:nowrap}
+#studio.sbfs-fullscreen.bs1431-board .broadcast-script-aside .bs1431-actions{order:1!important}
+#studio.sbfs-fullscreen.bs1431-board .broadcast-script-aside #scriptFull{order:2!important}
+#studio.sbfs-fullscreen.bs1431-board .broadcast-script-aside #scriptSlot{flex:1 1 auto;min-height:0!important}
+@media(max-width:440px){
+ #studio.bs1431-board .broadcast-script-aside>.spread{gap:3px!important}
+ #studio.bs1431-board .broadcast-script-aside .bs1431-tool{width:27px!important;min-width:27px!important}
+ #studio.bs1431-board .broadcast-script-aside #scriptFull{min-width:41px!important;font-size:10px!important}
+}
+
+</style>
+
+<style id="onair-v1435-fullscreen-script-stability">
+/* v143.5: Preserve both script surfaces in a single composited fullscreen slot.
+   Only the foreground surface is interactive; Live is pre-rendered before
+   Edit is hidden, eliminating the intermediate empty container frame. */
+#studio.sbfs-fullscreen.bs1431-board .sbfs-script-zone #scriptSlot{
+ position:relative!important;isolation:isolate;overflow:hidden!important;
+}
+#studio.sbfs-fullscreen.bs1431-board .sbfs-script-zone #scriptSlot > #bs1431Live,
+#studio.sbfs-fullscreen.bs1431-board .sbfs-script-zone #scriptSlot > #bs1432Editor{
+ display:block!important;position:absolute!important;inset:0!important;
+ height:100%!important;width:100%!important;min-height:0!important;
+ max-height:none!important;margin:0!important;box-sizing:border-box!important;
+ overflow:auto!important;overscroll-behavior:contain!important;
+ transform:translateZ(0);backface-visibility:hidden;
+}
+#studio.sbfs-fullscreen.bs1431-board .sbfs-script-zone #scriptSlot > #bs1432Editor:not(.bs1432-active),
+#studio.sbfs-fullscreen.bs1431-board .sbfs-script-zone #scriptSlot > #bs1431Live.bs1431-in-edit{
+ display:block!important;visibility:hidden!important;pointer-events:none!important;
+}
+#studio.sbfs-fullscreen.bs1431-board .sbfs-script-zone #scriptSlot > #bs1432Editor.bs1432-active,
+#studio.sbfs-fullscreen.bs1431-board .sbfs-script-zone #scriptSlot > #bs1431Live:not(.bs1431-in-edit){
+ visibility:visible!important;pointer-events:auto!important;
+}
+</style>
 </head><body><div id="splashScreen" class="v64-splash" role="status" aria-label="Launching ON AIR Studio">
   <div class="v64-splash-core"><div class="v64-splash-logo">◉</div><div class="v64-typed" aria-label="ON AIR Studio for SFK">ON AIR Studio for SFK</div><div class="v64-splash-tagline">Your broadcast starts here.</div><div class="v64-loading-track"><span></span></div><div class="v64-splash-foot">PREPARING YOUR WORKSPACE</div></div>
 </div>
@@ -3597,11 +3859,11 @@ html[data-theme="light"] #projectLauncher .v1429-pane-back .v74-back-button:focu
     <div id="queueScriptDock" class="queue-script-dock"></div>
   </div>
 </section>
-<div class="dashboard workspace"><div class="sound-workspace"><div class="soundlist-head soundlist-inline"><h2 class="title">Sounds</h2><div class="sound-filter-rail" id="soundFilterRail"><div id="categoryFilters" class="category-filters" role="group" aria-label="Filter sounds by category"></div><button class="sound-filter-scroll" id="categoryScroll" type="button" aria-label="More sound categories" title="Scroll sound categories" hidden>›</button></div></div><div id="cards" class="grid"></div><div id="empty" class="empty">Add your first audio files to start broadcasting.<div style="margin-top:12px"><button class="btn primary" id="emptyAdd">＋ Add Sounds</button></div></div></div><aside class="panel broadcast-script-aside" style="align-self:start;margin-top:10px"><div class="spread"><h2 class="title">📄 Broadcast Script</h2><button class="btn small" id="scriptFull">↗ Float</button></div><div class="hint" style="margin-bottom:8px">Paste your sequence, cues, lines, and timing. Autosaved with the project.</div><div id="scriptSlot"><textarea id="scriptText" class="script" placeholder="00:00 — PLAY News Intro&#10;ANCHOR: Good morning, everyone…&#10;00:15 — FADE Background Music&#10;TECH: PLAY Breaking News…"></textarea></div><div class="hint" style="margin-top:7px">Tip: Add [PLAY: Sound Name] cues beside your script.</div></aside></div></section>
+<div class="dashboard workspace"><div class="sound-workspace"><div class="soundlist-head soundlist-inline"><h2 class="title">Sounds</h2><div class="sound-filter-rail" id="soundFilterRail"><div id="categoryFilters" class="category-filters" role="group" aria-label="Filter sounds by category"></div><button class="sound-filter-scroll" id="categoryScroll" type="button" aria-label="More sound categories" title="Scroll sound categories" hidden>›</button></div></div><div id="cards" class="grid"></div><div id="empty" class="empty">Add your first audio files to start broadcasting.<div style="margin-top:12px"><button class="btn primary" id="emptyAdd">＋ Add Sounds</button></div></div></div><aside class="panel broadcast-script-aside" style="align-self:start;margin-top:10px"><div class="spread"><h2 class="title">📄 Broadcast Script</h2><button class="btn small" id="scriptFull">↗ Float</button></div><div class="hint" style="margin-bottom:8px">Paste your sequence, cues, lines, and timing. Autosaved with the project.</div><div id="scriptSlot"><textarea id="scriptText" class="script" placeholder="00:00 — PLAY News Intro&#10;ANCHOR: Good morning, everyone…&#10;00:15 — FADE Background Music&#10;TECH: PLAY Breaking News…"></textarea></div><div class="hint" style="margin-top:7px">Tip: Tap a line, then use ♫ Insert Audio to add a clickable cue.</div></aside></div></section>
 <section id="library" class="hidden"><div class="panel"><div class="spread"><h2 class="title">Audio Library</h2><button class="btn primary small" id="libraryAdd">＋ Import</button></div><p class="hint">Edit sounds and playback settings here. Arrange their order in Soundboard.</p><div id="libraryList"></div></div></section>
 <section id="recordings" class="hidden"><div class="panel"><h2 class="title">Recordings</h2><p class="hint recordings-intro">Recordings are saved to this browser for the current project. You can play, download, or delete them. Download a copy before clearing browser data or switching devices.</p><div id="recordingList" class="recordings-grid"></div></div></section>
 
-</main><div id="floatScript" class="floating-script hidden"><div id="floatHead" class="float-head" title="Drag to move the Broadcast Script"><strong title="Broadcast Script · Drag to move">📄 Script</strong><div class="float-tools"><button type="button" class="btn small" id="zoomMenu" aria-label="Script text size controls" aria-expanded="false" aria-controls="zoomOptions" title="Text size">Aa</button><div id="zoomOptions" class="float-zoom-popover hidden" aria-label="Adjust script text size"><span class="float-zoom-label">Text size</span><div class="float-zoom-row"><button type="button" class="btn small" id="zoomOut" title="Zoom out" aria-label="Decrease text size">−</button><input id="zoomRange" class="float-zoom" type="range" min="0" max="1000" value="100" aria-label="Script zoom 0 to 1000 percent"><button type="button" class="btn small" id="zoomIn" title="Zoom in" aria-label="Increase text size">+</button><span id="zoomValue" class="tiny">100%</span></div></div><button type="button" class="btn small" id="miniScript" title="Minimize floating script" aria-label="Minimize script">▁</button><button type="button" class="btn small" id="dockScript" title="Dock script" aria-label="Dock script">↙</button></div></div><div id="floatBody" class="float-body"></div><button type="button" id="floatResizeHandle" class="float-resize-handle" aria-label="Resize floating Broadcast Script" title="Drag corner to resize · Arrow keys to adjust" aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M20 7 7 20M20 14l-6 6M20 20h-1"/></svg></button></div><footer class="footer" aria-label="Live playback controls"><div class="footinner">
+</main><div id="floatScript" class="floating-script hidden"><div id="floatHead" class="float-head" title="Drag to move the Broadcast Script"><strong title="Broadcast Script · Drag to move" aria-label="Script"><span class="float-title-icon" aria-hidden="true">📄</span><span class="float-title-label" aria-hidden="true">Script</span></strong><div class="float-tools"><button type="button" class="btn small" id="zoomMenu" aria-label="Script text size controls" aria-expanded="false" aria-controls="zoomOptions" title="Text size">Aa</button><div id="zoomOptions" class="float-zoom-popover hidden" aria-label="Adjust script text size"><span class="float-zoom-label">Text size</span><div class="float-zoom-row"><button type="button" class="btn small" id="zoomOut" title="Zoom out" aria-label="Decrease text size">−</button><input id="zoomRange" class="float-zoom" type="range" min="0" max="1000" value="100" aria-label="Script zoom 0 to 1000 percent"><button type="button" class="btn small" id="zoomIn" title="Zoom in" aria-label="Increase text size">+</button><span id="zoomValue" class="tiny">100%</span></div></div><button type="button" class="btn small" id="miniScript" title="Minimize floating script" aria-label="Minimize script">▁</button><button type="button" class="btn small" id="dockScript" title="Dock script" aria-label="Dock script">↙</button></div></div><div id="floatBody" class="float-body"></div><button type="button" id="floatResizeHandle" class="float-resize-handle" aria-label="Resize floating Broadcast Script" title="Drag corner to resize · Arrow keys to adjust" aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M20 7 7 20M20 14l-6 6M20 20h-1"/></svg></button></div><footer class="footer" aria-label="Live playback controls"><div class="footinner">
  <div class="footer-playing"><span class="footer-playing-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 14v-4m5 9V5m5 12V7m5 7v-4"/></svg></span><span class="footer-playing-details"><span class="footer-kicker">NOW PLAYING</span><strong id="footCount" aria-live="polite">0 playing</strong><span id="sbfsPlayingNames" aria-live="polite">No active audio</span></span></div>
  <div class="footer-master"><div class="footer-master-head"><label for="master">Master Volume</label><output for="master" id="masterValue">100%</output></div><div class="footer-volume-input"><svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15 9a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12"/></svg><input id="master" aria-label="Master volume" type="range" min="0" max="100" value="100" style="--master-fill:100%"></div></div>
  <button class="btn danger footer-stop" id="stopAll" type="button" title="Stop all sounds"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg><span>Stop All</span></button>
@@ -4148,7 +4410,7 @@ async function deleteSavedProject(projectId){
    urls.clear();blobs.clear();audioCache.clear();
    const emptyId=id();swapRecordingProject(emptyId);releaseRecordingCache(projectId);
    project={id:emptyId,name:'Untitled Broadcast',sounds:[],script:'',nextUp:[],djDeckSelections:{A:'',B:''},settings:{aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,autoNext:false}};
-   $('scriptText').value='';setSettings();ensureQueue();renderQueue();renderCards();renderLibrary();renderRecordings();
+   $('scriptText').value='';window.__onAirBoardScript?.refresh(true);setSettings();ensureQueue();renderQueue();renderCards();renderLibrary();renderRecordings();
    $('saveStatus').textContent='Select a project to continue';
    closeModal();showProjectLauncher('open');
   }else{
@@ -4929,7 +5191,7 @@ async function deleteRecording(idx){
   }catch(e){$('recordingDeleteStatus').textContent='Could not delete: '+e.message;btn.disabled=false}
  };
 }
-async function loadProject(p,files){if(mediaRecorder?.state==='recording'||recordingFinalizing||recordingStarting)throw Error('Finish saving the recording before opening another project.');swapRecordingProject(p.id);stopAll();for(const u of urls.values())URL.revokeObjectURL(u);urls.clear();blobs.clear();project=p;project.settings={aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,...(p.settings||{})};for(const f of files||[]){const r=await fetch(f.data),b=await r.blob();blobs.set(f.id,b);if(db)await put('assets',f.id,b)}setSettings();$('scriptText').value=project.script||'';ensureQueue();renderQueue();renderCards();renderLibrary();djRefreshChoices();scheduleSave()}
+async function loadProject(p,files){if(mediaRecorder?.state==='recording'||recordingFinalizing||recordingStarting)throw Error('Finish saving the recording before opening another project.');swapRecordingProject(p.id);stopAll();for(const u of urls.values())URL.revokeObjectURL(u);urls.clear();blobs.clear();project=p;project.settings={aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,...(p.settings||{})};for(const f of files||[]){const r=await fetch(f.data),b=await r.blob();blobs.set(f.id,b);if(db)await put('assets',f.id,b)}setSettings();$('scriptText').value=project.script||'';window.__onAirBoardScript?.refresh(true);ensureQueue();renderQueue();renderCards();renderLibrary();djRefreshChoices();scheduleSave()}
 function projectDialog(){
  modal('My Projects',`<div class="pm pm-v1427" id="pmPanelV1427">
   <div class="pm-current"><div class="pm-eyebrow">CURRENT PROJECT</div><label for="projName" class="pm-label">Project name</label><div class="pm-namebox"><svg viewBox="0 0 24 24" aria-hidden="true" class="pm-v1427-icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5 4 4M4 20l4.4-1 10.8-10.8a2.2 2.2 0 0 0-3.1-3.1L5.3 15.9 4 20Z"/></svg><input id="projName" type="text" maxlength="80" autocomplete="off" spellcheck="false" placeholder="Name your broadcast" aria-label="Project name" value="${esc(project.name)}"></div><div class="pm-actions"><button class="btn primary" id="renameProj" type="button">✓ Save Project</button><button class="btn" id="newProj" type="button">＋ New Project</button></div><div class="pm-feedback" id="pmFeedback" role="status" aria-live="polite">Your sounds and script are saved automatically.</div></div>
@@ -5140,12 +5402,13 @@ function scriptFloat(on){
  (on?$('floatBody'):$('scriptSlot')).appendChild($('scriptText'));
  $('scriptText').style.minHeight=on?'0':'135px';
  $('scriptText').style.fontSize=on?Math.max(1,16*scriptZoom/100)+'px':'14px';
+ window.__onAirBoardScript?.syncLocation();
  if(on){if(!floatPositionSet){f.style.left=(innerWidth<=800?8:16)+'px';f.style.top=(innerWidth<=800?72:90)+'px';floatPositionSet=true}clampFloat()}
 }
 $('miniScript').onclick=()=>{const f=$('floatScript');const mini=f.classList.toggle('mini');$('miniScript').textContent=mini?'□':'▁';$('miniScript').title=mini?'Expand script':'Minimize script';$('miniScript').setAttribute('aria-label',mini?'Expand script':'Minimize script');$('miniScript').setAttribute('aria-expanded',String(!mini));clampFloat()};
 window.addEventListener('resize',clampFloat);
 $('scriptFull').onclick=()=>scriptFloat(!scriptFloating);$('dockScript').onclick=()=>scriptFloat(false);
-function setScriptZoom(v){scriptZoom=clamp(Math.round(v),0,1000);$('zoomRange').value=scriptZoom;$('zoomValue').textContent=scriptZoom+'%';$('scriptText').style.fontSize=Math.max(1,16*scriptZoom/100)+'px';$('scriptText').style.lineHeight='1.5'}
+function setScriptZoom(v){scriptZoom=clamp(Math.round(v),0,1000);$('zoomRange').value=scriptZoom;$('zoomValue').textContent=scriptZoom+'%';$('scriptText').style.fontSize=Math.max(1,16*scriptZoom/100)+'px';$('scriptText').style.lineHeight='1.5';window.__onAirBoardScript?.updateZoom(scriptZoom)}
 $('zoomRange').oninput=e=>setScriptZoom(e.target.value);$('zoomOut').onclick=()=>setScriptZoom(scriptZoom-10);$('zoomIn').onclick=()=>setScriptZoom(scriptZoom+10);
 // Keep the floating window titlebar a single line. Text zoom controls live in a small popover.
 const zoomToggle=$('zoomMenu'),zoomOptions=$('zoomOptions');
@@ -5221,7 +5484,7 @@ $('modalBody').addEventListener('click',async e=>{const b=e.target.closest('[dat
 for(const t of document.querySelectorAll('.tab'))t.onclick=()=>{document.querySelectorAll('.tabs .tab').forEach(x=>{const current=x===t;x.classList.toggle('active',current);x.setAttribute('aria-current',current?'page':'false')});for(const n of ['studio','library','recordings'])$(n).classList.toggle('hidden',n!==t.dataset.tab);if(t.dataset.tab==='library')renderLibrary()};
 $('master').oninput=e=>{project.settings.master=Number(e.target.value);setSettings();scheduleSave()};
 function tick(){for(const [map,isPreview] of [[live,false],[preview,true]])for(const [id,x] of map){const card=[...document.querySelectorAll('.sound')].find(c=>c.dataset.id===id);if(isPreview)continue;const dur=Number.isFinite(x.el.duration)?x.el.duration:(Number(x.sound.duration)||Infinity),now=x.el.currentTime,start=Math.max(0,Number(x.sound.start)||0),end=Math.min(dur,Number(x.sound.end)>0?Number(x.sound.end):Infinity),range=Math.max(.01,end-start);if(Number.isFinite(end)&&now>=end-.005){if(x.sound.loop){x.el.currentTime=start;if(x.el.paused)x.el.play().catch(()=>stop(id,isPreview))}else{stop(id,isPreview);finishQueuedTrack(id,x);continue}}const t=Math.max(0,now-start),left=Math.max(0,end-now),fi=Math.min(Math.max(0,Number(x.sound.fadeIn)||0),range/2),fo=Math.min(Math.max(0,Number(x.sound.fadeOut)||0),range/2),fade=Math.min(1,fi?t/fi:1,fo?left/fo:1);x.gain.gain.setTargetAtTime((x.sound.volume??80)/100*clamp(fade,0,1),ctx.currentTime,.012);if(card){card.querySelector('[data-progress]').style.width=(Number.isFinite(end)?clamp(t/range*100,0,100):0)+'%';card.querySelector('[data-elapsed]').textContent=fmt(t);card.querySelector('[data-total]').textContent=fmt(range)}}if(!$('queueWorkspace').classList.contains('hidden'))queueNowUpdate();requestAnimationFrame(tick)}
-async function boot(){try{db=await openDB();const last=await read('projects','__last');if(last){const p=await read('projects',last);if(p&&Array.isArray(p.sounds)){project=p;projectSelectionRequired=false;let missing=0;for(const sound of p.sounds){const stored=await read('assets',sound.id);if(!stored)missing++}if(missing)notify(missing+' audio file(s) missing from browser storage. Remove and re-add those sounds.');$('saveStatus').textContent='✓ Restored: '+p.name}else{$('saveStatus').textContent='✓ Local storage ready'}}else{$('saveStatus').textContent='✓ New workspace'}if(navigator.storage?.persist)navigator.storage.persist().catch(()=>{})}catch(e){$('saveStatus').textContent='Export backups to save';notify('Browser local storage unavailable. You can still export a project backup.')}setSettings();$('scriptText').value=project.script||'';ensureQueue();renderQueue();renderCards();renderLibrary();djRefreshChoices();renderRecordings();void restoreRecordingsForProject(project.id);bootComplete=true;launcherBootReady=true;revealLauncherWhenReady();tick()}
+async function boot(){try{db=await openDB();const last=await read('projects','__last');if(last){const p=await read('projects',last);if(p&&Array.isArray(p.sounds)){project=p;projectSelectionRequired=false;let missing=0;for(const sound of p.sounds){const stored=await read('assets',sound.id);if(!stored)missing++}if(missing)notify(missing+' audio file(s) missing from browser storage. Remove and re-add those sounds.');$('saveStatus').textContent='✓ Restored: '+p.name}else{$('saveStatus').textContent='✓ Local storage ready'}}else{$('saveStatus').textContent='✓ New workspace'}if(navigator.storage?.persist)navigator.storage.persist().catch(()=>{})}catch(e){$('saveStatus').textContent='Export backups to save';notify('Browser local storage unavailable. You can still export a project backup.')}setSettings();$('scriptText').value=project.script||'';window.__onAirBoardScript?.refresh(true);ensureQueue();renderQueue();renderCards();renderLibrary();djRefreshChoices();renderRecordings();void restoreRecordingsForProject(project.id);bootComplete=true;launcherBootReady=true;revealLauncherWhenReady();tick()}
 
 
 
@@ -5493,7 +5756,7 @@ function djWorkspace(mode){
  if(!['dj','board','queue'].includes(mode))mode='board';
  const dj=mode==='dj',queue=mode==='queue';
  $('activeWorkspaceLabel').textContent=queue?'Audio Queue':dj?'DJ Mixer':'Live Soundboard';
- document.getElementById('studio')?.setAttribute('data-active-workspace',mode);
+ document.getElementById('studio')?.setAttribute('data-active-workspace',mode);window.__onAirBoardScript?.setWorkspace(mode);
  document.querySelector('.studio-helper').classList.toggle('hidden',mode!=='board');
  $('djWorkspace').classList.toggle('hidden',!dj);
  $('queueWorkspace').classList.toggle('hidden',!queue);
@@ -5709,7 +5972,7 @@ $('launcherCreate').onclick=async()=>{
   stopAll();for(const url of urls.values())URL.revokeObjectURL(url);urls.clear();blobs.clear();
   const newProjectId=id();swapRecordingProject(newProjectId);
   project={id:newProjectId,name,sounds:[],script:'',nextUp:[],djDeckSelections:{A:'',B:''},settings:{aud:85,dj:60,master:100,duck:true,duckVol:25,fade:.35,autoNext:false}};
-  $('scriptText').value='';selectedCategory='All';
+  $('scriptText').value='';window.__onAirBoardScript?.refresh(true);selectedCategory='All';
   setSettings();ensureQueue();renderQueue();renderCards();renderLibrary();
   projectSelectionRequired=false;
   const ok=await save();if(!ok){projectSelectionRequired=true;throw Error('Cannot save this project. Check browser storage.')}
@@ -5751,6 +6014,319 @@ window.addEventListener('on-air-v90-import-sound', async event=>{
  try{const file=new File([item.blob],item.fileName,{type:item.blob.type||'audio/wav'});await addFiles([file]);notify('Finished editor mix added to Soundboard: '+file.name)}
  catch(err){notify('Could not add edited mix to Soundboard: '+err.message)}
 });
+/* ON AIR v143.2 Interactive BoardScript controller */
+/* ON AIR Studio v143.2 — true inline BoardScript audio cues (Soundboard workspace only).
+   Saved project.script retains v143.1 portable [[ONAIR-AUDIO:...]] tokens. */
+(()=>{
+ 'use strict';
+ const studio=document.getElementById('studio'),input=document.getElementById('scriptText');
+ const dock=document.querySelector('.broadcast-script-aside .spread'),floating=document.querySelector('#floatScript .float-tools');
+ if(!studio||!input||!dock||!floating)return;
+ const I={pencil:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg>',
+   music:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 18V5l11-2v13M10 9l11-2"/><ellipse cx="6.5" cy="18" rx="3.5" ry="2.5"/><ellipse cx="17.5" cy="16" rx="3.5" ry="2.5"/></svg>'};
+ const tool=(type,where)=>{
+  const b=document.createElement('button');b.type='button';b.className='bs1431-tool';b.id='bs1431'+where+(type==='edit'?'Edit':'Insert');b.innerHTML=type==='edit'?I.pencil:I.music;
+  b.setAttribute('aria-label',type==='edit'?'Edit broadcast script':'Insert audio from Soundboard');b.title=type==='edit'?'Edit script':'Insert Soundboard audio';
+  if(type==='edit')b.setAttribute('aria-pressed','false');return b;
+ };
+ const dockActions=document.createElement('div');dockActions.className='bs1431-actions';
+ // A shorter title keeps the complete control cluster accessible in a narrow dock.
+ const dockTitle=dock.querySelector('.title');if(dockTitle){dockTitle.textContent='📄 Script';dockTitle.title='Broadcast Script'}
+ const typeButton=document.createElement('button');typeButton.type='button';typeButton.className='bs1431-tool bs1433-type-button';typeButton.id='bs1433TypeButton';typeButton.textContent='Aa';typeButton.setAttribute('aria-label','Script font size');typeButton.setAttribute('aria-expanded','false');typeButton.title='Font size';
+ const typeMenu=document.createElement('div');typeMenu.id='bs1433TypeMenu';typeMenu.className='bs1433-type-menu';typeMenu.hidden=true;
+ typeMenu.innerHTML='<button type="button" data-bs1433-font="-" aria-label="Decrease script text size">−</button><output id="bs1433FontDisplay" aria-live="polite">100%</output><button type="button" data-bs1433-font="+" aria-label="Increase script text size">+</button>';
+ const typeWrap=document.createElement('div');typeWrap.className='bs1433-type-wrap';typeWrap.append(typeButton,typeMenu);
+ const de=tool('edit','Dock'),di=tool('insert','Dock');dockActions.append(de,di,typeWrap);dock.insertBefore(dockActions,document.getElementById('scriptFull'));
+ const floatActions=document.createElement('div');floatActions.className='bs1431-actions';
+ const fe=tool('edit','Float'),fi=tool('insert','Float');floatActions.append(fe,fi);floating.prepend(floatActions);
+ const editor=document.createElement('div');editor.id='bs1432Editor';editor.className='bs1432-editor';editor.contentEditable='true';
+ editor.spellcheck=true;editor.setAttribute('role','textbox');editor.setAttribute('aria-label','Edit broadcast script');editor.setAttribute('aria-multiline','true');editor.setAttribute('data-placeholder','Paste or type your broadcast script here.');
+ const view=document.createElement('div');view.id='bs1431Live';view.className='bs1431-live';view.tabIndex=0;view.setAttribute('role','region');view.setAttribute('aria-label','Live broadcast script with inline audio buttons');
+ input.after(editor);editor.after(view);
+ const tip=document.createElement('div');tip.id='bs1432Tooltip';tip.hidden=true;tip.setAttribute('role','tooltip');document.body.appendChild(tip);
+ const picker=document.createElement('div');picker.id='bs1431Picker';picker.hidden=true;
+ picker.innerHTML='<section class="bs1431-sheet" role="dialog" aria-modal="true" aria-labelledby="bs1431PickerTitle">'+
+ '<div class="bs1431-pick-head"><div><h3 id="bs1431PickerTitle">Insert Soundboard Audio</h3><p class="bs1431-pick-sub">Select a sound to insert a small playable cue in the script.</p></div><button class="bs1431-close" type="button" aria-label="Close Insert Audio">×</button></div>'+
+ '<input class="bs1431-search" type="search" placeholder="Search songs, jingles, or sound effects…" aria-label="Search Soundboard audio">'+
+ '<div class="bs1431-cats" role="group" aria-label="Sound category filter"></div><div class="bs1431-results" role="list"></div>'+
+ '<div class="bs1431-pick-foot">Edit Mode: insert at the cursor. Live Mode: tap the script where you want the play button, then insert audio.</div></section>';
+ document.body.appendChild(picker);
+ const search=picker.querySelector('.bs1431-search'),categories=picker.querySelector('.bs1431-cats'),results=picker.querySelector('.bs1431-results');
+ const TOKEN=/\[\[ONAIR-AUDIO:([^|\]\r\n]+)(?:\|([^\]\r\n]*))?\]\]/g;
+ const PLACEHOLDER='[inserted audio]';
+ let editing=false,workspace='board',lastEditorScript=null,lastEditRange=null,liveInsertAt=null,filter='All',returnFocus=null,renderSignature='',tipTimeout=null,hoveredCue=null;
+ let holdTimer=null,holdPoint=null,suppressCue=null,suppressUntil=0;
+ const goodSound=()=>Array.isArray(project?.sounds)?project.sounds:[];
+ const findSound=(id)=>goodSound().find(s=>String(s.id)===String(id));
+ const safeDecode=(s)=>{try{return decodeURIComponent(String(s||''))}catch(e){return String(s||'')}};
+ const color=(cat)=>typeof categoryColor==='function'?categoryColor(cat):'#48b8d0';
+ function write(text){
+  if(input.value===text&&project.script===text)return;
+  input.value=text;project.script=text;
+  input.dispatchEvent(new Event('input',{bubbles:true}));
+  // Do not rebuild the hidden live script on every keystroke: this caused costly repaint on mobile.
+  if(!editing)refresh(true);else renderSignature='';
+ }
+ function createChip(token){
+  const chip=document.createElement('span');chip.className='bs1432-placeholder-chip';chip.contentEditable='false';chip.dataset.token=token;chip.textContent=PLACEHOLDER;
+  const m=[...token.matchAll(TOKEN)][0],id=m?safeDecode(m[1]):'',s=findSound(id);
+  chip.setAttribute('aria-label',s?'Inserted audio: '+s.name:'Inserted audio');chip.title=s?.name||'Inserted audio';return chip;
+ }
+ function renderEditor(){
+  const frag=document.createDocumentFragment(),txt=input.value||'';let start=0,m;TOKEN.lastIndex=0;
+  while((m=TOKEN.exec(txt))){if(m.index>start)frag.appendChild(document.createTextNode(txt.slice(start,m.index)));frag.appendChild(createChip(m[0]));start=TOKEN.lastIndex}
+  if(start<txt.length)frag.appendChild(document.createTextNode(txt.slice(start)));
+  editor.replaceChildren(frag);lastEditorScript=txt;lastEditRange=null;
+ }
+ function serialize(node){
+  if(node.nodeType===Node.TEXT_NODE)return node.textContent||'';
+  if(node.nodeType!==Node.ELEMENT_NODE && node.nodeType!==Node.DOCUMENT_FRAGMENT_NODE)return '';
+  if(node.nodeType===Node.ELEMENT_NODE){
+   if(node.hasAttribute('data-token'))return node.dataset.token;
+   if(node.hasAttribute('data-bs-trailing'))return '';
+   if(node.tagName==='BR')return '\n';
+  }
+  let result='';for(const child of node.childNodes)result+=serialize(child);
+  return result;
+ }
+ function editorValue(){
+  // Only our atomic chips carry full IDs; the editable surface never shows the long tokens.
+  return serialize(editor);
+ }
+ function syncEditor(){lastEditorScript=editorValue();write(lastEditorScript)}
+ function editorRange(){
+  const s=window.getSelection();if(s?.rangeCount&&editor.contains(s.getRangeAt(0).commonAncestorContainer))return s.getRangeAt(0).cloneRange();
+  if(lastEditRange&&editor.contains(lastEditRange.commonAncestorContainer)){
+   try{return lastEditRange.cloneRange()}catch(e){}
+  }
+  const r=document.createRange();r.selectNodeContents(editor);r.collapse(false);return r;
+ }
+ function rememberRange(){if(!editing||document.activeElement!==editor)return;const s=window.getSelection();if(s?.rangeCount&&editor.contains(s.getRangeAt(0).commonAncestorContainer))lastEditRange=s.getRangeAt(0).cloneRange()}
+ function insertNodeIntoEditor(node){
+  editor.focus({preventScroll:true});const r=editorRange();r.deleteContents();r.insertNode(node);
+  // Chromium needs a non-data trailing <br> for the caret to remain *after* an End-of-script Enter.
+  // Otherwise the next typed text jumps before the newline. The marker is excluded from saved text.
+  if(node.nodeName==='BR' && node.parentNode===editor &&
+     [...editor.childNodes].slice([...editor.childNodes].indexOf(node)+1).every(n=>n.nodeType===Node.TEXT_NODE && !n.textContent)) {
+    const marker=document.createElement('br');marker.dataset.bsTrailing='true';editor.appendChild(marker);
+  }
+  r.setStartAfter(node);r.collapse(true);const s=window.getSelection();s.removeAllRanges();s.addRange(r);lastEditRange=r.cloneRange();syncEditor();
+ }
+ editor.addEventListener('beforeinput',e=>{
+  if(e.inputType==='insertParagraph'||e.inputType==='insertLineBreak'){
+   e.preventDefault();insertNodeIntoEditor(document.createElement('br'));
+  }
+ });
+ editor.addEventListener('paste',e=>{e.preventDefault();const txt=e.clipboardData?.getData('text/plain')||'';insertNodeIntoEditor(document.createTextNode(txt.replace(/\r\n?/g,'\n')))});
+ editor.addEventListener('input',()=>{syncEditor();rememberRange()});
+ editor.addEventListener('keyup',rememberRange);editor.addEventListener('mouseup',rememberRange);editor.addEventListener('touchend',rememberRange);
+ document.addEventListener('selectionchange',()=>{if(editing&&document.activeElement===editor)rememberRange()});
+ function setWorkspace(mode){if(mode!=='board'&&editing)completeEdit();workspace=mode==='board'?'board':mode;syncState()}
+ function syncLocation(){input.after(editor,view);syncState();applyFontSize()}
+ function syncState(){
+  const active=workspace==='board';studio.classList.toggle('bs1431-board',active);document.getElementById('floatScript')?.classList.toggle('bs1431-board',active);
+  editor.classList.toggle('bs1432-active',active&&editing);view.classList.toggle('bs1431-in-edit',editing||!active);
+  for(const b of [de,fe]){b.setAttribute('aria-pressed',String(editing&&active));b.setAttribute('aria-label',editing?'Done editing broadcast script':'Edit broadcast script');b.title=editing?'Done Editing — Live Mode':'Edit Script'}
+  if(active&&editing&&lastEditorScript!==input.value)renderEditor();
+  if(active&&!editing)refresh();
+  editor.setAttribute('aria-hidden',String(!active||!editing));view.setAttribute('aria-hidden',String(!active||editing));
+  editor.inert=!active||!editing;view.inert=!active||editing;
+  applyFontSize();hideTip();
+ }
+ function completeEdit({focusLive=false}={}){
+  if(!editing)return;
+  // First serialize and prepare the next Live frame WHILE the editor is still visible.
+  // The old sequence hid the editor, rebuilt Live twice, then blurred the keyboard;
+  // on some Android fullscreen compositors that exposed a black frame.
+  const result=editorValue();if(result!==input.value)write(result);
+  const previousScroll=editor.scrollTop;
+  refresh(true); // pre-render inline audio cues into the hidden Live layer once
+  view.scrollTop=previousScroll;
+  editing=false;
+  syncState(); // reveal the already-rendered Live layer (no DOM replacement)
+  updateCuePlayback();
+  // Deferring blur until Live has painted keeps keyboard focus changes from
+  // racing the edit/live DOM visibility switch, especially on Android.
+  requestAnimationFrame(()=>{
+   if(!editing&&document.activeElement===editor)editor.blur();
+   if(focusLive&&!editing)view.focus({preventScroll:true});
+  });
+ }
+ function toggleEdit(){
+  if(workspace!=='board')return;
+  if(editing){completeEdit();return}
+  editing=true;
+  if(lastEditorScript!==input.value)renderEditor();
+  syncState();editor.focus({preventScroll:true});
+  const r=editorRange(),s=window.getSelection();s?.removeAllRanges();s?.addRange(r);
+ }
+ function editCursorOffset(){
+  const r=editorRange(),start=document.createRange();start.selectNodeContents(editor);
+  try{start.setEnd(r.startContainer,r.startOffset);return serialize(start.cloneContents()).length}catch(e){return input.value.length}
+ }
+ // A tap outside the text commits edits. Toolbar clicks still perform their intended action.
+ let editTogglePointerPending=false;
+ document.addEventListener('pointerdown',e=>{
+  if(!editing||workspace!=='board'||!picker.hidden)return;
+  const target=e.target;
+  if(target.closest('#bs1431DockEdit,#bs1431FloatEdit')){
+   // Retain Edit state until the corresponding click handler runs.
+   editTogglePointerPending=true;
+   setTimeout(()=>{editTogglePointerPending=false},450);
+   return;
+  }
+  if(editor.contains(target))return;
+  if(target.closest('#bs1431DockInsert,#bs1431FloatInsert'))liveInsertAt=editCursorOffset();
+  completeEdit();
+ },true);
+ // A pencil click can blur contenteditable *before* its click fires.
+ // Do not let focusout commit and then let the click toggle back into Edit.
+ editor.addEventListener('focusout',e=>{
+  if(editTogglePointerPending||e.relatedTarget?.closest?.('#bs1431DockEdit,#bs1431FloatEdit'))return;
+  queueMicrotask(()=>{
+   if(editing&&!editTogglePointerPending&&picker.hidden&&!editor.contains(document.activeElement))completeEdit();
+  });
+ });
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&editing&&picker.hidden){e.preventDefault();completeEdit({focusLive:true})}},true);
+ de.addEventListener('click',()=>{editTogglePointerPending=false;toggleEdit()});
+ fe.addEventListener('click',()=>{editTogglePointerPending=false;toggleEdit()});
+ function makeCue(id,snapshot,token){
+  const sound=findSound(id),btn=document.createElement('button');btn.type='button';btn.className='bs1431-cue bs1432-cue';
+  btn.dataset.audioId=id;btn.dataset.token=token;btn.style.setProperty('--bs-cue',color(sound?.category));
+  const name=sound?.name||snapshot||'Audio unavailable';btn.dataset.songTitle=name;
+  btn.setAttribute('aria-label',sound?'Play '+name:'Audio unavailable: '+name);
+  btn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.7v14.6a1.3 1.3 0 0 0 1.9 1.1L20 13.1a1.3 1.3 0 0 0 0-2.2L8.9 3.6A1.3 1.3 0 0 0 7 4.7Z"/></svg>';
+  if(!sound){btn.disabled=true;btn.classList.add('is-missing')}
+  return btn;
+ }
+ function render(){
+  const txt=input.value||'',prevScroll=view.scrollTop,frag=document.createDocumentFragment(),flow=document.createElement('div');flow.className='bs1432-flow';
+  let start=0,m;TOKEN.lastIndex=0;
+  while((m=TOKEN.exec(txt))){if(m.index>start)flow.appendChild(document.createTextNode(txt.slice(start,m.index)));flow.appendChild(makeCue(safeDecode(m[1]),safeDecode(m[2]||''),m[0]));start=TOKEN.lastIndex}
+  if(start<txt.length)flow.appendChild(document.createTextNode(txt.slice(start)));
+  if(!txt){const hint=document.createElement('div');hint.className='bs1431-placeholder';hint.textContent='Tap the pencil to write your script. Use the music note to insert audio.';frag.appendChild(hint)}else frag.appendChild(flow);
+  view.replaceChildren(frag);view.scrollTop=prevScroll;
+  renderSignature=txt+'\n'+goodSound().map(s=>[s.id,s.name,s.category].join('|')).join('\n');updateCuePlayback();
+ }
+ function updateCuePlayback(){
+  if(workspace!=='board'||editing)return;
+  for(const btn of view.querySelectorAll('.bs1432-cue')){
+   const x=typeof live!=='undefined'?live.get(btn.dataset.audioId):null,playing=!!x&&!x.el.paused,paused=!!x&&x.el.paused;
+   btn.classList.toggle('is-playing',playing);btn.classList.toggle('is-paused',paused);btn.setAttribute('aria-pressed',String(playing));
+  }
+ }
+ function refresh(force=false){
+  const sig=(input.value||'')+'\n'+goodSound().map(s=>[s.id,s.name,s.category].join('|')).join('\n');
+  if(editing&&lastEditorScript!==input.value)renderEditor();
+  if(force||sig!==renderSignature)render();else updateCuePlayback();
+ }
+ function hideTip(){clearTimeout(tipTimeout);tip.hidden=true;hoveredCue=null}
+ function showTip(btn,autohide=false){
+  if(!btn||!btn.isConnected)return;hoveredCue=btn;tip.textContent=btn.dataset.songTitle||'Audio unavailable';tip.hidden=false;
+  const r=btn.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight;
+  const vw=document.documentElement.clientWidth||innerWidth,vh=document.documentElement.clientHeight||innerHeight;
+  tip.style.left=Math.max(6,Math.min(vw-w-6,r.left+r.width/2-w/2))+'px';
+  tip.style.top=(r.top-h-9<6?Math.min(vh-h-6,r.bottom+9):r.top-h-9)+'px';
+  clearTimeout(tipTimeout);if(autohide)tipTimeout=setTimeout(hideTip,2800);
+ }
+ function clickOffset(e){
+  const flow=view.querySelector('.bs1432-flow');if(!flow)return input.value.length;
+  let node=null,offset=0;
+  if(document.caretPositionFromPoint){const p=document.caretPositionFromPoint(e.clientX,e.clientY);if(p){node=p.offsetNode;offset=p.offset}}
+  if(!node&&document.caretRangeFromPoint){const p=document.caretRangeFromPoint(e.clientX,e.clientY);if(p){node=p.startContainer;offset=p.startOffset}}
+  if(!node||!(node===flow||flow.contains(node)))return input.value.length;
+  const r=document.createRange();r.selectNodeContents(flow);
+  try{r.setEnd(node,offset);return serialize(r.cloneContents()).length}catch(err){return input.value.length}
+ }
+ view.addEventListener('click',e=>{
+  const cue=e.target.closest('.bs1432-cue');if(cue){e.preventDefault();e.stopPropagation();
+   if(cue===suppressCue&&Date.now()<suppressUntil){suppressCue=null;suppressUntil=0;return}
+   hideTip();const id=cue.dataset.audioId;if(!findSound(id)){refresh(true);return}void play(id,false).then(updateCuePlayback);return;
+  }
+  liveInsertAt=clickOffset(e);
+ });
+ view.addEventListener('pointerover',e=>{const cue=e.target.closest('.bs1432-cue');if(cue&&e.pointerType==='mouse')showTip(cue)});
+ view.addEventListener('pointerout',e=>{const cue=e.target.closest('.bs1432-cue');if(cue&&hoveredCue===cue&&!cue.contains(e.relatedTarget))hideTip()});
+ view.addEventListener('focusin',e=>{const cue=e.target.closest('.bs1432-cue');if(cue)showTip(cue)});
+ view.addEventListener('focusout',e=>{const cue=e.target.closest('.bs1432-cue');if(cue&&hoveredCue===cue)hideTip()});
+ const clearHold=()=>{clearTimeout(holdTimer);holdTimer=null;holdPoint=null};
+ view.addEventListener('pointerdown',e=>{
+  const cue=e.target.closest('.bs1432-cue');clearHold();if(!cue||e.pointerType==='mouse')return;
+  holdPoint={x:e.clientX,y:e.clientY};holdTimer=setTimeout(()=>{
+   showTip(cue,true);suppressCue=cue;suppressUntil=Date.now()+900;holdTimer=null;
+  },520);
+ });
+ view.addEventListener('pointermove',e=>{if(holdPoint&&Math.hypot(e.clientX-holdPoint.x,e.clientY-holdPoint.y)>9)clearHold()});
+ view.addEventListener('pointerup',clearHold);view.addEventListener('pointercancel',clearHold);
+ view.addEventListener('contextmenu',e=>{if(e.target.closest('.bs1432-cue'))e.preventDefault()});
+ window.addEventListener('scroll',()=>{if(!tip.hidden)hideTip()},true);
+ function showPicker(from){if(workspace!=='board')return;
+  if(editing)rememberRange();returnFocus=from||document.activeElement;filter='All';search.value='';renderPicker();picker.hidden=false;picker.querySelector('.bs1431-close').focus({preventScroll:true});
+ }
+ function closePicker(){picker.hidden=true;returnFocus?.focus?.({preventScroll:true})}
+ di.addEventListener('click',()=>showPicker(di));fi.addEventListener('click',()=>showPicker(fi));
+ picker.querySelector('.bs1431-close').addEventListener('click',closePicker);
+ picker.addEventListener('pointerdown',e=>{if(e.target===picker)closePicker()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!picker.hidden){e.stopPropagation();e.preventDefault();closePicker()}},true);
+ search.addEventListener('input',renderPicker);
+ categories.addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(b){filter=b.dataset.cat;renderPicker()}});
+ function renderPicker(){
+  const sounds=goodSound(),cats=['All',...new Set(sounds.map(s=>s.category||'Effect'))];categories.replaceChildren();
+  for(const cat of cats){const b=document.createElement('button');b.type='button';b.className='bs1431-cat';b.dataset.cat=cat;b.textContent=cat;b.setAttribute('aria-pressed',String(filter===cat));categories.appendChild(b)}
+  const q=search.value.trim().toLowerCase();results.replaceChildren();
+  const found=sounds.filter(s=>(filter==='All'||s.category===filter)&&(!q||s.name.toLowerCase().includes(q)||String(s.category||'').toLowerCase().includes(q)));
+  if(!found.length){const empty=document.createElement('div');empty.className='bs1431-empty';empty.textContent=sounds.length?'No matching sounds.':'No sounds yet. Add audio to Soundboard first.';results.appendChild(empty);return}
+  for(const s of found){const b=document.createElement('button');b.type='button';b.className='bs1431-option';b.dataset.insertId=s.id;b.style.setProperty('--bs-cue',color(s.category));
+   const ic=document.createElement('span');ic.className='bs1431-opt-icon';ic.textContent='♫';
+   const info=document.createElement('span');info.style.minWidth='0';const title=document.createElement('strong');title.textContent=s.name;
+   const sub=document.createElement('small');sub.textContent=s.category||'Sound';info.append(title,sub);
+   const plus=document.createElement('span');plus.className='bs1431-plus';plus.textContent='+';b.append(ic,info,plus);results.appendChild(b)}
+ }
+ function insertAudio(sound){
+  const token='[[ONAIR-AUDIO:'+encodeURIComponent(sound.id)+'|'+encodeURIComponent(sound.name||'Audio')+']]';
+  if(editing){insertNodeIntoEditor(createChip(token));liveInsertAt=null;return}
+  const old=input.value||'',at=Math.max(0,Math.min(old.length,liveInsertAt===null?old.length:liveInsertAt));
+  const before=old.slice(0,at),after=old.slice(at);let left='',right='';
+  if(before.length&&!/\s$/.test(before))left=' ';
+  if(after.length&&!/^\s|^[,.!?;:)}\]]/.test(after))right=' ';
+  write(before+left+token+right+after);liveInsertAt=null;view.focus({preventScroll:true});
+ }
+ results.addEventListener('click',e=>{const b=e.target.closest('[data-insert-id]');if(!b)return;const sound=findSound(b.dataset.insertId);if(!sound){renderPicker();return}closePicker();insertAudio(sound)});
+ let boardFontPercent=100;
+ function applyFontSize(){
+  const isFloat=input.parentElement===document.getElementById('floatBody');
+  const fullscreen=studio.classList.contains('sbfs-fullscreen');
+  const base=isFloat||fullscreen?16:14;
+  const px=Math.max(9,base*boardFontPercent/100);
+  for(const el of [editor,view])el.style.setProperty('font-size',px+'px','important');
+  document.getElementById('bs1433FontDisplay').textContent=boardFontPercent+'%';
+ }
+ function updateZoom(percentage){
+  const num=Number(percentage);if(Number.isFinite(num))boardFontPercent=Math.max(50,Math.min(1000,Math.round(num)));
+  applyFontSize();
+ }
+ typeButton.addEventListener('click',e=>{
+  e.stopPropagation();typeMenu.hidden=!typeMenu.hidden;
+  typeButton.setAttribute('aria-expanded',String(!typeMenu.hidden));
+ });
+ typeMenu.addEventListener('click',e=>{
+  const b=e.target.closest('[data-bs1433-font]');if(!b)return;
+  setScriptZoom(Math.max(50,Math.min(300,boardFontPercent+(b.dataset.bs1433Font==='+'?10:-10))));
+  if(editing)editor.focus({preventScroll:true});
+ });
+ document.addEventListener('pointerdown',e=>{
+  if(!typeWrap.contains(e.target)){
+   typeMenu.hidden=true;typeButton.setAttribute('aria-expanded','false');
+  }
+ },true);
+ // Keep Live and Edit typography in sync when an existing fullscreen action changes its scale.
+ const resizeFontWatcher=new MutationObserver(()=>applyFontSize());
+ resizeFontWatcher.observe(studio,{attributes:true,attributeFilter:['class']});
+ syncLocation();setWorkspace(studio.dataset.activeWorkspace||'board');refresh(true);
+ window.__onAirBoardScript={setWorkspace,syncLocation,refresh,updateZoom,isEditing:()=>editing,openPicker:()=>showPicker(di),finishEditing:()=>completeEdit(),getZoom:()=>boardFontPercent};
+ setInterval(updateCuePlayback,400);
+})();
+
 // Press Escape within launcher: remain until project is explicitly selected.
 boot().catch(err=>{
  console.error('Studio startup error:',err);
@@ -11948,9 +12524,9 @@ body.sbfs-active .footer-playing-details{min-width:0;max-width:min(32vw,340px)}
  let fontPercent=100;
  try{fontPercent=Math.max(75,Math.min(180,Number(localStorage.getItem('onair-v1396-script-font'))||100))}catch(e){}
  const input=document.getElementById('scriptText');
- function setFont(value){fontPercent=Math.max(75,Math.min(180,value));textControls.querySelector('output').textContent=fontPercent+'%';input.style.setProperty('--sbfs-font-size',(16*fontPercent/100)+'px');try{localStorage.setItem('onair-v1396-script-font',String(fontPercent))}catch(e){}}
+ function setFont(value){fontPercent=Math.max(75,Math.min(180,value));textControls.querySelector('output').textContent=fontPercent+'%';input.style.setProperty('--sbfs-font-size',(16*fontPercent/100)+'px');window.__onAirBoardScript?.updateZoom(fontPercent);try{localStorage.setItem('onair-v1396-script-font',String(fontPercent))}catch(e){}}
  setFont(fontPercent);
- textControls.addEventListener('click',e=>{const b=e.target.closest('[data-sbfs-font]');if(!b)return;setFont(fontPercent+(b.dataset.sbfsFont==='+'?10:-10))});
+ textControls.addEventListener('click',e=>{const b=e.target.closest('[data-sbfs-font]');if(!b)return;setFont((window.__onAirBoardScript?.getZoom?.()??fontPercent)+(b.dataset.sbfsFont==='+'?10:-10))});
  const isActive=()=>active;
  const isScriptVisible=()=>scriptVisible;
  function updateButtons(){
@@ -12155,7 +12731,12 @@ body.sbfs-active .footer-playing-details{min-width:0;max-width:min(32vw,340px)}
   if(recorder&&studioMainline)studioMainline.insertBefore(recorder,toolbar);
   studio.classList.add('sbfs-fullscreen');document.body.classList.add('sbfs-active');document.documentElement.classList.add('sbfs-active');
   layoutCards();input.scrollTop=enteringScriptScroll.top;input.scrollLeft=enteringScriptScroll.left;rememberedScriptScroll=enteringScriptScroll;updateButtons();
-  if(document.documentElement.requestFullscreen){
+  // Android Chrome may drop/re-enter native fullscreen when a contenteditable
+  // script acquires or loses keyboard focus, causing an app-wide black flash.
+  // On Android retain the same CSS fullscreen workspace WITHOUT native fullscreen.
+  // Desktop browsers continue to use native fullscreen normally.
+  const androidKeyboardHost=/Android/i.test(navigator.userAgent||'');
+  if(!androidKeyboardHost&&document.documentElement.requestFullscreen){
    document.documentElement.requestFullscreen({navigationUI:'hide'}).then(()=>{ownsBrowserFullscreen=!!document.fullscreenElement}).catch(()=>{ownsBrowserFullscreen=false});
   }
  }
@@ -14343,7 +14924,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
    const editorProjects=which==='editor-current'?allEditor.filter(p=>p.id===currentEditorId):which==='all'?allEditor:[];
    if(!projects.length&&!editorProjects.length)throw Error(which==='current'?'Please open a saved broadcast project first.':which==='editor-current'?'Please open and save an Audio Editor project first.':'No saved projects were found to export.');
    if(which==='current'&&projects.length!==1)throw Error('Current broadcast not found. Save it before exporting.');
-   const zip=new JSZip();const lastSavedBroadcastId=await req(main,'projects','get','__last');const manifest={format:FORMAT,version:VERSION,createdAt:new Date().toISOString(),appVersion:'143.0',optimization:{lossless:true,deduplicated:true},scope:which,activeBroadcastId:projects.find(p=>p.id===currentId||p.id===lastSavedBroadcastId)?.id||projects[0]?.id||null,broadcast:projects.map(clone),editor:editorProjects.map(clone),soundFiles:[],recordingFiles:[],editorFiles:[],samplerFiles:[]};
+   const zip=new JSZip();const lastSavedBroadcastId=await req(main,'projects','get','__last');const manifest={format:FORMAT,version:VERSION,createdAt:new Date().toISOString(),appVersion:'143.3',optimization:{lossless:true,deduplicated:true},scope:which,activeBroadcastId:projects.find(p=>p.id===currentId||p.id===lastSavedBroadcastId)?.id||projects[0]?.id||null,broadcast:projects.map(clone),editor:editorProjects.map(clone),soundFiles:[],recordingFiles:[],editorFiles:[],samplerFiles:[]};
    const requestedSoundIds=unique(projects.flatMap(p=>p.sounds.map(s=>s.id)));
    for(const soundId of requestedSoundIds){const blob=await req(main,'assets','get',soundId);const reference=projects.flatMap(p=>p.sounds).find(s=>s.id===soundId);
     const path=await addBinary(zip,'sounds',manifest.soundFiles,blob,reference?.name||soundId);manifest.soundFiles.at(-1).soundId=soundId;setStatus('Collecting sound files · '+manifest.soundFiles.length+'/'+requestedSoundIds.length);
@@ -14366,7 +14947,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
    if(total>LIMIT)throw Error('This backup is larger than '+sizeText(LIMIT)+'. Split it into smaller project exports.');
    manifest.optimization.duplicateBytesSaved=zip.__onAirSavedBytes||0;
    zip.file('manifest.json',JSON.stringify(manifest),{compression:'DEFLATE'});
-   zip.file('README.txt','ON AIR Studio v143.0 · Lossless Compact Project Backup\n\nOpen ON AIR Studio, choose Import Project, and select this .onair.zip file.\nSoundboard, DJ deck selections, queue, recordings, and editable editor projects are included as described in manifest.json.\nImported projects receive new IDs and do not overwrite saved local projects.\nPortable project backups do not include the application itself.\nDo not edit manifest.json or the included sound files.\n');
+   zip.file('README.txt','ON AIR Studio v143.5 · Lossless Compact Project Backup\n\nOpen ON AIR Studio, choose Import Project, and select this .onair.zip file.\nSoundboard, DJ deck selections, queue, recordings, and editable editor projects are included as described in manifest.json.\nImported projects receive new IDs and do not overwrite saved local projects.\nPortable project backups do not include the application itself.\nDo not edit manifest.json or the included sound files.\n');
    setStatus('Optimizing backup · '+sizeText(zip.__onAirSavedBytes||0)+' of identical audio merged…');
    const output=await zip.generateAsync({type:'blob',compression:'DEFLATE',compressionOptions:{level:6},streamFiles:true},meta=>{if(meta.percent)setStatus('Creating archive · '+Math.round(meta.percent)+'%')});
    return {output,manifest,total};
