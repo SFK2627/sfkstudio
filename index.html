@@ -5385,8 +5385,8 @@ $('recordingList').addEventListener('input',e=>{
  const slider=e.target.closest('[data-rec-seek]');if(slider)seekRecordingPlayback(Number(slider.dataset.recSeek),slider)
 });
 // External Get Audio hand-off (v143.8 downloader-only update).
-// Copy the entered YouTube URL and open YTMP3.gg. An external site cannot be autofilled from here.
-const GET_AUDIO_DOWNLOADER_URL='https://media.ytmp3.gg/tools/youtube-video-downloader/mxmrgj';
+// Copy the entered YouTube URL and open MP3Juices. An external site cannot be autofilled from here.
+const GET_AUDIO_DOWNLOADER_URL='https://mp3juices.co/';
 function getAudioCleanup(){}
 function getYouTubeID(text){
  try{
@@ -5402,12 +5402,12 @@ function getYouTubeID(text){
 }
 function getAudioDialog(){
  modal('Get Audio',`<div class="get-audio-v58">
-   <div class="ga-head"><span class="ga-logo" aria-hidden="true">▶</span><div><strong>YouTube Audio / Video Downloader</strong><p>Copy your YouTube link, then open YTMP3.gg (MP3 or MP4).</p></div></div>
+   <div class="ga-head"><span class="ga-logo" aria-hidden="true">▶</span><div><strong>YouTube Audio / Video Downloader</strong><p>Copy your YouTube link, then open MP3Juices (MP3 or MP4).</p></div></div>
    <div><label class="ga-input-label" for="gaYouTubeLink">YouTube video link</label><div class="ga-link-row"><input class="ga-youtube-link" id="gaYouTubeLink" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://www.youtube.com/watch?v=..." aria-describedby="gaLinkStatus"><button type="button" class="ga-clear" id="gaClearLink" title="Clear link" aria-label="Clear YouTube link">✕</button></div></div>
    <p id="gaLinkStatus" class="ga-status" role="status" aria-live="polite">Enter a YouTube link to continue.</p>
-   <a class="ga-open" id="gaOpenConverter" href="${GET_AUDIO_DOWNLOADER_URL}" target="_blank" rel="noopener noreferrer" aria-disabled="true">↗ Copy Link &amp; Open YTMP3.gg</a>
+   <a class="ga-open" id="gaOpenConverter" href="${GET_AUDIO_DOWNLOADER_URL}" target="_blank" rel="noopener noreferrer" aria-disabled="true">↗ Copy Link &amp; Open MP3Juices</a>
    <button type="button" class="ga-copy-only" id="gaCopyLink" disabled>⧉ Copy Link Only</button>
-   <div class="ga-notice"><strong>External website:</strong> Conversion and downloads happen on <strong>YTMP3.gg</strong>, not in ON AIR Studio. Paste your copied link into the downloader page. Only save content you own or have permission to download.</div>
+   <div class="ga-notice"><strong>External website:</strong> Conversion and downloads happen on <strong>MP3Juices</strong>, not in ON AIR Studio. Paste your copied link into the downloader page. Only save content you own or have permission to download.</div>
  </div>`);
  const field=$('gaYouTubeLink'),go=$('gaOpenConverter'),copyBtn=$('gaCopyLink'),status=$('gaLinkStatus');
  function refresh(){
@@ -5415,7 +5415,7 @@ function getAudioDialog(){
   go.setAttribute('aria-disabled',String(!id));
   go.href=GET_AUDIO_DOWNLOADER_URL;
   copyBtn.disabled=!id;
-  status.textContent=!value?'Enter a YouTube link to continue.':id?'Ready. Copy the link and paste it on YTMP3.gg.':'Please enter a valid YouTube video link.';
+  status.textContent=!value?'Enter a YouTube link to continue.':id?'Ready. Copy the link and paste it on MP3Juices.':'Please enter a valid YouTube video link.';
   status.classList.toggle('error',!!value&&!id);
  }
  function fallbackCopy(value){
@@ -5427,19 +5427,46 @@ function getAudioDialog(){
   }catch(e){return false}
   finally{if(temp)temp.remove()}
  }
- function copyLink(){
+ function copyFeedback(ok){
+  status.textContent=ok?'YouTube link copied automatically. Paste it into MP3Juices.':'Clipboard access was blocked. Please select and copy the link manually.';
+  status.classList.toggle('error',!ok);
+ }
+ // Copy before opening the external tab: changing browser focus too early can block clipboard writes on phones.
+ // Use the synchronous, user-gesture copy first (works on many file:// and content:// pages),
+ // then the modern async clipboard API if legacy copying is blocked.
+ function copyLinkOnly(){
   const value=field.value.trim();if(!getYouTubeID(value))return;
-  function feedback(ok){status.textContent=ok?'YouTube link copied. Paste it into YTMP3.gg.':'Automatic copy was blocked. Select and copy the YouTube link manually.';status.classList.toggle('error',!ok)}
+  if(fallbackCopy(value)){copyFeedback(true);return}
   if(navigator.clipboard && typeof navigator.clipboard.writeText==='function'){
-   try{navigator.clipboard.writeText(value).then(()=>feedback(true),()=>feedback(fallbackCopy(value)));return}catch(e){}
+   try{navigator.clipboard.writeText(value).then(()=>copyFeedback(true),()=>copyFeedback(false));return}catch(e){}
   }
-  feedback(fallbackCopy(value));
+  copyFeedback(false);
+ }
+ function copyLinkAndOpen(e){
+  if(go.getAttribute('aria-disabled')==='true'){e.preventDefault();field.focus();return}
+  const value=field.value.trim();
+  // Successful synchronous copy lets the browser open the actual anchor normally, with no popup-blocker race.
+  if(fallbackCopy(value)){copyFeedback(true);return}
+  // Do not open a new tab until copying succeeds: async writes can fail when the page loses focus.
+  e.preventDefault();
+  if(navigator.clipboard && typeof navigator.clipboard.writeText==='function'){
+   try{
+    navigator.clipboard.writeText(value).then(()=>{
+     copyFeedback(true);
+     const popup=window.open(GET_AUDIO_DOWNLOADER_URL,'_blank');
+     if(popup){try{popup.opener=null}catch(e){}}
+     else window.location.assign(GET_AUDIO_DOWNLOADER_URL);
+    },()=>copyFeedback(false));
+    return;
+   }catch(e){}
+  }
+  copyFeedback(false);
  }
  field.addEventListener('input',refresh);
  field.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();if(go.getAttribute('aria-disabled')!=='true')go.click()}});
  $('gaClearLink').onclick=()=>{field.value='';refresh();field.focus()};
- go.addEventListener('click',e=>{if(go.getAttribute('aria-disabled')==='true'){e.preventDefault();field.focus();return}copyLink()});
- copyBtn.addEventListener('click',copyLink);
+ go.addEventListener('click',copyLinkAndOpen);
+ copyBtn.addEventListener('click',copyLinkOnly);
  refresh();field.focus();
 }
 $('getAudioBtn').onclick=getAudioDialog;
